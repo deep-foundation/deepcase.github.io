@@ -7,14 +7,14 @@ import {
 import { Provider } from '../imports/provider';
 
 const team = [
-  { name: 'Ivan Glazunov', description: 'Founder, Lead, Architect', src: '/avatars/ivansglazunov.jpg' },
-  { name: 'Konstantin Dyachenko', description: 'Lead, LinksTheory', src: '/avatars/konard.jpg' },
-  { name: 'Peter Bezdenezhnykh', description: 'Lead, DevOps', src: '/avatars/menzorg.jpg' },
+  { name: 'Ivan Glazunov', description: 'Founder, Architect', src: '/avatars/ivansglazunov.jpg' },
+  { name: 'Konstantin Dyachenko', description: 'Founder, LinksTheory', src: '/avatars/konard.jpg' },
+  { name: 'Peter Bezdenezhnykh', description: 'Founder, DevOps', src: '/avatars/menzorg.jpg' },
 ];
 
 export function Team(props) {
   const [rotate, setRotate] = useState(() => Math.floor( (Math.random() * (380-0 +1) ) + 0 ));
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState<false | number>(false);
   const speed = !!hover ? 0.02 : 0.1;
   const speedRef = useRef(0.1);
   useInterval(() => {
@@ -28,7 +28,7 @@ export function Team(props) {
   >
     <img src="/point.png" style={{ width: '100%' }}/>
     {team.map((t, i) => (
-      <div style={{
+      <div key={i} style={{
         position: 'absolute',
         left: '50%', top: '50%',
         width: '50%', height: '50%',
@@ -47,8 +47,8 @@ export function Team(props) {
           }}
         >
           <GravityCard style={{ height: '100%', width: '100%', position: 'relative' }} PaperProps={{ style: { borderRadius: '100%', overflow: 'hidden', position: 'relative' } }}>
-            <div style={{ transform: hover === i ? 'scale(1.1)' : 'scale(1)', transition: 'all 1s ease', height: '100%', width: '100%', position: 'aboslute' }}>
-              <Image src={t.src} layout="fill" objectFit="cover"/>
+            <div style={{ transform: hover === i ? 'scale(1.1)' : 'scale(1)', transition: 'all 1s ease', height: '100%', width: '100%', position: 'absolute' }}>
+              <img src={t.src} style={{ objectFit: 'cover', width: '100%', height: '100%' }}/>
             </div>
           </GravityCard>
           <Typography style={{ position: 'absolute', top: '110%', left: '-50%', width: '200%' }} align="center" variant="body1">

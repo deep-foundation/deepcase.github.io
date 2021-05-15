@@ -25,12 +25,12 @@ export function Card({
   children: any; disabled?: boolean; animatedProps?: any; PaperProps?: any;
   [prop: string]: any;
 }) {
-  const [hover, setHover] = React.useState(false);
+  const [hover, setHover] = useState<boolean>(false);
   const [spr, set] = useSpring(() => ({
     xys: [0, 0, 1],
     config: { mass: 2, tension: 150, friction: 100 }
   }));
-  const rootRef = useRef();
+  const rootRef = useRef<HTMLInputElement>();
 
   return (
     <div ref={rootRef} {...props} style={{ position: 'relative', height: '100%', width: '100%', ...props?.style }}>
@@ -39,7 +39,7 @@ export function Card({
           if (disabled) return;
           const box = rootRef.current.getBoundingClientRect();
           let x, y;
-          x = clientX - box.x, y = clientY - box.y;
+          x = clientX - box?.x, y = clientY - box?.y;
           set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop) });
           if (!hover) setHover(true);
         }}
