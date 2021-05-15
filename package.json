@@ -1,0 +1,34 @@
+{
+  "name": "deep-foundation",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "gitpod-export": "export PORT=3007;",
+    "local-export": "export PORT=3007;",
+    "dev": "next dev -p $PORT",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start",
+    "gh-pages": "npm run build; npm run export; rm -rf ../store-gh-pages/*; mv ./out/* ../store-gh-pages/; rm -rf out",
+    "gitpod": "npm run gitpod-export; export $(grep -v '^#' .env | xargs); npm run dev",
+    "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev"
+  },
+  "dependencies": {
+    "@capacitor/core": "^2.4.7",
+    "@deepcase/store": "^0.0.32",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@mdx-js/react": "^1.6.22",
+    "@next/mdx": "^10.2.0",
+    "next": "^10.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-spring": "^9.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.2"
+  },
+  "engines": {
+    "node": "^14.15.0"
+  }
+}
