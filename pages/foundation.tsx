@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import {
-  ArrowBackIcon, Button, Grid, Link, Screen, Typography, Image,
+  ArrowBackIcon, Button, Grid, Link, Screen, Typography,
   useInterval,
   GravityCard,
 } from '../imports/framework';
