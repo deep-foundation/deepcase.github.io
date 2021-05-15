@@ -7,6 +7,14 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
   },
+  overrides: {
+    MuiButton: {
+      label: {
+        fontSize: 20,
+        textTransform: 'none',
+      },
+    },
+  },
 });
 
 const components = {
