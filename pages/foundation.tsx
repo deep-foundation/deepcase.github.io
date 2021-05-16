@@ -8,7 +8,7 @@ import { Provider } from '../imports/provider';
 
 const team = [
   { name: 'Ivan Glazunov', description: 'Founder, Applications Architect', startIt: 2008, src: '/avatars/ivansglazunov.jpg' },
-  { name: 'Konstantin Dyachenko', description: 'Founder, Data Architect', startIt: 2006, src: '/avatars/konard.jpg' },
+  { name: 'Konstantin Dyachenko', description: 'Founder, Data Architect', startIt: 2007, src: '/avatars/konard.jpg' },
   { name: 'Peter Bezdenezhnykh', description: 'Founder, DevOps Architect', startIt: 2012, src: '/avatars/menzorg.jpg' },
 ];
 
