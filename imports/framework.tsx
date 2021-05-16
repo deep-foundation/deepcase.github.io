@@ -5,9 +5,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 export { GitHubIcon, ArrowBackIcon };
 
-import Image from 'next/image';
 import Link from 'next/link';
-export { Link, Image };
+export { Link };
 
 import useInterval from "@use-it/interval";
 export { useInterval };

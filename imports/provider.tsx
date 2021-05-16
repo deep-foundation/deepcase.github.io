@@ -1,6 +1,5 @@
 import { createMuiTheme, Link, ThemeProvider, Typography, List, ListItem, ListItemText } from '@material-ui/core';
 import { MDXProvider } from '@mdx-js/react';
-import Image from 'next/image';
 // import { Heading, Text, Pre, Code, Table } from '../components';
 
 const theme = createMuiTheme({
