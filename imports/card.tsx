@@ -58,7 +58,8 @@ export function Card({
         }}
       >
         <Paper
-          elevation={hover ? 4 : 1}
+          elevation={disabled ? 0 : hover ? 4 : 1}
+          variant={disabled ? 'outlined' : 'elevation'}
           component={ButtonBase}
           disabled={disabled}
           {...PaperProps}
@@ -66,6 +67,7 @@ export function Card({
             opacity: disabled ? 0.5 : 1,
             height: '100%', width: '100%',
             textAlign: 'left',
+            backgroundColor: disabled ? '#f2f2f2' : '#fff',
             borderRadius: folder ? 16 : undefined,
             ...PaperProps?.style
           }}

@@ -28,8 +28,12 @@ export function Folder({
       }}
       onClose={() => setAnchor(null)}
       PaperProps={{
+        elevation: 0,
         style: {
           borderRadius: 16,
+          boxShadow: 'none',
+          background: '#f7f7f7eb',
+          overflow: 'hidden',
         },
       }}
     >

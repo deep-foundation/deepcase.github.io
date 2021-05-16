@@ -75,7 +75,7 @@ export default function Page(props) {
       <Screen>
         <Grid container spacing={3}>
           <Grid item xs={12} style={{ height: '30vh' }} />
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ position: 'sticky', top: 0, zIndex: 2, background: '#ffffffe6' }}>
             <Link href="/"><Button size="large"><ArrowBackIcon/>&nbsp;&nbsp;Deep.Foundation</Button></Link>
             <Typography variant="h2">Foundation</Typography>
           </Grid>

@@ -1,9 +1,10 @@
 import { Grid } from '@material-ui/core';
 export * from '@material-ui/core';
 
+import AddIcon from '@material-ui/icons/Add';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-export { GitHubIcon, ArrowBackIcon };
+export { GitHubIcon, ArrowBackIcon, AddIcon };
 
 import Link from 'next/link';
 export { Link };
