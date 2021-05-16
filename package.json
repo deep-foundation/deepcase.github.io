@@ -9,7 +9,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "gh-pages": "npm run build; rm -rf ./docs; npm run export -o docs;",
+    "gh-pages": "npm run build; rm -rf ./docs; npm run export -- -o docs;",
     "gitpod": "npm run gitpod-export; export $(grep -v '^#' .env | xargs); npm run dev",
     "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev"
   },
