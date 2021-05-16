@@ -20,9 +20,11 @@ const useStyles = makeStyles(() => ({
 
 export function Card({
   children, disabled, animatedProps, PaperProps,
+  folder = false,
   ...props
 }: {
   children: any; disabled?: boolean; animatedProps?: any; PaperProps?: any;
+  folder?: boolean;
   [prop: string]: any;
 }) {
   const [hover, setHover] = useState<boolean>(false);
@@ -57,12 +59,14 @@ export function Card({
       >
         <Paper
           elevation={hover ? 4 : 1}
-          component={disabled ? 'div' : ButtonBase}
+          component={ButtonBase}
+          disabled={disabled}
           {...PaperProps}
           style={{
             opacity: disabled ? 0.5 : 1,
             height: '100%', width: '100%',
             textAlign: 'left',
+            borderRadius: folder ? 16 : undefined,
             ...PaperProps?.style
           }}
         >

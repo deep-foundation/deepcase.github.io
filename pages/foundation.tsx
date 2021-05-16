@@ -7,15 +7,16 @@ import {
 import { Provider } from '../imports/provider';
 
 const team = [
-  { name: 'Ivan Glazunov', description: 'Founder, Architect', src: '/avatars/ivansglazunov.jpg' },
-  { name: 'Konstantin Dyachenko', description: 'Founder, LinksTheory', src: '/avatars/konard.jpg' },
-  { name: 'Peter Bezdenezhnykh', description: 'Founder, DevOps', src: '/avatars/menzorg.jpg' },
+  { name: 'Ivan Glazunov', description: 'Founder, Applications Architect', startIt: 2008, src: '/avatars/ivansglazunov.jpg' },
+  { name: 'Konstantin Dyachenko', description: 'Founder, Data Architect', startIt: 2006, src: '/avatars/konard.jpg' },
+  { name: 'Peter Bezdenezhnykh', description: 'Founder, DevOps Architect', startIt: 2012, src: '/avatars/menzorg.jpg' },
 ];
 
 export function Team(props) {
   const [rotate, setRotate] = useState(() => Math.floor( (Math.random() * (380-0 +1) ) + 0 ));
   const [hover, setHover] = useState<false | number>(false);
-  const speed = !!hover ? 0.02 : 0.1;
+  const isHover = hover !== false;
+  const speed = !!isHover ? 0.02 : 0.1;
   const speedRef = useRef(0.1);
   useInterval(() => {
     if (speedRef.current > speed) speedRef.current = speedRef.current - 0.002;
@@ -34,6 +35,7 @@ export function Team(props) {
         width: '50%', height: '50%',
         transformOrigin: '0 0',
         transform: `rotate(${((360 / team.length) * (i + 1)) + rotate}deg)`,
+        transition: 'all 0.01 linear',
       }}>
         <div
           onMouseEnter={() => setHover(i)}
@@ -44,6 +46,7 @@ export function Team(props) {
             width: '50%',
             height: '50%',
             transform: `rotate(${((360 / team.length) * ((team.length - i) - 1)) - rotate}deg)`,
+            transition: 'all 0.01 linear',
           }}
         >
           <GravityCard style={{ height: '100%', width: '100%', position: 'relative' }} PaperProps={{ style: { borderRadius: '100%', overflow: 'hidden', position: 'relative' } }}>
@@ -55,6 +58,9 @@ export function Team(props) {
             {t.name}
             <Typography variant="body2">
               {t.description}
+            </Typography>
+            <Typography variant="body2">
+              {new Date().getFullYear() - t.startIt} year exp.
             </Typography>
           </Typography>
         </div>
