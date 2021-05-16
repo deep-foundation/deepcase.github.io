@@ -2,9 +2,36 @@ import { createMuiTheme, Link, ThemeProvider, Typography, List, ListItem, ListIt
 import { MDXProvider } from '@mdx-js/react';
 // import { Heading, Text, Pre, Code, Table } from '../components';
 
+const temp = createMuiTheme({});
+const { breakpoints, typography: { pxToRem } } = temp;
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
+    h1: {
+      fontSize: "6rem",
+      [breakpoints.down("xs")]: {
+        fontSize: "3rem"
+      }
+    },
+    h2: {
+      fontSize: "3.75rem",
+      [breakpoints.down("xs")]: {
+        fontSize: "2.2rem"
+      }
+    },
+    h3: {
+      fontSize: "3rem",
+      [breakpoints.down("xs")]: {
+        fontSize: "2rem"
+      }
+    },
+    h4: {
+      fontSize: "2.125rem",
+      [breakpoints.down("xs")]: {
+        fontSize: "1.8rem"
+      }
+    }
   },
   overrides: {
     MuiButton: {

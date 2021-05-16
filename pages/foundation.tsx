@@ -25,7 +25,7 @@ export function Team(props) {
   }, 10);
 
   return <div
-    style={{ position: 'relative' }}
+    style={{ position: 'relative', overflow: 'hidden' }}
   >
     <img src="/point.png" style={{ width: '100%' }}/>
     {team.map((t, i) => (
