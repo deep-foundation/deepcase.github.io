@@ -1,6 +1,6 @@
 {
   "name": "deep-foundation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "gitpod-export": "export PORT=3007;",
