@@ -13,9 +13,6 @@
     "gitpod": "npm run gitpod-export; export $(grep -v '^#' .env | xargs); npm run dev",
     "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev"
   },
-  "pre-commit": [
-    "gh-pages"
-  ],
   "dependencies": {
     "@capacitor/core": "^2.4.7",
     "@deepcase/store": "^0.0.32",
