@@ -21,6 +21,7 @@
     "@deepcase/store": "^0.0.32",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^10.2.0",
     "@use-it/interval": "^1.0.0",
@@ -32,7 +33,9 @@
     "react-spring": "^9.1.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.2"
+    "@types/node": "^15.3.0",
+    "@types/react": "^17.0.2",
+    "typescript": "^4.2.4"
   },
   "engines": {
     "node": "^14.15.0"
