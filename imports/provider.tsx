@@ -6,6 +6,13 @@ const temp = createMuiTheme({});
 const { breakpoints, typography: { pxToRem } } = temp;
 
 const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000',
+      light: '#000',
+      dark: '#000',
+    },
+  },
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     h1: {

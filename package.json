@@ -21,6 +21,7 @@
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^10.2.0",
+    "@reonomy/react-confetti-explosion": "^1.0.3",
     "@use-it/interval": "^1.0.0",
     "next": "^10.0.7",
     "normalize.css": "^8.0.1",

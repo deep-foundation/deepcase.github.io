@@ -43,6 +43,12 @@ export default function Page(props) {
             </div></GravityCard></Link>
           </Grid>
           <Grid item md={3} sm={4} xs={12}>
+            <Link href="/pre-order"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+              <Typography variant="body1">Pre-order</Typography>
+              <Typography variant="body2">Help as to launch.</Typography>
+            </div></GravityCard></Link>
+          </Grid>
+          <Grid item md={3} sm={4} xs={12}>
             <Folder
               content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
                 <Grid item xs={12} sm={6}><Link href="https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
