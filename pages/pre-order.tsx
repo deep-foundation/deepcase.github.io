@@ -17,6 +17,7 @@ import {
 } from '../imports/framework';
 import _ from 'lodash';
 import { Provider } from '../imports/provider';
+import { useEffect } from 'react';
 
 const whyNoVariants = [
   {
@@ -30,13 +31,25 @@ const whyNoVariants = [
 ];
 
 export default function Page(props) {
-  const [want, setWant] = useState(0);
+  const [want, setWant] = useState(0); //
   const [whyNo, setWhyNo] = useState({});
   const [needNews, setNeedNews] = useState(0);
   const [email, setEmail] = useState('');
   const [planLength, setPlanLength] = useState(1);
-  const [buy, setBuy] = useState(false);
+  const [buy, setBuy] = useState(false); //
   const [wantPlan, setWantPlan] = useState(0);
+  
+  const counters = {
+    wantYes: 50,
+    wantNo: 3,
+    needNews1: 12,
+    needNews2: 24,
+    needNews3: 11,
+    wantPlan1: 40,
+    wantPlan2: 12,
+    wantBuy: 10,
+    wantPay: 2,
+  }
 
   return (
     <Provider>
@@ -57,8 +70,8 @@ export default function Page(props) {
           <Grid item xs={12}>
             <Typography variant="h4">Want to use Deep solutions?</Typography>
             <Grid container justify="center" alignItems="center" spacing={1}>
-              <Grid item><ButtonExplotion variant="outlined" onClick={() => setWant(want === 1 ? 0 : 1)} disabled={want === 1}>yes</ButtonExplotion></Grid>
-              <Grid item><Button variant="outlined" onClick={() => setWant(want === 2 ? 0 : 2)} disabled={want === 2}>no</Button></Grid>
+              <Grid item><ButtonExplotion variant="outlined" onClick={() => setWant(want === 1 ? 0 : 1)} disabled={want === 1}>yes ({counters.wantYes})</ButtonExplotion></Grid>
+              <Grid item><Button variant="outlined" onClick={() => setWant(want === 2 ? 0 : 2)} disabled={want === 2}>no ({counters.wantNo})</Button></Grid>
             </Grid>
             {want === 1 && <>
               <Grid container justify="center" alignItems="center" spacing={1}>
@@ -68,9 +81,9 @@ export default function Page(props) {
                 </Grid>
                 <Grid item>
                   <ButtonGroup variant="outlined">
-                    <Button color={needNews === 1 ? 'primary' : 'default'} onClick={() => setNeedNews(1)}>all</Button>
-                    <Button color={needNews === 2 ? 'primary' : 'default'} onClick={() => setNeedNews(2)}>only release</Button>
-                    <Button color={needNews === 3 ? 'primary' : 'default'} onClick={() => setNeedNews(3)}>no</Button>
+                    <Button color={needNews === 1 ? 'primary' : 'default'} onClick={() => setNeedNews(1)}>all ({counters.needNews1})</Button>
+                    <Button color={needNews === 2 ? 'primary' : 'default'} onClick={() => setNeedNews(2)}>only release ({counters.needNews2})</Button>
+                    <Button color={needNews === 3 ? 'primary' : 'default'} onClick={() => setNeedNews(3)}>no ({counters.needNews3})</Button>
                   </ButtonGroup>
                 </Grid>
                 <Grid item xs={12}>
@@ -113,7 +126,7 @@ export default function Page(props) {
                           <Grid item><ButtonExplotion variant="outlined" onClick={() => {
                             setWantPlan(1);
                             setBuy(false);
-                          }} color={wantPlan === 1 ? 'primary' : 'default'}>want</ButtonExplotion></Grid>
+                          }} color={wantPlan === 1 ? 'primary' : 'default'}>want ({counters.wantPlan1})</ButtonExplotion></Grid>
                         </Grid>
                       </CardContent>
                     </Card>
@@ -138,8 +151,8 @@ export default function Page(props) {
                               <Grid item><ButtonExplotion variant="outlined" color={buy ? 'primary' : 'default'} onClick={() => {
                                 setWantPlan(2);
                                 setBuy(true);
-                              }}>buy</ButtonExplotion></Grid>
-                              <Grid item><ButtonExplotion variant="outlined" onClick={() => setWantPlan(2)} color={wantPlan === 2 ? 'primary' : 'default'}>want</ButtonExplotion></Grid>
+                              }}>buy ({counters.wantBuy})</ButtonExplotion></Grid>
+                              <Grid item><ButtonExplotion variant="outlined" onClick={() => setWantPlan(2)} color={wantPlan === 2 ? 'primary' : 'default'}>want ({counters.wantPlan2})</ButtonExplotion></Grid>
                             </Grid>
                           </CardContent>
                         </Card>
@@ -167,7 +180,7 @@ export default function Page(props) {
                           <Typography>manually activated after release</Typography>
                           <Typography variant="body2">return possible</Typography>
                           <ButtonExplotion fullWidth variant="outlined">
-                            pay
+                            pay ({counters.wantPay})
                           </ButtonExplotion>
                         </CardContent>
                       </Card>
