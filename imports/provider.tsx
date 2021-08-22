@@ -1,5 +1,6 @@
 import { createMuiTheme, Link, ThemeProvider, Typography, List, ListItem, ListItemText } from '@material-ui/core';
 import { MDXProvider } from '@mdx-js/react';
+import { Analitics } from './analitics';
 // import { Heading, Text, Pre, Code, Table } from '../components';
 
 const temp = createMuiTheme({});
@@ -65,10 +66,16 @@ const components = {
 
 export function Provider(props) {
   return (
-    <ThemeProvider theme={theme}>
-      <MDXProvider components={components}>
-        <main {...props}/>
-      </MDXProvider>
-    </ThemeProvider>
+    <Analitics
+      yandexMetrikaAccounts={[84258358]}
+      googleAnalyticsAccounts={['UA-215852788-1']}
+    >
+      <ThemeProvider theme={theme}>
+        {/* <MDXProvider components={components}> */}
+          {/* <main {...props}/> */}
+        {/* </MDXProvider> */}
+        {props.children}
+      </ThemeProvider>
+    </Analitics>
   )
 };
