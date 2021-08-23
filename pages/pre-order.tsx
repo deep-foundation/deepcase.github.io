@@ -35,28 +35,6 @@ const whyNoVariants = [
 ];
 
 export default function Page(props) {
-  const [want, setWant] = useState(0); //
-  const [whyNo, setWhyNo] = useState({});
-  const [needNews, setNeedNews] = useState(0);
-  const [email, setEmail] = useState('');
-  const [planLength, setPlanLength] = useState(1);
-  const [buy, setBuy] = useState(false); //
-  const [wantPlan, setWantPlan] = useState(0);
-  
-  const counters = {
-    wantYes: 50,
-    wantNo: 3,
-    needNews1: 12,
-    needNews2: 24,
-    needNews3: 11,
-    wantPlan1: 40,
-    wantPlan2: 12,
-    wantBuy: 10,
-    wantPay: 2,
-  }
-
-  const { event } = useAnalitics();
-
   return (
     <Provider>
       <Screen>
