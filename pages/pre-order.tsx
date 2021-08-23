@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 import { useAnalitics } from '../imports/analitics';
 import dynamic from "next/dynamic";
 
-const Waitlist = dynamic(() => import("waitlistapi").then(w => w.Waitlist), { ssr: false });
+const Waitlist: any= dynamic(() => import("waitlistapi").then(w => w.Waitlist), { ssr: false });
 
 const whyNoVariants = [
   {
