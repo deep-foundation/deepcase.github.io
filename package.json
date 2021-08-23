@@ -30,7 +30,8 @@
     "react-dom": "^17.0.1",
     "react-ga": "^3.3.0",
     "react-spring": "^9.1.2",
-    "react-yandex-metrika": "^2.6.0"
+    "react-yandex-metrika": "^2.6.0",
+    "waitlistapi": "^0.6.2"
   },
   "devDependencies": {
     "@types/node": "^15.3.0",
