@@ -25,10 +25,10 @@ export function ScreenCenter(props) {
   )
 };
 
-export function Screen({ children }: { children: any; }) {
+export function Screen({ children, ContainerProps, ItemProps }: { children: any; ContainerProps?: any; ItemProps?: any; }) {
   return (
-    <ScreenCenter>
-      <Grid item xs={11} sm={9} md={7} lg={6}>
+    <ScreenCenter {...ContainerProps}>
+      <Grid item xs={11} sm={9} md={7} lg={6} {...ItemProps}>
         {children}
       </Grid>
     </ScreenCenter>
