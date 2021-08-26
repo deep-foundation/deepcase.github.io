@@ -192,7 +192,7 @@ export function PageContent() {
             </Grid>}
           ><GravityCard style={{ height: 150 }} folder><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">✨</Typography>
-            <Typography variant="body1">Useges</Typography>
+            <Typography variant="body1">Usages</Typography>
             <Typography variant="body2">Projects uses Deep solutions.</Typography>
           </div></GravityCard></Folder>
         </Grid>
