@@ -14,8 +14,8 @@ export function NPMBadge({ name } : { name: string }) {
 }
 
 const deepgraphProject = <Link href="https://github.com/deepcase/deepgraph"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-<Typography variant="body1">Deep.Graph</Typography>
-<Typography variant="body2">Graphql access to links models with multilang event handlers.</Typography>
+<Typography variant="body1">Deep.Links</Typography>
+<Typography variant="body2">Graphql access to links models with gui, admin panel, permissions...</Typography>
 <GitHubIcon /> <NPMBadge name="@deepcase/deepgraph"/>
 </div></GravityCard></Link>;
 
@@ -221,6 +221,13 @@ export function PageContent() {
             <Typography variant="h5">🧪</Typography>
             <Typography variant="body1">Demo  <img src="/gitpod.png" style={{ width: 16, height: 16 }}/></Typography>
             <Typography variant="body2">Pre alpha Deep.Case CE.</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item md={3} sm={4} xs={12}>
+          <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5">🔗</Typography>
+            <Typography variant="body1">Social links</Typography>
+            <Typography variant="body2">Github, Facebook, YouTube...</Typography>
           </div></GravityCard></Link>
         </Grid>
       </Grid>
