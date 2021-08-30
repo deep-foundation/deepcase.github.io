@@ -7,6 +7,10 @@ import { Provider } from '../imports/provider';
 
 import dynamic from "next/dynamic";
 
+import { useEffect, useState } from 'react';
+import useAxios from 'axios-hooks';
+import { NotionRenderer } from "react-notion";
+
 const Waitlist: any= dynamic(() => import("waitlistapi").then(w => w.Waitlist), { ssr: false });
 
 export function NPMBadge({ name } : { name: string }) {
@@ -54,11 +58,14 @@ export default function Page() {
 export function PageContent() {
   const classes = useStyles();
 
+  const [{ data: notionPage, loading, error }, refetch] = useAxios('https://notion-api.splitbee.io/v1/page/56e16b859ada4f8d844aaea94770d604');
+  console.log(notionPage);
+
   return (<>
     <Button variant="contained" size="large" color="primary" fullWidth component="a" href="https://gitpod.io/#https://github.com/deepcase/deepcase" style={{
       position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 2
     }}>
-        🧪 Open Deep.Case CE Demo in GitPod <img src="/gitpod.png" style={{ width: 16, height: 16, marginLeft: 8 }}/>
+        🧪 Open pre alpha Deep.Case CE Demo in GitPod <img src="/gitpod.png" style={{ width: 16, height: 16, marginLeft: 8 }}/>
     </Button>
     <Screen>
       <Grid container spacing={3}>
@@ -232,14 +239,20 @@ export function PageContent() {
         </Grid>
       </Grid>
       <Grid container spacing={3} justify="center" alignItems="center">
-        <Grid item xs={12} className={classes.waitlistgrid}>
-          <Waitlist
-            api_key="BBNAIR"
-            waitlist_link="https://deep.foundation/pre-order"
-            joinWaitlistHeading="Subscribe to Deep.Case EE and Deep.Space early access."
-          />
+        <Grid item xs={12}>
+          <Typography>
+            {!loading && <NotionRenderer blockMap={notionPage} />}
+          </Typography>
         </Grid>
       </Grid>
+      <Grid item xs={12} className={classes.waitlistgrid}>
+        <Waitlist
+          api_key="BBNAIR"
+          waitlist_link="https://deep.foundation/pre-order"
+          joinWaitlistHeading="Subscribe to Deep.Case EE and Deep.Space early access."
+        />
+      </Grid>
+      <Grid item xs={12} style={{ height: '30vh' }} />
     </Screen>
   </>)
 };
