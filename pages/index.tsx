@@ -1,15 +1,10 @@
 import GitHubIcon from '@material-ui/icons/GitHub';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import dynamic from "next/dynamic";
 import { Folder } from '../imports/folder';
-import { Screen, Container, Grid, Typography, Link, GravityCard, AddIcon, makeStyles, List, ListItem, ListItemText, ListItemAvatar, Avatar, Accordion, AccordionSummary, AccordionDetails, Paper, Button } from '../imports/framework';
+import { AddIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
+import { NotionPage } from '../imports/notion';
 import { Provider } from '../imports/provider';
 
-import dynamic from "next/dynamic";
-
-import { useEffect, useState } from 'react';
-import useAxios from 'axios-hooks';
-import { NotionRenderer } from "react-notion";
 
 const Waitlist: any= dynamic(() => import("waitlistapi").then(w => w.Waitlist), { ssr: false });
 
@@ -58,9 +53,6 @@ export default function Page() {
 export function PageContent() {
   const classes = useStyles();
 
-  const [{ data: notionPage, loading, error }, refetch] = useAxios('https://notion-api.splitbee.io/v1/page/56e16b859ada4f8d844aaea94770d604');
-  console.log(notionPage);
-
   return (<>
     <Button variant="contained" size="large" color="primary" fullWidth component="a" href="https://gitpod.io/#https://github.com/deepcase/deepcase" style={{
       position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 2
@@ -75,14 +67,14 @@ export function PageContent() {
 
           <Typography>World will never be the same again because it won't have to repeat itself</Typography>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="/foundation"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">🏰</Typography>
             <Typography variant="body1">Foundation</Typography>
             <Typography variant="body2">Open source corporation with all humanity as an investor.</Typography>
           </div></GravityCard></Link>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
               <Grid item xs={12} sm={6}><Link href="https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
@@ -113,7 +105,7 @@ export function PageContent() {
             <Typography variant="body2">Solutions for use links theory in production.</Typography>
           </div></GravityCard></Folder>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
               <Grid item xs={12} md={6}><Link href="https://github.com/linksplatform"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
@@ -142,7 +134,7 @@ export function PageContent() {
             <Typography variant="body2">Theory, concept, realizations.</Typography>
           </div></GravityCard></Folder>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
               <Grid item xs={12} md={6}>
@@ -181,7 +173,7 @@ export function PageContent() {
             <Typography variant="body2">Our actual OpenSource packages</Typography>
           </div></GravityCard></Folder>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
             content={<Grid container spacing={3} style={{ maxWidth: 500, padding: 32 }}>
               <Grid item xs={7}>
@@ -203,34 +195,34 @@ export function PageContent() {
             <Typography variant="body2">Projects uses Deep solutions.</Typography>
           </div></GravityCard></Folder>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://ivansglazunov.notion.site/5fd4cbcbf9834033abad279699e29af6?v=5524a91f88974c259b3443e923c6517b"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">🏃</Typography>
             <Typography variant="body1">Features plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
             <Typography variant="body2">Project management features plan.</Typography>
           </div></GravityCard></Link>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://ivansglazunov.notion.site/a3da8192888840f4990c3588fca36be0?v=b6cc35ae4db74fbda89f94be332e8ae0"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">📯</Typography>
             <Typography variant="body1">Articles plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
             <Typography variant="body2">Drafts, articles and publication plan.</Typography>
           </div></GravityCard></Link>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://www.patreon.com/deepfoundation?fan_landing=true"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5"><img src="/patreon.png" style={{ width: 24, height: 24 }}/></Typography>
             <Typography variant="body1">Ways to support us on Patreon</Typography>
           </div></GravityCard></Link>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://gitpod.io/#https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">🧪</Typography>
             <Typography variant="body1">Demo  <img src="/gitpod.png" style={{ width: 16, height: 16 }}/></Typography>
             <Typography variant="body2">Pre alpha Deep.Case CE.</Typography>
           </div></GravityCard></Link>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">🔗</Typography>
             <Typography variant="body1">Social links</Typography>
@@ -240,9 +232,7 @@ export function PageContent() {
       </Grid>
       <Grid container spacing={3} justify="center" alignItems="center">
         <Grid item xs={12}>
-          <Typography>
-            {!loading && <NotionRenderer blockMap={notionPage} />}
-          </Typography>
+          <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.waitlistgrid}>
