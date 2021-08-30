@@ -50,14 +50,13 @@ export const Analitics = React.memo<any>(({
   children: any;
 }) => {
   useEffect(() => {
-  // @ts-ignore
-  ga.initialize(googleAnalyticsAccounts.map((account) => ({
-    trackingId: account,
-    gaOptions: {},
-  })), {
-    debug,
-    cookieDomain: 'none',
-  });
+    const account = googleAnalyticsAccounts?.[0];
+    // @ts-ignore
+    if (account) ga.initialize({
+      trackingId: account,
+    }, {
+      debug,
+    });
   }, []);
 
   return <>

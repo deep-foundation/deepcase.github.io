@@ -69,6 +69,7 @@ export function Provider(props) {
     <Analitics
       yandexMetrikaAccounts={[84258358]}
       googleAnalyticsAccounts={['G-3WH4B0WR4L']}
+      debug
     >
       <ThemeProvider theme={theme}>
         {/* <MDXProvider components={components}> */}
