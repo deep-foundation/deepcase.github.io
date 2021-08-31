@@ -68,13 +68,6 @@ export function PageContent() {
           <Typography>World will never be the same again because it won't have to repeat itself</Typography>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="/foundation"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5">🏰</Typography>
-            <Typography variant="body1">Foundation</Typography>
-            <Typography variant="body2">Open source corporation with all humanity as an investor.</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
               <Grid item xs={12} sm={6}><Link href="https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
