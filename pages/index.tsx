@@ -2,7 +2,6 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import dynamic from "next/dynamic";
 import { Folder } from '../imports/folder';
 import { AddIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
-import { NotionPage } from '../imports/notion';
 import { Provider } from '../imports/provider';
 
 
@@ -225,7 +224,93 @@ export function PageContent() {
       </Grid>
       <Grid container spacing={3} justify="center" alignItems="center">
         <Grid item xs={12}>
-          <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>
+          <Typography variant="h3">Кто мы, и что мы делаем</Typography>
+          <Typography>Мы создали решение Deep.Case для применения
+            ассоциативного подхода в работе с данными. Благодаря использованию такого подхода потребность в рефакторинге
+            практически исчезает, так как концепции бизнес-логики, схем хранения данных, правовых правил и привязывание кода к
+            селекторам ассоциативных связей, описываются естественным и гибким способом - ассоциативными связями.</Typography>
+          <Typography>Отдельно будут публиковаться статьи, раскрывающие каждый из вопросов детально. Сейчас их
+            черновики можно посмотреть в <a className="notion-link"
+              href="/a3da8192888840f4990c3588fca36be0?v=b6cc35ae4db74fbda89f94be332e8ae0">Articles plan</a>.</Typography>
+          <Typography variant="h3">Смысл</Typography>
+          <Typography>На протяжении 5 лет мы искали причину существования феноменов "прогрессивно растущей стоимости
+            разработки проектов" и "избыточного среднего количества рефакторинга в IT" и обнаружили решение в альтернативном,
+            более естественном и экологичном, подходе хранения и агрегации данных с помощью ассоциативных технологий. </Typography>
+          <Typography>В результате длительных экспериментов по поиску проектов, продолжающих идеи <a
+              className="notion-link" href="https://en.wikipedia.org/wiki/Associative_model_of_data">Simon Williams</a> или <a
+              className="notion-link" href="https://en.wikipedia.org/wiki/Relational_database#RDBMS">Edgar Codd</a> как, к примеру,
+            наш современник <a className="notion-link" href="https://github.com/linksplatform">Links Platform</a>, мы выявили
+            проблемы, с которыми столкнулись предшественники в попытках принести ассоциативность обществу. </Typography>
+          <Typography>Мы сделали проект и прототип, позволяющий привнести ассоциативность в бизнес уже сегодня, и хотим
+            поделиться этим с миром.</Typography>
+          <Typography variant="h3">Статус</Typography>
+          <Typography>Сейчас <a className="notion-link" href="http://deep.Case">Deep.Case</a> находится в стадии pre-alpha.
+            В нем уже реализованы:</Typography>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><b>Уникальные правовые решения</b>, позволяющие применять "правила" к некоторым диапозонам определенного типа
+              связей в определенных поддеревьях. Правила создаются всего несколькими связями и не требуют, как в случае с
+              файловыми системами, маркировки всех файлов и папок. Крайне "дешевая" вычислительно проверка прав позволяет
+              описывать ими реализацию сложной бизнес-логики поверх ассоциативной сети.</Typography></li>
+          </ul>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><b>Индексация</b>, позволяющая делать запросы на получение данных для приложений не путем траверса/join(ов) по
+              деревьям ссылок, а диапазонами деревьев, сразу выгружая нужное.</Typography></li>
+          </ul>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><b>GraphQL интерфейс доступа</b> к ассоциативному хранилищу. SQL-like синтаксис запросов, позволяющий применять
+              join и обеспечивающий быстрый доступ к данным.</Typography></li>
+          </ul>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><b>PostgreSQL </b>оптимизированное ассоциативное хранилище с гибридным подходом для хранения своих табличных
+              данных, вплетая их в ассоциативную сеть.</Typography></li>
+          </ul>
+          <Typography variant="h3">Цель</Typography>
+          <Typography>Мы проверили и перепроверили свои гипотезы, и готовы к упаковке. Помогите нам собрать аудиторию
+            вокруг <a className="notion-link" href="http://deep.Foundation">Deep.Foundation</a> и ассоциативных технологий, и мы
+            создадим:</Typography>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography>Подробную <b>документацию </b>и <b>примеры</b>, а также разовьем культуру ассоциативных моделей в пакетных
+              менеджерах для создания своих проектов на ассоциативной экосистеме Deep.</Typography>Подробну</li>
+          </ul>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><a className="notion-link" href="http://deep.Case">Deep.Case</a> ⇒ Community Edition</Typography></li>
+            <ul className="notion-list notion-list-disc">
+              <li><Typography>С <b>установкой ассоциативных моделей </b>(схема типов связей, программный код бизнес логики, интерфейс
+                визуальных карточек для админ-панели)</Typography></li>
+              <li><Typography>я для <b>быстрого </b>и <b>экономного развертывания </b>ассоциативной инфраструктуры из коробки,
+                поддерживающей исключительно гибкие ассоциативные модели, права, обработчики.</Typography>Решени</li>
+            </ul>
+          </ul>
+          <ul className="notion-list notion-list-disc">
+            <li><Typography><a className="notion-link" href="http://deep.Space">Deep.Space</a> ⇒ SaaS сервис</Typography></li>
+            <ul className="notion-list notion-list-disc">
+              <li><Typography>й <b>выбор региона хранения и вычислений</b> именно для вашего проекта в единой Kubernetes-сети,
+                обьединяющей ДЦ всего мира. Достаточно описать модели данных и привязать поведения. Мощности на выполнения сами
+                выделятся и применятся. Ассоциативные связи сами распределятся между хранилищами разной степени доступности на
+                основе и ваших настроек, и частоты использования конкретно этих ассоциаций в автоматическом режиме.</Typography>Автоматически</li>
+              <li><Typography>ь <b>полностью забыть</b> о необходимости в штате backend, fullstack и devops-специалистов. Сервис
+                полностью обеспечивает проекты бэкендом для хранения и выполнения, но, в отличии от AWS/Azure, еще и позволяет из
+                готовых ассоциативных моделей сразу собирать свои бизнес-проекты.</Typography>Возможност</li>
+              <li><Typography><b>No-code культура</b>. Используя ассоциативную среду для хранения данных, можно обеспечить все интерфейсы
+                вашего проекта хранением, поиском и агрегацией данных. Проекты, созданные в SaaS-среде <a className="notion-link"
+                  href="http://deep.Space">Deep.Space</a>, не нужно будет переписывать после теста гипотез для реального
+                использования. Ставить эксперименты становится легче, чем кто-либо мог себе представить.</Typography></li>
+            </ul>
+          </ul>
+          <Typography variant="h3">Поддержите ассоциативность</Typography>
+          <Typography>Сейчас мы собираем аудиторию вокруг идеи и ищем инвестиции для продолжения разработки. Если вам
+            нравится то что мы делаем, <a className="notion-link" href="https://discord.gg/vNJCTK4nZB">добавляйтесь к нам в
+              Discord</a>, зарегистрируйтесь в список ожидания ниже, или поддержите нас на <a className="notion-link"
+              href="https://www.patreon.com/deepfoundation?fan_landing=true">Patreon</a>.</Typography>
+          <Typography>Если у вас желание участвовать в развитие проекта - смело пишите нам об этом в Discord или лично
+            каждому из фаундеров. <b>Мы будем вам очень рады.</b></Typography>
+          <Typography><a className="notion-link"
+              href="https://docs.google.com/presentation/d/16f_kJRfL9qkiCS3wTz2-PQiI3UFE3WglqfbTh0x60qk/edit?usp=sharing">Deep.Foundation
+              презентация для сообщества</a></Typography>
+          <Typography><a className="notion-link"
+              href="https://docs.google.com/presentation/d/1AcouBjH5MD5doUGW5kqD7eTVMyZlI-Ib/edit?usp=sharing&amp;ouid=108039719499772556966&amp;rtpof=true&amp;sd=true">Презентация
+              для инвесторов</a></Typography>
+          <div className="notion-blank">&nbsp;</div>
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.waitlistgrid}>
