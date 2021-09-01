@@ -4,7 +4,16 @@ import { Folder } from '../imports/folder';
 import { AddIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
 import { NotionPage } from '../imports/notion';
 import { Provider } from '../imports/provider';
+import * as Sentry from '@sentry/nextjs';
 
+Sentry.init({
+  dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
+  
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 
 const Waitlist: any= dynamic(() => import("waitlistapi").then(w => w.Waitlist), { ssr: false });
 
