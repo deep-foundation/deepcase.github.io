@@ -250,10 +250,10 @@ export function PageContent() {
       <Grid container spacing={3} justify="center" alignItems="center">
         <Grid item xs={12} style={{ height: 40 }} />
         <Grid item xs={12}>
-          <ButtonGroup variant="outlined">
+          {process.browser && <ButtonGroup variant="outlined">
             <Button onClick={() => setLanguage('ru-RU')} disabled={language === 'ru-RU'}>ru-RU</Button>
             <Button onClick={() => setLanguage('en-US')} disabled={language === 'en-US'}>en-US</Button>
-          </ButtonGroup>
+          </ButtonGroup>}
         </Grid>
         <Grid item xs={12}>
           {language === 'ru-RU' && <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>}
