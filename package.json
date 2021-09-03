@@ -27,6 +27,7 @@
     "@use-it/interval": "^1.0.0",
     "axios": "^0.21.1",
     "axios-hooks": "^2.7.0",
+    "detect-browser-language": "0.0.2",
     "next": "^10.2.3",
     "normalize.css": "^8.0.1",
     "pre-commit": "^1.2.2",

@@ -1,10 +1,12 @@
 import GitHubIcon from '@material-ui/icons/GitHub';
 import dynamic from "next/dynamic";
 import { Folder } from '../imports/folder';
-import { AddIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
+import { AddIcon, YouTubeIcon, FacebookIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
 import { NotionPage } from '../imports/notion';
 import { Provider } from '../imports/provider';
 import * as Sentry from '@sentry/nextjs';
+import detectBrowserLanguage from 'detect-browser-language';
+import { useState } from 'react';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -61,6 +63,7 @@ export default function Page() {
 
 export function PageContent() {
   const classes = useStyles();
+  const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
 
   return (<>
     <Button variant="contained" size="large" color="primary" fullWidth component="a" href="https://gitpod.io/#https://github.com/deepcase/deepcase" style={{
@@ -225,6 +228,18 @@ export function PageContent() {
           </div></GravityCard></Link>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><YouTubeIcon style={{ color: '#E62117' }}/></Typography>
+            <Typography variant="body1">YouTube</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://www.facebook.com/DeepFoundation-101491865581762"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><FacebookIcon style={{ color: '#3B5998' }}/></Typography>
+            <Typography variant="body1">Facebook</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5">🔗</Typography>
             <Typography variant="body1">Social links</Typography>
@@ -233,8 +248,16 @@ export function PageContent() {
         </Grid>
       </Grid>
       <Grid container spacing={3} justify="center" alignItems="center">
+        <Grid item xs={12} style={{ height: 40 }} />
         <Grid item xs={12}>
-          <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>
+          <ButtonGroup variant="outlined">
+            <Button onClick={() => setLanguage('ru-RU')} disabled={language === 'ru-RU'}>ru-RU</Button>
+            <Button onClick={() => setLanguage('en-US')} disabled={language === 'en-US'}>en-US</Button>
+          </ButtonGroup>
+        </Grid>
+        <Grid item xs={12}>
+          {language === 'ru-RU' && <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>}
+          {language === 'en-US' && <NotionPage page='EN-82f109578b5b470ea0800f38d5b09fe4'/>}
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.waitlistgrid}>

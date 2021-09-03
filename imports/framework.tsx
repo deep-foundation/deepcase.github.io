@@ -2,9 +2,11 @@ import { Grid, Button } from '@material-ui/core';
 export * from '@material-ui/core';
 
 import AddIcon from '@material-ui/icons/Add';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-export { GitHubIcon, ArrowBackIcon, AddIcon };
+export { GitHubIcon, ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
 
 import Link from 'next/link';
 export { Link };
