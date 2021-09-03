@@ -12,7 +12,7 @@ import useAxios from 'axios-hooks';
 import { NotionRenderer } from "react-notion";
 
 export function NotionPage({ page }: { page: string }) {
-  const [{ data: notionPage, loading, error }, refetch] = useAxios(`https://notion-api.splitbee.io/v1/page/${page}`);
+  const [{ data: notionPage, loading, error }, refetch] = useAxios(`/${page}.json`);
 
   return (<>
     <Typography>

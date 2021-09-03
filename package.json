@@ -5,13 +5,14 @@
   "scripts": {
     "gitpod-export": "export PORT=3007;",
     "local-export": "export PORT=3007;",
-    "dev": "next dev -p $PORT",
+    "dev": "npm run articles; next dev -p $PORT",
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "gh-pages": "npm run build; rm -rf ./docs; npm run export -- -o docs; touch ./docs/.nojekyll; cp ./CNAME ./docs/CNAME",
+    "gh-pages": "npm run articles; npm run build; rm -rf ./docs; npm run export -- -o docs; touch ./docs/.nojekyll; cp ./CNAME ./docs/CNAME",
     "gitpod": "npm run gitpod-export; export $(grep -v '^#' .env | xargs); npm run dev",
-    "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev"
+    "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev",
+    "articles": "npx ts-node articles.ts"
   },
   "dependencies": {
     "@capacitor/core": "^2.4.7",
@@ -35,6 +36,7 @@
     "react-notion": "^0.10.0",
     "react-spring": "^9.1.2",
     "react-yandex-metrika": "^2.6.0",
+    "ts-node": "^10.2.1",
     "waitlistapi": "^0.6.2"
   },
   "devDependencies": {
