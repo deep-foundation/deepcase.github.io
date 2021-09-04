@@ -234,6 +234,12 @@ export function PageContent() {
           </div></GravityCard></Link>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://discord.gg/Fz28N9YqVB"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><img src="/discord.png" style={{ width: 16, height: 16 }}/></Typography>
+            <Typography variant="body1">Discord</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
           <Link href="https://www.facebook.com/DeepFoundation-101491865581762"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
             <Typography variant="h5"><FacebookIcon style={{ color: '#3B5998' }}/></Typography>
             <Typography variant="body1">Facebook</Typography>
