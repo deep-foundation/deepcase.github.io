@@ -73,11 +73,63 @@ export function PageContent() {
     </Button>
     <Screen>
       <Grid container spacing={3}>
-        <Grid item xs={12} style={{ height: '30vh' }} />
+        <Grid item xs={12} style={{ height: '10vh' }} />
         <Grid item xs={12}>
           <Typography variant="h2">Deep.Foundation</Typography>
 
           <Typography>World will never be the same again because it won't have to repeat itself</Typography>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://www.patreon.com/deepfoundation?fan_landing=true"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><img src="/patreon.png" style={{ width: 24, height: 24 }}/></Typography>
+            <Typography variant="body1">Ways to support us on Patreon</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://gitpod.io/#https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5">🧪</Typography>
+            <Typography variant="body1">Demo  <img src="/gitpod.png" style={{ width: 16, height: 16 }}/></Typography>
+            <Typography variant="body2">Pre alpha Deep.Case CE.</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><YouTubeIcon style={{ color: '#E62117' }}/></Typography>
+            <Typography variant="body1">YouTube</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://discord.gg/Fz28N9YqVB"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><img src="/discord.png" style={{ width: 16, height: 16 }}/></Typography>
+            <Typography variant="body1">Discord</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://www.facebook.com/DeepFoundation-101491865581762"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5"><FacebookIcon style={{ color: '#3B5998' }}/></Typography>
+            <Typography variant="body1">Facebook</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5">🔗</Typography>
+            <Typography variant="body1">Social links</Typography>
+            <Typography variant="body2">Github, Facebook, YouTube...</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://ivansglazunov.notion.site/5fd4cbcbf9834033abad279699e29af6?v=5524a91f88974c259b3443e923c6517b"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5">🏃</Typography>
+            <Typography variant="body1">Features plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
+            <Typography variant="body2">Project management features plan.</Typography>
+          </div></GravityCard></Link>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Link href="https://ivansglazunov.notion.site/a3da8192888840f4990c3588fca36be0?v=b6cc35ae4db74fbda89f94be332e8ae0"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
+            <Typography variant="h5">📯</Typography>
+            <Typography variant="body1">Articles plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
+            <Typography variant="body2">Drafts, articles and publication plan.</Typography>
+          </div></GravityCard></Link>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Folder
@@ -199,58 +251,6 @@ export function PageContent() {
             <Typography variant="body1">Usages</Typography>
             <Typography variant="body2">Projects uses Deep solutions.</Typography>
           </div></GravityCard></Folder>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://ivansglazunov.notion.site/5fd4cbcbf9834033abad279699e29af6?v=5524a91f88974c259b3443e923c6517b"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5">🏃</Typography>
-            <Typography variant="body1">Features plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
-            <Typography variant="body2">Project management features plan.</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://ivansglazunov.notion.site/a3da8192888840f4990c3588fca36be0?v=b6cc35ae4db74fbda89f94be332e8ae0"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5">📯</Typography>
-            <Typography variant="body1">Articles plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
-            <Typography variant="body2">Drafts, articles and publication plan.</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://www.patreon.com/deepfoundation?fan_landing=true"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5"><img src="/patreon.png" style={{ width: 24, height: 24 }}/></Typography>
-            <Typography variant="body1">Ways to support us on Patreon</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://gitpod.io/#https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5">🧪</Typography>
-            <Typography variant="body1">Demo  <img src="/gitpod.png" style={{ width: 16, height: 16 }}/></Typography>
-            <Typography variant="body2">Pre alpha Deep.Case CE.</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5"><YouTubeIcon style={{ color: '#E62117' }}/></Typography>
-            <Typography variant="body1">YouTube</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://discord.gg/Fz28N9YqVB"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5"><img src="/discord.png" style={{ width: 16, height: 16 }}/></Typography>
-            <Typography variant="body1">Discord</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://www.facebook.com/DeepFoundation-101491865581762"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5"><FacebookIcon style={{ color: '#3B5998' }}/></Typography>
-            <Typography variant="body1">Facebook</Typography>
-          </div></GravityCard></Link>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-            <Typography variant="h5">🔗</Typography>
-            <Typography variant="body1">Social links</Typography>
-            <Typography variant="body2">Github, Facebook, YouTube...</Typography>
-          </div></GravityCard></Link>
         </Grid>
       </Grid>
       <Grid container spacing={3} justify="center" alignItems="center">
