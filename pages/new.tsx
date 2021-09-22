@@ -149,7 +149,7 @@ export function PageContent() {
   return (<Grid container className={classes.root} justify="center" alignItems="center">
     <Grid item xs={12} style={{ height: 100 }} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Grid container className={classes.screen1Buttons} spacing={1} justify="space-between">
+          <Grid container spacing={1} justify="space-between">
             <Grid item><Typography variant="h3">Deep.Foundation</Typography></Grid>
             <Grid item>
               <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub/></IconButton>
@@ -207,61 +207,73 @@ export function PageContent() {
     <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="left" variant="h3">Associative permissions</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="right" variant="h3">Associative handlers</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="left" variant="h3">Associative models</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
         <Typography align="center" variant="h3">Used technologies</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen6)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="right" variant="h3">Performance</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen7)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="left" variant="h3">Transactions</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen8)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="right" variant="h3">Engines</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
         <Typography align="center" variant="h3">Cloud solution</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="right" variant="h3">Roadmap</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="left" variant="h3">Articles</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
         <Typography align="right" variant="h3">Invest</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
         <Typography align="center" variant="h3">Community</Typography>
+        <Typography align="left">Coming soon...</Typography>
       </Grid>
     </Grid>
   </Grid>);
