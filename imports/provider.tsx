@@ -1,81 +1,82 @@
-import { createMuiTheme, Link, ThemeProvider, Typography, List, ListItem, ListItemText } from '@material-ui/core';
-import { MDXProvider } from '@mdx-js/react';
+import { TokenProvider, useTokenController } from '@deepcase/deeplinks/imports/react-token';
+import { ApolloClientTokenizedProvider } from '@deepcase/react-hasura/apollo-client-tokenized-provider';
+import { useApolloClient } from '@deepcase/react-hasura/use-apollo-client';
+import { LocalStoreProvider } from '@deepcase/store/local';
+import { QueryStoreProvider } from '@deepcase/store/query';
+import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { AuthProvider } from './auth';
 import { Analitics } from './analitics';
-// import { Heading, Text, Pre, Code, Table } from '../components';
 
 const temp = createMuiTheme({});
-const { breakpoints, typography: { pxToRem } } = temp;
+const { breakpoints } = temp;
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#000',
-      light: '#000',
-      dark: '#000',
-    },
-  },
+export const theme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
-    h1: {
-      fontSize: "6rem",
-      [breakpoints.down("xs")]: {
-        fontSize: "3rem"
-      }
+  },
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#19202B',
+      paper: '#00000030',
+      // @ts-ignore
+      dark: '#111720',
     },
-    h2: {
-      fontSize: "3.75rem",
-      [breakpoints.down("xs")]: {
-        fontSize: "2.2rem"
-      }
-    },
-    h3: {
-      fontSize: "3rem",
-      [breakpoints.down("xs")]: {
-        fontSize: "2rem"
-      }
-    },
-    h4: {
-      fontSize: "2.125rem",
-      [breakpoints.down("xs")]: {
-        fontSize: "1.8rem"
-      }
-    }
+    primary: colors.lightBlue,
+    secondary: colors.lightGreen,
+  },
+  shape: {
+    borderRadius: 0,
   },
   overrides: {
     MuiButton: {
       label: {
-        fontSize: 20,
         textTransform: 'none',
       },
     },
+    MuiPaper: {
+      outlined: {
+        backgroundColor: '#111720',
+        border: '0 linear transparent',
+      },
+      elevation0: {
+        border: '0 linear transparent',
+        backgroundColor: 'transparent',
+      },
+      elevation1: {
+        border: '1px dashed #ffffff40',
+      },
+      elevation2: {
+        border: '1px dashed #ffffff60',
+      },
+      elevation3: {
+        border: '1px dashed #ffffff80',
+      },
+      elevation4: {
+        border: '1px dashed #ffffff100',
+      },
+    },
   },
+  shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
 });
 
-const components = {
-  h1: p => <Typography {...p} variant="h1"/>,
-  h2: p => <Typography {...p} variant="h2"/>,
-  h3: p => <Typography {...p} variant="h3"/>,
-  h4: p => <Typography {...p} variant="h4"/>,
-  h5: p => <Typography {...p} variant="h5"/>,
-  h6: p => <Typography {...p} variant="h6"/>,
-  p: Typography,
-  ul: p => <List disablePadding {...p}/>,
-  li: p => <ListItem><ListItemText>{p.children}</ListItemText></ListItem>,
-  link: Link,
-}
-
-export function Provider(props) {
+export function Provider({
+  children,
+}: {
+  children: JSX.Element;
+}) {
   return (
     <Analitics
       yandexMetrikaAccounts={[84258358]}
       googleAnalyticsAccounts={['G-3WH4B0WR4L']}
-      debug
     >
       <ThemeProvider theme={theme}>
-        {/* <MDXProvider components={components}> */}
-          {/* <main {...props}/> */}
-        {/* </MDXProvider> */}
-        {props.children}
+        <QueryStoreProvider>
+          <LocalStoreProvider>
+            {children}
+          </LocalStoreProvider>
+        </QueryStoreProvider>
       </ThemeProvider>
     </Analitics>
   )
