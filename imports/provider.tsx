@@ -1,11 +1,7 @@
-import { TokenProvider, useTokenController } from '@deepcase/deeplinks/imports/react-token';
-import { ApolloClientTokenizedProvider } from '@deepcase/react-hasura/apollo-client-tokenized-provider';
-import { useApolloClient } from '@deepcase/react-hasura/use-apollo-client';
 import { LocalStoreProvider } from '@deepcase/store/local';
 import { QueryStoreProvider } from '@deepcase/store/query';
 import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { AuthProvider } from './auth';
+import React from 'react';
 import { Analitics } from './analitics';
 
 const temp = createMuiTheme({});
