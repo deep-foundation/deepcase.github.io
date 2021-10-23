@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { Folder } from '../imports/folder';
 import { AddIcon, YouTubeIcon, FacebookIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography } from '../imports/framework';
 import { NotionPage } from '../imports/notion';
-import { Provider } from '../imports/provider';
+import { Provider, theme2 } from '../imports/provider';
 import * as Sentry from '@sentry/nextjs';
 import detectBrowserLanguage from 'detect-browser-language';
 import { useState } from 'react';
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Page() {
   return (
-    <Provider>
+    <Provider theme={theme2}>
       <PageContent/>
     </Provider>
   );

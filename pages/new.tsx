@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { Folder } from '../imports/folder';
 import { AddIcon, YouTubeIcon, FacebookIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography, Paper, Menu, MenuItem, IconButton } from '../imports/framework';
 import { NotionPage } from '../imports/notion';
-import { Provider } from '../imports/provider';
+import { Provider, theme1 } from '../imports/provider';
 import { darken } from '@material-ui/core/styles';
 import * as Sentry from '@sentry/nextjs';
 import detectBrowserLanguage from 'detect-browser-language';
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Page() {
   return (
-    <Provider>
+    <Provider theme={theme1}>
       <PageContent/>
     </Provider>
   );
