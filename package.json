@@ -29,6 +29,7 @@
     "axios-hooks": "^2.7.0",
     "classnames": "^2.3.1",
     "detect-browser-language": "0.0.2",
+    "moment": "^2.29.1",
     "next": "^10.2.3",
     "normalize.css": "^8.0.1",
     "pre-commit": "^1.2.2",

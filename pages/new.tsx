@@ -11,6 +11,11 @@ import { useCallback, useState } from 'react';
 import cn from 'classnames';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import GitHub from '@material-ui/icons/GitHub';
+import { Button, ButtonGroup, GravityCard, Grid, IconButton, Link, Menu, MenuItem, Paper, Typography } from '../imports/framework';
+import { Podcast } from '../imports/podcast/podcast-card';
+import { Provider } from '../imports/provider';
+import { theme1 } from '../imports/theme/build';
+import moment from 'moment';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -44,6 +49,36 @@ const deepview = <GravityCard style={{ height: 150 }} disabled><div style={{ pad
 <Typography variant="body2">Virtual DOM react/vue/angular in Deep.Graph.</Typography>
 <Typography variant="body2">Coming soon...</Typography>
 </div></GravityCard>;
+
+const podcasts = [
+  {
+    id: '1',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 2,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 21,
+      width: 24,
+    }]
+  }
+];
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -133,6 +168,15 @@ export default function Page() {
   );
 }
 
+<<<<<<< Updated upstream
+=======
+export async function getServerSideProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
+
+>>>>>>> Stashed changes
 export function PageContent() {
   const classes = useStyles();
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
@@ -156,6 +200,7 @@ export function PageContent() {
             </Grid>
           </Grid>
       </Grid>
+<<<<<<< Updated upstream
     </Grid>
     <Grid item xs={12} sm={10} md={8} lg={7}>
       <Grid container justify="center" alignItems="center">
@@ -201,6 +246,11 @@ export function PageContent() {
               </Menu>
             </Grid>
           </Grid>
+=======
+      <Grid item xs={12} className={classes.screenPodcast} component={Paper} container justifyContent="center" alignItems="center">
+        <Grid item xs={4} sm={3} lg={2} style={{padding: '5% 0'}}>
+          {podcasts.map(p => (<Podcast key={p.id} guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />))}
+>>>>>>> Stashed changes
         </Grid>
       </Grid>
     </Grid>

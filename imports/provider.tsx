@@ -1,5 +1,6 @@
 import { LocalStoreProvider } from '@deepcase/store/local';
 import { QueryStoreProvider } from '@deepcase/store/query';
+<<<<<<< Updated upstream
 import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import { Analitics } from './analitics';
@@ -101,6 +102,7 @@ export const theme2 = createMuiTheme({
     },
   },
 });
+import { theme2 } from './theme/build';
 
 export function Provider({
   theme = theme2,
