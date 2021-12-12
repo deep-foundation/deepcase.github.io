@@ -1,16 +1,18 @@
-import GitHubIcon from '@material-ui/icons/GitHub';
-import dynamic from "next/dynamic";
-import { Folder } from '../imports/folder';
-import { AddIcon, YouTubeIcon, FacebookIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography, Paper, Menu, MenuItem, IconButton } from '../imports/framework';
-import { NotionPage } from '../imports/notion';
-import { Provider, theme1 } from '../imports/provider';
 import { darken } from '@material-ui/core/styles';
+import { ArrowDropDown } from '@material-ui/icons';
+import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
-import detectBrowserLanguage from 'detect-browser-language';
-import { useCallback, useState } from 'react';
 import cn from 'classnames';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
-import GitHub from '@material-ui/icons/GitHub';
+import detectBrowserLanguage from 'detect-browser-language';
+import dynamic from "next/dynamic";
+import { useCallback, useState } from 'react';
+import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
+import { Provider } from '../imports/provider';
+import { theme1 } from '../imports/theme/build';
+import { Grid } from '@material-ui/core';
+import moment from 'moment';
+import { Podcast } from '../imports/podcast/podcast-card';
+
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -44,6 +46,36 @@ const deepview = <GravityCard style={{ height: 150 }} disabled><div style={{ pad
 <Typography variant="body2">Virtual DOM react/vue/angular in Deep.Graph.</Typography>
 <Typography variant="body2">Coming soon...</Typography>
 </div></GravityCard>;
+
+const podcasts = [
+  {
+    id: '1',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  }
+];
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -123,11 +155,14 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 100,
     paddingBottom: 100,
   },
+  screenPodcast: {
+    
+  },
 }));
 
 export default function Page() {
   return (
-    <Provider theme={theme1}>
+    <Provider>
       <PageContent/>
     </Provider>
   );
@@ -186,8 +221,8 @@ export function PageContent() {
                   variant="outlined" color="primary"
                   onClick={handleClick}
                 ><div>
-                  <ArrowDropDown/>
-                </div></Button>
+                <ArrowDropDown />
+              </div></Button>
               </ButtonGroup>
               <Menu
                 anchorEl={electronOpen}
@@ -203,6 +238,13 @@ export function PageContent() {
           </Grid>
         </Grid>
       </Grid>
+    </Grid>
+    <Grid item xs={12} className={classes.screenPodcast} component={Paper} container justify="center" alignItems="center"  style={{padding: '5% 0'}}>
+      {podcasts.map(p => (<Grid item xs={4} sm={3} lg={2}>
+        <GravityCard style={{ height: '15rem' }}>
+          <Podcast key={p.id} guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+        </GravityCard>
+      </Grid>))}
     </Grid>
     <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
