@@ -1,24 +1,13 @@
-import { colors } from '@mui/material';
-import { createTheme, Theme } from '@mui/material/styles';
-
-import createCache from '@emotion/cache';
-
-export const cache = createCache({ 
-  key: 'css',
-  prepend: true,
-});
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import { colors, createMuiTheme } from '@material-ui/core';
 
 
-const temp = createTheme({});
+const temp = createMuiTheme({});
 const { breakpoints } = temp;
 
-export const theme1 = createTheme({
+export const coreTheme = createMuiTheme({
   typography: {
+    // @ts-ignore
+    pxToRem: (size: number) => `${size / 16}rem`,
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     caption:{
       lineHeight: 1,
@@ -37,55 +26,68 @@ export const theme1 = createTheme({
     },
     primary: colors.lightBlue,
     secondary: colors.lightGreen,
+    text: {
+      primary: '#fff',
+    }
   },
   shape: {
     borderRadius: 0,
   },
-
-  components: {
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          // lineHeight: 0,
-        },
-      }
-    },
+});
+export const theme1 = createMuiTheme({
+  ...coreTheme,
+  overrides: {
     MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-        },
+      label: {
+        textTransform: 'none',
       },
     },
     MuiPaper: {
-      styleOverrides: {
-        outlined: {
-          backgroundColor: '#111720',
-          border: '0 linear transparent',
-        },
-        elevation0: {
-          border: '0 linear transparent',
-          backgroundColor: 'transparent',
-        },
-        elevation1: {
-          border: '1px dashed #ffffff40',
-        },
-        elevation2: {
-          border: '1px dashed #ffffff60',
-        },
-        elevation3: {
-          border: '1px dashed #ffffff80',
-        },
-        elevation4: {
-          border: '1px dashed #ffffff100',
-        },
+      outlined: {
+        backgroundColor: '#111720',
+        border: '0 linear transparent',
       },
+      elevation0: {
+        border: '0 linear transparent',
+        backgroundColor: 'transparent',
+      },
+      elevation1: {
+        border: '1px dashed #ffffff40',
+      },
+      elevation2: {
+        border: '1px dashed #ffffff60',
+      },
+      elevation3: {
+        border: '1px dashed #ffffff80',
+      },
+      elevation4: {
+        border: '1px dashed #ffffff100',
+      },
+    },
+    MuiTooltip: {
+      tooltip: {
+        backgroundColor: coreTheme.palette.background.default,
+        color: 'rgba(256, 256, 256, 0.87)',
+        maxWidth: 220,
+        fontSize: coreTheme.typography.pxToRem(12),
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: coreTheme.palette.primary.main,
+      },
+      arrow: {
+        color: coreTheme.palette.background.default,
+        '&::before': {
+          borderWidth: 1,
+          borderStyle: 'solid',
+          borderColor: coreTheme.palette.primary.main,
+        }
+      }
     }
   },
   shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
 });
 
-export const theme2 = createTheme({
+export const theme2 = createMuiTheme({
   palette: {
     primary: {
       main: '#000',
@@ -120,14 +122,13 @@ export const theme2 = createTheme({
       }
     }
   },
-  components: {
+  overrides: {
     MuiButton: {
-      styleOverrides: {
-        root: {
-          fontSize: 20,
-          textTransform: 'none',
-        },
-      }
+      label: {
+        fontSize: 20,
+        textTransform: 'none',
+      },
+      
     }
   }
 });
