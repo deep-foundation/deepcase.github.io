@@ -1,21 +1,18 @@
-import GitHubIcon from '@material-ui/icons/GitHub';
-import dynamic from "next/dynamic";
-import { Folder } from '../imports/folder';
-import { AddIcon, YouTubeIcon, FacebookIcon, Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Screen, Typography, Paper, Menu, MenuItem, IconButton } from '../imports/framework';
-import { NotionPage } from '../imports/notion';
-import { Provider, theme1 } from '../imports/provider';
 import { darken } from '@material-ui/core/styles';
+import { ArrowDropDown } from '@material-ui/icons';
+import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
-import detectBrowserLanguage from 'detect-browser-language';
-import { useCallback, useState } from 'react';
 import cn from 'classnames';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
-import GitHub from '@material-ui/icons/GitHub';
-import { Button, ButtonGroup, GravityCard, Grid, IconButton, Link, Menu, MenuItem, Paper, Typography } from '../imports/framework';
-import { Podcast } from '../imports/podcast/podcast-card';
+import detectBrowserLanguage from 'detect-browser-language';
+import dynamic from "next/dynamic";
+import { useCallback, useState } from 'react';
+import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
 import { Provider } from '../imports/provider';
 import { theme1 } from '../imports/theme/build';
+import { Grid } from '@material-ui/core';
 import moment from 'moment';
+import { Podcast } from '../imports/podcast/podcast-card';
+
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -68,13 +65,13 @@ const podcasts = [
       id: 'b',
       src: '/tesla.png',
       top: 80,
-      left: 2,
+      left: 82,
       width: 12,
     },{
       id: 'c',
       src: '/spacex.png',
       top: 50,
-      left: 21,
+      left: 16,
       width: 24,
     }]
   }
@@ -158,25 +155,19 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 100,
     paddingBottom: 100,
   },
+  screenPodcast: {
+    
+  },
 }));
 
 export default function Page() {
   return (
-    <Provider theme={theme1}>
+    <Provider>
       <PageContent/>
     </Provider>
   );
 }
 
-<<<<<<< Updated upstream
-=======
-export async function getServerSideProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  }
-}
-
->>>>>>> Stashed changes
 export function PageContent() {
   const classes = useStyles();
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
@@ -200,7 +191,6 @@ export function PageContent() {
             </Grid>
           </Grid>
       </Grid>
-<<<<<<< Updated upstream
     </Grid>
     <Grid item xs={12} sm={10} md={8} lg={7}>
       <Grid container justify="center" alignItems="center">
@@ -231,8 +221,8 @@ export function PageContent() {
                   variant="outlined" color="primary"
                   onClick={handleClick}
                 ><div>
-                  <ArrowDropDown/>
-                </div></Button>
+                <ArrowDropDown />
+              </div></Button>
               </ButtonGroup>
               <Menu
                 anchorEl={electronOpen}
@@ -246,13 +236,15 @@ export function PageContent() {
               </Menu>
             </Grid>
           </Grid>
-=======
-      <Grid item xs={12} className={classes.screenPodcast} component={Paper} container justifyContent="center" alignItems="center">
-        <Grid item xs={4} sm={3} lg={2} style={{padding: '5% 0'}}>
-          {podcasts.map(p => (<Podcast key={p.id} guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />))}
->>>>>>> Stashed changes
         </Grid>
       </Grid>
+    </Grid>
+    <Grid item xs={12} className={classes.screenPodcast} component={Paper} container justify="center" alignItems="center"  style={{padding: '5% 0'}}>
+      {podcasts.map(p => (<Grid item xs={4} sm={3} lg={2}>
+        <GravityCard style={{ height: '15rem' }}>
+          <Podcast key={p.id} guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+        </GravityCard>
+      </Grid>))}
     </Grid>
     <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>

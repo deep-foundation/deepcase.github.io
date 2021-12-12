@@ -52,7 +52,7 @@ export function Card({
         }}
         {...animatedProps}
         style={{
-          transform: spr.xys.interpolate(trans),
+          transform: spr.xys.to(trans),
           height: '100%', width: '100%',
           ...animatedProps?.style,
         }}
@@ -67,7 +67,6 @@ export function Card({
             opacity: disabled ? 0.5 : 1,
             height: '100%', width: '100%',
             textAlign: 'left',
-            backgroundColor: disabled ? '#f2f2f2' : '#fff',
             borderRadius: folder ? 16 : undefined,
             ...PaperProps?.style
           }}
