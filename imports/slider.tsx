@@ -30,14 +30,14 @@ export const Slider = React.memo(({ items, width = 600, style, children }:IPrope
   const getPos = useCallback((i, firstVis, firstVisIdx) => idx(i - firstVis + firstVisIdx), [idx])
   const [springs, api] = useSprings(items.length, (i) => ({ x: (i < items.length - 1 ? i : -1) * width }))
   const prev = useRef([0, 1]);
-  const ref = useRef();
+  const ref = useRef<HTMLInputElement>();
 
   const _items = useMemo(() => ([...items]), [items]);
 
   const runSprings = useCallback(
     (y, vy) => {
-      const visibleCount = Math.floor((ref?.current?.offsetWidth / width) * 1);
-      console.log(visibleCount);
+      const _ref = ref?.current;
+      const visibleCount = Math.floor((_ref?.offsetWidth / width) * 1);
       const firstVis = idx(Math.floor(y / width) % _items.length)
       const firstVisIdx = vy < 0 ? _items.length - visibleCount - 1 : 1;
       api.start((i) => {
