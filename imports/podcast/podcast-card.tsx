@@ -113,8 +113,8 @@ export const Podcast = React.memo(({
 }) => {
   const classes = useStyles();
   const [spring, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }));
-  const ref = useRef();
-  const setRef = useRef();
+  const ref = useRef<any>();
+  const setRef = useRef<any>();
 
   const localCalc = (x, y) => {
     const box = ref?.current?.getBoundingClientRect();
