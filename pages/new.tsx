@@ -14,7 +14,7 @@ import { Provider } from '../imports/provider';
 import { UpperMenu } from '../imports/upper-menu';
 import { Slider } from '../imports/slider';
 import disableScroll from 'disable-scroll';
-
+import { times } from 'lodash';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -49,197 +49,33 @@ const deepview = <GravityCard style={{ height: 150 }} disabled><div style={{ pad
 <Typography variant="body2">Coming soon...</Typography>
 </div></GravityCard>;
 
-const podcasts = [
-  {
-    id: '1',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '2',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '3',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '4',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '5',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '6',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-  {
-    id: '7',
-    src: '/mask.png',
-    guestName: 'Elon Mask',
-    occupation: 'magician',
-    date: new Date(),
-    length: '16:20',
-    imgs: [{
-      id: 'a',
-      src: '/paypal.png',
-      top: 2,
-      left: 76,
-      width: 22,
-    },{
-      id: 'b',
-      src: '/tesla.png',
-      top: 80,
-      left: 82,
-      width: 12,
-    },{
-      id: 'c',
-      src: '/spacex.png',
-      top: 50,
-      left: 16,
-      width: 24,
-    }]
-  },
-];
+const podcasts = times(15, (i) => ({
+  id: i,
+  src: '/mask.png',
+  guestName: 'Elon Mask',
+  occupation: 'magician',
+  date: new Date(),
+  length: '16:20',
+  imgs: [{
+    id: 'a',
+    src: '/paypal.png',
+    top: 2,
+    left: 76,
+    width: 22,
+  },{
+    id: 'b',
+    src: '/tesla.png',
+    top: 80,
+    left: 82,
+    width: 12,
+  },{
+    id: 'c',
+    src: '/spacex.png',
+    top: 50,
+    left: 16,
+    width: 24,
+  }]
+}));
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -328,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
   },
   screenPodcast: {
     width: '100%',
-    height: '17rem',
+    height: '20rem',
   },
 }));
 

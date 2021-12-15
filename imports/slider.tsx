@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback, useMemo } from 'react'
 import { useGesture } from 'react-use-gesture'
 import { useSprings, a } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
@@ -25,30 +25,35 @@ interface IPropertiesSlider {
   children: any;
 }
 
-export const Slider = React.memo(({ items, width = 600, visible = 4, style, children }:IPropertiesSlider) => {
+export const Slider = React.memo(({ items, width = 600, style, children }:IPropertiesSlider) => {
   const idx = useCallback((x, l = items.length) => (x < 0 ? x + l : x) % l, [items])
   const getPos = useCallback((i, firstVis, firstVisIdx) => idx(i - firstVis + firstVisIdx), [idx])
   const [springs, api] = useSprings(items.length, (i) => ({ x: (i < items.length - 1 ? i : -1) * width }))
   const prev = useRef([0, 1]);
+  const ref = useRef();
+
+  const _items = useMemo(() => ([...items]), [items]);
 
   const runSprings = useCallback(
     (y, vy) => {
-      const firstVis = idx(Math.floor(y / width) % items.length)
-      const firstVisIdx = vy < 0 ? items.length - visible - 1 : 1;
+      const visibleCount = Math.floor((ref?.current?.offsetWidth / width) * 1);
+      console.log(visibleCount);
+      const firstVis = idx(Math.floor(y / width) % _items.length)
+      const firstVisIdx = vy < 0 ? _items.length - visibleCount - 1 : 1;
       api.start((i) => {
         const position = getPos(i, firstVis, firstVisIdx)
         const prevPosition = getPos(i, prev.current[0], prev.current[1])
-        const rank = firstVis - (y < 0 ? items.length : 0) + position - firstVisIdx
-        const configPos = vy > 0 ? position : items.length - position
+        const rank = firstVis - (y < 0 ? _items.length : 0) + position - firstVisIdx
+        const configPos = vy > 0 ? position : _items.length - position
         return {
-          x: (-y % (width * items.length)) + width * rank,
+          x: (-y % (width * _items.length)) + width * rank,
           immediate: vy < 0 ? prevPosition > position : prevPosition < position,
-          config: { tension: (1 + items.length - configPos) * 100, friction: 30 + configPos * 40 }
+          config: { tension: (1 + _items.length - configPos) * 100, friction: 30 + configPos * 40 }
         }
       })
       prev.current = [firstVis, firstVisIdx]
     },
-    [idx, getPos, width, visible, api, items.length]
+    [idx, getPos, width, api, _items.length]
   )
 
   const wheelOffset = useRef(0)
@@ -60,10 +65,12 @@ export const Slider = React.memo(({ items, width = 600, visible = 4, style, chil
   const classes = useStyles();
 
   return (
-    <div {...bind()} className={classes.container} style={{ ...style}}>
-      {springs.map(({ x }, i) => (
-        <a.div key={i} className={classes.item} style={{ width, x }} children={children(items[i], i)} />
-      ))}
+    <div style={{ position: 'relative', overflow: 'hidden', height: '100%', top: 0, left: 0, width: '100%' }}>
+      <div ref={ref} {...bind()} className={classes.container} style={{ ...style, position: 'absolute', height: 274, top: 0, left: '-50%', width: '200%' }}>
+        {springs.map(({ x }, i) => (
+          <a.div key={i} className={classes.item} style={{ width, x }} children={children(items[i], i)} />
+        ))}
+      </div>
     </div>
   )
 })
