@@ -76,7 +76,7 @@ export function PageContent() {
       <Grid container spacing={3}>
         <Grid item xs={12} style={{ height: '10vh' }} />
         <Grid item xs={12}>
-          <Typography variant="h2">Deep.Foundation</Typography>
+          <Typography variant="h1">Deep.Foundation</Typography>
 
           <Typography>World will never be the same again because it won't have to repeat itself</Typography>
         </Grid>

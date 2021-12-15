@@ -21,10 +21,12 @@ const useStyles = makeStyles(() => ({
 export function Card({
   children, disabled, animatedProps, PaperProps,
   folder = false,
+  setRef,
   ...props
 }: {
   children: any; disabled?: boolean; animatedProps?: any; PaperProps?: any;
   folder?: boolean;
+  setRef?: any;
   [prop: string]: any;
 }) {
   const [hover, setHover] = useState<boolean>(false);
@@ -33,6 +35,8 @@ export function Card({
     config: { mass: 2, tension: 150, friction: 100 }
   }));
   const rootRef = useRef<HTMLInputElement>();
+
+  if (setRef) setRef.current = set;
 
   return (
     <div ref={rootRef} {...props} style={{ position: 'relative', height: '100%', width: '100%', ...props?.style }}>

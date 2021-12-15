@@ -1,11 +1,5 @@
 import 'normalize.css';
 
-// function App({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default App
-
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -31,8 +25,6 @@ export default function MyApp(props) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme1}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        
         <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>

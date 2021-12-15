@@ -1,17 +1,19 @@
+import { Grid } from '@material-ui/core';
 import { darken } from '@material-ui/core/styles';
 import { ArrowDropDown } from '@material-ui/icons';
 import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
 import cn from 'classnames';
 import detectBrowserLanguage from 'detect-browser-language';
+import moment from 'moment';
 import dynamic from "next/dynamic";
 import { useCallback, useState } from 'react';
 import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
-import { Provider } from '../imports/provider';
-import { theme1 } from '../imports/theme/build';
-import { Grid } from '@material-ui/core';
-import moment from 'moment';
 import { Podcast } from '../imports/podcast/podcast-card';
+import { Provider } from '../imports/provider';
+import { UpperMenu } from '../imports/upper-menu';
+import { Slider } from '../imports/slider';
+import disableScroll from 'disable-scroll';
 
 
 Sentry.init({
@@ -74,13 +76,176 @@ const podcasts = [
       left: 16,
       width: 24,
     }]
-  }
+  },
+  {
+    id: '2',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
+  {
+    id: '3',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
+  {
+    id: '4',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
+  {
+    id: '5',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
+  {
+    id: '6',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
+  {
+    id: '7',
+    src: '/mask.png',
+    guestName: 'Elon Mask',
+    occupation: 'magician',
+    date: new Date(),
+    length: '16:20',
+    imgs: [{
+      id: 'a',
+      src: '/paypal.png',
+      top: 2,
+      left: 76,
+      width: 22,
+    },{
+      id: 'b',
+      src: '/tesla.png',
+      top: 80,
+      left: 82,
+      width: 12,
+    },{
+      id: 'c',
+      src: '/spacex.png',
+      top: 50,
+      left: 16,
+      width: 24,
+    }]
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {
       backgroundColor: theme?.palette?.background?.default,
+      // fontSize: 'calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)))'
     },
   },
   '@keyframes deeplinksBackground': {
@@ -125,6 +290,12 @@ const useStyles = makeStyles((theme) => ({
     background: darken(theme?.palette?.background?.default, 0.3),
     paddingTop: 100,
     paddingBottom: 100,
+    borderTop: '1px dashed #ffffff40',
+  },
+  screen2accent: {
+    background: darken(theme?.palette?.background?.default, 0.5),
+    width: '100%',
+    height: '100%',
   },
   screen3: {
     background: darken(theme?.palette?.background?.default, 0.4),
@@ -156,7 +327,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 100,
   },
   screenPodcast: {
-    
+    width: '100%',
+    height: '17rem',
   },
 }));
 
@@ -182,16 +354,7 @@ export function PageContent() {
   }, []);
 
   return (<Grid container className={classes.root} justify="center" alignItems="center">
-    <Grid item xs={12} style={{ height: 100 }} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Grid container spacing={1} justify="space-between">
-            <Grid item><Typography variant="h3">Deep.Foundation</Typography></Grid>
-            <Grid item>
-              <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub/></IconButton>
-            </Grid>
-          </Grid>
-      </Grid>
-    </Grid>
+    <UpperMenu />
     <Grid item xs={12} sm={10} md={8} lg={7}>
       <Grid container justify="center" alignItems="center">
         <Grid item xs={10} className={classes.screen1GridItem} component={Paper} elevation={0}>
@@ -239,17 +402,53 @@ export function PageContent() {
         </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={12} className={classes.screenPodcast} component={Paper} container justify="center" alignItems="center"  style={{padding: '5% 0'}}>
-      {podcasts.map(p => (<Grid item xs={4} sm={3} lg={2}>
-        <GravityCard style={{ height: '15rem' }}>
-          <Podcast key={p.id} guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
-        </GravityCard>
-      </Grid>))}
+    <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' onMouseOver={() => {
+      disableScroll.on();
+    }} onMouseLeave={() => {
+      disableScroll.off();
+    }}>
+      <Paper className={classes.screenPodcast}>
+      <Slider items={podcasts} width={400} visible={5}>
+        {(p) => (
+          <div style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+            <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+          </div>
+        )} 
+      </Slider>
+      </Paper>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
       <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="left" variant="h3">Associative permissions</Typography>
-        <Typography align="left">Coming soon...</Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={3}>
+            <GravityCard style={{ height: 200, width: '100%' }}>
+              <div className={classes.screen2accent}>
+                <Typography>Операционное пространство</Typography>
+              </div>
+            </GravityCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <GravityCard style={{ height: 200, width: '100%' }}>
+              <div className={classes.screen2accent}>
+                <Typography>Новая парадигма программирования</Typography>
+              </div>
+            </GravityCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <GravityCard style={{ height: 200, width: '100%' }}>
+              <div className={classes.screen2accent}>
+                <Typography>Любые языки и стеки</Typography>
+              </div>
+            </GravityCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <GravityCard style={{ height: 200, width: '100%' }}>
+              <div className={classes.screen2accent}>
+                <Typography>Беспрецедентно гибкие правила</Typography>
+              </div>
+            </GravityCard>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
     <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
@@ -320,220 +519,3 @@ export function PageContent() {
     </Grid>
   </Grid>);
 };
-
-// export function PageContentOld() 
-//   const classes = useStyles();
-//   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
-
-//   return (<div className={classes.root}>
-//     <Button variant="contained" size="large" color="primary" fullWidth component="a" href="https://gitpod.io/#https://github.com/deepcase/deepcase" style={{
-//       position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 2
-//     }}>
-//         🧪 Open pre alpha Deep.Case CE Demo in GitPod <img src="/gitpod.png" style={{ width: 16, height: 16, marginLeft: 8 }}/>
-//     </Button>
-//     <Screen>
-//       <Grid container spacing={3}>
-//         <Grid item xs={12} style={{ height: '10vh' }} />
-//         <Grid item xs={12}>
-//           <Typography variant="h2">Deep.Foundation</Typography>
-
-//           <Typography>World will never be the same again because it won't have to repeat itself</Typography>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://www.patreon.com/deepfoundation?fan_landing=true"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5"><img src="/patreon.png" style={{ width: 24, height: 24 }}/></Typography>
-//             <Typography variant="body1">Ways to support us on Patreon</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://gitpod.io/#https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">🧪</Typography>
-//             <Typography variant="body1">Demo  <img src="/gitpod.png" style={{ width: 16, height: 16 }}/></Typography>
-//             <Typography variant="body2">Pre alpha Deep.Case CE.</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5"><YouTubeIcon style={{ color: '#E62117' }}/></Typography>
-//             <Typography variant="body1">YouTube</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://discord.gg/Fz28N9YqVB"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5"><img src="/discord.png" style={{ width: 16, height: 16 }}/></Typography>
-//             <Typography variant="body1">Discord</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://www.facebook.com/DeepFoundation-101491865581762"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5"><FacebookIcon style={{ color: '#3B5998' }}/></Typography>
-//             <Typography variant="body1">Facebook</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://ivansglazunov.notion.site/social-links-1a50eb546ddd41d2a218b8a9f3150b66"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">🔗</Typography>
-//             <Typography variant="body1">Social links</Typography>
-//             <Typography variant="body2">Github, Facebook, YouTube...</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://ivansglazunov.notion.site/5fd4cbcbf9834033abad279699e29af6?v=5524a91f88974c259b3443e923c6517b"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">🏃</Typography>
-//             <Typography variant="body1">Features plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
-//             <Typography variant="body2">Project management features plan.</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Link href="https://ivansglazunov.notion.site/a3da8192888840f4990c3588fca36be0?v=b6cc35ae4db74fbda89f94be332e8ae0"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">📯</Typography>
-//             <Typography variant="body1">Articles plan <img src="/notion.png" style={{ width: 16, height: 16 }}/></Typography>
-//             <Typography variant="body2">Drafts, articles and publication plan.</Typography>
-//           </div></GravityCard></Link>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Folder
-//             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
-//               <Grid item xs={12} sm={6}><Link href="https://github.com/deepcase/deepcase"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                 <Typography variant="body1">Deep.Case</Typography>
-//                 <Typography variant="body2">Links production infrastructure.</Typography>
-//                 <GitHubIcon />
-//               </div></GravityCard></Link></Grid>
-//               <Grid item xs={12} sm={6}>{deepgraphProject}</Grid>
-//               <Grid item md={6}>
-//                 <GravityCard style={{ height: 150 }} disabled><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body1">Deep.Claster</Typography>
-//                   <Typography variant="body2">Autoscalable world size Deep.Case cluster infrastructure.</Typography>
-//                   <Typography variant="body2">Coming soon...</Typography>
-//                 </div></GravityCard>
-//               </Grid>
-//               <Grid item xs={12} sm={6}>{deepview}</Grid>
-//               <Grid item md={6}>
-//                 <GravityCard disabled style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body1">DDD</Typography>
-//                   <Typography variant="body2">General principle. Philosophy.</Typography>
-//                   <Typography variant="body2">Coming soon...</Typography>
-//                 </div></GravityCard>
-//               </Grid>
-//             </Grid>}
-//           ><GravityCard style={{ height: 150 }} folder><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">🚠</Typography>
-//             <Typography variant="body1">Case</Typography>
-//             <Typography variant="body2">Solutions for use links theory in production.</Typography>
-//           </div></GravityCard></Folder>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Folder
-//             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
-//               <Grid item xs={12} md={6}><Link href="https://github.com/linksplatform"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                 <Typography variant="body1">LinksPlatform</Typography>
-//                 <Typography variant="body2">Low-level C lang realization.</Typography>
-
-//                 <GitHubIcon />
-//               </div></GravityCard></Link></Grid>
-//               <Grid item xs={12} md={6}>{deepgraphProject}</Grid>
-//               <Grid item xs={12} md={4}><GravityCard style={{ height: 150 }} disabled><div style={{ padding: 16, width: '100%' }}>
-//                 <Typography variant="body1">Links main theory</Typography>
-//                 <Typography variant="body2">Coming soon...</Typography>
-//               </div></GravityCard></Grid>
-//               <Grid item xs={12} md={4}><GravityCard style={{ height: 150 }} disabled><div style={{ padding: 16, width: '100%' }}>
-//                 <Typography variant="body1">Links models theory</Typography>
-//                 <Typography variant="body2">Coming soon...</Typography>
-//               </div></GravityCard></Grid>
-//               <Grid item xs={12} md={4}><GravityCard style={{ height: 150 }} disabled><div style={{ padding: 16, width: '100%' }}>
-//                 <Typography variant="body1">Links seq theory</Typography>
-//                 <Typography variant="body2">Coming soon...</Typography>
-//               </div></GravityCard></Grid>
-//             </Grid>}
-//           ><GravityCard style={{ height: 150 }} folder><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">🛸</Typography>
-//             <Typography variant="body1">Links</Typography>
-//             <Typography variant="body2">Theory, concept, realizations.</Typography>
-//           </div></GravityCard></Folder>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Folder
-//             content={<Grid container spacing={3} style={{ maxWidth: 600, padding: 32 }}>
-//               <Grid item xs={12} md={6}>
-//                 <Link href="https://github.com/deepcase/store"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body2">@deepcase/store</Typography>
-//                   <Typography variant="body2">React useState-like localStorage, cookies, url, capacitor hooks.</Typography>
-//                   <GitHubIcon /> <NPMBadge name="@deepcase/store"/>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//               <Grid item xs={12} md={6}>
-//                 <Link href="https://github.com/deepcase/hasura"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body2">@deepcase/hasura</Typography>
-//                   <Typography variant="body2">Hasura metadata and sql api, apollo client and integration for NextJS.</Typography>
-//                   <GitHubIcon /> <NPMBadge name="@deepcase/hasura"/>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//               <Grid item xs={12} md={12}>
-//                 <Link href="https://github.com/deepcase/materialized-path"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body2">@deepcase/materialized-path</Typography>
-//                   <Typography variant="body2">Postgres triggers and hasura relationships.</Typography>
-//                   <GitHubIcon /> <NPMBadge name="@deepcase/materialized-path"/>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//               <Grid item xs={12} md={6}>
-//                 <Link href="https://github.com/deepcase/react-hasura"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body2">@deepcase/react-hasura</Typography>
-//                   <Typography variant="body2">ApolloClient regeneration context based on token.</Typography>
-//                   <GitHubIcon /> <NPMBadge name="@deepcase/react-hasura"/>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//               <Grid item xs={12} md={6}>{deepgraphPackage}</Grid>
-//             </Grid>}
-//           ><GravityCard style={{ height: 150 }} folder><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">📦</Typography>
-//             <Typography variant="body1">Packages</Typography>
-//             <Typography variant="body2">Our actual OpenSource packages</Typography>
-//           </div></GravityCard></Folder>
-//         </Grid>
-//         <Grid item lg={3} md={4} sm={6} xs={12}>
-//           <Folder
-//             content={<Grid container spacing={3} style={{ maxWidth: 500, padding: 32 }}>
-//               <Grid item xs={7}>
-//                 <Link href="https://shakeapp.ru"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography variant="body1"><img style={{ width: 150 }} src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjk3IiBoZWlnaHQ9IjY3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGcgZmlsbD0iIzAwN0FGRiI+PHBhdGggZD0iTTE2LjMwOCAwaDQxLjA4OGMuMzM0IDAgLjYwNC4yNjUuNjA0LjU5MXYxMC41MjNjMCAuMzI2LS4yNy41OS0uNjA0LjU5SDE4LjgzYy00LjA1OCAwLTYuODY3IDMuMTg5LTYuODY3IDYuNjI0djE3LjE0N2MwIC42NjIuNTYxIDEuMTc3IDEuMjAxIDEuMTc3aDI1LjUwM2MuMzMzIDAgLjYwNC4yNjQuNjA0LjU5djEwLjUyM2MwIC4zMjctLjI3LjU5Mi0uNjA0LjU5MkguNjA0QS41OTguNTk4IDAgMDEwIDQ3Ljc2NXYtMzEuNzRDMCA3LjY0MyA2LjY0NiAwIDE2LjMwOCAweiIvPjxwYXRoIGQ9Ik00MS42OTIgNjdILjYwNEEuNTk4LjU5OCAwIDAxMCA2Ni40MDlWNTUuODg2YzAtLjMyNi4yNy0uNTkuNjA0LS41OUgzOS4xN2M0LjA1OCAwIDYuODY3LTMuMTg5IDYuODY3LTYuNjI0VjMxLjUyNWMwLS42NjItLjU2MS0xLjE3Ny0xLjIwMS0xLjE3N0gxOS4zMzNhLjU5OC41OTggMCAwMS0uNjA0LS41OVYxOS4yMzRjMC0uMzI3LjI3LS41OTIuNjA0LS41OTJoMzguMDYzYS41OTguNTk4IDAgMDEuNjA0LjU5MnYzMS43NEM1OCA1OS4zNTcgNTEuMzU0IDY3IDQxLjY5MiA2N3oiLz48L2c+PHBhdGggZD0iTTExOC44NzIgMjAuNDNjLS4zMTUuNDgzLS42NDUuODQ1LS45OSAxLjA4Ny0uMzQ3LjI0Mi0uNzkyLjM2My0xLjMzNy4zNjMtLjQ4MyAwLTEuMDAyLS4xNDYtMS41NTctLjQzOGEyODguNDUgMjg4LjQ1IDAgMDAtMS44ODctLjk4MyAxNi4wMDggMTYuMDA4IDAgMDAtMi40MDYtLjk4MmMtLjkwMi0uMjkyLTEuOTMtLjQzOC0zLjA4Mi0uNDM4LTEuOTkyIDAtMy40NzYuNDA4LTQuNDUgMS4yMjQtLjk3Ni44MTYtMS40NjMgMS45MTktMS40NjMgMy4zMSAwIC44ODYuMjkzIDEuNjIxLjg4IDIuMjA1LjU4Ny41ODUgMS4zNTggMS4wODggMi4zMTIgMS41MTEuOTU0LjQyNCAyLjA0NC44MTEgMy4yNyAxLjE2NGE4My44NCA4My44NCAwIDAxMy43NiAxLjE3OSAzNC4zNyAzNC4zNyAwIDAxMy43NTggMS41MjYgMTIuNTQgMTIuNTQgMCAwMTMuMjcgMi4yMzZjLjk1NS45MDcgMS43MjUgMi4wMSAyLjMxMiAzLjMxLjU4NyAxLjI5OS44OCAyLjg2Ni44OCA0LjY5OSAwIDIuMDM1LS4zNjYgMy45MzktMS4xIDUuNzEyYTEzLjM0NSAxMy4zNDUgMCAwMS0zLjE5MiA0LjYzOWMtMS4zOTUgMS4zMi0zLjExNCAyLjM1Ny01LjE1OCAzLjExMy0yLjA0NC43NTUtNC4zNjcgMS4xMzMtNi45NjcgMS4xMzMtMS40MjUgMC0yLjg3Ny0uMTQxLTQuMzU1LS40MjNhMjYuNjc5IDI2LjY3OSAwIDAxLTQuMjk0LTEuMTk0IDI1LjMzNCAyNS4zMzQgMCAwMS0zLjktMS44MjhjLTEuMjE2LS43MDUtMi4yNzQtMS40OTEtMy4xNzYtMi4zNThsMy4xNDUtNC43NzVhMy4xIDMuMSAwIDAxLjk5LS44NiAyLjY2NSAyLjY2NSAwIDAxMS4zMzctLjM0OGMuNjMgMCAxLjI2NC4xOTEgMS45MDMuNTc0LjY0LjM4MyAxLjM2My44MDYgMi4xNyAxLjI3LjgwOC40NjIgMS43MzUuODg2IDIuNzg0IDEuMjY4IDEuMDQ4LjM4MyAyLjI4NS41NzUgMy43MTEuNTc1IDEuOTI5IDAgMy40MjgtLjQwOCA0LjQ5Ny0xLjIyNCAxLjA3LS44MTYgMS42MDQtMi4xMSAxLjYwNC0zLjg4NCAwLTEuMDI3LS4yOTMtMS44NjQtLjg4LTIuNTA4LS41ODctLjY0NS0xLjM1OC0xLjE3OS0yLjMxMi0xLjYwMmEyMS44NzIgMjEuODcyIDAgMDAtMy4yNTUtMS4xMThjLTEuMjE2LS4zMjMtMi40NjQtLjY4LTMuNzQzLTEuMDczYTI4LjAzNiAyOC4wMzYgMCAwMS0zLjc0Mi0xLjQ1IDExLjgwNyAxMS44MDcgMCAwMS0zLjI1NS0yLjI2N2MtLjk1NC0uOTM3LTEuNzI1LTIuMTA2LTIuMzEyLTMuNTA2LS41ODctMS40LS44OC0zLjEyOC0uODgtNS4xODMgMC0xLjY1Mi4zNDUtMy4yNjQgMS4wMzctNC44MzUuNjkyLTEuNTcyIDEuNzA5LTIuOTcyIDMuMDUtNC4yMDEgMS4zNDMtMS4yMyAyLjk4OS0yLjIxMiA0LjkzOS0yLjk0NyAxLjk1LS43MzUgNC4xODMtMS4xMDMgNi42OTktMS4xMDMgMS40MDUgMCAyLjc3My4xMDYgNC4xMDQuMzE3YTIyLjI5IDIyLjI5IDAgMDEzLjc5LjkzN2MxLjE5NS40MTMgMi4zMTIuOTA3IDMuMzUgMS40ODFhMTUuNDMyIDE1LjQzMiAwIDAxMi43ODMgMS45NWwtMi42NDIgNC43NDR6bTQ5Ljg3OC05LjEwOVY1NS42OGgtMTAuODI1VjM2LjkyNWgtMTguODV2MTguNzU0SDEyOC4yNVYxMS4zMmgxMC44MjV2MTguNTRoMTguODVWMTEuMzJoMTAuODI1em0zMy40MjkgMjcuMzIybC00LjI0Mi0xMS45N2E0OC40OCA0OC40OCAwIDAxLTEuMDA1LTIuNjg1IDc5LjM4NyA3OS4zODcgMCAwMS0xLjA2OC0zLjM0NSA0Ny4xMDMgNDcuMTAzIDAgMDEtMi4wMSA2LjA5bC00LjIxMSAxMS45MWgxMi41MzZ6bTE2LjcxNCAxNy4wMzZoLTguMjg0Yy0uOTI4IDAtMS42NzYtLjIwOC0yLjI0NS0uNjI1YTMuOTkgMy45OSAwIDAxLTEuMjk3LTEuNTk4bC0yLjcyLTcuNzMzaC0xNy41MTZsLTIuNzIgNy43MzNjLS4yMzEuNTY4LS42NDggMS4wOC0xLjI0OSAxLjUzOC0uNi40NTYtMS4zNDMuNjg1LTIuMjI5LjY4NWgtOC4zNDdsMTcuODMzLTQ0LjM1OGgxMC45NGwxNy44MzQgNDQuMzU4em0xNC44NDMtMjYuMzk2aDEuNzA0YzEuNTc3IDAgMi43MTMtLjQ3NiAzLjQwNy0xLjQzbDEwLjM0OS0xNC40OTJjLjYxLS43NzEgMS4yNjctMS4zMDQgMS45NzItMS41OTguNzA0LS4yOTQgMS41ODMtLjQ0MiAyLjYzNC0uNDQyaDkuMjc2bC0xMy42MyAxNy45MzJjLS45NjcgMS4yMzgtMi4wMDggMi4xMzEtMy4xMjMgMi42OGE3LjcyMiA3LjcyMiAwIDAxMi4xNzcgMS4xODZjLjY1Mi41MDggMS4yNjIgMS4xNjcgMS44MyAxLjk4bDEzLjg4MiAyMC41OGgtOS41MjhjLS42MSAwLTEuMTMtLjA0MS0xLjU2Mi0uMTIyYTQuMTAyIDQuMTAyIDAgMDEtMS4xMi0uMzY2IDMuMjE3IDMuMjE3IDAgMDEtLjgyLS41OTMgNS45MjkgNS45MjkgMCAwMS0uNjYzLS44MDdsLTEwLjQxMi0xNS40MzVjLS4zNzktLjU2OC0uODU3LS45Ny0xLjQzNS0xLjIwMy0uNTc5LS4yMzMtMS4zNjItLjM1LTIuMzUxLS4zNWgtMi41ODdWNTUuNjhIMjIzLjA3VjExLjMyaDEwLjY2NXYxNy45NjJ6bTQ0LjIwNy0xMC4wNDZ2MTAuMzVoMTQuNTk1VjM3LjJoLTE0LjU5NXYxMC41NjRIMjk3djcuOTE2aC0yOS44OTNWMTEuMzJIMjk3djcuOTE2aC0xOS4wNTd6IiBmaWxsPSIjMjEyMTIxIi8+PC9nPjwvc3ZnPg=="/></Typography>
-//                   <Typography variant="body2">All around car sharing service. Open links graphql API. Multiplatform apps.</Typography>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//               <Grid item xs={5}>
-//                 <Link href="https://github.com/deepcase/deepcase.github.io/issues/new"><GravityCard style={{ height: 150 }}><div style={{ padding: 16, width: '100%' }}>
-//                   <Typography align="center"><AddIcon/></Typography>
-//                   <Typography variant="body2">Suggest your project</Typography>
-//                 </div></GravityCard></Link>
-//               </Grid>
-//             </Grid>}
-//           ><GravityCard style={{ height: 150 }} folder><div style={{ padding: 16, width: '100%' }}>
-//             <Typography variant="h5">✨</Typography>
-//             <Typography variant="body1">Usages</Typography>
-//             <Typography variant="body2">Projects uses Deep solutions.</Typography>
-//           </div></GravityCard></Folder>
-//         </Grid>
-//       </Grid>
-//       <Grid container spacing={3} justify="center" alignItems="center">
-//         <Grid item xs={12} style={{ height: 40 }} />
-//         <Grid item xs={12}>
-//           {process.browser && <ButtonGroup variant="outlined">
-//             <Button onClick={() => setLanguage('ru-RU')} disabled={language === 'ru-RU'}>ru-RU</Button>
-//             <Button onClick={() => setLanguage('en-US')} disabled={language === 'en-US'}>en-US</Button>
-//           </ButtonGroup>}
-//         </Grid>
-//         <Grid item xs={12}>
-//           {language === 'ru-RU' && <NotionPage page='RU-037c78a058ab492abbe1ab42d4e42321'/>}
-//           {language === 'en-US' && <NotionPage page='EN-82f109578b5b470ea0800f38d5b09fe4'/>}
-//         </Grid>
-//       </Grid>
-//       <Grid item xs={12} className={classes.waitlistgrid}>
-//         <Waitlist
-//           api_key="BBNAIR"
-//           waitlist_link="https://deep.foundation/pre-order"
-//           joinWaitlistHeading="Subscribe to Deep.Case EE and Deep.Space early access."
-//         />
-//       </Grid>
-//       <Grid item xs={12} style={{ height: '30vh' }} />
-//     </Screen>
-//   </div>)
-// };

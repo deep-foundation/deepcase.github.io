@@ -22,7 +22,8 @@
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true
+    "noEmit": true,
+    "noUnusedLocals": false
   },
   "include": [
     "next-env.d.ts",
