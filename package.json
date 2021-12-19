@@ -40,7 +40,6 @@
     "react-ga": "^3.3.0",
     "react-notion": "^0.10.0",
     "react-spring": "^9.1.2",
-    "react-spring-carousel-js": "^1.9.30",
     "react-use-gesture": "^9.1.3",
     "react-yandex-metrika": "^2.6.0",
     "ts-node": "^10.2.1",

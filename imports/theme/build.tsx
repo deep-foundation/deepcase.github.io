@@ -14,6 +14,9 @@ export const coreTheme = createMuiTheme({
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     // @ts-ignore
     htmlFontSize: htmlFontSize,
+    h1: {
+      lineHeight: 1.5,
+    },
     caption:{
       lineHeight: 1,
     },

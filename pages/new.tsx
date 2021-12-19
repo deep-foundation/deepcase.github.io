@@ -7,7 +7,7 @@ import cn from 'classnames';
 import detectBrowserLanguage from 'detect-browser-language';
 import moment from 'moment';
 import dynamic from "next/dynamic";
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
 import { Podcast } from '../imports/podcast/podcast-card';
 import { Provider } from '../imports/provider';
@@ -103,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: '3em 3em',
     backgroundPosition: 'center',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     animation: '5s $deeplinksBackground ease'
   },
   waitlistgrid: {
@@ -180,6 +181,7 @@ export function PageContent() {
   const classes = useStyles();
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
   const [electronOpen, setElectronOpen] = useState(null);
+  const refScrollContainer = useRef();
 
   const handleClick = useCallback((event) => {
     setElectronOpen(event.currentTarget);
@@ -189,169 +191,170 @@ export function PageContent() {
     setElectronOpen(null);
   }, []);
 
-  return (<Grid container className={classes.root} justify="center" alignItems="center">
-    <UpperMenu />
-    <Grid item xs={12} sm={10} md={8} lg={7}>
-      <Grid container justify="center" alignItems="center">
-        <Grid item xs={10} className={classes.screen1GridItem} component={Paper} elevation={0}>
-          <div style={{ marginBottom: -45, zIndex: 1, position: 'relative' }}>
-            <Typography align="left" variant="h4">Deep.Case</Typography>
-            <Typography align="left" variant="h5">pre alpha version</Typography>
-          </div>
-          <img src="/screen1.png" style={{ width: '100%' }}/>
-          <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
-            <Grid item><Button
-              variant="outlined" color="primary"
-              size="large"
-            ><div>
-              <Typography>GitPod</Typography>
-              <Typography variant="caption">(cloud demo)</Typography>
-            </div></Button></Grid>
-            <Grid item>
-              <ButtonGroup variant="outlined">
-                <Button
-                  variant="contained" color="primary"
-                  size="large"
-                ><div>
-                  <Typography>Download</Typography>
-                  <Typography variant="caption">(electron)</Typography>
+  return (<><UpperMenu scrollContainer={refScrollContainer} />
+    <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer}>
+      <Grid item xs={12} sm={10} md={8} lg={7}>
+        <Grid container justify="center" alignItems="center">
+          <Grid item xs={10} className={classes.screen1GridItem} component={Paper} elevation={0}>
+            <div style={{ marginBottom: -45, zIndex: 1, position: 'relative' }}>
+              <Typography align="left" variant="h4">Deep.Case</Typography>
+              <Typography align="left" variant="h5">pre alpha version</Typography>
+            </div>
+            <img src="/screen1.png" style={{ width: '100%' }}/>
+            <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
+              <Grid item><Button
+                variant="outlined" color="primary"
+                size="large"
+              ><div>
+                <Typography>GitPod</Typography>
+                <Typography variant="caption">(cloud demo)</Typography>
+              </div></Button></Grid>
+              <Grid item>
+                <ButtonGroup variant="outlined">
+                  <Button
+                    variant="contained" color="primary"
+                    size="large"
+                  ><div>
+                    <Typography>Download</Typography>
+                    <Typography variant="caption">(electron)</Typography>
+                  </div></Button>
+                  <Button
+                    variant="outlined" color="primary"
+                    onClick={handleClick}
+                  ><div>
+                  <ArrowDropDown />
                 </div></Button>
-                <Button
-                  variant="outlined" color="primary"
-                  onClick={handleClick}
-                ><div>
-                <ArrowDropDown />
-              </div></Button>
-              </ButtonGroup>
-              <Menu
-                anchorEl={electronOpen}
-                keepMounted
-                open={!!electronOpen}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>.app</MenuItem>
-                <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
-                <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
-              </Menu>
+                </ButtonGroup>
+                <Menu
+                  anchorEl={electronOpen}
+                  keepMounted
+                  open={!!electronOpen}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>.app</MenuItem>
+                  <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
+                  <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
+                </Menu>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
-    <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' onMouseOver={() => {
-      disableScroll.on();
-    }} onMouseLeave={() => {
-      disableScroll.off();
-    }}>
-      <Paper className={classes.screenPodcast}>
-      <Slider items={podcasts} width={400} visible={5}>
-        {(p) => (
-          <div style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-            <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
-          </div>
-        )} 
-      </Slider>
-      </Paper>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <GravityCard style={{ height: 200, width: '100%' }}>
-              <div className={classes.screen2accent}>
-                <Typography>Операционное пространство</Typography>
-              </div>
-            </GravityCard>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <GravityCard style={{ height: 200, width: '100%' }}>
-              <div className={classes.screen2accent}>
-                <Typography>Новая парадигма программирования</Typography>
-              </div>
-            </GravityCard>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <GravityCard style={{ height: 200, width: '100%' }}>
-              <div className={classes.screen2accent}>
-                <Typography>Любые языки и стеки</Typography>
-              </div>
-            </GravityCard>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <GravityCard style={{ height: 200, width: '100%' }}>
-              <div className={classes.screen2accent}>
-                <Typography>Беспрецедентно гибкие правила</Typography>
-              </div>
-            </GravityCard>
+      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' onMouseOver={() => {
+        disableScroll.on();
+      }} onMouseLeave={() => {
+        disableScroll.off();
+      }}>
+        <Paper className={classes.screenPodcast}>
+        <Slider items={podcasts} width={400} visible={5}>
+          {(p) => (
+            <div style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+              <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+            </div>
+          )} 
+        </Slider>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={3}>
+              <GravityCard style={{ height: 200, width: '100%' }}>
+                <div className={classes.screen2accent}>
+                  <Typography>Операционное пространство</Typography>
+                </div>
+              </GravityCard>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <GravityCard style={{ height: 200, width: '100%' }}>
+                <div className={classes.screen2accent}>
+                  <Typography>Новая парадигма программирования</Typography>
+                </div>
+              </GravityCard>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <GravityCard style={{ height: 200, width: '100%' }}>
+                <div className={classes.screen2accent}>
+                  <Typography>Любые языки и стеки</Typography>
+                </div>
+              </GravityCard>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <GravityCard style={{ height: 200, width: '100%' }}>
+                <div className={classes.screen2accent}>
+                  <Typography>Беспрецедентно гибкие правила</Typography>
+                </div>
+              </GravityCard>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="right" variant="h3">Associative handlers</Typography>
-        <Typography align="left">Coming soon...</Typography>
+      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="right" variant="h3">Associative handlers</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="left" variant="h3">Associative models</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+          <Typography align="center" variant="h3">Used technologies</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen6)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="right" variant="h3">Performance</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen7)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="left" variant="h3">Transactions</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen8)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="right" variant="h3">Engines</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+          <Typography align="center" variant="h3">Cloud solution</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="right" variant="h3">Roadmap</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="left" variant="h3">Articles</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="right" variant="h3">Invest</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+          <Typography align="center" variant="h3">Community</Typography>
+          <Typography align="left">Coming soon...</Typography>
+        </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="left" variant="h3">Associative models</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-        <Typography align="center" variant="h3">Used technologies</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen6)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="right" variant="h3">Performance</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen7)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="left" variant="h3">Transactions</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen8)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="right" variant="h3">Engines</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-        <Typography align="center" variant="h3">Cloud solution</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="right" variant="h3">Roadmap</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="left" variant="h3">Articles</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7}>
-        <Typography align="right" variant="h3">Invest</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-      <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-        <Typography align="center" variant="h3">Community</Typography>
-        <Typography align="left">Coming soon...</Typography>
-      </Grid>
-    </Grid>
-  </Grid>);
+  </>);
 };
