@@ -9,11 +9,9 @@ var htmlFontSize = `calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))`
 
 export const coreTheme = createMuiTheme({
   typography: {
-    // @ts-ignore
-    // pxToRem: (size: number) => `${size / 16}rem`,
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     // @ts-ignore
-    htmlFontSize: htmlFontSize,
+    fontSize: 'calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))',
     h1: {
       lineHeight: 1.5,
     },

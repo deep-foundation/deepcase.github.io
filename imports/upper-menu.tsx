@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
     padding: '1rem 0',
     color: '#fff',
     transformOrigin: 'top',
-    border: '1px dashed #ffffff40',
+    borderTop: '1px dashed #ffffff40',
+    borderBottom: '1px dashed #ffffff40',
     position: 'relative',
     top: 0, left: 0,
     width: '100vw',
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
   },
   buttons: {
+    alignSelf: 'center',
     '& > :nth-child(-n+2)': {
       marginRight: '1.5rem',
     }
@@ -96,13 +98,14 @@ export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
           <Grid container direction='row' justify='center' alignItems='center' item xs={12} className={classes.flexContainer}>
             <Grid item xs={12} lg={8} xl={6}>
               <Box className={classes.boxContainer}>
-                <Typography variant="h1" component={a.div} style={{
+                <a.div style={{
                   alignSelf: 'center',
+                  fontFamily: "'Comfortaa', 'sans-serif'",
                   fontSize: n.to({
                       range: [0, 1],
                       output: [32, 24]
                     })
-                  }}>Deep.Foundation</Typography>
+                  }}>Deep.Foundation</a.div>
                 <div className={classes.buttons}>
                   <Button variant="text" >Docs</Button>
                   <Button variant="text" >Talk to us</Button>

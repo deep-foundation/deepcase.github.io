@@ -81,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {
       backgroundColor: theme?.palette?.background?.default,
-      // fontSize: 'calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)))'
     },
   },
   '@keyframes deeplinksBackground': {
