@@ -107,7 +107,7 @@ export const theme1 = createMuiTheme({
       }
     }
   },
-  shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
+  // shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
 });
 
 export const theme2 = createMuiTheme({
