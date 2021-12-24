@@ -68,13 +68,6 @@ export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
 
   const { y } = useSpring({ y: scrolled === true ? -5 : 0 })
 
-  useLayoutEffect(() => {
-    const id = setInterval(() => {
-      
-    }, 10)
-    return () => clearInterval(id);
-  }, []);
-
   return (<a.div className={classes.container} 
             style={{
               transform: y.to({
