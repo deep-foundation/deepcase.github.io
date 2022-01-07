@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { withStyles } from '@material-ui/styles';
-import { useSpring, animated } from 'react-spring';
 import { ButtonBase, makeStyles, Paper } from '@material-ui/core';
+import React, { useRef, useState } from 'react';
+import { animated, useSpring } from 'react-spring';
 
 const calc: any = (x, y, w, h, l, t) => [
   -((y - t) - h / 2) / 10,
@@ -21,11 +20,13 @@ const useStyles = makeStyles(() => ({
 export function Card({
   children, disabled, animatedProps, PaperProps,
   folder = false,
+  paperComponent = ButtonBase,
   setRef,
   ...props
 }: {
   children: any; disabled?: boolean; animatedProps?: any; PaperProps?: any;
   folder?: boolean;
+  paperComponent?: any;
   setRef?: any;
   [prop: string]: any;
 }) {
@@ -64,7 +65,7 @@ export function Card({
         <Paper
           elevation={disabled ? 0 : hover ? 4 : 1}
           variant={disabled ? 'outlined' : 'elevation'}
-          component={ButtonBase}
+          component={paperComponent}
           disabled={disabled}
           {...PaperProps}
           style={{

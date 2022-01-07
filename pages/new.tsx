@@ -1,20 +1,26 @@
-import { Grid } from '@material-ui/core';
 import { darken } from '@material-ui/core/styles';
 import { ArrowDropDown } from '@material-ui/icons';
-import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
+import BathtubIcon from '@material-ui/icons/Bathtub';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
+import AppleIcon from '@material-ui/icons/Apple';
+import { default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
 import cn from 'classnames';
 import detectBrowserLanguage from 'detect-browser-language';
+import disableScroll from 'disable-scroll';
+import { times } from 'lodash';
 import moment from 'moment';
 import dynamic from "next/dynamic";
 import { useCallback, useRef, useState } from 'react';
-import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
+import { CrewCard } from '../imports/crew-card';
+import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography, Grid } from '../imports/framework';
+import { IFrame } from '../imports/iframe';
+import { SpecialCard } from '../imports/special-card';
 import { Podcast } from '../imports/podcast/podcast-card';
 import { Provider } from '../imports/provider';
-import { UpperMenu } from '../imports/upper-menu';
 import { Slider } from '../imports/slider';
-import disableScroll from 'disable-scroll';
-import { times } from 'lodash';
+import { UpperMenu } from '../imports/upper-menu';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -77,18 +83,52 @@ const podcasts = times(15, (i) => ({
   }]
 }));
 
+const crew = [
+  {
+    id: 1,
+    src: '/avatars/ivan.webp',
+    alt: 'founder',
+  },
+  {
+    id: 2,
+    src: '/avatars/const.webp',
+    alt: 'founder',
+  },
+  {
+    id: 3,
+    src: '/avatars/serg.webp',
+    alt: 'founder',
+  },
+  {
+    id: 4,
+    src: '/avatars/sergey.webp',
+    alt: 'founder',
+  },
+  {
+    id: 5,
+    src: '/avatars/tim.webp',
+    alt: 'founder',
+  },
+  {
+    id: 6,
+    src: '/avatars/petr.webp',
+    alt: 'founder',
+  }
+]
+
 const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {
       backgroundColor: theme?.palette?.background?.default,
+     
     },
   },
   '@keyframes deeplinksBackground': {
     from: {
-      backgroundSize: '2.2em 2.2em',
+      backgroundSize: '65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px',
     },
     to: {
-      backgroundSize: '3em 3em',
+      backgroundSize: '80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
     },
   },
   root: {
@@ -98,8 +138,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     backgroundColor: theme?.palette?.background?.default,
-    backgroundImage: 'linear-gradient(#202a38 .1em, transparent .1em), linear-gradient(90deg, #202a38 .1em, transparent .1em)',
-    backgroundSize: '3em 3em',
+    backgroundImage: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
+    backgroundSize:'80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
     backgroundPosition: 'center',
     overflowY: 'scroll',
     overflowX: 'hidden',
@@ -129,9 +169,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px dashed #ffffff40',
   },
   screen2accent: {
-    background: darken(theme?.palette?.background?.default, 0.5),
-    width: '100%',
-    height: '100%',
+    // background: darken(theme?.palette?.background?.default, 0.5),
+    // width: '100%',
+    // height: '100%',
   },
   screen3: {
     background: darken(theme?.palette?.background?.default, 0.4),
@@ -166,6 +206,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '20rem',
   },
+  gridCrew: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+    columnGap: '4vmin',
+  }
 }));
 
 export default function Page() {
@@ -200,6 +245,7 @@ export function PageContent() {
               <Typography align="left" variant="h5">pre alpha version</Typography>
             </div>
             <img src="/screen1.png" style={{ width: '100%' }}/>
+            {/* <IFrame src='/screen1.png' /> */}
             <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
               <Grid item><Button
                 variant="outlined" color="primary"
@@ -255,36 +301,47 @@ export function PageContent() {
         </Paper>
       </Grid>
       <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
+        <Grid item xs={12} sm={10} md={8} lg={10}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={3}>
-              <GravityCard style={{ height: 200, width: '100%' }}>
-                <div className={classes.screen2accent}>
-                  <Typography>Операционное пространство</Typography>
-                </div>
-              </GravityCard>
+              <SpecialCard
+                icon={<BathtubIcon />}
+                title='Операционное пространство' 
+                description='Немного текста о том, почему это хорошо или просто необходимо'
+              />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <GravityCard style={{ height: 200, width: '100%' }}>
-                <div className={classes.screen2accent}>
-                  <Typography>Новая парадигма программирования</Typography>
-                </div>
-              </GravityCard>
+              <SpecialCard
+                icon={<BeachAccessIcon />}
+                title='Новая парадигма программирования' 
+                description='Немного текста о том, почему это хорошо или просто необходимо'
+              />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <GravityCard style={{ height: 200, width: '100%' }}>
-                <div className={classes.screen2accent}>
-                  <Typography>Любые языки и стеки</Typography>
-                </div>
-              </GravityCard>
+              <SpecialCard
+                icon={<EmojiSymbolsIcon />}
+                title='Любые языки и стеки' 
+                description='Немного текста о том, почему это хорошо или просто необходимо'
+              />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <GravityCard style={{ height: 200, width: '100%' }}>
-                <div className={classes.screen2accent}>
-                  <Typography>Беспрецедентно гибкие правила</Typography>
-                </div>
-              </GravityCard>
+              <SpecialCard
+                icon={<AppleIcon />}
+                title='Гибкие правила' 
+                description='Немного текста о том, почему это хорошо или просто необходимо'
+              />
             </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7}>
+          <Typography align="left" variant="h3">Crew</Typography>
+          <Grid container alignItems='center' justify='center' spacing={6}>
+            {crew.map(i => (<Grid item xs={12} sm={4} md={3} lg={2}>
+              <CrewCard key={i.id} src={i.src} alt={i.alt} />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
       </Grid>

@@ -1,11 +1,8 @@
-import { Box, Button, Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Grid, IconButton, makeStyles } from "./framework";
 import { default as GitHub } from '@material-ui/icons/GitHub';
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import { a, useSpring, config } from 'react-spring';
+import React, { useEffect, useState, useRef } from "react";
+import { a, useSpring, useTransition } from 'react-spring';
 
-const scale = (n) => `scaleY(${n})`;
-const trans = (n) => `translate3d(0, 0, -${n}rem)`;
-const transCube = (y) => `translateY(-${y}rem)`;
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -23,13 +20,13 @@ const useStyles = makeStyles(theme => ({
     perspective: 0,
     transformStyle: 'flat',
     perspectiveOrigin: 'top center',
+    borderTop: '1px dashed #ffffff40',
+    borderBottom: '1px dashed #ffffff40',
   },
   root: {
     padding: '1rem 0',
     color: '#fff',
     transformOrigin: 'top',
-    borderTop: '1px dashed #ffffff40',
-    borderBottom: '1px dashed #ffffff40',
     position: 'relative',
     top: 0, left: 0,
     width: '100vw',
@@ -52,39 +49,49 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const pathLength = 150;
+
 export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
   const classes = useStyles();
   const [scrolled, setScroll] = useState(false);
-  
+  const old = useRef({scrollTop: 0});
   
   useEffect(() => {
     const id = setInterval(() => {
-      setScroll(scrollContainer?.current?.scrollTop > 136 ? true : false);
+      if (scrollContainer?.current?.scrollTop > old.current.scrollTop) {
+        setScroll(true);
+      } else if (scrollContainer?.current?.scrollTop < old.current.scrollTop) {
+        setScroll(false);
+      }
+      old.current.scrollTop = scrollContainer?.current?.scrollTop;
     }, 100)
     return () => clearInterval(id);
   }, []);
 
-  const { n } = useSpring({ n: scrolled === true ? 1 : 0 });
+  const { n } = useSpring({ 
+    n: scrolled ? 1 : 0.19,
+    config: { mass: 1.7, tension: 65, friction: 25 },
+  });
 
-  const { y } = useSpring({ y: scrolled === true ? -5 : 0 })
+  const transitions = useTransition(!scrolled, {
+    initial: { transform: "translateY(0%)" },
+    enter: { transform: "translateY(0%)" },
+    leave: { transform: "translateY(-100%)" },
+    reverse: scrolled,
+    expires: false,
+    config: { mass: 1.7, tension: 65, friction: 25 },
+  })
 
-  return (<a.div className={classes.container} 
-            style={{
-              transform: y.to({
-                      range: [0, 1],
-                      output: [0, -1]
-                      })
-                     .to(transCube)}}>
-      <a.div className={classes.cubeZone}
+  const fonts = useSpring({ 
+    x: scrolled ? 1 : 0.8,
+    delay: scrolled ? 0 : 600,
+  });
+
+  return (<div className={classes.container}>
+      {transitions((style, item) => (item && <a.div className={classes.cubeZone}
         style={{
           background: n.to({ range: [0, 0.35, 0.50, 0.65, 0.85, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.37)', 'rgba(0, 0, 0, 0.58)', 'rgba(0, 0, 0, 0.79)', 'rgba(0, 0, 0, 89)', 'rgba(0, 0, 0, 1)'] }),
-          transform: n.to({
-                        // range: [1, 0.95, 0.85, 0.65, 0.5, 0.35, 0],
-                        // output: [1, 0.95, 0.85, 0.65, 0.5, 0.35, -5]
-                        range: [1, 0],
-                        output: [0.01, 0]
-                      })
-                      .to(trans)
+          ...style
         }}>
         <div className={classes.root}
         >
@@ -93,22 +100,42 @@ export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
               <Box className={classes.boxContainer}>
                 <a.div style={{
                   alignSelf: 'center',
+                  fontSize: 'calc(42px + 0.3vmax)',
                   fontFamily: "'Comfortaa', 'sans-serif'",
-                  fontSize: n.to({
-                      range: [0, 1],
-                      output: [32, 24]
-                    })
+                  transform: fonts.x
+                                .to({
+                                  range: [0, 1, 0],
+                                  output: [1, 0.5, 1],
+                                })
+                                .to(x => `scale(${x})`),
                   }}>Deep.Foundation</a.div>
                 <div className={classes.buttons}>
-                  <Button variant="text" >Docs</Button>
-                  <Button variant="text" >Talk to us</Button>
+                  <Button variant="text">
+                    <a.span style={{
+                      transform: fonts.x
+                                      .to({
+                                        range: [0, 1, 0],
+                                        output: [1, 0.5, 1],
+                                      })
+                                      .to(x => `scale(${x})`)
+                    }}>Docs</a.span></Button>
+                  <Button variant="text">
+                    <a.span style={{
+                      fontSize: 'calc(12px + 0.3vmax)',
+                      transform: fonts.x
+                                      .to({
+                                        range: [0, 1, 0],
+                                        output: [1, 0.5, 1],
+                                      })
+                                      .to(x => `scale(${x})`)
+                    }}>Talk to us</a.span></Button>
                   <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
                 </div>
               </Box>
             </Grid>
           </Grid>
         </div>
-      </a.div>
-    </a.div>
+      </a.div>))}
+    </div>
   )
 }

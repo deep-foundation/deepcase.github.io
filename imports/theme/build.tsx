@@ -5,21 +5,59 @@ const temp = createMuiTheme({});
 const { breakpoints } = temp;
 
 var pxToRem = (size: number) => `${size/16}rem`;
-var htmlFontSize = `calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))`
+var htmlFontSize = `calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))`;
+// var fontSize = 'calc(1em + 1vmax)';
+var lineHeight = 'calc(1.1em + 0.5vmax)';
 
 export const coreTheme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     // @ts-ignore
-    fontSize: 'calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))',
+    // fontSize: fontSize,
+    // 'calc(14 + (28 - 14) * ((100 - 300) / (2550 - 300)))',
     h1: {
-      lineHeight: 1.5,
+      fontSize: 'calc(42px + 0.3vmax)',
+      fontWeight: 700,
+      lineHeight: 'calc(2.725em + 0.5vmax)',
+    },
+    h2: {
+      fontSize: 'calc(32px + 0.3vmax)',
+      fontWeight: 700,
+      lineHeight: 'calc(2.1em + 0.5vmax)',
+    },
+    h3: {
+      fontSize: 'calc(28px + 0.3vmax)',
+      fontWeight: 600,
+      lineHeight: 'calc(1.85em + 0.5vmax)',
+    },
+    h4: {
+      fontSize: 'calc(21px + 0.3vmax)',
+      fontWeight: 500,
+      lineHeight: 'calc(1.413em + 0.5vmax)',
+    },
+    h5: {
+      fontSize: 'calc(18px + 0.3vmax)',
+      fontWeight: 500,
+      lineHeight: 'calc(1.225em + 0.5vmax)',
+    },
+    body1: {
+      fontSize: 'calc(16px + 0.3vmax)',
+      fontWeight: 300,
+      lineHeight: 'calc(1.1em + 0.5vmax)',
+    },
+    body2: {
+      fontSize: 'calc(14px + 0.3vmax)',
+      fontWeight: 300,
+      lineHeight: 'calc(0.975em + 0.5vmax)',
     },
     caption:{
-      lineHeight: 1,
+      fontSize: 'calc(12px + 0.3vmax)',
+      lineHeight: 'calc(0.45em + 0.5vmax)',
     },
     overline: {
-      lineHeight: 0,
+      fontSize: 'calc(12px + 0.3vmax)',
+      lineHeight: 'calc(0.45em + 0.5vmax)',
+      // lineHeight: 0,
     }
   },
   palette: {
@@ -46,8 +84,14 @@ export const theme1 = createMuiTheme({
   overrides: {
     MuiButton: {
       label: {
-        textTransform: 'none',
+        fontSize: 'calc(12px + 0.3vmax)',
+        // textTransform: 'none',
       },
+    },
+    MuiButtonGroup: {
+      root: {
+        color: '#000',
+      }
     },
     MuiPaper: {
       outlined: {
@@ -59,7 +103,7 @@ export const theme1 = createMuiTheme({
         backgroundColor: 'transparent',
       },
       elevation1: {
-        // border: '1px dashed #ffffff40',
+        border: '1px dashed #ffffff40',
       },
       elevation2: {
         border: '1px dashed #ffffff60',
