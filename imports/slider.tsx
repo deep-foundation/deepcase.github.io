@@ -1,7 +1,7 @@
-import React, { useRef, useCallback, useMemo } from 'react'
-import { useGesture } from 'react-use-gesture'
-import { useSprings, a } from 'react-spring'
-import { makeStyles } from '@material-ui/core'
+import React, { useRef, useCallback, useMemo } from 'react';
+import { useGesture } from 'react-use-gesture';
+import { useSprings, a } from 'react-spring';
+import { makeStyles } from './framework';
 
 const useStyles = makeStyles({
   container: { 

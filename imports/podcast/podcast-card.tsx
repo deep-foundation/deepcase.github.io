@@ -1,8 +1,6 @@
-import { Box, IconButton, Typography, Zoom, Tooltip } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Box, makeStyles, Typography, Zoom, Tooltip } from '../framework';
 import React, { useEffect, useRef } from 'react';
 import { Play } from '../icons/play';
-// import { Tooltip } from '../tooltip';
 import { LogoImage } from './logo';
 
 import { useSpring, a } from 'react-spring';
@@ -44,7 +42,8 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: '-25%',
     left: '-25%',
-    background: 'linear-gradient(#202a38 .025em, transparent .025em), linear-gradient(90deg, #202a38 .025em, transparent .025em)',
+    // background: 'linear-gradient(#202a38 .025em, transparent .025em), linear-gradient(90deg, #202a38 .025em, transparent .025em)',
+    background: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
     backgroundSize: '1em 1em',
   },
   guestImgBlock: {
@@ -155,7 +154,7 @@ export const Podcast = React.memo(({
         </Box>
         {privateCast && 
           <Tooltip TransitionComponent={Zoom} title="the guest chose to keep the entry private" placement="right-start" arrow>
-            <Typography variant='caption' component='div' style={{textTransform: 'uppercase'}}>private</Typography>
+            <Typography variant='overline' component='div'>private</Typography>
           </Tooltip>
         }
       </Box>

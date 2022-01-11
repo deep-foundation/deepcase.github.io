@@ -1,8 +1,7 @@
-import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import React from 'react';
+import { a } from 'react-spring';
+import { makeStyles } from '../framework';
 
-import { useSpring, a } from 'react-spring';
 
 const useStyles = makeStyles({
   container: {
@@ -39,13 +38,8 @@ export const LogoImage = ({
     top: top,
   });
 
-  // const [props, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }));
-
   return(<a.div className={classes.container} style={{ transform: spring.xy.to(trans1) }}>
       <img src={src} alt={alt} className={classes.image}/>
     </a.div>
   )
 }
-
-
-//style={{width: `${width}${unit}`, position: 'absolute', left: `${left}${unit}`, top: `${top}${unit}`}}
