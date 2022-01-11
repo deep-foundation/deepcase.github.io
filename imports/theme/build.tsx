@@ -4,17 +4,9 @@ import { colors, createMuiTheme, darken } from '@material-ui/core';
 const temp = createMuiTheme({});
 const { breakpoints } = temp;
 
-var pxToRem = (size: number) => `${size/16}rem`;
-var htmlFontSize = `calc(14px + (28 - 14) * ((100vw - 300px) / (2550 - 300)))`;
-// var fontSize = 'calc(1em + 1vmax)';
-var lineHeight = 'calc(1.1em + 0.5vmax)';
-
 export const coreTheme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
-    // @ts-ignore
-    // fontSize: fontSize,
-    // 'calc(14 + (28 - 14) * ((100 - 300) / (2550 - 300)))',
     h1: {
       fontSize: 'calc(42px + 0.3vmax)',
       fontWeight: 700,

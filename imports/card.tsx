@@ -2,9 +2,9 @@ import { ButtonBase, makeStyles, Paper } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 
-const calc: any = (x, y, w, h, l, t) => [
-  -((y - t) - h / 2) / 10,
-  ((x - l) - w / 2) / 10,
+const calc: any = (x, y, w, h, l, t, xm = 1, ym = 1) => [
+  -((y - t) - h / 2) / 10 * ym,
+  ((x - l) - w / 2) / 10 * xm,
   1.1
 ];
 const trans: any = (x, y, s) =>
@@ -19,12 +19,14 @@ const useStyles = makeStyles(() => ({
 
 export function Card({
   children, disabled, animatedProps, PaperProps,
+  xm = 1, ym = 1,
   folder = false,
   paperComponent = ButtonBase,
   setRef,
   ...props
 }: {
   children: any; disabled?: boolean; animatedProps?: any; PaperProps?: any;
+  xm?: number; ym?: number;
   folder?: boolean;
   paperComponent?: any;
   setRef?: any;
@@ -47,7 +49,7 @@ export function Card({
           const box = rootRef.current.getBoundingClientRect();
           let x, y;
           x = clientX - box?.x, y = clientY - box?.y;
-          set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop) });
+          set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop, xm, ym) });
           if (!hover) setHover(true);
         }}
         onMouseLeave={() => {

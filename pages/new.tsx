@@ -302,31 +302,39 @@ export function PageContent() {
       </Grid>
       <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
         <Grid item xs={12} sm={10} md={8} lg={10}>
-          <Grid container spacing={3}>
+          <Grid container spacing={10}>
             <Grid item xs={12} sm={6} md={3}>
               <SpecialCard
-                icon={<BathtubIcon />}
+                icon1={<BathtubIcon />}
+                icon2={<BathtubIcon color='secondary' />}
+                icon3={<BathtubIcon color='error' />}
                 title='Операционное пространство' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <SpecialCard
-                icon={<BeachAccessIcon />}
+                icon1={<BeachAccessIcon />}
+                icon2={<BeachAccessIcon color='secondary' />}
+                icon3={<BeachAccessIcon color='error' />}
                 title='Новая парадигма программирования' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <SpecialCard
-                icon={<EmojiSymbolsIcon />}
+                icon1={<EmojiSymbolsIcon />}
+                icon2={<EmojiSymbolsIcon color='secondary' />}
+                icon3={<EmojiSymbolsIcon color='error' />}
                 title='Любые языки и стеки' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <SpecialCard
-                icon={<AppleIcon />}
+                icon1={<AppleIcon />}
+                icon2={<AppleIcon color='secondary' />}
+                icon3={<AppleIcon color='error' />}
                 title='Гибкие правила' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
