@@ -2,6 +2,9 @@ import { Box, Button, Grid, IconButton, makeStyles } from "./framework";
 import { default as GitHub } from '@material-ui/icons/GitHub';
 import React, { useEffect, useState, useRef } from "react";
 import { a, useSpring, useTransition } from 'react-spring';
+import { useMediaQuery } from "@material-ui/core";
+import { ScatterPlot } from "@material-ui/icons";
+import cn from 'classnames';
 
 
 const useStyles = makeStyles(theme => ({
@@ -12,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
   cubeZone: {
     width: '150vw',
-    height: '5rem',
+    height: 'inherit',
     border: 'none',
     position: 'absolute',
     top: 0, left: 0,
@@ -22,6 +25,35 @@ const useStyles = makeStyles(theme => ({
     perspectiveOrigin: 'top center',
     borderTop: '1px dashed #ffffff40',
     borderBottom: '1px dashed #ffffff40',
+  },
+  cubeContainer: {
+    width: '100%',
+    height: '100%',
+    '@media(max-width: 825px)': {
+      height: 'calc(28px + 0.3vmax)'
+    },
+  },
+  cube: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    transformStyle: 'preserve-3d',
+    // transformOrigin: 'center',
+  },
+  cubeSurface: {
+    display: 'block',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  header: {
+    transform: 'translate3d(0, 0, 30px)',
+  },
+  emptySurface1: {
+    transform: 'rotateY(180deg) translateZ(30px)',
+  },
+  emptySurface2: {
+    transform: 'rotateX(90deg) translateZ(30px)',
   },
   root: {
     padding: '1rem 0',
@@ -35,32 +67,59 @@ const useStyles = makeStyles(theme => ({
   },
   flexContainer: {
     padding: '0 2rem',
+    '@media(max-width: 825px)': {
+      padding: '0 1rem',
+    }
   },
   boxContainer: {
     display:  'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    '@media(max-width: 825px)': {
+      width: '100%',
+    }
   },
   buttons: {
     alignSelf: 'center',
     '& > :nth-child(-n+2)': {
       marginRight: '1.5rem',
-    }
+      '@media(max-width: 825px)': {
+        marginRight: 0,
+      }
+    },
+  },
+  buttonsMenu: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    transform: 'rotateX(-90deg) translateZ(30px)',
   },
 }))
 
-const pathLength = 150;
+const trans = (y) => `translateY(${y / 15}px) scale(${y / 10})`;
 
-export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
+
+export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: any, refMenuButtons: any;}) => {
   const classes = useStyles();
   const [scrolled, setScroll] = useState(false);
+  const [mode, setMode] = useState(1);
   const old = useRef({scrollTop: 0});
+  const cubeRef = useRef<HTMLInputElement>();
   
   useEffect(() => {
     const id = setInterval(() => {
-      if (scrollContainer?.current?.scrollTop > old.current.scrollTop) {
+      const cubeSize = cubeRef?.current?.getBoundingClientRect().bottom;
+      const menuButtonsSize = refMenuButtons?.current?.getBoundingClientRect().top;
+      const neededCoord = menuButtonsSize - cubeSize;
+      const isMainMode = scrollContainer?.current?.scrollTop < menuButtonsSize;
+      const isNameMode = scrollContainer?.current?.scrollTop < 350;
+      setMode( isMainMode ? 1 : !isNameMode ? 3 : 2 );
+      if ( isNameMode ) {
+        setScroll(false);
+      } else if ( scrollContainer?.current?.scrollTop > old.current.scrollTop ) {
         setScroll(true);
-      } else if (scrollContainer?.current?.scrollTop < old.current.scrollTop) {
+      } else if ( scrollContainer?.current?.scrollTop < old.current.scrollTop ) {
         setScroll(false);
       }
       old.current.scrollTop = scrollContainer?.current?.scrollTop;
@@ -69,8 +128,13 @@ export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
   }, []);
 
   const { n } = useSpring({ 
-    n: scrolled ? 1 : 0.19,
+    n: scrolled ? 1 : mode == 2 ? 0.89 : 0.19,
     config: { mass: 1.7, tension: 65, friction: 25 },
+  });
+
+  const rotate = useSpring({ 
+    r: mode == 2 ? 1 : mode == 3 ? 2 : 0,
+    config: { mass: 1, tension: 215, friction: 45 },
   });
 
   const transitions = useTransition(!scrolled, {
@@ -82,57 +146,116 @@ export const UpperMenu = ({scrollContainer}:{scrollContainer: any}) => {
     config: { mass: 1.7, tension: 65, friction: 25 },
   })
 
-  const fonts = useSpring({ 
-    x: scrolled ? 1 : 0.8,
+  const fontsMode = useSpring({ 
+    x: mode == 2 ? 1 : 0,
+    delay: mode ? 0 : 600,
+  });
+  const fontsScroll = useSpring({ 
+    x: scrolled ? 1 : 0,
     delay: scrolled ? 0 : 600,
   });
+  
+
+  const max825 = useMediaQuery('@media(max-width: 825px)');
 
   return (<div className={classes.container}>
-      {transitions((style, item) => (item && <a.div className={classes.cubeZone}
+      {transitions((style, item) => (item && <a.div ref={cubeRef} className={classes.cubeZone}
         style={{
-          background: n.to({ range: [0, 0.35, 0.50, 0.65, 0.85, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.37)', 'rgba(0, 0, 0, 0.58)', 'rgba(0, 0, 0, 0.79)', 'rgba(0, 0, 0, 89)', 'rgba(0, 0, 0, 1)'] }),
+          background: n.to({ range: [0, 0.4, 0.95, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.88)', 'rgba(0, 0, 0, 99)', 'rgba(0, 0, 0, 1)'] }),
           ...style
         }}>
-        <div className={classes.root}
-        >
-          <Grid container direction='row' justify='center' alignItems='center' item xs={12} className={classes.flexContainer}>
-            <Grid item xs={12} lg={8} xl={6}>
-              <Box className={classes.boxContainer}>
-                <a.div style={{
+        <div className={classes.root}>
+          <Grid container direction='row' justify='space-between' alignItems='center' item xs={12} className={classes.flexContainer}>
+            { !max825
+              ? <><Box className={classes.boxContainer}>
+                <a.h1 style={{
                   alignSelf: 'center',
-                  fontSize: 'calc(42px + 0.3vmax)',
+                  fontSize: 'calc(22px + 0.5vmax)',
                   fontFamily: "'Comfortaa', 'sans-serif'",
-                  transform: fonts.x
+                  margin: 0,
+                  transformOrigin: 'top',
+                  transform: fontsScroll.x
                                 .to({
                                   range: [0, 1, 0],
-                                  output: [1, 0.5, 1],
+                                  // output: [1, 0.7, 0.5, 0.2, 0.5, 0.7, 1],
+                                  output: [1, 0.2, 1],
                                 })
                                 .to(x => `scale(${x})`),
-                  }}>Deep.Foundation</a.div>
-                <div className={classes.buttons}>
-                  <Button variant="text">
-                    <a.span style={{
-                      transform: fonts.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.5, 1],
-                                      })
-                                      .to(x => `scale(${x})`)
-                    }}>Docs</a.span></Button>
-                  <Button variant="text">
-                    <a.span style={{
-                      fontSize: 'calc(12px + 0.3vmax)',
-                      transform: fonts.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.5, 1],
-                                      })
-                                      .to(x => `scale(${x})`)
-                    }}>Talk to us</a.span></Button>
-                  <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
-                </div>
+                }}>Deep.Foundation</a.h1>
               </Box>
-            </Grid>
+              <div className={classes.buttons}>
+                <Button variant="text">
+                  <a.span style={{
+                    transformOrigin: 'top',
+                    transform: fontsScroll.x
+                                    .to({
+                                      range: [0, 1, 0],
+                                      output: [1, 0.2, 1],
+                                    })
+                                    .to(x => `scale(${x})`)
+                  }}>Docs</a.span></Button>
+                <Button variant="text">
+                  <a.span style={{
+                    transformOrigin: 'top',
+                    transform: fontsScroll.x
+                                    .to({
+                                      range: [0, 1, 0],
+                                      output: [1, 0.2, 1],
+                                    })
+                                    .to(x => `scale(${x})`)
+                  }}>Talks</a.span></Button>
+                <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
+              </div></>
+              : <div className={classes.cubeContainer}>
+                  <a.div className={classes.cube} style={{
+                    transformOrigin: scrolled ? 'top' : 'center',
+                    transform:  rotate.r.to(r => `rotateX(${r*90}deg)`)}}>
+                    <div className={cn(classes.cubeSurface, classes.header)}>
+                      <a.h1 style={{
+                        display: 'contents',
+                        alignSelf: 'center',
+                        fontSize: 'calc(22px + 0.5vmax)',
+                        fontFamily: "'Comfortaa', 'sans-serif'",
+                        margin: 0,
+                        transformOrigin: 'top',
+                        transform: fontsMode.x
+                                            .to({
+                                              range: [0, 1],
+                                              output: [1, 0.5],
+                                            })
+                                            .to(x => `scale(${x})`)
+                      }} >Deep.Foundation</a.h1>
+                    </div>
+                    <div className={cn(classes.cubeSurface, classes.emptySurface1)} />
+                    <div className={cn(classes.cubeSurface, classes.emptySurface2)} />
+                    <div className={cn(classes.cubeSurface, classes.buttonsMenu)}>
+                      <Button variant="text">
+                        <a.span style={{
+                          fontSize: 'calc(12px + 0.3vmax)',
+                          lineHeight: 1,
+                          transform: fontsMode.x
+                                          .to({
+                                            range: [0, 1, 0],
+                                            output: [0.7, 1.1, 0.7],
+                                          })
+                                          .to(x => `scale(${x})`)
+                        }}>Docs</a.span></Button>
+                      <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
+                      <Button variant="text">
+                        <a.span style={{
+                          fontSize: 'calc(12px + 0.3vmax)',
+                          lineHeight: 1,
+                          transform: fontsMode.x
+                                          .to({
+                                            range: [0, 1, 0],
+                                            output: [0.7, 1.1, 0.7],
+                                          })
+                                          .to(x => `scale(${x})`)
+                        }}>Talks</a.span></Button>
+                  </div>
+                </a.div>
+              </div>
+            }
           </Grid>
         </div>
       </a.div>))}
