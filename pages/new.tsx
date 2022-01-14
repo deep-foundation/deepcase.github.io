@@ -1,25 +1,25 @@
+import { useMediaQuery } from '@material-ui/core';
 import { darken } from '@material-ui/core/styles';
 import { ArrowDropDown } from '@material-ui/icons';
+import AppleIcon from '@material-ui/icons/Apple';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
-import AppleIcon from '@material-ui/icons/Apple';
-import { default as GitHubIcon } from '@material-ui/icons/GitHub';
+import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
 import cn from 'classnames';
 import detectBrowserLanguage from 'detect-browser-language';
-import disableScroll from 'disable-scroll';
 import { times } from 'lodash';
 import moment from 'moment';
 import dynamic from "next/dynamic";
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { CrewCard } from '../imports/crew-card';
-import { Button, ButtonGroup, GravityCard, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography, Grid } from '../imports/framework';
-import { IFrame } from '../imports/iframe';
-import { SpecialCard } from '../imports/special-card';
+import { Button, ButtonGroup, GravityCard, Grid, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
 import { Podcast } from '../imports/podcast/podcast-card';
 import { Provider } from '../imports/provider';
 import { Slider } from '../imports/slider';
+import { Space } from '../imports/space';
+import { SpecialCard } from '../imports/special-card';
 import { UpperMenu } from '../imports/upper-menu';
 
 Sentry.init({
@@ -114,7 +114,48 @@ const crew = [
     src: '/avatars/petr.webp',
     alt: 'founder',
   }
-]
+];
+
+const _specialCards = [
+  {
+    id: '1',
+    icon1: <BathtubIcon />,
+    icon2: <BathtubIcon color='secondary' />,
+    icon3: <BathtubIcon color='error' />,
+    title: 'Операционное пространство',
+    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+  },
+  {
+    id: '2',
+    icon1: <BeachAccessIcon />,
+    icon2: <BeachAccessIcon color='secondary' />,
+    icon3: <BeachAccessIcon color='error' />,
+    title: 'Новая парадигма программирования',
+    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+  },
+  {
+    id: '3',
+    icon1: <EmojiSymbolsIcon />,
+    icon2: <EmojiSymbolsIcon color='secondary' />,
+    icon3: <EmojiSymbolsIcon color='error' />,
+    title: 'Любые языки и стеки',
+    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+  },
+  {
+    id: '4',
+    icon1: <AppleIcon />,
+    icon2: <AppleIcon color='secondary' />,
+    icon3: <AppleIcon color='error' />,
+    title: 'Гибкие правила',
+    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+  },
+];
+const specialCards = ([
+  ..._specialCards,
+  ..._specialCards,
+  ..._specialCards,
+  ..._specialCards,
+]).map((v: any, i) => { v.id = `${i}`; return v; });
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -154,19 +195,43 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 !important',
     },
   },
+  menuButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    marginLeft: -8,
+  },
   screen1GridItem: {
     paddingTop: 100, paddingBottom: 100,
-    position: 'relative'
+    position: 'relative',
+    paddingLeft: '2rem',
+    paddingRight: '2rem',
+    '@media(max-width: 825px)': {
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+    }
   },
   screen1Buttons: {
     position: 'absolute',
-    bottom: 100, right: 0,
+    bottom: 100, right: '2rem',
+    '@media(max-width: 825px)': {
+      right: '1rem',
+    }
+  },
+  titleDC: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    '& > :nth-child(1)': {
+      marginRight: '3rem',
+    },
   },
   screen2: {
     background: darken(theme?.palette?.background?.default, 0.3),
     paddingTop: 100,
     paddingBottom: 100,
     borderTop: '1px dashed #ffffff40',
+    userSelect: 'none',
   },
   screen2accent: {
     // background: darken(theme?.palette?.background?.default, 0.5),
@@ -226,6 +291,7 @@ export function PageContent() {
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
   const [electronOpen, setElectronOpen] = useState(null);
   const refScrollContainer = useRef();
+  const refMenuButtons = useRef();
 
   const handleClick = useCallback((event) => {
     setElectronOpen(event.currentTarget);
@@ -234,13 +300,27 @@ export function PageContent() {
   const handleClose = useCallback(() => {
     setElectronOpen(null);
   }, []);
+  const smDown = useMediaQuery('@media(max-width: 1024px');
+  const max825 = useMediaQuery('@media(max-width: 825px');
 
-  return (<><UpperMenu scrollContainer={refScrollContainer} />
+  return (<><UpperMenu scrollContainer={refScrollContainer} refMenuButtons={refMenuButtons} />
     <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer}>
-      <Grid item xs={12} sm={10} md={8} lg={7}>
+      <Grid item xs={12}>
         <Grid container justify="center" alignItems="center">
-          <Grid item xs={10} className={classes.screen1GridItem} component={Paper} elevation={0}>
-            <div style={{ marginBottom: -45, zIndex: 1, position: 'relative' }}>
+          <Grid item xs={12} className={classes.screen1GridItem} component={Paper} elevation={0}>
+            { max825 
+            ? <>
+                <div className={classes.menuButtons} ref={refMenuButtons}>
+                  <Button variant="text">Docs</Button>
+                  <Button variant="text">Talks</Button>
+                  <Button variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
+                  {/* <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton> */}
+                </div>
+                <Space />
+              </>
+            : <Space unit={4} />
+            }
+            <div className={ classes.titleDC }>
               <Typography align="left" variant="h4">Deep.Case</Typography>
               <Typography align="left" variant="h5">pre alpha version</Typography>
             </div>
@@ -251,7 +331,7 @@ export function PageContent() {
                 variant="outlined" color="primary"
                 size="large"
               ><div>
-                <Typography>GitPod</Typography>
+                <Typography variant='body2'>GitPod</Typography>
                 <Typography variant="caption">(cloud demo)</Typography>
               </div></Button></Grid>
               <Grid item>
@@ -260,7 +340,7 @@ export function PageContent() {
                     variant="contained" color="primary"
                     size="large"
                   ><div>
-                    <Typography>Download</Typography>
+                    <Typography variant='body2'>Download</Typography>
                     <Typography variant="caption">(electron)</Typography>
                   </div></Button>
                   <Button
@@ -285,15 +365,11 @@ export function PageContent() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' onMouseOver={() => {
-        disableScroll.on();
-      }} onMouseLeave={() => {
-        disableScroll.off();
-      }}>
+      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row'>
         <Paper className={classes.screenPodcast}>
         <Slider items={podcasts} width={400} visible={5}>
           {(p) => (
-            <div style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+            <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
               <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
             </div>
           )} 
@@ -301,9 +377,23 @@ export function PageContent() {
         </Paper>
       </Grid>
       <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={10}>
-          <Grid container spacing={10}>
-            <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={10} md={8} xl={8}>
+          <Grid container spacing={10} style={{height: '550px'}}>
+            { smDown
+            ? <Slider items={specialCards} width={400} visible={2}>
+            {(s) => (
+              <div key={s.id} style={{ height: 'auto', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                <SpecialCard
+                  icon1={s.icon1}
+                  icon2={s.icon2}
+                  icon3={s.icon3}
+                  title={s.title} 
+                  description={s.description}
+                />
+              </div>
+              )} 
+            </Slider>
+            : <><Grid item xs={12} sm={6} md={3}>
               <SpecialCard
                 icon1={<BathtubIcon />}
                 icon2={<BathtubIcon color='secondary' />}
@@ -338,7 +428,7 @@ export function PageContent() {
                 title='Гибкие правила' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
-            </Grid>
+            </Grid></>}
           </Grid>
         </Grid>
       </Grid>

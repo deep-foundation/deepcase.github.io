@@ -27,6 +27,10 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     padding: 9, //'7px 7px 0 7px',
   },
+  title: {
+    width: 'calc(100% - 16px)',
+    margin: '0 auto',
+  },
   border: {
     position: 'absolute',
     boxShadow: '0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)',
@@ -231,9 +235,9 @@ export const SpecialCard = ({
                 </div>
               </div>
               <Space />
-              <a.div style={{ opacity: 0, transform: spring.xy.to(transTitle) }}>
-                <Typography variant='h5' align='center'>{title}</Typography>
-              </a.div>
+              <div style={{ opacity: 0 }}>
+                <Typography variant='h5' align='center' className={classes.title}>{title}</Typography>
+              </div>
               <Space />
               <a.div style={{ transform: spring.xy.to(transDescription), opacity: 0.8 }}>
                 <Typography variant='body2' align='center'>{description}</Typography>
@@ -248,7 +252,7 @@ export const SpecialCard = ({
         </div>
         <div className={classes.upperIcons}>
           <div className={classes.iconContainer}>
-            <div>
+            <div style={{opacity: 0}}>
               {icon1}
             </div>
             <a.div style={{ position: 'absolute', top: 0, left: 0, transform: spring.xy.to(trans3) }}>
@@ -263,7 +267,7 @@ export const SpecialCard = ({
           </div>
           <Space />
           <a.div style={{ padding: '0 16px', transform: spring.xy.to(transTitle) }}>
-            <Typography variant='h5' align='center'>{title}</Typography>
+            <Typography variant='h5' align='center' className={classes.title}>{title}</Typography>
           </a.div>
         </div>
         <div className={classes.wrapperDown}>
