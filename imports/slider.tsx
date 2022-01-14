@@ -8,12 +8,17 @@ const useStyles = makeStyles({
     position: 'relative', 
     height: '100%', 
     width: '100%', 
+    overflowX: 'auto',
+    overscrollBehaviorX: 'contain',
+    scrollSnapType: 'x mandatory',
   },
   item: { 
     marginRight: '2rem',
     position: 'absolute', 
     height: '100%', 
-    willChange: 'transform' 
+    willChange: 'transform',
+    scrollSnapAlign: 'end',
+    scrollSnapStop: 'normal', 
   },
 })
 
@@ -60,13 +65,13 @@ export const Slider = React.memo(({ items, width = 600, style, children }:IPrope
   const dragOffset = useRef(0)
   const bind = useGesture({
     onDrag: ({ offset: [x], vxvy: [vx] }) => vx && ((dragOffset.current = -x), runSprings(wheelOffset.current + -x, -vx)),
-    onWheel: ({ offset: [, y], vxvy: [, vy] }) => vy && ((wheelOffset.current = y), runSprings(dragOffset.current + y, vy))
+    onWheel: ({ offset: [x, y], vxvy: [vx, vy] }) => vx && ((wheelOffset.current = x), runSprings(dragOffset.current + x, vx))
   })
   const classes = useStyles();
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', height: '100%', top: 0, left: 0, width: '100%' }}>
-      <div ref={ref} {...bind()} className={classes.container} style={{ ...style, position: 'absolute', height: 274, top: 0, left: '-50%', width: '200%' }}>
+      <div ref={ref} {...bind()} className={classes.container} style={{ ...style, position: 'absolute', height: '100%', top: 0, left: '-50%', width: '200%' }}>
         {springs.map(({ x }, i) => (
           <a.div key={i} className={classes.item} style={{ width, x }} children={children(items[i], i)} />
         ))}

@@ -5,6 +5,7 @@ import { LogoImage } from './logo';
 
 import { useSpring, a } from 'react-spring';
 import { GravityCard } from '../framework';
+import { useMediaQuery } from '@material-ui/core';
 
 interface IImage {
   id: string;
