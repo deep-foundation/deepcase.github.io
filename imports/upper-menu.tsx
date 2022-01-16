@@ -1,10 +1,9 @@
-import { Box, Button, Grid, IconButton, makeStyles } from "./framework";
-import { default as GitHub } from '@material-ui/icons/GitHub';
-import React, { useEffect, useState, useRef } from "react";
-import { a, useSpring, useTransition } from 'react-spring';
 import { useMediaQuery } from "@material-ui/core";
-import { ScatterPlot } from "@material-ui/icons";
+import { default as GitHub } from '@material-ui/icons/GitHub';
 import cn from 'classnames';
+import React, { useEffect, useRef, useState } from "react";
+import { a, useSpring, useTransition } from 'react-spring';
+import { Box, Button, Grid, IconButton, makeStyles } from "./framework";
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +37,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     position: 'relative',
     transformStyle: 'preserve-3d',
-    // transformOrigin: 'center',
   },
   cubeSurface: {
     display: 'block',
@@ -97,13 +95,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const trans = (y) => `translateY(${y / 15}px) scale(${y / 10})`;
-
-
 export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: any, refMenuButtons: any;}) => {
   const classes = useStyles();
   const [scrolled, setScroll] = useState(false);
   const [mode, setMode] = useState(1);
+  const [modeHidden, setModeHidden] = useState(1);
   const old = useRef({scrollTop: 0});
   const cubeRef = useRef<HTMLInputElement>();
   
@@ -111,11 +107,11 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
     const id = setInterval(() => {
       const cubeSize = cubeRef?.current?.getBoundingClientRect().bottom;
       const menuButtonsSize = refMenuButtons?.current?.getBoundingClientRect().top;
-      const neededCoord = menuButtonsSize - cubeSize;
-      const isMainMode = scrollContainer?.current?.scrollTop < menuButtonsSize;
-      const isNameMode = scrollContainer?.current?.scrollTop < 350;
-      setMode( isMainMode ? 1 : !isNameMode ? 3 : 2 );
-      if ( isNameMode ) {
+      const isRotateMode = scrollContainer?.current?.scrollTop < menuButtonsSize;
+      const isMainMode = scrollContainer?.current?.scrollTop < 450;
+      setMode( isRotateMode ? 1 : 2 );
+      setModeHidden( isMainMode ? 1 : 2 );
+      if ( isMainMode ) {
         setScroll(false);
       } else if ( scrollContainer?.current?.scrollTop > old.current.scrollTop ) {
         setScroll(true);
@@ -128,12 +124,16 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
   }, []);
 
   const { n } = useSpring({ 
-    n: scrolled ? 1 : mode == 2 ? 0.89 : 0.19,
+    n: scrolled ? 0.97 : 0.19,
+    config: { mass: 1.7, tension: 65, friction: 25 },
+  });
+  const firstRotate = useSpring({ 
+    r: mode == 2 ? 0.97 : 0.19,
     config: { mass: 1.7, tension: 65, friction: 25 },
   });
 
   const rotate = useSpring({ 
-    r: mode == 2 ? 1 : mode == 3 ? 2 : 0,
+    r: mode == 2 ? 1 : modeHidden == 2 ? 2 : 0,
     config: { mass: 1, tension: 215, friction: 45 },
   });
 
@@ -142,6 +142,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
     enter: { transform: "translateY(0%)" },
     leave: { transform: "translateY(-100%)" },
     reverse: scrolled,
+    trail: 2000,
     expires: false,
     config: { mass: 1.7, tension: 65, friction: 25 },
   })
@@ -158,10 +159,10 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
 
   const max825 = useMediaQuery('@media(max-width: 825px)');
 
-  return (<div className={classes.container}>
+  return (<header className={classes.container}>
       {transitions((style, item) => (item && <a.div ref={cubeRef} className={classes.cubeZone}
         style={{
-          background: n.to({ range: [0, 0.4, 0.95, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.88)', 'rgba(0, 0, 0, 99)', 'rgba(0, 0, 0, 1)'] }),
+          background: (max825 ? firstRotate.r : n).to({ range: [0, 0.5, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.69)', 'rgba(0, 0, 0, 99)'] }),
           ...style
         }}>
         <div className={classes.root}>
@@ -177,8 +178,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                   transform: fontsScroll.x
                                 .to({
                                   range: [0, 1, 0],
-                                  // output: [1, 0.7, 0.5, 0.2, 0.5, 0.7, 1],
-                                  output: [1, 0.2, 1],
+                                  output: [1, 0.5, 1],
                                 })
                                 .to(x => `scale(${x})`),
                 }}>Deep.Foundation</a.h1>
@@ -208,7 +208,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
               </div></>
               : <div className={classes.cubeContainer}>
                   <a.div className={classes.cube} style={{
-                    transformOrigin: scrolled ? 'top' : 'center',
+                    // transformOrigin: scrolled || modeHidden == 2 ? 'top' : 'center',
                     transform:  rotate.r.to(r => `rotateX(${r*90}deg)`)}}>
                     <div className={cn(classes.cubeSurface, classes.header)}>
                       <a.h1 style={{
@@ -259,6 +259,6 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
           </Grid>
         </div>
       </a.div>))}
-    </div>
+    </header>
   )
 }
