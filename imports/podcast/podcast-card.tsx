@@ -1,11 +1,13 @@
 import { Box, makeStyles, Typography, Zoom, Tooltip } from '../framework';
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Play } from '../icons/play';
 import { LogoImage } from './logo';
 
 import { useSpring, a } from 'react-spring';
 import { GravityCard } from '../framework';
 import { useMediaQuery } from '@material-ui/core';
+import { PodcastSource } from './podcast-source';
+import { ICard } from '../../pages/new';
 
 interface IImage {
   id: string;
@@ -36,6 +38,8 @@ const useStyles = makeStyles(theme => ({
   image: {
     width: '100%',
     display: 'block',
+    transform: 'scale(0.5)',
+    transformOrigin: 'bottom',
   },
   animateBackground: {
     width: '150%',
@@ -57,6 +61,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute', 
     top: '4%', 
     left: '4%',
+    paddingRight: '4%',
   },
   logoContainer: {
     position: 'relative', 
@@ -77,7 +82,12 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignItems: 'center',
-  }
+  },
+  occupation: {
+    '&::first-letter': {
+      textTransform: 'capitalize',
+    }
+  },
 }));
 
 // const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2];
@@ -95,23 +105,22 @@ if (typeof(window) === 'object') {
 }
 
 export const Podcast = React.memo(({
-  guestImgSrc,
-  guestName,
-  occupation,
-  date,
-  length,
-  privateCast = true,
-  imgs,
+  card,
 }:{
-  guestImgSrc: string;
-  guestName: string;
-  occupation?: string;
-  date?: string;
-  length?: string;
-  privateCast?: boolean;
-  imgs?: IImage[];
+  card: ICard;
 }) => {
+  const {
+    src: guestImgSrc,
+    srcPng: guestImgSrcPng,
+    guestName,
+    occupation,
+    date,
+    length,
+    privateCast = true,
+    imgs,
+  } = card;
   const classes = useStyles();
+  const [openSourcePodcast, setOpenSourcePodcast] = useState(false);
   const [spring, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }));
   const ref = useRef<any>();
   const setRef = useRef<any>();
@@ -120,7 +129,7 @@ export const Podcast = React.memo(({
     const box = ref?.current?.getBoundingClientRect();
     return [x - (box.left + (box.width / 2)), y - (box.top + (box.height / 2))];
   };
-  
+
   useEffect(() => {
     const i = setInterval(() => {
       const box = ref?.current?.getBoundingClientRect();
@@ -133,32 +142,54 @@ export const Podcast = React.memo(({
     return () => clearInterval(i);
   }, []);
 
-  return(<GravityCard setRef={setRef}><div ref={ref} className={classes.podcastCardContainer}
-    onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
-    onMouseLeave={() => set({xy: [0,0]})}>
-      <a.div className={classes.animateBackground} style={{ transform: spring.xy.to(trans1) }}/>
-      <Box className={classes.guestArea}>
-        {imgs.map(i => (<LogoImage key={i.id} src={i.src} alt={i.alt} top={i.top} left={i.left} width={i.width} spring={spring} />))}
-        <a.div className={classes.guestImgBlock} style={{ transform: spring.xy.to(trans3) }}>
-          <img src={guestImgSrc} alt={guestName} className={classes.image} />
-        </a.div>
-          <a.div className={classes.guestNameBlock} style={{ transform: spring.xy.to(trans2) }}>
-            <Typography variant='body1' component='div' style={{textTransform: 'uppercase'}}>{guestName}</Typography>
-            <Typography variant='body1' component='div' style={{textTransform: 'capitalize'}}>{occupation}</Typography>
-            <Typography variant='caption' component='div'>{date}</Typography>
+  const onClickPodcast = useCallback(() => {
+    setOpenSourcePodcast((openSourcePodcast) => !openSourcePodcast);
+  }, []);
+
+  const timeoutRef = useRef<any>(undefined);
+  const onMouseMove = useCallback(() => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setOpenSourcePodcast(false);
+    }, 3000);
+  }, []);
+
+  return(<GravityCard setRef={setRef} onClickCapture={onClickPodcast} onMouseMove={onMouseMove}><>
+      <div ref={ref} className={classes.podcastCardContainer}
+        onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
+        onMouseLeave={() => set({xy: [0,0]})}
+      >
+        <a.div className={classes.animateBackground} style={{ transform: spring.xy.to(trans1) }}/>
+        <Box className={classes.guestArea}>
+          {imgs.map(i => (<LogoImage key={i.id} src={i.src} alt={i.alt} top={i.top} left={i.left} width={i.width} spring={spring} />))}
+          <a.div className={classes.guestImgBlock} style={{ transform: spring.xy.to(trans3) }}>
+            <picture>
+              <source srcSet={guestImgSrc} type="image/webp" />
+              <source srcSet={guestImgSrcPng} type="image/png" /> 
+              <img src={guestImgSrc} alt={guestName} className={classes.image} />
+            </picture>
           </a.div>
-      </Box>
-      <Box className={classes.controlArea} py={1}>
-        <Box className={classes.controlButton}>
-          <Typography variant='caption' component='div' style={{marginRight: '12%'}}>{length}</Typography>
-          <Play />
+            <a.div className={classes.guestNameBlock} style={{ transform: spring.xy.to(trans2) }}>
+              <Typography variant='body1' component='div' style={{textTransform: 'uppercase'}}>{guestName}</Typography>
+              <Typography variant='body2' component='div' className={classes.occupation} >{occupation}</Typography>
+              <br />
+              <Typography variant='caption' component='div'>{date}</Typography>
+            </a.div>
         </Box>
-        {privateCast && 
-          <Tooltip TransitionComponent={Zoom} title="the guest chose to keep the entry private" placement="right-start" arrow>
-            <Typography variant='overline' component='div'>private</Typography>
-          </Tooltip>
-        }
-      </Box>
-    </div></GravityCard>
+        <Box className={classes.controlArea} py={1}>
+          <Box className={classes.controlButton}>
+            <Typography variant='caption' component='div' style={{marginRight: '12%'}}>{length}</Typography>
+            <Play />
+          </Box>
+          {privateCast && 
+            <Tooltip TransitionComponent={Zoom} title="the guest chose to keep the entry private" placement="right-start" arrow>
+              <Typography variant='overline' component='div'>private</Typography>
+            </Tooltip>
+          }
+        </Box>
+      </div>
+      <PodcastSource switcher={openSourcePodcast} card={card} />
+      </>
+    </GravityCard>
   )
 })
