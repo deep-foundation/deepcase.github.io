@@ -5,16 +5,15 @@ import AppleIcon from '@material-ui/icons/Apple';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
-import { default as GitHub, default as GitHubIcon } from '@material-ui/icons/GitHub';
+import { default as GitHubIcon } from '@material-ui/icons/GitHub';
 import * as Sentry from '@sentry/nextjs';
 import cn from 'classnames';
 import detectBrowserLanguage from 'detect-browser-language';
-import { times } from 'lodash';
 import moment from 'moment';
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { CrewCard } from '../imports/crew-card';
-import { Button, ButtonGroup, GravityCard, Grid, IconButton, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
+import { Button, ButtonGroup, GravityCard, Grid, Link, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
 import { Podcast } from '../imports/podcast/podcast-card';
 import { Provider } from '../imports/provider';
 import { Slider } from '../imports/slider';
@@ -54,34 +53,285 @@ const deepview = <GravityCard style={{ height: 150 }} disabled><div style={{ pad
 <Typography variant="body2">Virtual DOM react/vue/angular in Deep.Graph.</Typography>
 <Typography variant="body2">Coming soon...</Typography>
 </div></GravityCard>;
+export interface IProvider { 
+  icon: string;
+  alt: string;
+  title: string;
+}
 
-const podcasts = times(15, (i) => ({
-  id: i,
-  src: '/mask.png',
-  guestName: 'Elon Mask',
-  occupation: 'magician',
-  date: new Date(),
-  length: '16:20',
-  imgs: [{
-    id: 'a',
-    src: '/paypal.png',
-    top: 2,
-    left: 76,
-    width: 22,
-  },{
-    id: 'b',
-    src: '/tesla.png',
-    top: 80,
-    left: 82,
-    width: 12,
-  },{
-    id: 'c',
-    src: '/spacex.png',
-    top: 50,
-    left: 16,
-    width: 24,
-  }]
-}));
+export interface ICard {
+  id: string;
+  src: string;
+  srcPng: string;
+  guestName: string;
+  occupation: string;
+  date: string;
+  length: string;
+  links: { provider: IProvider, href: string }[];
+  imgs: {
+    id: string;
+    alt: string;
+    src: string;
+    top: number;
+    left: number;
+    width: number;
+  }[];
+  privateCast?: boolean;
+}
+
+// podcast's source providers
+const youTubeProvider: IProvider = { 
+  icon: '/source/youtube.png', 
+  alt: 'YouTube',
+  title: 'YouTube',
+};
+const yaProvider: IProvider = { 
+  icon: '/source/ya.png', 
+  alt: 'Yandex Music',
+  title: 'Yandex Music',
+};
+const appleProvider: IProvider = { 
+  icon: '/source/apple.png', 
+  alt: 'Apple Podcast',
+  title: 'Apple Podcast',
+};
+const telegramProvider: IProvider = { 
+  icon: '/source/telegram.png', 
+  alt: 'Telegram',
+  title: 'Telegram',
+};
+const soundcloudProvider: IProvider = { 
+  icon: '/source/soundcloud.png', 
+  alt: 'Soundcloud',
+  title: 'Soundcloud',
+};
+
+const _podcasts: ICard[] = [
+  {
+    id: '1',
+    src: '/speakers/eugene.webp',
+    srcPng: '/speakers/eugene.png',
+    guestName: 'Евгений',
+    occupation: 'BigData Engineer из Ultra tendency International (Германия)',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/ultratendency_n.svg',
+      top: 58,
+      left: 72,
+      width: 24,
+    }]
+  },
+  {
+    id: '2',
+    src: '/speakers/dima_n.webp',
+    srcPng: '/speakers/dima.png',
+    guestName: 'Дмитрий Сотсков',
+    occupation: 'директор компании Нэти Вэб',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/nite.png',
+      top: 45,
+      left: 68,
+      width: 22,
+    }]
+  },
+  {
+    id: '7',
+    src: '/speakers/asset_1.png',
+    srcPng: '/speakers/dima.png',
+    guestName: 'Виталий Шубин',
+    occupation: 'владелец компании по IT разработке',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/single.svg',
+      top: 70,
+      left: 15,
+      width: 42,
+    }]
+  },
+  {
+    id: '3',
+    src: '/speakers/alexey.webp',
+    srcPng: '/speakers/alexey.png',
+    guestName: 'Алексей',
+    occupation: 'аналитик в области оценки риска юр. лиц',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/exel.png',
+      top: 2,
+      left: 80,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/sql.png',
+      top: 55,
+      left: 75,
+      width: 18,
+    },{
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/java.png',
+      top: 70,
+      left: 6,
+      width: 14,
+    }]
+  },
+  {
+    id: '4',
+    src: '/speakers/semen.webp',
+    srcPng: '/speakers/semen.png',
+    guestName: 'Семен Гординов',
+    occupation: 'ведущий программист',
+    date: '14.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/php.png',
+      top: 32,
+      left: 73,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/ims.png',
+      top: 65,
+      left: 5,
+      width: 25,
+    }]
+  },
+];
+const podcasts = ([
+  ..._podcasts,
+  ..._podcasts,
+  ..._podcasts,
+  ..._podcasts,
+  ..._podcasts,
+  ..._podcasts,
+]).map((v: any, i) => { v.id = `${i}`; return v; });
 
 const crew = [
   {
@@ -172,6 +422,17 @@ const useStyles = makeStyles((theme) => ({
       backgroundSize: '80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
     },
   },
+  section: {
+    backgroundColor: '#111720',
+    border: '1px dashed #ffffff40',
+    color: '#fff',
+  },
+  sectionContent: {
+    padding: '0 2rem',
+    '@media(max-width: 826px)': {
+      padding: '0 1rem',
+    }
+  },
   root: {
     position: 'absolute',
     top: 0,
@@ -212,10 +473,14 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   screen1Buttons: {
+    width: 'min-content',
     position: 'absolute',
-    bottom: 100, right: '2rem',
+    bottom: 'calc(2rem + 0.5vmax)', right: '2rem',
     '@media(max-width: 825px)': {
       right: '1rem',
+    },
+    '@media(max-width: 675px)': {
+      // bottom: 200
     }
   },
   titleDC: {
@@ -223,7 +488,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     '& > :nth-child(1)': {
-      marginRight: '3rem',
+      marginRight: 'calc(1rem + 0.5vmax)',
+    },
+    '@media(max-width: 400px)': {
+      flexDirection: 'column',
+      marginBottom: '2rem',
     },
   },
   screen2: {
@@ -237,6 +506,21 @@ const useStyles = makeStyles((theme) => ({
     // background: darken(theme?.palette?.background?.default, 0.5),
     // width: '100%',
     // height: '100%',
+  },
+  screen2InnerContainer: {
+    // padding: '0 2rem',
+    // '@media(max-width: 825px)': {
+    //   padding: '0 1rem',
+    // }
+  },
+  specialCardContainer: {
+    height: '550px',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, minmax(250px, 1fr))',
+    columnGap: '1rem',
+  },
+  specialCardContainerMobile: {
+    height: '550px',
   },
   screen3: {
     background: darken(theme?.palette?.background?.default, 0.4),
@@ -269,12 +553,18 @@ const useStyles = makeStyles((theme) => ({
   },
   screenPodcast: {
     width: '100%',
-    height: '20rem',
+    height: '30rem',
   },
   gridCrew: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
     columnGap: '4vmin',
+  },
+  gridPodcast: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 }));
 
@@ -304,8 +594,8 @@ export function PageContent() {
   const max825 = useMediaQuery('@media(max-width: 825px');
 
   return (<><UpperMenu scrollContainer={refScrollContainer} refMenuButtons={refMenuButtons} />
-    <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer}>
-      <Grid item xs={12}>
+    <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer} component='main'>
+      <Grid item xs={12} component='section'>
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12} className={classes.screen1GridItem} component={Paper} elevation={0}>
             { max825 
@@ -327,14 +617,14 @@ export function PageContent() {
             <img src="/screen1.png" style={{ width: '100%' }}/>
             {/* <IFrame src='/screen1.png' /> */}
             <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
-              <Grid item><Button
+              <Grid item xs={12}><Button
                 variant="outlined" color="primary"
                 size="large"
               ><div>
                 <Typography variant='body2'>GitPod</Typography>
                 <Typography variant="caption">(cloud demo)</Typography>
               </div></Button></Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <ButtonGroup variant="outlined">
                   <Button
                     variant="contained" color="primary"
@@ -365,20 +655,28 @@ export function PageContent() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row'>
+      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
         <Paper className={classes.screenPodcast}>
-        <Slider items={podcasts} width={400} visible={5}>
-          {(p) => (
-            <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-              <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
-            </div>
-          )} 
-        </Slider>
+          <Slider items={podcasts} width={400} visible={5}>
+            {(p) => (
+              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                <Podcast card={p}/>
+              </div>
+            )} 
+          </Slider>
+          {/* <div className={classes.gridPodcast}>
+            {podcasts.map((p) => (
+              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+              </div>
+            )) }
+          </div> */}
         </Paper>
       </Grid>
-      <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} xl={8}>
-          <Grid container spacing={10} style={{height: '550px'}}>
+      <Grid item xs={12} className={cn(classes.screen2, classes.section)} component='section' container justify="center" alignItems="center">
+        <Grid item xs={12} lg={11} xl={8} className={classes.screen2InnerContainer}>
+          {/* <Grid container spacing={10} style={{height: '550px'}}> */}
+          <div className={!smDown ? classes.specialCardContainer : classes.specialCardContainerMobile}>
             { smDown
             ? <Slider items={specialCards} width={400} visible={2}>
             {(s) => (
@@ -393,7 +691,7 @@ export function PageContent() {
               </div>
               )} 
             </Slider>
-            : <><Grid item xs={12} sm={6} md={3}>
+            : <>
               <SpecialCard
                 icon1={<BathtubIcon />}
                 icon2={<BathtubIcon color='secondary' />}
@@ -401,8 +699,8 @@ export function PageContent() {
                 title='Операционное пространство' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            
+            
               <SpecialCard
                 icon1={<BeachAccessIcon />}
                 icon2={<BeachAccessIcon color='secondary' />}
@@ -410,8 +708,8 @@ export function PageContent() {
                 title='Новая парадигма программирования' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            
+            
               <SpecialCard
                 icon1={<EmojiSymbolsIcon />}
                 icon2={<EmojiSymbolsIcon color='secondary' />}
@@ -419,8 +717,8 @@ export function PageContent() {
                 title='Любые языки и стеки' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            
+            
               <SpecialCard
                 icon1={<AppleIcon />}
                 icon2={<AppleIcon color='secondary' />}
@@ -428,28 +726,30 @@ export function PageContent() {
                 title='Гибкие правила' 
                 description='Немного текста о том, почему это хорошо или просто необходимо'
               />
-            </Grid></>}
-          </Grid>
+            </>}
+          </div>
+          {/* </Grid> */}
         </Grid>
       </Grid>
-      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="left" variant="h3">Crew</Typography>
+      <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} className={classes.sectionContent}>
+          <Typography align="left" variant="h2">Crew</Typography>
+          <Space />
           <Grid container alignItems='center' justify='center' spacing={6}>
-            {crew.map(i => (<Grid item xs={12} sm={4} md={3} lg={2}>
-              <CrewCard key={i.id} src={i.src} alt={i.alt} />
+            {crew.map(i => (<Grid item xs={12} sm={6} md={4} lg={3} style={{}}>
+                <CrewCard key={i.id} src={i.src} alt={i.alt} />
               </Grid>
             ))}
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
+      <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
+        <Grid item xs={12} sm={10} md={8} lg={7} className={classes.sectionContent}>
           <Typography align="right" variant="h3">Associative handlers</Typography>
           <Typography align="left">Coming soon...</Typography>
         </Grid>
       </Grid>
-      <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
+      <Grid item xs={12} className={cn(classes.screen4, classes.section)} component='section' container justify="center" alignItems="center">
         <Grid item xs={12} sm={10} md={8} lg={7}>
           <Typography align="left" variant="h3">Associative models</Typography>
           <Typography align="left">Coming soon...</Typography>
