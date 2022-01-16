@@ -8,33 +8,24 @@ export const coreTheme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     h1: {
-      // fontSize: 'calc(42px + 0.3vmax)',
       fontSize: 'calc(22px + 0.5vmax)',
       fontWeight: 700,
-      // lineHeight: 'calc(2.725em + 0.5vmax)',
     },
     h2: {
-      // fontSize: 'calc(32px + 0.3vmax)',
       fontSize: 'calc(20px + 0.3vmax)',
       fontWeight: 700,
-      // lineHeight: 'calc(2.1em + 0.5vmax)',
     },
     h3: {
-      // fontSize: 'calc(28px + 0.3vmax)',
       fontSize: 'calc(18px + 0.3vmax)',
       fontWeight: 600,
-      // lineHeight: 'calc(1.85em + 0.5vmax)',
     },
     h4: {
-      // fontSize: 'calc(21px + 0.3vmax)',
       fontSize: 'calc(21px + 0.3vmax)',
       fontWeight: 500,
-      // lineHeight: 'calc(1.413em + 0.5vmax)',
     },
     h5: {
       fontSize: 'calc(18px + 0.3vmax)',
       fontWeight: 500,
-      // lineHeight: 'calc(1.7em + 0.5vmax)',
     },
     body1: {
       fontSize: 'calc(16px + 0.3vmax)',
@@ -49,11 +40,11 @@ export const coreTheme = createMuiTheme({
     caption:{
       fontSize: 'calc(12px + 0.3vmax)',
       lineHeight: 'calc(0.45em + 0.5vmax)',
+      textTransform: 'none',
     },
     overline: {
       fontSize: 'calc(12px + 0.3vmax)',
       lineHeight: 'calc(0.45em + 0.5vmax)',
-      // lineHeight: 0,
     }
   },
   palette: {
@@ -125,7 +116,7 @@ export const theme1 = createMuiTheme({
       root: {
         height: '1.5rem',
         width: '1.5rem'
-      }
+      },
     },
     MuiTooltip: {
       tooltip: {
@@ -143,9 +134,15 @@ export const theme1 = createMuiTheme({
           borderWidth: 1,
           borderStyle: 'solid',
           borderColor: coreTheme.palette.primary.main,
-        }
-      }
-    }
+        },
+      },
+    },
+    MuiListItemText: {
+      root: {
+        marginTop: 0,
+        marginBottom: 0,
+      },
+    },
   },
   // shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
 });
