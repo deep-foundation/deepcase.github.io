@@ -140,7 +140,7 @@ const _podcasts: ICard[] = [
     imgs: [{
       id: 'c',
       alt: '',
-      src: '/logo-speakers/ultratendency_n.svg',
+      src: '/logo-speakers/ultratendency.svg',
       top: 58,
       left: 72,
       width: 24,
