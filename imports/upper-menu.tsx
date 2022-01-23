@@ -171,7 +171,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
               ? <><Box className={classes.boxContainer}>
                 <a.h1 style={{
                   alignSelf: 'center',
-                  fontSize: 'calc(22px + 0.5vmax)',
+                  fontSize: 'calc(32px + 0.5vmax)',
                   fontFamily: "'Comfortaa', 'sans-serif'",
                   margin: 0,
                   transformOrigin: 'top',
