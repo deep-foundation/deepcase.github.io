@@ -1,11 +1,15 @@
 import 'normalize.css';
-
+import 'react-round-carousel/dist/index.css';
+import '../imports/index.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme1 } from '../imports/theme/build';
+import jQuery from 'jquery';
+
+global.jQuery = jQuery;
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
