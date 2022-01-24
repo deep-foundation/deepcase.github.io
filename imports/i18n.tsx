@@ -1,6 +1,6 @@
 // import { useLocalStore } from '@deepcase/store/local';
 // import useInterval from "@use-it/interval";
-// import i18n from 'i18next';
+import i18n from 'i18next';
 // import _ from 'lodash';
 // import 'moment/locale/ru';
 // import { pluralize as _pluralize } from 'numeralize-ru';
