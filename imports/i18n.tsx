@@ -1,11 +1,11 @@
 // import { useLocalStore } from '@deepcase/store/local';
 // import useInterval from "@use-it/interval";
-import i18n from 'i18next';
+// import i18n from 'i18next';
 // import _ from 'lodash';
 // import 'moment/locale/ru';
 // import { pluralize as _pluralize } from 'numeralize-ru';
 // import React, { useCallback, useEffect, useState } from 'react';
-// import { initReactI18next, useTranslation as _useTranslation } from 'react-i18next';
+import { initReactI18next, useTranslation as _useTranslation } from 'react-i18next';
 // import { useQuery } from '../deepcase/hasura/use';
 
 

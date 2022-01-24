@@ -12,18 +12,5 @@ module.exports = withMDX({
   i18n: {
     locales: ['en-US', 'ru'],
     defaultLocale: 'ru',
-    // domains: [
-    //   {
-    //     domain: 'https://deep.foundation/',
-    //     defaultLocale: 'ru',
-    //   },
-    //   {
-    //     domain: 'https://deep.foundation/',
-    //     defaultLocale: 'en-US',
-    //     // an optional http field can also be used to test
-    //     // locale domains locally with http instead of https
-    //     http: true,
-    //   },
-    // ],
   },
 });
