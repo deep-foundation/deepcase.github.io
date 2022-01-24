@@ -8,42 +8,44 @@ export const coreTheme = createMuiTheme({
   typography: {
     fontFamily: ['Comfortaa', 'sans-serif'].join(','),
     h1: {
-      fontSize: 'calc(22px + 0.5vmax)',
+      fontSize: 'calc(32px + 0.5vmax)',
       fontWeight: 700,
     },
     h2: {
-      fontSize: 'calc(20px + 0.3vmax)',
+      fontSize: 'calc(26px + 0.5vmax)',
       fontWeight: 700,
     },
     h3: {
-      fontSize: 'calc(18px + 0.3vmax)',
+      fontSize: 'calc(24px + 0.5vmax)',
       fontWeight: 600,
     },
     h4: {
-      fontSize: 'calc(21px + 0.3vmax)',
+      fontSize: 'calc(22px + 0.5vmax)',
       fontWeight: 500,
     },
     h5: {
-      fontSize: 'calc(18px + 0.3vmax)',
+      fontSize: 'calc(18px + 0.5vmax)',
       fontWeight: 500,
     },
     body1: {
-      fontSize: 'calc(16px + 0.3vmax)',
+      fontSize: 'calc(16px + 0.5vmax)',
       fontWeight: 300,
       lineHeight: 'calc(1.1em + 0.5vmax)',
     },
     body2: {
-      fontSize: 'calc(14px + 0.3vmax)',
+      fontSize: 'calc(14px + 0.5vmax)',
       fontWeight: 300,
-      lineHeight: 'calc(0.975em + 0.5vmax)',
+      color: '#fff',
+      // lineHeight: 'calc(0.975em + 0.5vmax)',
     },
     caption:{
       fontSize: 'calc(12px + 0.3vmax)',
       lineHeight: 'calc(0.45em + 0.5vmax)',
       textTransform: 'none',
+      color: '#fff',
     },
     overline: {
-      fontSize: 'calc(12px + 0.3vmax)',
+      fontSize: 'calc(12px + 0.5vmax)',
       lineHeight: 'calc(0.45em + 0.5vmax)',
     }
   },

@@ -5,7 +5,6 @@ import { Box, GravityCard, makeStyles, Typography } from './framework';
 import { Space } from './space';
 
 
-
 const useStyles = makeStyles(theme => ({
   wrapperMain: {
     width: '100%',
