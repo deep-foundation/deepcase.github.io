@@ -1,12 +1,10 @@
-import { makeStyles, Grid, Typography } from './framework';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useTransition, a } from 'react-spring';
-import cn from 'classnames';
-import random from 'lodash/random';
-import flatten from 'lodash/flatten';
 import Chance from 'chance';
-import { NavigateBeforeSharp } from '@material-ui/icons';
+import cn from 'classnames';
 import jquery from 'jquery';
+import random from 'lodash/random';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { a } from 'react-spring';
+import { makeStyles, useMediaQuery } from './framework';
 
 const chance = new Chance();
 
@@ -25,9 +23,13 @@ const useStyles = makeStyles(theme => ({
   },
   leftColumnTalkingPoints: {
     position: 'relative',
-    height: '45vmax',
+    height: '60vh',
+    '@media(min-width: 1620px)': {
+      height: '65vh',
+    }
   },
   mainTalkingPoint: {
+    opacity: 0,
     fontSize: 'calc(22px + 1.9vmax)',
     lineHeight: 'calc(1.45em + 0.5vmax)',
     fontFamily:  "'Comfortaa', 'sans-serif'",
@@ -49,6 +51,7 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'uppercase',
     color: '#fff',
     opacity: 0.2,
+    height: '100%',
   },
   active: {
     opacity: 1,
@@ -91,7 +94,9 @@ export const TalkingPoints = ({
     const a = leftColumnTalkingPointsRef.current.getBoundingClientRect();
     const p = jquery(leftColumnTalkingPointsRef.current).children(`div:nth-child(${si + 1})`)[0].getBoundingClientRect();
     return {
-      left: e.left / a.width, top: ((e.top) / a.height) - (e.height / a.height)
+      left: (e.left / a.width) + 0.05, 
+      top: ((e.top / a.height))
+      // top: ((e.top / a.height) - (e.height / a.height) - 0.3)
     };
   }, []);
 
@@ -101,7 +106,7 @@ export const TalkingPoints = ({
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
         return list[si].text.split('').map((l, i, arr) => {
-          return { content: l, left: i / (arr.length - 1), top: (chance.weighted([0.8, 0.85, 0.9, 0.92, 0.95, 0.97], [1, 5, 10, 20, 40, 50])) };
+          return { content: l, left: (i + 1.5) / (arr.length - 1), top: (chance.weighted([0.8, 0.85, 0.9, 0.92, 0.95, 0.97], [1, 5, 10, 20, 40, 50])) };
         });
       }
     } },
@@ -120,11 +125,12 @@ export const TalkingPoints = ({
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
         return list[si].text.split('').map((l, i, arr) => {
-          return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
+          // return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
+          const o = ((i + index) % 5);
+          return { content: l, left: (i + 2) / (arr.length - 0.5), top: 0.06 + (o * 0.03) };
         });
       }
     } },
-    // цельными словами разбросано
   
     { text: 'Гибкая система правил и прав', formula: (si, ci) => {
       if (ci === si) {
@@ -135,8 +141,6 @@ export const TalkingPoints = ({
         });
       }
     } },
-    // г   и бк а   я        в диапозоне left 0-0.5 top 0.5
-    // остальные слова каждая буква полный рандом куча в диапозоне l0.5...0.8 t0.3...0.6
   
     { text: 'Среда запускающаяся везде', formula: (si, ci) => {
       if (ci === si) {
@@ -147,11 +151,27 @@ export const TalkingPoints = ({
         });
       }
     } },
-    // буквы волночкой
-    // среда t0.5
   
   
     { text: 'Вся разработка ведется в одном приложении', formula: (si, ci) => {
+      if (ci === si) {
+        return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
+      } else {
+        return list[si].text.split('').map((l, i, arr) => {
+          return { content: l, left: random(0.6, 1, true), top: random(0, 1, true) };
+        });
+      }
+    } },
+    { text: 'Бизнес логика и сценарии в одном месте', formula: (si, ci) => {
+      if (ci === si) {
+        return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
+      } else {
+        return list[si].text.split('').map((l, i, arr) => {
+          return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
+        });
+      }
+    }  },
+    { text: 'Готовая среда хранения и работы с данными', formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -160,8 +180,6 @@ export const TalkingPoints = ({
         });
       }
     } },
-    // { text: 'Бизнес логика и сценарии в одном месте', formula: () => {} },
-    // { text: 'Готовая среда хранения и работы с данными', formula: () => {} },
   ], []);
 
   const list2 = useMemo(() => {
@@ -170,36 +188,8 @@ export const TalkingPoints = ({
     });
   }, [index]);
 
-  console.log(list2);
-  // const list2 = [
-  //   useMemo(() => list[0].split('').map((l, i, arr) => {
-  //     return { content: l, left: i / (arr.length - 1), top: (
-  //       chance.weighted([0.8, 0.85, 0.9, 0.92, 0.95, 0.97], [1, 5, 10, 20, 40, 50])
-  //     ) };
-  //   }), [index === 0]),
-  //   useMemo(() => list[1].split('').map((l, i, arr) => {
-  //     return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
-  //   }), [index === 1]),
-  //   useMemo(() => list[2].split('').map((l, i, arr) => {
-  //     return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
-  //   }), [index === 2]),
-  //   useMemo(() => list[3].split('').map((l, i, arr) => { // TODO
-  //     return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
-  //   }), [index === 3]),
-  //   useMemo(() => list[4].split('').map((l, i, arr) => {
-  //     const o = ((i + index) % 5);
-  //     return { content: l, left: i / (arr.length - 1), top: 0.46 + (o * 0.03) };
-  //   }), [index === 4]),
-  //   useMemo(() => {
-  //     if (index === 5) {
-  //       return list[5].split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(5, i) }));
-  //     } else {
-  //       return list[5].split('').map((l, i, arr) => {
-  //         return { content: l, left: random(0, 1, true), top: random(0, 1, true) };
-  //       });
-  //     }
-  //   }, [index === 5]),
-  // ];
+  const xlUp = useMediaQuery('min-width: 1620px');
+  const down1024 = useMediaQuery('max-width: 1025px');
 
   return(<div className={classes.containerListTalkingPoints} onClick={() => {
     enabledRef.current = !enabledRef.current;
@@ -207,10 +197,10 @@ export const TalkingPoints = ({
       <div className={classes.leftColumnTalkingPoints}  ref={leftColumnTalkingPointsRef}>
         {list2.map((l, i) => {
           return <div key={i} className={cn(classes.talkingPoint, index == i && classes.active)}>{l.map((item, i) => {
-            return <div style={{
+            return <div key={i} style={{
               position: 'absolute',
-              left: `${item.left * 90}%`,
-              top: `${item.top * 90}%`,
+              left: `${(item.left * 89)}vw`,
+              top: `${item.top * (xlUp ? 65 : 50)}vh`,
               transition: `all ${1}s ease`,
             }}>{item.content}</div>
           })}</div>
@@ -223,11 +213,12 @@ export const TalkingPoints = ({
             width: '100%', height: '100%',
             top: 0,
             left: 0,
-            transition: 'all 1s ease',}}
+            // transition: 'all 1s ease',
+          }}
           >
             <div className={classes.mainTalkingPoint}><div>
               {l.map((item, i) => {
-              return <span>{item.content}{item.content === ' ' ? <>&nbsp;</> : ''}</span>
+              return <span key={i}>{item.content}{item.content === ' ' ? <>&nbsp;</> : ''}</span>
             })}
             </div></div>
           </a.div>
