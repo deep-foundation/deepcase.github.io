@@ -20,6 +20,9 @@ import { Slider } from '../imports/slider';
 import { Space } from '../imports/space';
 import { SpecialCard } from '../imports/special-card';
 import { UpperMenu } from '../imports/upper-menu';
+import { CarouselPodcast, SpecialCardSlider } from '../imports/special-card-slider';
+import { TalkingPoints } from '../imports/talking-points';
+import { IFrame } from '../imports/iframe';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -337,43 +340,62 @@ const crew = [
   {
     id: 1,
     src: '/avatars/ivan.webp',
-    alt: 'founder',
+    alt: 'Ivan CEO',
+    name: 'Ivan',
+    role: 'CEO',
   },
   {
     id: 2,
     src: '/avatars/const.webp',
-    alt: 'founder',
+    alt: 'Konstantin Data',
+    name: 'Konstantin',
+    role: 'Data',
   },
   {
     id: 3,
-    src: '/avatars/serg.webp',
+    src: '/avatars/petr.webp',
     alt: 'founder',
+    name: 'Petr DevOps',
+    role: 'DevOps',
   },
   {
     id: 4,
     src: '/avatars/sergey.webp',
-    alt: 'founder',
+    alt: 'Sergey WHO',
+    name: 'Sergey',
+    role: 'WHO',
   },
   {
     id: 5,
     src: '/avatars/tim.webp',
-    alt: 'founder',
+    alt: 'Timothy Writer',
+    name: 'Timothy',
+    role: 'Writer',
   },
   {
     id: 6,
-    src: '/avatars/petr.webp',
-    alt: 'founder',
+    src: '/avatars/serg.webp',
+    alt: 'Sergey People',
+    name: 'Sergey',
+    role: 'People',
+  },
+  {
+    id: 7,
+    src: '/avatars/ya.webp',
+    alt: 'Anastasia Front',
+    name: 'Anastasia',
+    role: 'Front',
   }
 ];
 
-const _specialCards = [
+const specialCards = [
   {
     id: '1',
     icon1: <BathtubIcon />,
     icon2: <BathtubIcon color='secondary' />,
     icon3: <BathtubIcon color='error' />,
     title: 'Операционное пространство',
-    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+    description: 'Больше нет разницы между вашим рабочим столом и пространством вашего мышления',
   },
   {
     id: '2',
@@ -381,7 +403,7 @@ const _specialCards = [
     icon2: <BeachAccessIcon color='secondary' />,
     icon3: <BeachAccessIcon color='error' />,
     title: 'Новая парадигма программирования',
-    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+    description: 'Мы реализовали язык без семантической и смысловой предрасположенности',
   },
   {
     id: '3',
@@ -389,23 +411,23 @@ const _specialCards = [
     icon2: <EmojiSymbolsIcon color='secondary' />,
     icon3: <EmojiSymbolsIcon color='error' />,
     title: 'Любые языки и стеки',
-    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+    description: 'Вы можете написать ExecutionProvider для любых языков программирования',
   },
   {
     id: '4',
     icon1: <AppleIcon />,
     icon2: <AppleIcon color='secondary' />,
     icon3: <AppleIcon color='error' />,
-    title: 'Гибкие правила',
-    description: 'Немного текста о том, почему это хорошо или просто необходимо',
+    title: 'Семантическая система прав',
+    description: 'Всегда именно та система прав, которую вы хотите',
   },
 ];
-const specialCards = ([
-  ..._specialCards,
-  ..._specialCards,
-  ..._specialCards,
-  ..._specialCards,
-]).map((v: any, i) => { v.id = `${i}`; return v; });
+// const specialCards = ([
+//   ..._specialCards,
+//   ..._specialCards,
+//   ..._specialCards,
+//   ..._specialCards,
+// ]).map((v: any, i) => { v.id = `${i}`; return v; });
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -423,8 +445,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   section: {
-    backgroundColor: '#111720',
-    border: '1px dashed #ffffff40',
     color: '#fff',
   },
   sectionContent: {
@@ -461,9 +481,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     width: '100%',
     marginLeft: -8,
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+  },
+  talkingPoints: {
+    paddingTop: 'calc(1rem + 0.9vmax)', 
+    paddingBottom: 'calc(1rem + 0.9vmax)',
   },
   screen1GridItem: {
-    paddingTop: 100, paddingBottom: 100,
+    paddingTop: 'calc(1rem + 0.9vmax)', paddingBottom: 'calc(1rem + 0.9vmax)',
     position: 'relative',
     paddingLeft: '2rem',
     paddingRight: '2rem',
@@ -487,6 +513,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'baseline',
     '& > :nth-child(1)': {
       marginRight: 'calc(1rem + 0.5vmax)',
     },
@@ -496,36 +523,28 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   screen2: {
-    background: darken(theme?.palette?.background?.default, 0.3),
     paddingTop: 100,
     paddingBottom: 100,
-    borderTop: '1px dashed #ffffff40',
     userSelect: 'none',
   },
   screen2accent: {
-    // background: darken(theme?.palette?.background?.default, 0.5),
-    // width: '100%',
-    // height: '100%',
   },
   screen2InnerContainer: {
-    // padding: '0 2rem',
-    // '@media(max-width: 825px)': {
-    //   padding: '0 1rem',
-    // }
   },
   specialCardContainer: {
-    height: '550px',
+    height: '35rem',
     display: 'grid',
     gridTemplateColumns: 'repeat(4, minmax(250px, 1fr))',
     columnGap: '1rem',
   },
   specialCardContainerMobile: {
-    height: '550px',
+    height: '33rem',
   },
   screen3: {
-    background: darken(theme?.palette?.background?.default, 0.4),
+    background: '#00000040',
     paddingTop: 100,
     paddingBottom: 100,
+    border: '1px dashed #ffffff40',
   },
   screen4: {
     background: darken(theme?.palette?.background?.default, 0.45),
@@ -553,12 +572,20 @@ const useStyles = makeStyles((theme) => ({
   },
   screenPodcast: {
     width: '100%',
-    height: '30rem',
+    height: '33rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  gridCrew: {
+  crewContainer: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+    gridAutoRows: 'minmax(245px, 1fr)',
+    justifyItems: 'center',
+    alignItems: 'center',
     columnGap: '4vmin',
+    rowGap: '4vmax',
   },
   gridPodcast: {
     display: 'flex',
@@ -590,32 +617,38 @@ export function PageContent() {
   const handleClose = useCallback(() => {
     setElectronOpen(null);
   }, []);
-  const smDown = useMediaQuery('@media(max-width: 1024px');
+  const smDown = useMediaQuery('@media(max-width: 1420px');
   const max825 = useMediaQuery('@media(max-width: 825px');
+  const up870 = useMediaQuery('max-width: 870px');
 
   return (<><UpperMenu scrollContainer={refScrollContainer} refMenuButtons={refMenuButtons} />
     <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer} component='main'>
+      <Space unit={7} />
+      { max825 
+      ? <>
+          <div className={classes.menuButtons} ref={refMenuButtons}>
+            <Button variant="text">Docs</Button>
+            <Button variant="text">Talks</Button>
+            <Button variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
+            {/* <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton> */}
+          </div>
+          <Space />
+        </>
+      : <Space unit={4} />
+      }
+      <Grid item xs={12} component='section' className={classes.talkingPoints}>
+        <TalkingPoints refScrollContainer={refScrollContainer}/>
+      </Grid>
       <Grid item xs={12} component='section'>
         <Grid container justify="center" alignItems="center">
-          <Grid item xs={12} className={classes.screen1GridItem} component={Paper} elevation={0}>
-            { max825 
-            ? <>
-                <div className={classes.menuButtons} ref={refMenuButtons}>
-                  <Button variant="text">Docs</Button>
-                  <Button variant="text">Talks</Button>
-                  <Button variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
-                  {/* <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton> */}
-                </div>
-                <Space />
-              </>
-            : <Space unit={4} />
-            }
+          <Grid item xs={12} md={8} className={classes.screen1GridItem} component={Paper} elevation={0}>
+            
             <div className={ classes.titleDC }>
               <Typography align="left" variant="h4">Deep.Case</Typography>
-              <Typography align="left" variant="h5">pre alpha version</Typography>
+              <Typography align="left" variant="body2">pre alpha version</Typography>
             </div>
             <img src="/screen1.png" style={{ width: '100%' }}/>
-            {/* <IFrame src='/screen1.png' /> */}
+            {/* <IFrame src='http://deep.deep.foundation:3007/' /> */}
             <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
               <Grid item xs={12}><Button
                 variant="outlined" color="primary"
@@ -655,15 +688,17 @@ export function PageContent() {
           </Grid>
         </Grid>
       </Grid>
+      <Space unit={4} />
       <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
         <Paper className={classes.screenPodcast}>
-          <Slider items={podcasts} width={400} visible={5}>
+          {/* <Slider items={podcasts} width={400} visible={5}>
             {(p) => (
               <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
                 <Podcast card={p}/>
               </div>
             )} 
-          </Slider>
+          </Slider> */}
+          <CarouselPodcast />
           {/* <div className={classes.gridPodcast}>
             {podcasts.map((p) => (
               <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
@@ -675,72 +710,44 @@ export function PageContent() {
       </Grid>
       <Grid item xs={12} className={cn(classes.screen2, classes.section)} component='section' container justify="center" alignItems="center">
         <Grid item xs={12} lg={11} xl={8} className={classes.screen2InnerContainer}>
-          {/* <Grid container spacing={10} style={{height: '550px'}}> */}
           <div className={!smDown ? classes.specialCardContainer : classes.specialCardContainerMobile}>
             { smDown
-            ? <Slider items={specialCards} width={400} visible={2}>
-            {(s) => (
-              <div key={s.id} style={{ height: 'auto', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+            ? <SpecialCardSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
+            // <Slider items={specialCards} width={400} visible={2}>
+            // {(s) => (
+            //   <div key={s.id} style={{ height: 'auto', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+            //     <SpecialCard
+            //       icon1={s.icon1}
+            //       icon2={s.icon2}
+            //       icon3={s.icon3}
+            //       title={s.title} 
+            //       description={s.description}
+            //     />
+            //   </div>
+            //   )} 
+            // </Slider>
+            : specialCards.map(c => (
                 <SpecialCard
-                  icon1={s.icon1}
-                  icon2={s.icon2}
-                  icon3={s.icon3}
-                  title={s.title} 
-                  description={s.description}
+                  key={c.id}
+                  icon1={c.icon1}
+                  icon2={c.icon2}
+                  icon3={c.icon3}
+                  title={c.title}
+                  description={c.description}
                 />
-              </div>
-              )} 
-            </Slider>
-            : <>
-              <SpecialCard
-                icon1={<BathtubIcon />}
-                icon2={<BathtubIcon color='secondary' />}
-                icon3={<BathtubIcon color='error' />}
-                title='Операционное пространство' 
-                description='Немного текста о том, почему это хорошо или просто необходимо'
-              />
-            
-            
-              <SpecialCard
-                icon1={<BeachAccessIcon />}
-                icon2={<BeachAccessIcon color='secondary' />}
-                icon3={<BeachAccessIcon color='error' />}
-                title='Новая парадигма программирования' 
-                description='Немного текста о том, почему это хорошо или просто необходимо'
-              />
-            
-            
-              <SpecialCard
-                icon1={<EmojiSymbolsIcon />}
-                icon2={<EmojiSymbolsIcon color='secondary' />}
-                icon3={<EmojiSymbolsIcon color='error' />}
-                title='Любые языки и стеки' 
-                description='Немного текста о том, почему это хорошо или просто необходимо'
-              />
-            
-            
-              <SpecialCard
-                icon1={<AppleIcon />}
-                icon2={<AppleIcon color='secondary' />}
-                icon3={<AppleIcon color='error' />}
-                title='Гибкие правила' 
-                description='Немного текста о том, почему это хорошо или просто необходимо'
-              />
-            </>}
+                ))}
           </div>
-          {/* </Grid> */}
         </Grid>
       </Grid>
       <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
         <Grid item xs={12} sm={10} md={8} className={classes.sectionContent}>
           <Typography align="left" variant="h2">Crew</Typography>
           <Space />
-          <Grid container alignItems='center' justify='center' spacing={6}>
-            {crew.map(i => (<Grid item xs={12} sm={6} md={4} lg={3} style={{}}>
-                <CrewCard key={i.id} src={i.src} alt={i.alt} />
-              </Grid>
+          <div className={classes.crewContainer}>
+            {crew.map(i => (
+                <CrewCard key={i.id} src={i.src} alt={i.alt} name={i.name} role={i.role} />
             ))}
-          </Grid>
+          </div>
         </Grid>
       </Grid>
       <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">

@@ -2,10 +2,10 @@ import { ButtonBase, makeStyles, Paper } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 
-const calc: any = (x, y, w, h, l, t, xm = 1, ym = 1) => [
+const calc: any = (x, y, w, h, l, t, xm = 1, ym = 1, zm = 1.1) => [
   -((y - t) - h / 2) / 10 * ym,
   ((x - l) - w / 2) / 10 * xm,
-  1.1
+  zm
 ];
 const trans: any = (x, y, s) =>
   `perspective(600px) rotateX(${-x}deg) rotateY(${-y}deg) scale(${s})`;
@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 
 export function Card({
   children, disabled, animatedProps, PaperProps,
-  xm = 1, ym = 1,
+  xm = 1, ym = 1, zm = 1.1,
   folder = false,
   paperComponent = ButtonBase,
   setRef,
@@ -49,7 +49,7 @@ export function Card({
           const box = rootRef.current.getBoundingClientRect();
           let x, y;
           x = clientX - box?.x, y = clientY - box?.y;
-          set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop, xm, ym) });
+          set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop, xm, ym, zm) });
           if (!hover) setHover(true);
         }}
         onMouseLeave={() => {
