@@ -4,8 +4,7 @@ import { Play } from '../icons/play';
 import { LogoImage } from './logo';
 
 import { useSpring, a } from 'react-spring';
-import { GravityCard } from '../framework';
-import { useMediaQuery } from '@material-ui/core';
+import { GravityCard, useMediaQuery } from '../framework';
 import { PodcastSource } from './podcast-source';
 import { ICard } from '../../pages/new';
 

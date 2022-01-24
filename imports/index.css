@@ -1,0 +1,24 @@
+.carousel {
+  width: 23.875rem;
+  height: 19.125rem;
+  /* perspective: 350rem !important; */
+
+}
+
+/* @media only screen and (max-width: 600px) {
+  .carousel {
+    perspective: 22rem !important;
+  
+  }
+} */
+
+.carousel__slide .carousel__slide-overlay {
+	opacity: 1 !important;
+}
+
+.carousel__slide {
+  border: none !important;
+  width: 21.875rem;
+  height: 15.875rem;
+  /* transform: translateZ(265px) !important; */
+}
