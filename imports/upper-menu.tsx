@@ -1,9 +1,8 @@
-import { useMediaQuery } from "@material-ui/core";
 import { default as GitHub } from '@material-ui/icons/GitHub';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from "react";
 import { a, useSpring, useTransition } from 'react-spring';
-import { Box, Button, Grid, IconButton, makeStyles } from "./framework";
+import { Box, Button, Grid, IconButton, makeStyles, useMediaQuery } from "./framework";
 
 
 const useStyles = makeStyles(theme => ({
@@ -105,7 +104,6 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
   
   useEffect(() => {
     const id = setInterval(() => {
-      const cubeSize = cubeRef?.current?.getBoundingClientRect().bottom;
       const menuButtonsSize = refMenuButtons?.current?.getBoundingClientRect().top;
       const isRotateMode = scrollContainer?.current?.scrollTop < menuButtonsSize;
       const isMainMode = scrollContainer?.current?.scrollTop < 450;
