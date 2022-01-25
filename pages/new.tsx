@@ -689,25 +689,6 @@ export function PageContent() {
         </Grid>
       </Grid>
       <Space unit={4} />
-      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
-        <Paper className={classes.screenPodcast}>
-          {/* <Slider items={podcasts} width={400} visible={5}>
-            {(p) => (
-              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-                <Podcast card={p}/>
-              </div>
-            )} 
-          </Slider> */}
-          <CarouselPodcast />
-          {/* <div className={classes.gridPodcast}>
-            {podcasts.map((p) => (
-              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-                <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
-              </div>
-            )) }
-          </div> */}
-        </Paper>
-      </Grid>
       <Grid item xs={12} className={cn(classes.screen2, classes.section)} component='section' container justify="center" alignItems="center">
         <Grid item xs={12} lg={11} xl={8} className={classes.screen2InnerContainer}>
           <div className={!smDown ? classes.specialCardContainer : classes.specialCardContainerMobile}>
@@ -739,6 +720,27 @@ export function PageContent() {
           </div>
         </Grid>
       </Grid>
+      <Space unit={4} />
+      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
+        <Paper className={classes.screenPodcast}>
+          {/* <Slider items={podcasts} width={400} visible={5}>
+            {(p) => (
+              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                <Podcast card={p}/>
+              </div>
+            )} 
+          </Slider> */}
+          <CarouselPodcast />
+          {/* <div className={classes.gridPodcast}>
+            {podcasts.map((p) => (
+              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+              </div>
+            )) }
+          </div> */}
+        </Paper>
+      </Grid>
+      
       <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
         <Grid item xs={12} sm={10} md={8} className={classes.sectionContent}>
           <Typography align="left" variant="h2">Crew</Typography>

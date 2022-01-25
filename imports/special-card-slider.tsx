@@ -281,6 +281,93 @@ const podcasts: ICard[] = [
       width: 25,
     }]
   },
+  {
+    id: '5',
+    src: '/speakers/vitaly.webp',
+    srcPng: '/speakers/vitaly.png',
+    guestName: 'Виталий',
+    occupation: 'devOps / backend',
+    date: '14.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/php.png',
+      top: 32,
+      left: 73,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/single.svg',
+      top: 75,
+      left: 5,
+      width: 25,
+    }
+  ]
+  },
+  {
+    id: '6',
+    src: '/speakers/ivanSh.webp',
+    srcPng: '/speakers/ivanSh.png',
+    guestName: 'Иван Шилов',
+    occupation: 'аналитик',
+    date: '14.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/sibur.png',
+      top: 32,
+      left: 73,
+      width: 22,
+    },
+  ]
+  },
 ];
 
 const items: CarouselItem[] = podcasts.map( p => ({
