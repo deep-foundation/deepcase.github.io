@@ -65,11 +65,11 @@ export const TalkingPoints = ({
   refScrollContainer: any;
 }) => {
   const classes = useStyles();
-  const [ index, setIndex ] = useState(0);
+  const [ index, setIndex ] = useState(-1);
   const enabledRef = useRef(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const action = () => {
       if (enabledRef.current) {
         setIndex((index) => {
           let target = index;
@@ -79,7 +79,9 @@ export const TalkingPoints = ({
           return target;
         });
       }
-    }, 3000);
+    };
+    action();
+    const interval = setInterval(action, 3000);
     return () => {
       clearInterval(interval);
     };
