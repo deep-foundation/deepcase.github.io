@@ -1,6 +1,7 @@
 import { default as GitHub } from '@material-ui/icons/GitHub';
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
 import { Box, Button, Grid, IconButton, makeStyles, useMediaQuery } from "./framework";
 
@@ -156,6 +157,8 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
   
 
   const max825 = useMediaQuery('@media(max-width: 825px)');
+
+  const { t } = useTranslation();
 
   return (<header className={classes.container}>
       {transitions((style, item) => (item && <a.div ref={cubeRef} className={classes.cubeZone}
