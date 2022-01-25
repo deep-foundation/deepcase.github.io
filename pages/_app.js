@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme1 } from '../imports/theme/build';
 import jQuery from 'jquery';
+import '../imports/i18n';
 
 global.jQuery = jQuery;
 

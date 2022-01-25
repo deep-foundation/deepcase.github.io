@@ -8,9 +8,4 @@ module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   basePath: isProd ? '' : '',
   assetPrefix: isProd ? 'https://cdn.statically.io/gh/deepcase/deepcase.github.io/main/docs/' : '',
-
-  i18n: {
-    locales: ['en-US', 'ru'],
-    defaultLocale: 'ru',
-  },
 });
