@@ -1,10 +1,15 @@
+import { useQueryStore } from '@deepcase/store/query';
 import { default as GitHub } from '@material-ui/icons/GitHub';
 import cn from 'classnames';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
 import { Box, Button, Grid, IconButton, makeStyles, useMediaQuery } from "./framework";
+import { TalksForm } from './talks-form';
 
+export function useSwitcherModalTalks () { 
+  return useQueryStore('talks to us', false);
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -95,29 +100,31 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: any, refMenuButtons: any;}) => {
+export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollContainer: any, refMenuButtons: any;}) => {
   const classes = useStyles();
   const [scrolled, setScroll] = useState(false);
   const [mode, setMode] = useState(1);
   const [modeHidden, setModeHidden] = useState(1);
+  const [openTalksModal, setOpenTalksModal] = useSwitcherModalTalks();
   const old = useRef({scrollTop: 0});
   const cubeRef = useRef<HTMLInputElement>();
   
   useEffect(() => {
     const id = setInterval(() => {
+      const scrollArea = scrollContainer?.current?.children?.[0];
       const menuButtonsSize = refMenuButtons?.current?.getBoundingClientRect().top;
-      const isRotateMode = scrollContainer?.current?.scrollTop < menuButtonsSize;
-      const isMainMode = scrollContainer?.current?.scrollTop < 450;
+      const isRotateMode = scrollArea?.scrollTop < menuButtonsSize;
+      const isMainMode = scrollArea?.scrollTop < 450;
       setMode( isRotateMode ? 1 : 2 );
       setModeHidden( isMainMode ? 1 : 2 );
       if ( isMainMode ) {
         setScroll(false);
-      } else if ( scrollContainer?.current?.scrollTop > old.current.scrollTop ) {
+      } else if ( scrollArea?.scrollTop > old.current.scrollTop ) {
         setScroll(true);
-      } else if ( scrollContainer?.current?.scrollTop < old.current.scrollTop ) {
+      } else if ( scrollArea?.scrollTop < old.current.scrollTop ) {
         setScroll(false);
       }
-      old.current.scrollTop = scrollContainer?.current?.scrollTop;
+      old.current.scrollTop = scrollArea?.scrollTop;
     }, 100)
     return () => clearInterval(id);
   }, []);
@@ -155,6 +162,8 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
     delay: scrolled ? 0 : 600,
   });
   
+  const onOpenTalksModal = useCallback(() => setOpenTalksModal(true), []);
+  const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
 
   const max825 = useMediaQuery('@media(max-width: 825px)');
 
@@ -185,7 +194,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                 }}>Deep.Foundation</a.h1>
               </Box>
               <div className={classes.buttons}>
-                <Button variant="text">
+                <Button variant="text" aria-label='documentation'>
                   <a.span style={{
                     transformOrigin: 'top',
                     transform: fontsScroll.x
@@ -195,7 +204,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                                     })
                                     .to(x => `scale(${x})`)
                   }}>Docs</a.span></Button>
-                <Button variant="text">
+                <Button variant="text" aria-label='talks' onClick={onOpenTalksModal}>
                   <a.span style={{
                     transformOrigin: 'top',
                     transform: fontsScroll.x
@@ -205,8 +214,9 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                                     })
                                     .to(x => `scale(${x})`)
                   }}>Talks</a.span></Button>
-                <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
-              </div></>
+                <IconButton aria-label='github repository deepcase' component={'a'} href="https://github.com/deepcase/deepcase" title='github repository deepcase'><GitHub style={{color: '#fff'}}/></IconButton>
+              </div>
+              </>
               : <div className={classes.cubeContainer}>
                   <a.div className={classes.cube} style={{
                     // transformOrigin: scrolled || modeHidden == 2 ? 'top' : 'center',
@@ -230,7 +240,7 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                     <div className={cn(classes.cubeSurface, classes.emptySurface1)} />
                     <div className={cn(classes.cubeSurface, classes.emptySurface2)} />
                     <div className={cn(classes.cubeSurface, classes.buttonsMenu)}>
-                      <Button variant="text">
+                      <Button variant="text" aria-label='documentation'>
                         <a.span style={{
                           fontSize: 'calc(12px + 0.3vmax)',
                           lineHeight: 1,
@@ -241,8 +251,8 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                                           })
                                           .to(x => `scale(${x})`)
                         }}>Docs</a.span></Button>
-                      <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
-                      <Button variant="text">
+                      <IconButton aria-label='github' component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
+                      <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>
                         <a.span style={{
                           fontSize: 'calc(12px + 0.3vmax)',
                           lineHeight: 1,
@@ -257,9 +267,10 @@ export const UpperMenu = ({scrollContainer, refMenuButtons}:{scrollContainer: an
                 </a.div>
               </div>
             }
+            <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
           </Grid>
         </div>
       </a.div>))}
     </header>
   )
-}
+})
