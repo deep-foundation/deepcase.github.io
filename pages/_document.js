@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme1.palette.primary.main} />
+          <meta name="description" content="Deep Foundation" />
           <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
           <script
             async

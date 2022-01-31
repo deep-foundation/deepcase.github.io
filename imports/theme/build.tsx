@@ -14,6 +14,7 @@ export const coreTheme = createMuiTheme({
     h2: {
       fontSize: 'calc(26px + 0.5vmax)',
       fontWeight: 700,
+      color: '#fff',
     },
     h3: {
       fontSize: 'calc(24px + 0.5vmax)',

@@ -8,6 +8,8 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme1 } from '../imports/theme/build';
 import jQuery from 'jquery';
+
+import { QueryStoreProvider } from '@deepcase/store/query';
 import '../imports/i18n';
 
 global.jQuery = jQuery;
@@ -29,9 +31,11 @@ export default function MyApp(props) {
         <title>DeepCase</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme1}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <QueryStoreProvider>
+        <ThemeProvider theme={theme1}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </QueryStoreProvider>
     </React.Fragment>
   );
 }

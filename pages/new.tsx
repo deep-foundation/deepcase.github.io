@@ -19,10 +19,12 @@ import { Provider } from '../imports/provider';
 import { Slider } from '../imports/slider';
 import { Space } from '../imports/space';
 import { SpecialCard } from '../imports/special-card';
-import { UpperMenu } from '../imports/upper-menu';
+import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import { CarouselPodcast, SpecialCardSlider } from '../imports/special-card-slider';
 import { TalkingPoints } from '../imports/talking-points';
 import { IFrame } from '../imports/iframe';
+import { ParallaxSpecialCards } from '../imports/parallax-special-cards';
+import { TalksForm } from '../imports/talks-form';
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -363,7 +365,7 @@ const crew = [
     src: '/avatars/sergey.webp',
     alt: 'Sergey WHO',
     name: 'Sergey',
-    role: 'WHO',
+    role: 'Business Operations',
   },
   {
     id: 5,
@@ -422,12 +424,6 @@ const specialCards = [
     description: 'Всегда именно та система прав, которую вы хотите',
   },
 ];
-// const specialCards = ([
-//   ..._specialCards,
-//   ..._specialCards,
-//   ..._specialCards,
-//   ..._specialCards,
-// ]).map((v: any, i) => { v.id = `${i}`; return v; });
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -527,24 +523,29 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 100,
     userSelect: 'none',
   },
+  sectionParallax: {
+    paddingTop: 100,
+    paddingBottom: 0,
+    userSelect: 'none',
+  },
   screen2accent: {
   },
   screen2InnerContainer: {
   },
   specialCardContainer: {
-    height: '35rem',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, minmax(250px, 1fr))',
-    columnGap: '1rem',
+    height: '100vh',
+  },
+  parallaxContentContainer: {
+    // margin: '0 5rem',
   },
   specialCardContainerMobile: {
     height: '33rem',
   },
   screen3: {
-    background: '#00000040',
+    // background: '#00000040',
     paddingTop: 100,
     paddingBottom: 100,
-    border: '1px dashed #ffffff40',
+    // border: '1px dashed #ffffff40',
   },
   screen4: {
     background: darken(theme?.palette?.background?.default, 0.45),
@@ -595,7 +596,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Page() {
+export default function Page () {
   return (
     <Provider>
       <PageContent/>
@@ -607,6 +608,7 @@ export function PageContent() {
   const classes = useStyles();
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
   const [electronOpen, setElectronOpen] = useState(null);
+  const [ openTalksModal, setOpenTalksModal ] = useSwitcherModalTalks();
   const refScrollContainer = useRef();
   const refMenuButtons = useRef();
 
@@ -621,203 +623,186 @@ export function PageContent() {
   const max825 = useMediaQuery('@media(max-width: 825px');
   const up870 = useMediaQuery('max-width: 870px');
 
+  const onOpenTalksModal = useCallback(() => setOpenTalksModal(true), []);
+  const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
+
   return (<><UpperMenu scrollContainer={refScrollContainer} refMenuButtons={refMenuButtons} />
-    <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer} component='main'>
-      <Space unit={7} />
-      { max825 
-      ? <>
-          <div className={classes.menuButtons} ref={refMenuButtons}>
-            <Button variant="text">Docs</Button>
-            <Button variant="text">Talks</Button>
-            <Button variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
-            {/* <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton> */}
-          </div>
-          <Space />
-        </>
-      : <Space unit={4} />
-      }
-      <Grid item xs={12} component='section' className={classes.talkingPoints}>
-        <TalkingPoints refScrollContainer={refScrollContainer}/>
-      </Grid>
-      <Grid item xs={12} component='section'>
-        <Grid container justify="center" alignItems="center">
-          <Grid item xs={12} md={8} className={classes.screen1GridItem} component={Paper} elevation={0}>
-            
-            <div className={ classes.titleDC }>
-              <Typography align="left" variant="h4">Deep.Case</Typography>
-              <Typography align="left" variant="body2">pre alpha version</Typography>
-            </div>
-            <img src="/screen1.png" style={{ width: '100%' }}/>
-            {/* <IFrame src='http://deep.deep.foundation:3007/' /> */}
-            <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
-              <Grid item xs={12}><Button
-                variant="outlined" color="primary"
-                size="large"
-              ><div>
-                <Typography variant='body2'>GitPod</Typography>
-                <Typography variant="caption">(cloud demo)</Typography>
-              </div></Button></Grid>
-              <Grid item xs={12}>
-                <ButtonGroup variant="outlined">
-                  <Button
-                    variant="contained" color="primary"
+        <Grid container className={classes.root} justify="center" alignItems="center" ref={refScrollContainer} component='main'>
+          <Space unit={7} />
+          { max825 
+          ? <>
+              <div className={classes.menuButtons} ref={refMenuButtons}>
+                <Button aria-label='documents' variant="text">Docs</Button>
+                <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>Talks</Button>
+                <Button aria-label='github ' variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
+                {/* <IconButton component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton> */}
+              </div>
+              <Space />
+              <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
+            </>
+          : <Space unit={4} />
+          }
+          <Grid item xs={12} component='section' className={classes.talkingPoints}>
+            <TalkingPoints refScrollContainer={refScrollContainer}/>
+          </Grid>
+          <Grid item xs={12} component='section'>
+            <Grid container justify="center" alignItems="center">
+              <Grid item xs={12} md={8} className={classes.screen1GridItem} component={Paper} elevation={0}>
+                
+                <div className={ classes.titleDC }>
+                  <Typography align="left" variant="h4">Deep.Case</Typography>
+                  <Typography align="left" variant="body2">pre alpha version</Typography>
+                </div>
+                {/* <img src="/screen1.png" style={{ width: '100%' }}/> */}
+                <IFrame src='http://deep.deep.foundation:3007/' />
+                <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
+                  <Grid item xs={12}><Button aria-label='gitpod'
+                    variant="outlined" color="primary"
                     size="large"
                   ><div>
-                    <Typography variant='body2'>Download</Typography>
-                    <Typography variant="caption">(electron)</Typography>
-                  </div></Button>
-                  <Button
-                    variant="outlined" color="primary"
-                    onClick={handleClick}
-                  ><div>
-                  <ArrowDropDown />
-                </div></Button>
-                </ButtonGroup>
-                <Menu
-                  anchorEl={electronOpen}
-                  keepMounted
-                  open={!!electronOpen}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>.app</MenuItem>
-                  <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
-                  <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
-                </Menu>
+                    <Typography variant='body2'>GitPod</Typography>
+                    <Typography variant="caption">(cloud demo)</Typography>
+                  </div></Button></Grid>
+                  <Grid item xs={12}>
+                    <ButtonGroup aria-label='download deep case' variant="outlined">
+                      <Button aria-label='download deep cased'
+                        variant="contained" color="primary"
+                        size="large"
+                      ><div>
+                        <Typography variant='body2'>Download</Typography>
+                        <Typography variant="caption">(electron)</Typography>
+                      </div></Button>
+                      <Button aria-label='select format file '
+                        variant="outlined" color="primary"
+                        onClick={handleClick}
+                      ><div>
+                      <ArrowDropDown />
+                    </div></Button>
+                    </ButtonGroup>
+                    <Menu
+                      anchorEl={electronOpen}
+                      keepMounted
+                      open={!!electronOpen}
+                      onClose={handleClose}
+                    >
+                      <MenuItem onClick={handleClose}>.app</MenuItem>
+                      <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
+                      <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
+                    </Menu>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Grid>
-      <Space unit={4} />
-      <Grid item xs={12} className={cn(classes.screen2, classes.section)} component='section' container justify="center" alignItems="center">
-        <Grid item xs={12} lg={11} xl={8} className={classes.screen2InnerContainer}>
-          <div className={!smDown ? classes.specialCardContainer : classes.specialCardContainerMobile}>
-            { smDown
-            ? <SpecialCardSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
-            // <Slider items={specialCards} width={400} visible={2}>
-            // {(s) => (
-            //   <div key={s.id} style={{ height: 'auto', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-            //     <SpecialCard
-            //       icon1={s.icon1}
-            //       icon2={s.icon2}
-            //       icon3={s.icon3}
-            //       title={s.title} 
-            //       description={s.description}
-            //     />
-            //   </div>
-            //   )} 
-            // </Slider>
-            : specialCards.map(c => (
-                <SpecialCard
-                  key={c.id}
-                  icon1={c.icon1}
-                  icon2={c.icon2}
-                  icon3={c.icon3}
-                  title={c.title}
-                  description={c.description}
-                />
+          <Space unit={4} />
+          <Grid item xs={12} className={cn(classes.screen2, classes.section, !smDown && classes.sectionParallax)} component='section' container justify="center" alignItems="center">
+            <Grid item xs={12} xl={12} className={classes.screen2InnerContainer}>
+              <div className={!smDown ? classes.specialCardContainer : classes.specialCardContainerMobile}>
+                { smDown
+                ? <SpecialCardSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
+                : <ParallaxSpecialCards />
+                }
+              </div>
+            </Grid>
+          </Grid>
+          {smDown && <Space unit={4} />}
+          <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
+            <Paper className={classes.screenPodcast}>
+              {/* <Slider items={podcasts} width={400} visible={5}>
+                {(p) => (
+                  <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                    <Podcast card={p}/>
+                  </div>
+                )} 
+              </Slider> */}
+              <CarouselPodcast />
+              {/* <div className={classes.gridPodcast}>
+                {podcasts.map((p) => (
+                  <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
+                    <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
+                  </div>
+                )) }
+              </div> */}
+            </Paper>
+          </Grid>
+          
+          <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} className={classes.sectionContent}>
+              <Typography align="left" variant="h2">Crew</Typography>
+              <Space />
+              <div className={classes.crewContainer}>
+                {crew.map(i => (
+                    <CrewCard key={i.id} src={i.src} alt={i.alt} name={i.name} role={i.role} />
                 ))}
-          </div>
-        </Grid>
-      </Grid>
-      <Space unit={4} />
-      <Grid container style={{ position: 'relative', flexWrap: 'nowrap' }} direction='row' component='section' className={classes.section}>
-        <Paper className={classes.screenPodcast}>
-          {/* <Slider items={podcasts} width={400} visible={5}>
-            {(p) => (
-              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-                <Podcast card={p}/>
               </div>
-            )} 
-          </Slider> */}
-          <CarouselPodcast />
-          {/* <div className={classes.gridPodcast}>
-            {podcasts.map((p) => (
-              <div key={p.id} style={{ height: '20rem', padding: '2rem 2rem', boxSizing: 'border-box' }}>
-                <Podcast guestName={p.guestName} guestImgSrc={p.src} date={moment().format('D MMM YY')} length={p.length} imgs={p.imgs} occupation={p.occupation} />
-              </div>
-            )) }
-          </div> */}
-        </Paper>
-      </Grid>
-      
-      <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} className={classes.sectionContent}>
-          <Typography align="left" variant="h2">Crew</Typography>
-          <Space />
-          <div className={classes.crewContainer}>
-            {crew.map(i => (
-                <CrewCard key={i.id} src={i.src} alt={i.alt} name={i.name} role={i.role} />
-            ))}
-          </div>
+            </Grid>
+          </Grid>
+          {/* <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7} className={classes.sectionContent}>
+              <Typography align="right" variant="h3">Associative handlers</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen4, classes.section)} component='section' container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="left" variant="h3">Associative models</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+              <Typography align="center" variant="h3">Used technologies</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen6)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="right" variant="h3">Performance</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen7)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="left" variant="h3">Transactions</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen8)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="right" variant="h3">Engines</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+              <Typography align="center" variant="h3">Cloud solution</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="right" variant="h3">Roadmap</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="left" variant="h3">Articles</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7}>
+              <Typography align="right" variant="h3">Invest</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
+            <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
+              <Typography align="center" variant="h3">Community</Typography>
+              <Typography align="left">Coming soon...</Typography>
+            </Grid>
+          </Grid> */}
         </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen3, classes.section)} component='section' container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7} className={classes.sectionContent}>
-          <Typography align="right" variant="h3">Associative handlers</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen4, classes.section)} component='section' container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="left" variant="h3">Associative models</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-          <Typography align="center" variant="h3">Used technologies</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen6)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="right" variant="h3">Performance</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen7)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="left" variant="h3">Transactions</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen8)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="right" variant="h3">Engines</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-          <Typography align="center" variant="h3">Cloud solution</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen2)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="right" variant="h3">Roadmap</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen3)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="left" variant="h3">Articles</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen4)} component={Paper} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7}>
-          <Typography align="right" variant="h3">Invest</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={cn(classes.screen5)} container justify="center" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={7} component={Paper} elevation={0}>
-          <Typography align="center" variant="h3">Community</Typography>
-          <Typography align="left">Coming soon...</Typography>
-        </Grid>
-      </Grid>
-    </Grid>
   </>);
 };

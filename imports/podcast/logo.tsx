@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 const trans1 = (x, y) => `translate3d(${x / 6}px,${y / 6}px,0)`;
 
-export const LogoImage = ({
+export const LogoImage = React.memo(({
   src,
   alt = '',
   top = 0,
@@ -42,4 +42,4 @@ export const LogoImage = ({
       <img src={src} alt={alt} className={classes.image}/>
     </a.div>
   )
-}
+})
