@@ -1,12 +1,11 @@
-import { Box, makeStyles, Typography, Zoom, Tooltip } from '../framework';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { a, useSpring } from 'react-spring';
+import { ICard } from '../../pages/new';
+import { Box, GravityCard, makeStyles, Tooltip, Typography, Zoom } from '../framework';
 import { Play } from '../icons/play';
 import { LogoImage } from './logo';
-
-import { useSpring, a } from 'react-spring';
-import { GravityCard, useMediaQuery } from '../framework';
 import { PodcastSource } from './podcast-source';
-import { ICard } from '../../pages/new';
+
 
 interface IImage {
   id: string;
@@ -46,7 +45,6 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: '-25%',
     left: '-25%',
-    // background: 'linear-gradient(#202a38 .025em, transparent .025em), linear-gradient(90deg, #202a38 .025em, transparent .025em)',
     background: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
     backgroundSize: '1em 1em',
   },
@@ -89,7 +87,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2];
 const trans1 = (x, y) => `translate3d(${x / 2}px,${y / 2}px,0)`;
 const trans2 = (x, y) => `translate3d(${x / 18}px,${y / 18}px,0)`;
 const trans3 = (x) => `translateX(${x / 15}px)`;
