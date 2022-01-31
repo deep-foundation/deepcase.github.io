@@ -51,9 +51,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     borderRadius: 5,
     paddingTop: 48,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
     boxSizing: 'border-box',
+    '@media(min-width: 1960px)': {
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
+    }
   },
   wrapperDown: {
   },
@@ -191,7 +195,7 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const SpecialCard = ({
+export const SpecialCard = React.memo(({
   title,
   src,
   alt,
@@ -200,6 +204,8 @@ export const SpecialCard = ({
   icon1,
   icon2,
   icon3,
+  fullText,
+  ...props
 }:{
   title: string;
   src?: string;
@@ -209,6 +215,8 @@ export const SpecialCard = ({
   icon1?: any;
   icon2?: any;
   icon3?: any;
+  fullText?: any;
+  [prop: string]: any;
 }) => {
   const classes = useStyles();
 
@@ -221,7 +229,7 @@ export const SpecialCard = ({
     return [x - (box.left + (box.width / 2)), y - (box.top + (box.height / 1.7))];
   };
 
-  return (<GravityCard paperComponent='div' setRef={setRef} PaperProps={{ elevation: 0 }} ym={0.1} xm={-0.9}>
+  return (<GravityCard paperComponent='div' setRef={setRef} PaperProps={{ elevation: 0 }} ym={0.1} xm={-0.9} {...props}>
       <div className={classes.wrapperMain} ref={ref} onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y), borderColor: '#00a9f4' })} onMouseLeave={() => set({ xy: [0,0], borderColor: '#393d40' })} >
         <div className={classes.wrapperUp}>
           <div className={classes.contentWrapper}>
@@ -289,4 +297,4 @@ export const SpecialCard = ({
       </div>
     </GravityCard>
   )
-}
+})

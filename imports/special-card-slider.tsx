@@ -378,10 +378,10 @@ const items: CarouselItem[] = podcasts.map( p => ({
 		)
 }));
 
-export const CarouselPodcast = () => <Carousel items={items} itemWidth={600} />;
+export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} />);
 
 
-export const SpecialCardSlider = ({
+export const SpecialCardSlider = React.memo(({
 	cardsContent, 
   itemsPerSlide = 2,
 }:{
@@ -429,4 +429,4 @@ export const SpecialCardSlider = ({
       </Button>
     </div>
   );
-}
+})
