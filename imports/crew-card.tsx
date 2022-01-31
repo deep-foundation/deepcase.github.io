@@ -1,6 +1,5 @@
 import { Box, makeStyles, Typography, GravityCard } from './framework';
-import React, { useRef, useState } from 'react';
-import { a, useSpring } from 'react-spring';
+import React, { useRef } from 'react';
 
 const useStyles = makeStyles(theme => ({
   containerCrewItem: {
@@ -22,11 +21,13 @@ const useStyles = makeStyles(theme => ({
         transform: 'scale(0.95)',
       },
       '& [data-id="containerImage"]': {
-        mixBlendMode: 'color-burn',
+        mixBlendMode: 'difference',
       },
     }
   },
   containerImage: {
+    position: 'absolute',
+    top: 0, left: 0,
     background: 'transparent', 
     overflow: 'hidden',
     boxSizing: 'border-box',
@@ -51,16 +52,14 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     opacity: 0,
-    // mixBlendMode: 'none',
     transition: 'all 1s ease-out',
     '&:hover': {
       opacity: 1,
-      // mixBlendMode: 
     }
   }
 }))
 
-export const CrewCard = ({
+export const CrewCard = React.memo(({
   src,
   alt,
   name,
@@ -71,24 +70,22 @@ export const CrewCard = ({
   name: string;
   role?: string; 
 }) => {
-  const [hover, setHover] = useState(false);
   const classes = useStyles();
   const rootRef = useRef();
-  
-//@ts-ignore
-  const { s } = useSpring(() => ({
-    s: hover == true ? 1.2 : 1,
-    config: { mass: 2, tension: 150, friction: 100 }
-  }));
 
   return (<GravityCard paperComponent='div' setRef={rootRef} PaperProps={{ elevation: 0 }} zm={1.3} className={classes.containerCrewItem}>
+    <div style={{position: 'relative'}}>
       <Box data-id="containerImage" className={classes.containerImage}>
         <img src={src} alt={alt} className={classes.img} />
       </Box>
+      <Box data-id="containerImage" className={classes.containerImage}>
+        <img src={src} alt={alt} className={classes.img} />
+      </Box>
+    </div>
       <div className={classes.filterText}>
         <Typography variant='body1'>{name}</Typography>
         <Typography variant='caption'>{role}</Typography>
       </div>
     </GravityCard>
   )
-}
+})
