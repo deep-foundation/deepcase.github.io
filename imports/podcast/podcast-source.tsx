@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const PodcastSource = ({
+export const PodcastSource = React.memo(({
   switcher,
   card: { links },
 }:{
@@ -59,4 +59,4 @@ export const PodcastSource = ({
       </List>
     </a.div>))}</>
   )
-}
+})
