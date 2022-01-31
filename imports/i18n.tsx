@@ -13,7 +13,10 @@ const resources = {
   },
   ru: {
     translation: {
-      "Welcome to React": "РАША"
+      "Welcome to React": "РАША",
+      'talks-form-write-to-us': 'напишите нам',
+      'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в дискорд на канал <code>#hi</code>',
+
     }
   }
 };
