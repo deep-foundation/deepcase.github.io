@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const TalkingPoints = ({
+export const TalkingPoints = React.memo(({
   refScrollContainer,
 }: {
   refScrollContainer: any;
@@ -228,4 +228,4 @@ export const TalkingPoints = ({
       </div>
     </div>
   )
-}
+})
