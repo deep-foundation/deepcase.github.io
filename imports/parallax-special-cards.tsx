@@ -24,15 +24,18 @@ const useStyles = makeStyles(theme => ({
   absoluteLeftFlagContainerParallax: {
     position: 'absolute',
     top: 0, left: 0,
-    transform: 'translate(100%, -50%)',
-    '@media(max-width: 1900px)': {
-      transform: 'translate(-10vw, -50%)',
-    }
+    transform: 'translate(10vw, -50%)',
+    // '@media(max-width: 1900px)': {
+    //   transform: 'translate(10vw, -50%)',
+    // }
   },
   absoluteRightFlagContainerParallax: {
     position: 'absolute',
     top: 0, right: 0,
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-10vw, -50%)',
+    // '@media(max-width: 1900px)': {
+    //   transform: 'translate(-10vw, -50%)',
+    // }
   },
   typography: {
     color: '#ffffffba',
@@ -42,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     height: '30vh',
     position: 'absolute',
     top: 0, 
-    transform: 'translate(100%, -50%)',
+    transform: 'translate(calc(100vw - 45vw - 10vw), -50%)',
   },
   
   textLeftParallax: {
@@ -51,10 +54,10 @@ const useStyles = makeStyles(theme => ({
     opacity: 0.85,
     position: 'absolute',
     top: 0, 
-    transform: 'translate(50%, -50%)',
-    '@media(max-width: 1900px)': {
-      transform: 'translate(25%, -50%)',
-    }
+    transform: 'translate(10vw, -50%)',
+    // '@media(max-width: 1900px)': {
+    //   transform: 'translate(25%, -50%)',
+    // }
   },
   flagParallax: {
     height: '30vh',
@@ -90,6 +93,13 @@ export const ParallaxSpecialCards = React.memo(() => {
 
   const classes = useStyles();
 
+  // return null;
+  // ЗДЕСЬ
+  // Если добавить этот return - тем самым оборвать функцию и не дать ей сделать что ниже - то ошибки нет. Ошибка тут.
+  // Я удалил все флаги кроме первого, ошибка осталась. Я не стал дебажить дальше, но если нужна помощь поймать этого гада,
+  // Пожалуйста скажи сразу, и мы его вместе замочим. Подозреваю противная ошибка, я вот сейчас не знаю куда ее копать если честно.
+  // Посмотрим вместе?§
+
   return (<>
         <ParallaxLayer offset={1.9} speed={0.1}>
           <div className={classes.relativePointParallax}>
@@ -117,7 +127,7 @@ export const ParallaxSpecialCards = React.memo(() => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={2.35} speed={0.1}>
+        <ParallaxLayer offset={2.55} speed={0.1}>
           <div className={classes.relativePointParallax}>
             <div className={classes.textLeftParallax}>
               <Typography variant='body1' className={classes.typography}>
@@ -126,7 +136,7 @@ export const ParallaxSpecialCards = React.memo(() => {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.35} speed={0.35}>
+        <ParallaxLayer offset={2.55} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteRightFlagContainerParallax}>
               <SpecialCard
@@ -141,7 +151,7 @@ export const ParallaxSpecialCards = React.memo(() => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={2.85} speed={0.1}>
+        <ParallaxLayer offset={3.3} speed={0.1}>
           <div className={classes.relativePointParallax}>
             <div className={classes.textParallax}>
               <Typography variant='body1' align='right' className={classes.typography}>
@@ -151,7 +161,7 @@ export const ParallaxSpecialCards = React.memo(() => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={2.85} speed={0.35}>
+        <ParallaxLayer offset={3.3} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteLeftFlagContainerParallax}>
               <SpecialCard
@@ -166,7 +176,7 @@ export const ParallaxSpecialCards = React.memo(() => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={3.25} speed={0.1}>
+        <ParallaxLayer offset={4} speed={0.1}>
           <div className={classes.relativePointParallax}>
             <div className={classes.textLeftParallax}>
               <Typography variant='body1' className={classes.typography}>
@@ -189,7 +199,7 @@ export const ParallaxSpecialCards = React.memo(() => {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={3.25} speed={0.35}>
+        <ParallaxLayer offset={4} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteRightFlagContainerParallax}>
               <SpecialCard

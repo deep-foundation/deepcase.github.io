@@ -1,6 +1,6 @@
 import { makeStyles, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '../framework';
 import React from 'react';
-import { ICard } from '../../pages/new';
+import { ICard } from '../../pages';
 import { useTransition, a } from 'react-spring';
 
 

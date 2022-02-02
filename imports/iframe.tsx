@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSpring } from 'react-spring';
 import { GravityCard, makeStyles, Typography } from './framework';
 
+
 const useStyles = makeStyles(theme => ({
   frameContainer: {
     position: 'relative',
@@ -25,22 +26,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     position: 'relative',
-  },
-  titleDC: {
-    position: 'absolute',
-    top: '-2rem',
-    left: 0,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    '& > :nth-child(1)': {
-      marginRight: 'calc(1rem + 0.5vmax)',
-    },
-    '@media(max-width: 400px)': {
-      flexDirection: 'column',
-      marginBottom: '2rem',
-    },
   },
 }));
 
@@ -82,10 +67,6 @@ export const IFrame = React.memo(({src}:{src: string;}) => {
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
       >
-        <div className={ classes.titleDC }>
-          <Typography align="left" variant="h4">Deep.Case</Typography>
-          <Typography align="left" variant="body2">pre alpha version</Typography>
-        </div>
         <div className={classes.frameContainer}>
           <iframe src={src}
             width={1600}
