@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { a, useSpring } from 'react-spring';
-import { ICard } from '../../pages';
+import { ICard } from '../../pages/parallax';
 import { Box, GravityCard, makeStyles, Tooltip, Typography, Zoom } from '../framework';
 import { Play } from '../icons/play';
 import { LogoImage } from './logo';
