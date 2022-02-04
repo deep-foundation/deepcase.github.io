@@ -72,6 +72,7 @@ export const IFrame = React.memo(({src}:{src: string;}) => {
             width={1600}
             height={900}
             frameBorder={0}
+            title='deep case editor'
           />
         </div>
       </div>

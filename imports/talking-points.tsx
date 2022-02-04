@@ -11,7 +11,7 @@ const chance = new Chance();
 const useStyles = makeStyles(theme => ({
   containerListTalkingPoints: {
     position: 'relative',
-    height: '100%',
+    height: '70%',
   },
   mainTalkingPoints: {
     height: '100%', 
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   active: {
     opacity: 1,
-    fontSize: 'calc(22px + 1.9vmax)',
+    fontSize: 'calc(15px + 1.9vmax)',
   }
 }))
 
@@ -193,7 +193,7 @@ export const TalkingPoints = React.memo(({
   const xlUp = useMediaQuery('min-width: 1620px');
   const down1024 = useMediaQuery('max-width: 1025px');
 
-  return(<div className={classes.containerListTalkingPoints} onClick={() => {
+  return(<section className={classes.containerListTalkingPoints} onClick={() => {
     enabledRef.current = !enabledRef.current;
   }}>
       <div className={classes.leftColumnTalkingPoints}  ref={leftColumnTalkingPointsRef}>
@@ -226,6 +226,6 @@ export const TalkingPoints = React.memo(({
           </a.div>
         ))}
       </div>
-    </div>
+    </section>
   )
 })

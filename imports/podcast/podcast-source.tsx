@@ -1,4 +1,4 @@
-import { makeStyles, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '../framework';
+import { makeStyles, List, ListItem, ListItemAvatar, Avatar, ListItemText, ButtonBase } from '../framework';
 import React from 'react';
 import { ICard } from '../../pages';
 import { useTransition, a } from 'react-spring';
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
   },
   logoSourcePodcast: {
     display: 'block',
-    width: '100%',
   },
 }));
 
@@ -47,13 +46,15 @@ export const PodcastSource = React.memo(({
   return(<>{transitions((style, item) => (item && <a.div style={style} className={classes.containerPodcastSource}>
       <List>
         {links.map(s => (
-          <ListItem key={s.provider.alt} className={classes.sourcePodcastBlock} button alignItems='center' component='a' href={s.href}>
-            <ListItemAvatar>
-              <div style={{overflow: 'hidden', width: '2rem', height: '2rem'}}>
-                <img src={s.provider.icon} alt={s.provider.alt} className={classes.logoSourcePodcast} />
-              </div>
-            </ListItemAvatar>
-            <ListItemText primary={s.provider.title} />
+          <ListItem key={s.provider.alt} className={classes.sourcePodcastBlock} alignItems='center' aria-label={s.provider.alt}>
+            <ButtonBase href={s.href} style={{width: '100%'}} centerRipple>
+              <ListItemAvatar>
+                <div style={{overflow: 'hidden', width: '2rem', height: '2rem'}}>
+                  <img src={s.provider.icon} alt={s.provider.alt} width='100%' height='auto' className={classes.logoSourcePodcast} />
+                </div>
+              </ListItemAvatar>
+              <ListItemText primary={s.provider.title} />
+            </ButtonBase>
           </ListItem>
         ))}
       </List>

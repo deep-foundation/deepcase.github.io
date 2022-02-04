@@ -90,23 +90,23 @@ export const TalksForm = React.memo(({
         <div className={classes.contentContainer}>
           <Typography variant='h1' className={classes.titleModal} align='center'>{t('talks-form-write-to-us')}</Typography>
           <Space unit={2} />
-          <Button href='https://discord.com/invite/vNJCTK4nZB' className={classes.discordButton}>
+          <Button href='https://discord.gg/RD8wFKtujH' className={classes.discordButton} aria-label='discord'>
             <img src='/discord.svg' alt='Discord' width='40%' />
           </Button>
           <div className={classes.buttonsContainer}>
-            <IconButton href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' className={classes.imageContainer}>
+            <IconButton href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' className={classes.imageContainer} aria-label='you tube'>
               <img src='/source/youtube.png' alt='YouTube' width='100%' />
             </IconButton>
-            <IconButton href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' className={classes.imageContainer}>
+            <IconButton href='https://www.facebook.com/DeepFoundation-101491865581762' className={classes.imageContainer} aria-label='facebook'>
               <img src='/fb.png' alt='Facebook' width='100%' />
             </IconButton>
-            <IconButton href='https://vk.com/deep.foundation' className={classes.imageContainer}>
+            <IconButton href='https://vk.com/deep.foundation' className={classes.imageContainer} aria-label='vkontakte'>
               <img src='/vk.png' alt='VKontakte' width='100%' />
             </IconButton>
-            <IconButton href='https://github.com/deep-foundation' className={classes.imageContainer}>
+            <IconButton href='https://github.com/deep-foundation' className={classes.imageContainer} aria-label='git hub'>
               <img src='/github.png' alt='GitHub' width='100%' />
             </IconButton>
-            <IconButton href='https://www.patreon.com/deepfoundation?fan_landing=true' className={classes.imageContainer}>
+            <IconButton href='https://www.patreon.com/deepfoundation?fan_landing=true' className={classes.imageContainer} aria-label='patreon'>
               <img src='/pt.png' alt='Patreon' width='100%' />
             </IconButton>
           </div>

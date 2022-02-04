@@ -39,9 +39,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'self-start',
     margin: '0 auto',
   },
-  img: {
-    width: '100%',
-  },
   filterText: {
     display: 'flex',
     flexDirection: 'column',
@@ -52,6 +49,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     opacity: 0,
+    boxSizing: 'border-box',
+    padding: '0 0.5rem',
     transition: 'all 1s ease-out',
     '&:hover': {
       opacity: 1,
@@ -76,16 +75,16 @@ export const CrewCard = React.memo(({
   return (<GravityCard paperComponent='div' setRef={rootRef} PaperProps={{ elevation: 0 }} zm={1.3} className={classes.containerCrewItem}>
     <div style={{position: 'relative'}}>
       <Box data-id="containerImage" className={classes.containerImage}>
-        <img src={src} alt={alt} className={classes.img} />
+        <img src={src} alt={alt} width='100%' height='auto' />
       </Box>
       <Box data-id="containerImage" className={classes.containerImage}>
-        <img src={src} alt={alt} className={classes.img} />
-      </Box>
-    </div>
+        <img src={src} alt={alt} width='100%' height='auto' />
       <div className={classes.filterText}>
         <Typography variant='body1'>{name}</Typography>
-        <Typography variant='caption'>{role}</Typography>
+        <Typography variant='caption' align='center'>{role}</Typography>
       </div>
+      </Box>
+    </div>
     </GravityCard>
   )
 })

@@ -10,9 +10,6 @@ const useStyles = makeStyles({
     left: (props: any) => `${props.left}%`,
     top: (props: any) => `${props.top}%`,
   },
-  image: {
-    width: '100%'
-  },
 });
 
 const trans1 = (x, y) => `translate3d(${x / 6}px,${y / 6}px,0)`;
@@ -39,7 +36,7 @@ export const LogoImage = React.memo(({
   });
 
   return(<a.div className={classes.container} style={{ transform: spring.xy.to(trans1) }}>
-      <img src={src} alt={alt} className={classes.image}/>
+      <img src={src} alt={alt} width='100%' height='auto' />
     </a.div>
   )
 })

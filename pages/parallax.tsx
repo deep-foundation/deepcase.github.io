@@ -18,7 +18,6 @@ import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import * as Sentry from '@sentry/nextjs';
-import { SpecialCardsText } from '../imports/special-cards-text';
 
 
 Sentry.init({
@@ -29,6 +28,7 @@ Sentry.init({
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
+
 
 export interface IProvider { 
   icon: string;
@@ -423,8 +423,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
     backgroundSize:'80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
     backgroundPosition: 'center',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
+    overflow: 'hidden',
     animation: '5s $deeplinksBackground ease'
   },
   
@@ -535,7 +534,7 @@ export function PageContent() {
   const [electronOpen, setElectronOpen] = useState(null);
   
   const [ openTalksModal, setOpenTalksModal ] = useSwitcherModalTalks();
-  const scrollingRef = useRef(null);
+  const parallaxRef = useRef(null);
   const refMenuButtons = useRef();
 
   const handleClick = useCallback((event) => {
@@ -547,110 +546,118 @@ export function PageContent() {
   }, []);
   const smDown = useMediaQuery('@media(max-width: 1420px');
   const max825 = useMediaQuery('@media(max-width: 825px');
-  const max900 = useMediaQuery('@media(max-width: 900px');
   const up870 = useMediaQuery('max-width: 870px');
 
   const onOpenTalksModal = useCallback(() => setOpenTalksModal(true), []);
   const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
 
   return (<>
-      <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} />
-      <main ref={scrollingRef} className={classes.root}>
-        <Space unit={7} />
-         
-        { max825 && <>
-          <div className={classes.menuButtons} ref={refMenuButtons}>
-            <Button aria-label='documents' variant="text">Docs</Button>
-            <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>Talks</Button>
-            <Button aria-label='github ' variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
-          </div>
-          <Space />
-          <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
-        </> }
-        
-        <TalkingPoints refScrollContainer={scrollingRef}/>
-      
-      
-        <Grid container justify="center" alignItems="center" component='section'>
-          <Grid item xs={12} md={8} className={classes.screen1GridItem} component={Paper} elevation={0}>
-            <div className={ classes.titleDC }>
-              <Typography align="left" variant="h1">Deep.Case</Typography>
-              <Typography align="left" variant="body2">pre alpha version</Typography>
-            </div>
-            {/* <img src="/screen1.png" style={{ width: '100%' }}/> */}
-            <IFrame src='http://deep.deep.foundation:3007/' />
-            <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
-              <Grid item xs={12}><Button aria-label='gitpod'
-                variant="outlined" color="primary"
-                size="large"
-              ><div>
-                <Typography variant='body2'>GitPod</Typography>
-                <Typography variant="caption">(cloud demo)</Typography>
-              </div></Button></Grid>
-              <Grid item xs={12}>
-                <ButtonGroup aria-label='download deep case' variant="outlined">
-                  <Button aria-label='download deep cased'
-                    variant="contained" color="primary"
-                    size="large"
-                  ><div>
-                    <Typography variant='body2' className={classes.typographyDownload}>Download</Typography>
-                    <Typography variant="caption" className={classes.typographyDownload}>(electron)</Typography>
-                  </div></Button>
-                  <Button aria-label='select format file '
-                    variant="outlined" color="primary"
-                    onClick={handleClick}
-                  ><div>
-                  <ArrowDropDown />
-                </div></Button>
-                </ButtonGroup>
-                <Menu
-                  anchorEl={electronOpen}
-                  keepMounted
-                  open={!!electronOpen}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>.app</MenuItem>
-                  <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
-                  <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
-                </Menu>
+      <UpperMenu scrollContainer={parallaxRef} refMenuButtons={refMenuButtons} />
+      <div ref={parallaxRef} className={classes.root}>
+        <Parallax pages={6}> 
+          
+            {/* <Space unit={7} /> */}
+         <ParallaxLayer offset={max825 ? 0.2 : 0} speed={0}>
+          { max825 && <>
+              <div className={classes.menuButtons} ref={refMenuButtons}>
+                <Button aria-label='documents' variant="text">Docs</Button>
+                <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>Talks</Button>
+                <Button aria-label='github ' variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
+              </div>
+              <Space />
+              <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
+            </>
+          }
+         </ParallaxLayer>
+          
+          <ParallaxLayer offset={0.1} speed={0}>
+            <TalkingPoints refScrollContainer={parallaxRef}/>
+          </ParallaxLayer>
+          
+          <ParallaxLayer offset={0.7} speed={0}>
+          <Grid item xs={12} component='section'>
+              <Grid container justify="center" alignItems="center">
+                <Grid item xs={12} md={8} className={classes.screen1GridItem} component={Paper} elevation={0}>
+                  <div className={ classes.titleDC }>
+                    <Typography align="left" variant="h1">Deep.Case</Typography>
+                    <Typography align="left" variant="body2">pre alpha version</Typography>
+                  </div>
+                  {/* <img src="/screen1.png" style={{ width: '100%' }}/> */}
+                  <IFrame src='http://deep.deep.foundation:3007/' />
+                  <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
+                    <Grid item xs={12}><Button aria-label='gitpod'
+                      variant="outlined" color="primary"
+                      size="large"
+                    ><div>
+                      <Typography variant='body2'>GitPod</Typography>
+                      <Typography variant="caption">(cloud demo)</Typography>
+                    </div></Button></Grid>
+                    <Grid item xs={12}>
+                      <ButtonGroup aria-label='download deep case' variant="outlined">
+                        <Button aria-label='download deep cased'
+                          variant="contained" color="primary"
+                          size="large"
+                        ><div>
+                          <Typography variant='body2' className={classes.typographyDownload}>Download</Typography>
+                          <Typography variant="caption" className={classes.typographyDownload}>(electron)</Typography>
+                        </div></Button>
+                        <Button aria-label='select format file '
+                          variant="outlined" color="primary"
+                          onClick={handleClick}
+                        ><div>
+                        <ArrowDropDown />
+                      </div></Button>
+                      </ButtonGroup>
+                      <Menu
+                        anchorEl={electronOpen}
+                        keepMounted
+                        open={!!electronOpen}
+                        onClose={handleClose}
+                      >
+                        <MenuItem onClick={handleClose}>.app</MenuItem>
+                        <MenuItem onClick={handleClose} disabled>.exe</MenuItem>
+                        <MenuItem onClick={handleClose} disabled>.deb</MenuItem>
+                      </Menu>
+                    </Grid>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-
-        <Space unit={10} />
-
-        <section className={classes.gridAreaWrap}>
-          <SpecialCardsText />
-        </section>
-
-        <Space unit={max900 ? 14 : 4} />
-        <section>
-          <div className={classes.gridAreaWrap}>
-            <div className={classes.sectionPositioningZone}>
-              <Typography align="left" variant="h2">Podcasts</Typography>
+          </ParallaxLayer>
+          { smDown
+          ?  <ParallaxLayer offset={2} speed={0}>
+              <SpecialCardSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
+             </ParallaxLayer>
+          : <ParallaxSpecialCards />
+          }
+          <ParallaxLayer offset={4.5} speed={0}>
+            {smDown && <Space unit={4} />}
+            <div className={classes.gridAreaWrap}>
+              <div className={classes.sectionPositioningZone}>
+                <Typography align="left" variant="h2">Podcasts</Typography>
+              </div>
             </div>
-          </div>
-          <Space unit={4} />
-          <Paper className={classes.screenPodcast}>
-            <CarouselPodcast />
-          </Paper>
-        </section>
-      
-      
-        <Space unit={max900 ? 14 : 6} />
-        <section className={classes.gridAreaWrap}>
-          <div className={classes.sectionPositioningZone}>
-            <Typography align="left" variant="h2">Crew</Typography>
-            <Space unit={5} />
-            <div className={classes.crewContainer}>
-              {crew.map(i => (
-                <CrewCard key={i.id} src={i.src} alt={i.alt} name={i.name} role={i.role} />
-              ))}
+              <Space unit={5} />
+            <Paper className={classes.screenPodcast}>
+              <CarouselPodcast />
+            </Paper>
+          </ParallaxLayer>
+          
+          <ParallaxLayer offset={5.3} speed={0.1}>
+            <div className={classes.gridAreaWrap}>
+              <div className={classes.sectionPositioningZone}>
+                <Typography align="left" variant="h2">Crew</Typography>
+                <Space unit={5} />
+                <div className={classes.crewContainer}>
+                  {crew.map(i => (
+                    <CrewCard key={i.id} src={i.src} alt={i.alt} name={i.name} role={i.role} />
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </ParallaxLayer>
+        </Parallax>
+      </div>
     </>
   );
 };

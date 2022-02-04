@@ -111,7 +111,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
   
   useEffect(() => {
     const id = setInterval(() => {
-      const scrollArea = scrollContainer?.current?.children?.[0];
+      const scrollArea = scrollContainer?.current;
       const menuButtonsSize = refMenuButtons?.current?.getBoundingClientRect().top;
       const isRotateMode = scrollArea?.scrollTop < menuButtonsSize;
       const isMainMode = scrollArea?.scrollTop < 450;
@@ -194,7 +194,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                 }}>Deep.Foundation</a.h1>
               </Box>
               <div className={classes.buttons}>
-                <Button variant="text" aria-label='documentation'>
+                <Button variant="text" aria-label='documentation' href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
                   <a.span style={{
                     transformOrigin: 'top',
                     transform: fontsScroll.x
@@ -240,7 +240,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                     <div className={cn(classes.cubeSurface, classes.emptySurface1)} />
                     <div className={cn(classes.cubeSurface, classes.emptySurface2)} />
                     <div className={cn(classes.cubeSurface, classes.buttonsMenu)}>
-                      <Button variant="text" aria-label='documentation'>
+                      <Button variant="text" aria-label='documentation' href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
                         <a.span style={{
                           fontSize: 'calc(12px + 0.3vmax)',
                           lineHeight: 1,

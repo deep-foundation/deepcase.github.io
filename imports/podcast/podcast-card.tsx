@@ -7,16 +7,6 @@ import { LogoImage } from './logo';
 import { PodcastSource } from './podcast-source';
 
 
-interface IImage {
-  id: string;
-  src: string;
-  alt?: string;
-  top?: number;
-  left?: number;
-  width?: number;
-  transition?: any;
-}
-
 const useStyles = makeStyles(theme => ({
   podcastCardContainer: {
     display:'flex', 
@@ -34,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
   },
   image: {
-    width: '100%',
     display: 'block',
     transform: 'scale(0.5)',
     transformOrigin: 'bottom',
@@ -162,7 +151,7 @@ export const Podcast = React.memo(({
             <picture>
               <source srcSet={guestImgSrc} type="image/webp" />
               <source srcSet={guestImgSrcPng} type="image/png" /> 
-              <img src={guestImgSrc} alt={guestName} className={classes.image} />
+              <img src={guestImgSrc} alt={guestName}  width='100%' height='auto' className={classes.image} />
             </picture>
           </a.div>
             <a.div className={classes.guestNameBlock} style={{ transform: spring.xy.to(trans2) }}>
