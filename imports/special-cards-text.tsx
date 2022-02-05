@@ -5,7 +5,7 @@ import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import cn from 'classnames';
 import React, { useRef } from "react";
-import { makeStyles, Typography } from './framework';
+import { makeStyles, Typography, useMediaQuery } from './framework';
 import { SpecialCard } from "./special-card";
 
 
@@ -95,6 +95,7 @@ const useStyles = makeStyles(theme => ({
 export const SpecialCardsText = React.memo(() => {
 
   const classes = useStyles();
+  const max900 = useMediaQuery('@media(max-width: 900px');
 
   return (<div className={classes.containerSpecialCards}>
       
@@ -111,14 +112,14 @@ export const SpecialCardsText = React.memo(() => {
                 description='Больше нет разницы между вашим рабочим столом и пространством вашего мышления'
               />
             </div>
-            <Typography variant='body1' align='center' className={classes.typography}>
+            <Typography variant='body1' align={max900 ? 'justify' : 'center'} className={classes.typography}>
               Представьте себе некоторое абстрактное пространство, в котором возможны, изначально, только операции со связями. С Deep.Case можно находится внутри данных, так, будто бы они дополняют ваше собственное мышление. Закреплять связи в пространстве вокруг себя, и автоматизировать их поведение. Пространство Deep.Case может быть использовано аналитиками, как рабочее пространство для данных, или как пространство сборки, администрирования, использования и мониторинга состояния проекта. Это расширяемая среда построенная на d3/threejs/AFrame.
             </Typography>
           </div>
 
       
           <div className={classes.gridCardRight}>
-            <Typography variant='body1' align='center' className={classes.typography}>
+            <Typography variant='body1' align={max900 ? 'justify' : 'center'} className={classes.typography}>
               С одной стороны, Deep это система реализующая идеи Data Driven Development, так как в центре внимания ассоциативное хранимое пространство данных. С другой стороны, эти данные атомарны и представлены минимальной единей хранения смысла - ассоциативной связью, что позволяет описывать ею, любые семантические, смысловые, логические, абстрактные и т. д. конструкции в едином диалекте операций над памятью. Вместо того что бы создавать идеальный язык, или идеальную базу данных, Deep это идеальная среда доступа к ассоциативному подходу, с подменяемым ядром. Это значит в ней может быть использовано множество разных конкурирущих реализаций баз данных и языковых api доступа.
             </Typography>
             <div className={classes.specialCardsTablet}>
@@ -143,14 +144,14 @@ export const SpecialCardsText = React.memo(() => {
                 description='Вы можете написать ExecutionProvider для любых языков программирования'
               />
             </div>
-            <Typography variant='body1' align='center' className={classes.typography}>
+            <Typography variant='body1' align={max900 ? 'justify' : 'center'} className={classes.typography}>
               В Deep код хранится в связях и может обработать то или иное событие. Например можно реагировать на события как у связей конкретного типа, так и указывая строгие селекторы по диапазонам деревьям с WHERE-like синтаксисом и поддержкой join/traverse механик. Код может быть написан на любом языке, для которого создан ExecutionProvider - это Docker Image согласно нашему стандартному API, в рамках которого запускается код связанный с ним в базе. Очень скоро мы добавим официальную поддержку in-transaction обработчиков, а так-же системы для запуска кода на удаленных машинах в т. ч. на микроконтроллерах.
             </Typography>
           </div>
 
           <div className={classes.gridCardRight}>
             <div>
-              <Typography variant='body1' align='center' className={classes.typography}>
+              <Typography variant='body1' align={max900 ? 'justify' : 'center'} className={classes.typography}>
                 Больше не нужно описывать программным кодом бизнес логику и ограничения. Теперь можно описать символы операций которые вам нужны в вашем деле, и привязать к ним правила subject (кому) на object (на какие предметы) и action (на какое действие), используя для описания WHERE-like синтаксис позволяющий семантически анализировать ситуацию в момент попытки произведения операции или проверки права. Всегда можно узнать есть ли правила разрешающие выполнение некоторого action или иной операции выполнив gql запрос. Это позволяет полностью вынести бизнес логику из программных решений.
               </Typography>
               <pre>

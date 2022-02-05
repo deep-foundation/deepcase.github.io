@@ -151,7 +151,7 @@ export const Podcast = React.memo(({
             <picture>
               <source srcSet={guestImgSrc} type="image/webp" />
               <source srcSet={guestImgSrcPng} type="image/png" /> 
-              <img src={guestImgSrc} alt={guestName}  width='100%' height='auto' className={classes.image} />
+              <img src={guestImgSrc} alt={guestName}  width='100%' height='100%' className={classes.image} />
             </picture>
           </a.div>
             <a.div className={classes.guestNameBlock} style={{ transform: spring.xy.to(trans2) }}>

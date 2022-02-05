@@ -1,7 +1,7 @@
-import { makeStyles, List, ListItem, ListItemAvatar, Avatar, ListItemText, ButtonBase } from '../framework';
 import React from 'react';
-import { ICard } from '../../pages';
-import { useTransition, a } from 'react-spring';
+import { a, useTransition } from 'react-spring';
+import { ICard } from '../../pages/parallax';
+import { ButtonBase, List, ListItem, ListItemAvatar, ListItemText, makeStyles } from '../framework';
 
 
 const useStyles = makeStyles(theme => ({
@@ -50,7 +50,7 @@ export const PodcastSource = React.memo(({
             <ButtonBase href={s.href} style={{width: '100%'}} centerRipple>
               <ListItemAvatar>
                 <div style={{overflow: 'hidden', width: '2rem', height: '2rem'}}>
-                  <img src={s.provider.icon} alt={s.provider.alt} width='100%' height='auto' className={classes.logoSourcePodcast} />
+                  <img src={s.provider.icon} alt={s.provider.alt} width='100%' height='100%' className={classes.logoSourcePodcast} />
                 </div>
               </ListItemAvatar>
               <ListItemText primary={s.provider.title} />

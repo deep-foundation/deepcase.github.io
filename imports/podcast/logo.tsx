@@ -36,7 +36,7 @@ export const LogoImage = React.memo(({
   });
 
   return(<a.div className={classes.container} style={{ transform: spring.xy.to(trans1) }}>
-      <img src={src} alt={alt} width='100%' height='auto' />
+      <img src={src} alt={alt} width='100%' height='100%' />
     </a.div>
   )
 })

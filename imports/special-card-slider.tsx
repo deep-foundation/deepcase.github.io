@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { Carousel, CarouselItem } from 'react-round-carousel';
-import { ICard, IProvider } from '../pages';
+import { ICard, IProvider } from '../pages/parallax';
 import { Podcast } from './podcast/podcast-card';
 import { useSpringCarousel } from 'react-spring-carousel-js';
 import ArrowLeftRoundedIcon from '@material-ui/icons/ArrowLeftRounded';
