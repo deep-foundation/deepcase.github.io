@@ -173,7 +173,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     }  },
-    { text: 'Готовая среда хранения и работы с данными', formula: (si, ci) => {
+    { text: 'Готовая среда хранения и работы с данными', biggest: true, formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {

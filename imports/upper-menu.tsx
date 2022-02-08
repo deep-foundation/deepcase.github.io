@@ -214,7 +214,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                                     })
                                     .to(x => `scale(${x})`)
                   }}>Talks</a.span></Button>
-                <IconButton aria-label='github repository deepcase' component={'a'} href="https://github.com/deepcase/deepcase" title='github repository deepcase'><GitHub style={{color: '#fff'}}/></IconButton>
+                <IconButton aria-label='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation" title='github repository deep foundation'><GitHub style={{color: '#fff'}}/></IconButton>
               </div>
               </>
               : <div className={classes.cubeContainer}>
@@ -251,7 +251,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                                           })
                                           .to(x => `scale(${x})`)
                         }}>Docs</a.span></Button>
-                      <IconButton aria-label='github' component={'a'} href="https://github.com/deepcase/deepcase"><GitHub style={{color: '#fff'}}/></IconButton>
+                      <IconButton aria-label='github repository deep foundation' title='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation"><GitHub style={{color: '#fff'}}/></IconButton>
                       <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>
                         <a.span style={{
                           fontSize: 'calc(12px + 0.3vmax)',

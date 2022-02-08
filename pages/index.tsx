@@ -561,7 +561,7 @@ export function PageContent() {
           <div className={classes.menuButtons} ref={refMenuButtons}>
             <Button aria-label='documents' variant="text">Docs</Button>
             <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>Talks</Button>
-            <Button aria-label='github ' variant="text" href="https://github.com/deepcase/deepcase">GitHub</Button>
+            <Button aria-label='github repository deep foundation' variant="text" href="https://github.com/deep-foundation">GitHub</Button>
           </div>
           <Space />
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
@@ -577,7 +577,7 @@ export function PageContent() {
               <Typography align="left" variant="body2">pre alpha version</Typography>
             </div>
             {/* <img src="/screen1.png" style={{ width: '100%' }}/> */}
-            <IFrame src='http://deep.deep.foundation:3007/' />
+            <IFrame src='http://deep.deep.foundation:3007/?bg-transparent=true' />
             <Grid container className={classes.screen1Buttons} spacing={1} justify="flex-end">
               <Grid item xs={12}><Button aria-label='gitpod'
                 variant="outlined" color="primary"
