@@ -160,13 +160,13 @@ export const SpecialCard = React.memo(({
             <Box opacity={0} w='calc(320px - 50%)'>
               {icon1}
             </Box>
-            <a.div style={{ position: 'absolute', top: 0, left: 0, width: 'calc(320px - 50%)', transform: spring.xy.to(trans3) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans3) }}>
               {icon1}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 0, width: 'calc(320px - 50%)', transform: spring.xy.to(trans4) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans4) }}>
               {icon2}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 0, width: 'calc(320px - 50%)', transform: spring.xy.to(trans5) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans5) }}>
               {icon3}
             </a.div>
           </Box>

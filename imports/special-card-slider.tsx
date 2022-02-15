@@ -84,45 +84,45 @@ const podcasts: ICard[] = [
       width: 24,
     }]
   },
-  {
-    id: '2',
-    src: '/speakers/dima_n.webp',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Дмитрий Сотсков',
-    occupation: 'директор компании Нэти Вэб',
-    date: '08.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: 'abc',
-      },
-      {
-        provider: yaProvider,
-        href: 'abc',
-      },
-      {
-        provider: appleProvider,
-        href: 'abc',
-      },
-      {
-        provider: telegramProvider,
-        href: 'abc',
-      },
-      {
-        provider: soundcloudProvider,
-        href: 'abc',
-      },
-    ],
-    imgs: [{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/nite.png',
-      top: 55,
-      left: 75,
-      width: 20,
-    }]
-  },
+  // {
+  //   id: '2',
+  //   src: '/speakers/dima_n.webp',
+  //   srcPng: '/speakers/dima.png',
+  //   guestName: 'Дмитрий Сотсков',
+  //   occupation: 'директор компании Нэти Вэб',
+  //   date: '08.12.21',
+  //   length: '16:20',
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: 'abc',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/nite.png',
+  //     top: 55,
+  //     left: 75,
+  //     width: 20,
+  //   }]
+  // },
   {
     id: '7',
     src: '/speakers/asset_1.png',
@@ -160,6 +160,122 @@ const podcasts: ICard[] = [
       top: 70,
       left: 15,
       width: 42,
+    }]
+  },
+  {
+    id: '3',
+    src: '/speakers/alexey.webp',
+    srcPng: '/speakers/alexey.png',
+    guestName: 'Алексей',
+    occupation: 'аналитик в области оценки риска юр. лиц',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/exel.png',
+      top: 2,
+      left: 80,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/sql.png',
+      top: 55,
+      left: 75,
+      width: 18,
+    },{
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/java.png',
+      top: 70,
+      left: 6,
+      width: 14,
+    }]
+  },
+  {
+    id: '17',
+    src: '/speakers/ivan-speaker.webp',
+    srcPng: '/speakers/ivan-speaker.png',
+    guestName: 'Иван Ермолаев',
+    occupation: 'Pазработчик',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'abc',
+      },
+      {
+        provider: yaProvider,
+        href: 'abc',
+      },
+      {
+        provider: appleProvider,
+        href: 'abc',
+      },
+      {
+        provider: telegramProvider,
+        href: 'abc',
+      },
+      {
+        provider: soundcloudProvider,
+        href: 'abc',
+      },
+    ],
+    imgs: [{
+      id: 'b',
+      alt: 'java',
+      src: '/logo-speakers/java.png',
+      top: 70,
+      left: 78,
+      width: 16,
+    },
+    {
+      id: 'b',
+      alt: 'aws',
+      src: '/logo-speakers/aws.png',
+      top: 0,
+      left: 65,
+      width: 24,
+    },
+    {
+      id: 'b',
+      alt: 'spring',
+      src: '/logo-speakers/spring.png',
+      top: 50,
+      left: 65,
+      width: 42,
+    },
+    {
+      id: 'b',
+      alt: 'rust',
+      src: '/logo-speakers/rust.svg',
+      top: 70,
+      left: 10,
+      width: 14,
     }]
   },
   {

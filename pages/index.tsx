@@ -187,7 +187,7 @@ export function PageContent() {
         
         <TalkingPoints refScrollContainer={scrollingRef} />
         
-        {/* <GridArea>
+        <GridArea>
           <IFrame 
             title={
               <HStack align='baseline' spacing={8} py='1rem'>
@@ -208,7 +208,7 @@ export function PageContent() {
               </Stack>
             }
           />
-        </GridArea> */}
+        </GridArea>
         
         <Space unit={10} />
         
