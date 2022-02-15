@@ -13,9 +13,9 @@ export function useSwitcherModalTalks () {
 
 const cubeSurface = {
   display: 'block',
-  position: 'relative',
+  position: 'absolute',
   width: '100%',
-  height: 'auto',
+  // height: '100%',
 };
 const header = {
   transform: 'translate3d(0, 0, 30px)',
@@ -106,107 +106,108 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
 
   const { t } = useTranslation();
 
-  return (<Box as='header'w='100%' pos='fixed' zIndex={2}>
-      {transitions((style, item) => (item && <a.div ref={cubeRef}
-        style={{
-          width: '150vw',
-          height: 'inherit',
-          border: 'none',
-          position: 'absolute',
-          top: 0, left: 0,
-          backfaceVisibility: 'hidden',
-          perspective: 0,
-          transformStyle: 'flat',
-          perspectiveOrigin: 'top center',
-          borderTop: '1px dashed #ffffff40',
-          borderBottom: '1px dashed #ffffff40',
-          background: (max825 ? firstRotate.r : n).to({ range: [0, 0.5, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.69)', 'rgba(0, 0, 0, 99)'] }),
-          ...style
-        }}>
-        <Box
-          p='1rem 0'
-          color='#fff'
-          transformOrigin='top'
-          pos='relative'
-          w='100vw'
-          h='auto'
-          zIndex={1}
-        >
-          <Flex direction='row' justify={max825 ? 'center' : 'space-between'} align='center' p={max825 ? '0 1rem' : '0 2rem'}>
-            { !max825
-              ? <><Flex direction='row' justify='space-between' w={max825 && '100%'}>
-                <a.h1 style={{
-                  alignSelf: 'center',
-                  fontSize: 'calc(32px + 0.5vmax)',
-                  fontFamily: "'Comfortaa', 'sans-serif'",
-                  margin: 0,
-                  transformOrigin: 'top',
-                  transform: fontsScroll.x
-                                .to({
-                                  range: [0, 1, 0],
-                                  output: [1, 0.5, 1],
-                                })
-                                .to(x => `scale(${x})`),
-                }}>Deep.Foundation</a.h1>
-              </Flex>
-              <HStack spacing='1.5rem'>
-                <Button variant="ghost" as='a' aria-label='documentation' href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
-                  <a.span style={{
-                    transformOrigin: 'top',
-                    transform: fontsScroll.x
-                                    .to({
-                                      range: [0, 1, 0],
-                                      output: [1, 0.2, 1],
-                                    })
-                                    .to(x => `scale(${x})`)
-                  }}>Docs</a.span></Button>
-                <Button variant="ghost" aria-label='talks' onClick={onOpenTalksModal}>
-                  <a.span style={{
-                    transformOrigin: 'top',
-                    transform: fontsScroll.x
-                                    .to({
-                                      range: [0, 1, 0],
-                                      output: [1, 0.2, 1],
-                                    })
-                                    .to(x => `scale(${x})`)
-                  }}>Talks</a.span></Button>
-                <IconButton
-                  variant='ghost'
-                  colorScheme='teal'
-                  aria-label='github repository deep foundation'
-                  href="https://github.com/deep-foundation" 
-                  title='github repository deep foundation'
-                  as='a'
-                  fontSize='lg'
-                  icon={
-                    <a.span style={{
+  return (<><Box as='header' w='100%' pos='fixed' zIndex={2}>
+        {transitions((style, item) => (item && <a.div ref={cubeRef}
+          style={{
+            overflow: 'hidden',
+            width: '150vw',
+            height: 'inherit',
+            border: 'none',
+            position: 'absolute',
+            top: 0, left: 0,
+            backfaceVisibility: 'hidden',
+            perspective: 0,
+            transformStyle: 'flat',
+            perspectiveOrigin: 'top center',
+            borderTop: '1px dashed #ffffff40',
+            borderBottom: '1px dashed #ffffff40',
+            background: (max825 ? firstRotate.r : n).to({ range: [0, 0.5, 1], output: ['rgba(0, 0, 0, 0.19)', 'rgba(0, 0, 0, 0.69)', 'rgba(0, 0, 0, 99)'] }),
+            ...style
+          }}>
+          <Box
+            p='1rem 0'
+            color='#fff'
+            transformOrigin='top'
+            pos='relative'
+            w='100vw'
+            h='auto'
+            zIndex={1}
+          >
+            <Flex direction='row' justify={max825 ? 'center' : 'space-between'} align='center' p={max825 ? '0 1rem' : '0 2rem'}>
+              { !max825
+                ? <Flex direction='row' justify='space-between' w='100%'>
+                    <a.h1 style={{
+                      alignSelf: 'center',
+                      fontSize: 'calc(32px + 0.5vmax)',
+                      fontFamily: "'Comfortaa', 'sans-serif'",
+                      margin: 0,
                       transformOrigin: 'top',
                       transform: fontsScroll.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.2, 1],
-                                      })
-                                      .to(x => `scale(${x})`)
-                    }}><VscGithubAlt /></a.span>}
-                />
-                {/* <IconButton aria-label='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation" title='github repository deep foundation'><GitHub style={{color: '#fff'}}/></IconButton> */}
-              </HStack>
-              </>
-              : <Box 
-                w='100%' 
-                h='100%'
-                // sx={{
-                //   '@media(max-width: 825px)': {
-                //     height: 'calc(28px + 0.3vmax)'
-                //   },
-                // }}
-              >
+                                    .to({
+                                      range: [0, 1, 0],
+                                      output: [1, 0.5, 1],
+                                    })
+                                    .to(x => `scale(${x})`),
+                    }}>Deep.Foundation</a.h1>
+                  
+                  <HStack spacing='1.5rem'>
+                    <Button variant="ghost" as='a' aria-label='documentation' href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                      <a.span style={{
+                        transformOrigin: 'top',
+                        transform: fontsScroll.x
+                                        .to({
+                                          range: [0, 1, 0],
+                                          output: [1, 0.2, 1],
+                                        })
+                                        .to(x => `scale(${x})`)
+                      }}>Docs</a.span></Button>
+                    <Button variant="ghost" aria-label='talks' onClick={onOpenTalksModal}>
+                      <a.span style={{
+                        transformOrigin: 'top',
+                        transform: fontsScroll.x
+                                        .to({
+                                          range: [0, 1, 0],
+                                          output: [1, 0.2, 1],
+                                        })
+                                        .to(x => `scale(${x})`)
+                      }}>Talks</a.span></Button>
+                    <IconButton
+                      variant='ghost'
+                      colorScheme='teal'
+                      aria-label='github repository deep foundation'
+                      href="https://github.com/deep-foundation" 
+                      title='github repository deep foundation'
+                      as='a'
+                      fontSize='lg'
+                      icon={
+                        <a.span style={{
+                          transformOrigin: 'top',
+                          transform: fontsScroll.x
+                                          .to({
+                                            range: [0, 1, 0],
+                                            output: [1, 0.2, 1],
+                                          })
+                                          .to(x => `scale(${x})`)
+                        }}><VscGithubAlt /></a.span>}
+                    />
+                    {/* <IconButton aria-label='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation" title='github repository deep foundation'><GitHub style={{color: '#fff'}}/></IconButton> */}
+                  </HStack>
+                </Flex>
+                : <Box 
+                  w='100%' 
+                  h='auto'
+                  sx={{
+                    '@media(max-width: 825px)': {
+                      height: 'calc(28px + 0.3vmax)'
+                    },
+                  }}
+                >
                   <a.div style={{
                     width: '100%',
                     height: '100%',
                     position: 'relative',
                     transformStyle: 'preserve-3d',
-                    perspectiveOrigin: '100% 100%',
+                    perspectiveOrigin: 'center',
                     transform: rotate.r.to(r => `rotateX(${r*90}deg)`)}}> 
                     <Box sx={{...cubeSurface, ...header}}>
                       <a.h1 style={{
@@ -215,6 +216,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                         fontSize: 'calc(22px + 0.5vmax)',
                         fontFamily: "'Comfortaa', 'sans-serif'",
                         margin: 0,
+                        lineHeight: 1,
                         transformOrigin: 'top',
                         transform: fontsMode.x
                                             .to({
@@ -275,14 +277,15 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                                           })
                                           .to(x => `scale(${x})`)
                         }}>Talks</a.span></Button>
-                  </Box>
-                </a.div>
-              </Box>
-            }
-            <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
-          </Flex>
-        </Box>
-      </a.div>))}
-    </Box>
+                    </Box>
+                  </a.div>
+                </Box>
+              }
+            </Flex>
+          </Box>
+        </a.div>))}
+      </Box>
+      <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
+    </>
   )
 })

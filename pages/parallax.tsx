@@ -8,7 +8,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import detectBrowserLanguage from 'detect-browser-language';
 import { useCallback, useRef, useState } from 'react';
 import { CrewCard } from '../imports/crew-card';
-import { Button, ButtonGroup, Grid, makeStyles, Menu, MenuItem, Paper, Typography } from '../imports/framework';
+import { Button, ButtonGroup, Grid, makeStyles, Menu, MenuItem, Paper, Typography } from '@material-ui/core';
 import { IFrame } from '../imports/iframe';
 import { ParallaxSpecialCards } from '../imports/parallax-special-cards';
 import { Provider } from '../imports/provider';
@@ -16,7 +16,7 @@ import { Space } from '../imports/space';
 import { CarouselPodcast, SpecialCardSlider } from '../imports/special-card-slider';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
-import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
+import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu-old';
 import * as Sentry from '@sentry/nextjs';
 
 

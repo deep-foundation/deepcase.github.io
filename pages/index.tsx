@@ -174,12 +174,12 @@ export function PageContent() {
             >Docs</Button>
             <Button aria-label='talks' variant='ghost' as='button' onClick={onOpenTalksModal}>Talks</Button>
             <Button aria-label='github repository deep foundation' as='a' variant='ghost' href="https://github.com/deep-foundation">GitHub</Button>
-            <Link 
+            {/* <Link 
               aria-label='documentation'
               // isExternal
               href='https://github.com/deep-foundation'>
               GitHub
-            </Link>
+            </Link> */}
           </HStack>
           <Space />
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
