@@ -113,7 +113,7 @@ export const SpecialCard = React.memo(({
                 {icon1}
               </Box>
             </Box>
-            <Space unit={3} />
+            {/* <Space unit={3} /> */}
             <Box opacity={0}>
               <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
             </Box>
