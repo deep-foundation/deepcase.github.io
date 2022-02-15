@@ -56,23 +56,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: 'https://www.youtube.com/watch?v=OBem0jEQsVA&ab_channel=DeepFoundation',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -134,23 +134,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -173,23 +173,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -226,23 +226,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -289,23 +289,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -342,23 +342,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -388,23 +388,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -435,23 +435,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: 'https://www.youtube.com/watch?v=_JFOhNdB9x4',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{

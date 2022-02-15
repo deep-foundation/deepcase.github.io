@@ -16,7 +16,7 @@ import { Space } from '../imports/space';
 import { CarouselPodcast, SpecialCardSlider } from '../imports/special-card-slider';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
-import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu-old';
+import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import * as Sentry from '@sentry/nextjs';
 
 

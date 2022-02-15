@@ -45,7 +45,6 @@ export const IFrame = React.memo(({
     return () => clearInterval(i);
   }, []);
   const [max825] = useMediaQuery('(max-width: 825px)');
-  console.log(max825);
   
   return (<GravityCard paperComponent={'div'} setRef={frameRef} xm={0.01} ym={0.01} style={styles}>
       <Box ref={refDiv} sx={innerContainer}

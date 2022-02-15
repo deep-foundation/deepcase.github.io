@@ -3,7 +3,7 @@ import { VscGithubAlt } from 'react-icons/vsc';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
-import { Box, Flex, HStack, Button, useMediaQuery, IconButton, Link } from './framework';
+import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton } from './framework';
 import { TalksForm } from './talks-form';
 
 
@@ -35,7 +35,7 @@ const buttonsMenu = {
   transform: 'rotateX(-90deg) translateZ(30px)',
 };
 
-export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollContainer: any, refMenuButtons: any;}) => {
+export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeLanguage}:{scrollContainer: any, refMenuButtons: any; onChangeLanguage?: any;}) => {
   const [scrolled, setScroll] = useState(false);
   const [mode, setMode] = useState(1);
   const [modeHidden, setModeHidden] = useState(1);
@@ -100,11 +100,9 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
   const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
 
   const [max825] = useMediaQuery('(max-width: 825px)');
-  
-  console.log(max825);
-  // console.log({'2': mqList});
-
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const active = i18n.language;
+  console.log(active);
 
   return (<><Box as='header' w='100%' pos='fixed' zIndex={2}>
         {transitions((style, item) => (item && <a.div ref={cubeRef}
@@ -190,6 +188,20 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                                           .to(x => `scale(${x})`)
                         }}><VscGithubAlt /></a.span>}
                     />
+                    <a.div style={{
+                          transformOrigin: 'top',
+                          transform: fontsScroll.x
+                                          .to({
+                                            range: [0, 1, 0],
+                                            output: [1, 0.2, 1],
+                                          })
+                                          .to(x => `scale(${x})`)
+                    }}>
+                      <ButtonGroup variant='ghost' spacing='0' size='lg' isAttached>
+                        <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
+                        <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Pyc</Button>
+                      </ButtonGroup>
+                    </a.div>
                     {/* <IconButton aria-label='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation" title='github repository deep foundation'><GitHub style={{color: '#fff'}}/></IconButton> */}
                   </HStack>
                 </Flex>
@@ -210,21 +222,37 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons}:{scrollCo
                     perspectiveOrigin: 'center',
                     transform: rotate.r.to(r => `rotateX(${r*90}deg)`)}}> 
                     <Box sx={{...cubeSurface, ...header}}>
-                      <a.h1 style={{
-                        display: 'contents',
-                        alignSelf: 'center',
-                        fontSize: 'calc(22px + 0.5vmax)',
-                        fontFamily: "'Comfortaa', 'sans-serif'",
-                        margin: 0,
-                        lineHeight: 1,
-                        transformOrigin: 'top',
-                        transform: fontsMode.x
-                                            .to({
-                                              range: [0, 1],
-                                              output: [1, 0.5],
-                                            })
-                                            .to(x => `scale(${x})`)
-                      }} >Deep.Foundation</a.h1>
+                      <HStack justify='space-between'>
+                        <a.h1 style={{
+                          display: 'contents',
+                          alignSelf: 'center',
+                          fontSize: 'calc(22px + 0.5vmax)',
+                          fontFamily: "'Comfortaa', 'sans-serif'",
+                          margin: 0,
+                          lineHeight: 1,
+                          transformOrigin: 'top',
+                          transform: fontsMode.x
+                                              .to({
+                                                range: [0, 1],
+                                                output: [1, 0.5],
+                                              })
+                                              .to(x => `scale(${x})`)
+                        }}>Deep.Foundation</a.h1>
+                        <a.div style={{
+                          transformOrigin: 'top',
+                          transform: fontsMode.x
+                                              .to({
+                                                range: [0, 1],
+                                                output: [1, 0.5],
+                                              })
+                                              .to(x => `scale(${x})`)
+                        }}>
+                          <ButtonGroup variant='ghost' spacing='0' size='sm' isAttached>
+                            <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
+                            <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Pyc</Button>
+                          </ButtonGroup>
+                        </a.div>
+                      </HStack>
                     </Box>
                     <Box sx={{...cubeSurface, ...emptySurface1}} />
                     <Box sx={{...cubeSurface, ...emptySurface2}} />

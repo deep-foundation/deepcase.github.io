@@ -19,6 +19,9 @@ import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
+import i18n from '../imports/i18n';
+import { useTranslation } from 'react-i18next';
+
 
 Sentry.init({
   dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
@@ -73,14 +76,14 @@ const crew = [
   {
     id: 3,
     src: '/avatars/petr.webp',
-    alt: 'founder',
+    alt: 'Petr DevOps',
     name: 'Petr DevOps',
     role: 'DevOps',
   },
   {
     id: 4,
     src: '/avatars/sergey.webp',
-    alt: 'Sergey WHO',
+    alt: 'Sergey Business Operations',
     name: 'Sergey',
     role: 'Business Operations',
   },
@@ -141,7 +144,11 @@ export default function Page () {
 };
 
 export function PageContent() {
+  const { i18n } = useTranslation();
   const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
+  const changeLanguage = useCallback((lng) => {
+    i18n.changeLanguage(lng);
+  }, []);
   
   const [ openTalksModal, setOpenTalksModal ] = useSwitcherModalTalks();
   const scrollingRef = useRef(null);
@@ -160,7 +167,7 @@ export function PageContent() {
     : `${keyframe} 5s ease`;
 
   return (<>
-      <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} />
+      <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
       <Box as='main' ref={scrollingRef} sx={root} animation={animation}>
         <Space unit={7} />
          

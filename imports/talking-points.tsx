@@ -2,8 +2,10 @@ import Chance from 'chance';
 import jquery from 'jquery';
 import random from 'lodash/random';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { a } from 'react-spring';
 import { Box, useMediaQuery } from './framework';
+
 
 const chance = new Chance();
 
@@ -40,7 +42,7 @@ const flyingLetter = {
   width: '100%', height: '100%',
 };
 const mainTalkingPoint = {
-  padding: 50, // HEIGHT
+  padding: 80, // HEIGHT
   textAlign: 'center',
   opacity: 1,
   fontSize: 'calc(22px + 1.9vmax)',
@@ -65,6 +67,7 @@ export const TalkingPoints = React.memo(({
 }) => {
   const [ index, setIndex ] = useState(-1);
   const enabledRef = useRef(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const action = () => {
@@ -102,7 +105,7 @@ export const TalkingPoints = React.memo(({
   }, []);
 
   const list = useMemo(() => [
-    { text: 'Готовый к использованию backend', formula: (si, ci) => {
+    { text: t('points--backend'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -111,7 +114,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     } },
-    { text: 'Без рефакторинга', formula: (si, ci) => {
+    { text: t('points--no-more-refactoring'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -121,7 +124,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
     
-    { text: 'Поддержка любых языков и стеков', formula: (si, ci) => {
+    { text: t('points--supports-all-code'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -133,7 +136,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
   
-    { text: 'Гибкая система правил и прав', formula: (si, ci) => {
+    { text: t('points--flexible-system'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -143,7 +146,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
   
-    { text: 'Среда запускающаяся везде', formula: (si, ci) => {
+    { text: t('points--launch-anywhere'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -154,7 +157,7 @@ export const TalkingPoints = React.memo(({
     } },
   
   
-    { text: 'Вся разработка ведется в одном приложении', formula: (si, ci) => {
+    { text: t('points--all-stages-on-single-platform'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -163,7 +166,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     } },
-    { text: 'Бизнес логика и сценарии в одном месте', formula: (si, ci) => {
+    { text: t('points--business-logic'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
