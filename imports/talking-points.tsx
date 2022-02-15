@@ -69,25 +69,6 @@ export const TalkingPoints = React.memo(({
   const enabledRef = useRef(true);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const action = () => {
-      if (enabledRef.current) {
-        setIndex((index) => {
-          let target = index;
-          do {
-            target = random(0, list.length - 1);
-          } while (target == index);
-          return target;
-        });
-      }
-    };
-    action();
-    const interval = setInterval(action, 3000);
-    return () => {
-      clearInterval(interval);
-    };
-  },[]);
-
   const wordsRef = useRef<any>();
   const flyingLetterRef = useRef<any>();
 
@@ -191,6 +172,21 @@ export const TalkingPoints = React.memo(({
       return sv.formula(si, index);
     });
   }, [index]);
+
+  useEffect(() => {
+    const action = () => {
+      if (enabledRef.current) {
+        setIndex((index) => {
+          return index == list.length - 1 ? 0 : index + 1;
+        });
+      }
+    };
+    action();
+    const interval = setInterval(action, 3000);
+    return () => {
+      clearInterval(interval);
+    };
+  },[]);
 
   const xlUp = useMediaQuery('min-width: 1620px');
   const down1024 = useMediaQuery('max-width: 1025px');
