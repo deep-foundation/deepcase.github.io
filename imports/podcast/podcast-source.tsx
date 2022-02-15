@@ -1,27 +1,53 @@
 import React from 'react';
 import { a, useTransition } from 'react-spring';
 import { ICard } from '../../pages/parallax';
-import { ButtonBase, List, ListItem, ListItemAvatar, ListItemText, makeStyles } from '../framework';
+import { Box, Center, HStack, Img, Text, VStack } from '../framework';
 
 
-const useStyles = makeStyles(theme => ({
-  containerPodcastSource: {
-    boxShadow: '0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)',
-    background: theme.palette.background.default,
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'absolute',
-    top: 0,
-    zIndex: 11,
-  },
-  sourcePodcastBlock: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  logoSourcePodcast: {
-    display: 'block',
-  },
-}));
+const PodcastSourceButton = React.memo(({
+  src,
+  alt,
+  title,
+  href,
+}:{
+  src: string;
+  alt?: string;
+  title?: string;
+  href?: string;
+}) => {
+  return (<Box
+      as='a'
+      h='max-content'
+      w='100%' 
+      lineHeight='1.2'
+      transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+      border={0}
+      px='8px'
+      borderRadius={0}
+      fontSize='14px'
+      fontWeight='semibold'
+      bg='transparent'
+      color='#4b4f56'
+      _hover={{ bg: 'dark' }}
+      _active={{
+        bg: 'dark',
+      }}
+      _focus={{
+        bg: 'dark'
+      }}
+      href={href}
+      aria-label={alt}
+    >
+      <HStack>
+        <Center w='40px' h='40px'>
+          <Img src={src} alt={alt} htmlWidth='100%' htmlHeight='100%' />
+        </Center>
+        <Text fontSize='xs' as='div'>{title}</Text>
+      </HStack>
+    </Box>
+  )
+})
+
 
 export const PodcastSource = React.memo(({
   switcher,
@@ -30,7 +56,6 @@ export const PodcastSource = React.memo(({
   switcher?: boolean;
   card: ICard;
 }) => {
-  const classes = useStyles();
 
   const transitions = useTransition(!switcher, {
     initial: { opacity: 0, transform: 'scale(0.8)', pointerEvents: 'none' },
@@ -43,21 +68,26 @@ export const PodcastSource = React.memo(({
   });
 
   // @ts-ignore
-  return(<>{transitions((style, item) => (item && <a.div style={style} className={classes.containerPodcastSource}>
-      <List>
+  return(<>{transitions((style, item) => (item && <a.div style={{
+        boxShadow: '0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)',
+        background: '#000',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        top: 0,
+        zIndex: 11,
+        ...style}}>
+      <VStack spacing={5} p='1rem'>
         {links.map(s => (
-          <ListItem key={s.provider.alt} className={classes.sourcePodcastBlock} alignItems='center' aria-label={s.provider.alt}>
-            <ButtonBase href={s.href} style={{width: '100%'}} centerRipple>
-              <ListItemAvatar>
-                <div style={{overflow: 'hidden', width: '2rem', height: '2rem'}}>
-                  <img src={s.provider.icon} alt={s.provider.alt} width='100%' height='100%' className={classes.logoSourcePodcast} />
-                </div>
-              </ListItemAvatar>
-              <ListItemText primary={s.provider.title} />
-            </ButtonBase>
-          </ListItem>
+          <PodcastSourceButton 
+            key={s.provider.alt}
+            src={s.provider.icon} 
+            alt={s.provider.alt} 
+            title={s.provider.title}
+            href={s.href} 
+          />
         ))}
-      </List>
+      </VStack>
     </a.div>))}</>
   )
 })

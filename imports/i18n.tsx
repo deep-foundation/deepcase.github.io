@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { Kbd } from './framework';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -15,8 +16,8 @@ const resources = {
     translation: {
       "Welcome to React": "РАША",
       'talks-form-write-to-us': 'напишите нам',
-      'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в дискорд на канал <code>#hi</code>',
-
+      'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в дискорд на канал <Kbd>#hi</Kbd>',
+      'talks-form-aria-label': 'Запись на подкаст',
     }
   }
 };

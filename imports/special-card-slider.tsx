@@ -4,38 +4,18 @@ import { Carousel, CarouselItem } from 'react-round-carousel';
 import { ICard, IProvider } from '../pages/parallax';
 import { Podcast } from './podcast/podcast-card';
 import { useSpringCarousel } from 'react-spring-carousel-js';
-import ArrowLeftRoundedIcon from '@material-ui/icons/ArrowLeftRounded';
-import ArrowRightRoundedIcon from '@material-ui/icons/ArrowRightRounded';
-import { SpecialCard } from './special-card';
-import { useMediaQuery, makeStyles, Box, Button } from './framework';
+import { CgArrowLongLeftC, CgArrowLongRightC } from "react-icons/cg";
+import { SpecialCard } from './special-card-щдв';
+import { VStack, Box, Button, IconButton } from './framework';
 
 
-const useStyles = makeStyles(theme => ({
-  containerSpecialCardSlider: {
-    display: 'flex',
-    flexDirection: 'row',
-    height: '33rem',
-    position: 'relative',
-    '& > :nth-child(1)': {
-      left: 0,
-    },
-    '& > :nth-child(3)': {
-      right: 0,
-    }
-  },
-  button: {
-    position: 'absolute',
-    top: 0,
-    height: '100%',
-    zIndex: 11,
-    background: '#202a3887',
-  },
-  buttonRoot: {
-    '&:hover': {
-      background: '#202a3887',
-    }
-  }
-}));
+const button = {
+  position: 'absolute',
+  top: 0,
+  height: '100%',
+  zIndex: 11,
+  background: '#202a3887',
+};
 
 // podcast's source providers
 const youTubeProvider: IProvider = { 
@@ -99,8 +79,8 @@ const podcasts: ICard[] = [
       id: 'c',
       alt: '',
       src: '/logo-speakers/ultratendency.svg',
-      top: 58,
-      left: 72,
+      top: 65,
+      left: 7,
       width: 24,
     }]
   },
@@ -138,9 +118,9 @@ const podcasts: ICard[] = [
       id: 'b',
       alt: '',
       src: '/logo-speakers/nite.png',
-      top: 45,
-      left: 68,
-      width: 22,
+      top: 55,
+      left: 75,
+      width: 20,
     }]
   },
   {
@@ -378,7 +358,7 @@ const items: CarouselItem[] = podcasts.map( p => ({
 		)
 }));
 
-export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} />);
+export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} nextButtonContent={<CgArrowLongLeftC />} prevButtonContent={<CgArrowLongRightC />} />);
 
 
 export const SpecialCardSlider = React.memo(({
@@ -415,18 +395,29 @@ export const SpecialCardSlider = React.memo(({
 			</div>)
 		})),
   });
-	
-  const classes = useStyles();
 
   return (
-    <div className={classes.containerSpecialCardSlider}>
-      <Button className={classes.button} classes={{root: classes.buttonRoot}} onClick={slideToPrevItem}>
-        <ArrowLeftRoundedIcon fontSize='large' />
-      </Button>
+    <VStack
+      h='33rem'
+      position='relative'
+    >
+      <IconButton
+        variant='outline'
+        colorScheme='teal'
+        aria-label='Send email'
+        icon={<CgArrowLongLeftC />}
+        onClick={slideToPrevItem}
+      />
+    
       	{carouselFragment}
-      <Button className={classes.button} classes={{root: classes.buttonRoot}} onClick={slideToNextItem}>
-        <ArrowRightRoundedIcon fontSize='large' />
-      </Button>
-    </div>
+      <IconButton
+        variant='outline'
+        colorScheme='teal'
+        aria-label='Send email'
+        icon={<CgArrowLongRightC />}
+        onClick={slideToNextItem}
+      />
+     
+    </VStack>
   );
 })

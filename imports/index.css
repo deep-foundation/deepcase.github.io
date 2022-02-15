@@ -1,6 +1,7 @@
 .carousel {
   width: 23.875rem;
   height: 19.125rem;
+  margin-bottom: 5rem;
   /* perspective: 350rem !important; */
 
 }
@@ -14,6 +15,7 @@
 
 .carousel__slide .carousel__slide-overlay {
 	opacity: 1 !important;
+  background-color: transparent;
 }
 
 .carousel__slide {

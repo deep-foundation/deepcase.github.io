@@ -1,34 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useSpring } from 'react-spring';
-import { GravityCard, makeStyles, Typography } from './framework';
+import { GravityCard, AspectRatio, Box, useMediaQuery } from './framework';
 
 
-const useStyles = makeStyles(theme => ({
-  frameContainer: {
-    position: 'relative',
-    aspectRatio: '16/9',
-    '& > :first-child': {
-      width: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      height: '100%',
-      border: 'none',
-    },
-    '&:before': {
-      content: "''",
-      display: 'block',
-      paddingBottom: 'calc(100% / (4/3)))',
-    }
-  },
-  innerContainer: {
-    overflow: 'hidden',
-    height: '100%',
-    width: '100%',
-    position: 'relative',
-  },
-}));
-
+const innerContainer = {
+  overflow: 'hidden',
+  height: '100%',
+  width: '100%',
+  position: 'relative',
+};
 var x = -1;
 var y = -1;
 if (typeof(window) === 'object') {
@@ -38,8 +18,11 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const IFrame = React.memo(({src}:{src: string;}) => {
-  const classes = useStyles();
+export const IFrame = React.memo(({
+  title, src, download, styles,
+}:{
+  title?: any; src: string; download?: any; styles?: any;
+}) => {
   const frameRef = useRef<any>();
   const refDiv = useRef<any>();
 
@@ -61,21 +44,26 @@ export const IFrame = React.memo(({src}:{src: string;}) => {
     }, 1000);
     return () => clearInterval(i);
   }, []);
+  const [max825] = useMediaQuery('(max-width: 825px)');
+  console.log(max825);
   
-  return (<GravityCard paperComponent={'div'} setRef={frameRef} xm={0.02} ym={0.02}>
-      <div ref={refDiv} className={classes.innerContainer}
+  return (<GravityCard paperComponent={'div'} setRef={frameRef} xm={0.01} ym={0.01} style={styles}>
+      <Box ref={refDiv} sx={innerContainer}
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
       >
-        <div className={classes.frameContainer}>
+        {title}
+        <AspectRatio ratio={max825 ? 3 / 4 : 16 / 9}>
           <iframe src={src}
-            width={1600}
-            height={900}
+            width='100%'
+            height='100%'
             frameBorder={0}
+            allowFullScreen
             title='deep case editor'
           />
-        </div>
-      </div>
+        </AspectRatio>
+        {download}
+      </Box>
     </GravityCard>
   )
 })

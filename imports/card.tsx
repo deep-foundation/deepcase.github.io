@@ -1,6 +1,6 @@
-import { ButtonBase, makeStyles, Paper } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
+import { Box, Button } from './framework';
 
 const calc: any = (x, y, w, h, l, t, xm = 1, ym = 1, zm = 1.1) => [
   -((y - t) - h / 2) / 10 * ym,
@@ -14,14 +14,11 @@ export interface ICard {
   image: String;
 }
 
-const useStyles = makeStyles(() => ({
-}));
-
 export function Card({
   children, disabled, animatedProps, PaperProps,
   xm = 1, ym = 1, zm = 1.1,
   folder = false,
-  paperComponent = ButtonBase,
+  paperComponent = Button,
   setRef,
   ...props
 }: {
@@ -42,7 +39,7 @@ export function Card({
   if (setRef) setRef.current = set;
 
   return (
-    <div ref={rootRef} {...props} style={{ position: 'relative', height: '100%', width: '100%', ...props?.style }}>
+    <Box ref={rootRef} {...props} sx={{ position: 'relative', height: '100%', width: '100%', ...props?.style }}>
       <animated.div
         onMouseMove={({ clientX, clientY, currentTarget }: any) => {
           if (disabled) return;
@@ -64,23 +61,22 @@ export function Card({
           ...animatedProps?.style,
         }}
       >
-        <Paper
-          elevation={disabled ? 0 : hover ? 4 : 1}
-          variant={disabled ? 'outlined' : 'elevation'}
-          component={paperComponent}
+        <Box
+          boxShadow={disabled ? 'outlined' : 'base'}
+          as={paperComponent}
           disabled={disabled}
+          h='100%' w='100%'
           {...PaperProps}
-          style={{
+          sx={{
             opacity: disabled ? 0.5 : 1,
-            height: '100%', width: '100%',
             textAlign: 'left',
             borderRadius: folder ? 16 : undefined,
             ...PaperProps?.style
           }}
         >
           {children}
-        </Paper>
+        </Box>
       </animated.div>
-    </div>
+    </Box>
   );
 };
