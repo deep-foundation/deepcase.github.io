@@ -2,7 +2,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { Folder } from '../imports/folder';
-import { Screen, Container, Grid, Typography, Link, GravityCard, AddIcon, makeStyles, List, ListItem, ListItemText, ListItemAvatar, Avatar, Accordion, AccordionSummary, AccordionDetails, Paper, Button } from '../imports/framework';
+import { Container, Grid, Typography, Link, makeStyles, List, ListItem, ListItemText, ListItemAvatar, Avatar, Accordion, AccordionSummary, AccordionDetails, Paper, Button } from '@material-ui/core';
+import { GravityCard, AddIcon } from '../imports/framework';
 import { Provider } from '../imports/provider';
 
 import dynamic from "next/dynamic";
