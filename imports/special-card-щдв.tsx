@@ -71,56 +71,59 @@ export const SpecialCard = React.memo(({
           w='100%' 
           pos='relative' 
           boxSizing='border-box'
-          overflow='hidden' 
-          p={9}
         >
-          
           <Box 
-            pos='absolute'
-            boxShadow='0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)'
-            borderRadius={5}
-            p={0}
-            h='105%'
-            w='94.5%'
-            top='3%'
-            left='2.5%'
-            bg='dark'
-          />
-          <Box 
-            w='100%'
-            overflow='hidden'
-            display='flex'
-            flexDir='column'
-            justifyContent='flex-start'
-            alignItems='center'
-            borderRadius={5}
-            pt='3rem'
-            px={min1960 ? '2rem' : '1rem'}
-            boxSizing='border-box'
-            {...boxProps}
+            pos='relative' 
+            overflow='hidden' 
+            p={9}
           >
-            <a.div 
-              style={{
-                background: '#00a9f4',
-                position: 'absolute',
-                top: 20, left: 20,
-                width: 'calc(100% - 40px)',
-                height: 10,
-                transform: spring.xy.to(transTopLine), backgroundColor: spring.borderColor
-              }} />
-            <Box pos='relative' opacity={0}>
-              <Box w='calc(320px - 50%)'>
-                {icon1}
+            <Box 
+              pos='absolute'
+              boxShadow='0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)'
+              borderRadius={5}
+              p={0}
+              h='105%'
+              w='94.5%'
+              top='3%'
+              left='2.5%'
+              bg='dark'
+            />
+            <Box 
+              w='100%'
+              overflow='hidden'
+              display='flex'
+              flexDir='column'
+              justifyContent='flex-start'
+              alignItems='center'
+              borderRadius={5}
+              pt='3rem'
+              px={min1960 ? '2rem' : '1rem'}
+              boxSizing='border-box'
+              {...boxProps}
+            >
+              <a.div 
+                style={{
+                  background: '#00a9f4',
+                  position: 'absolute',
+                  top: 20, left: 20,
+                  width: 'calc(100% - 40px)',
+                  height: 10,
+                  transform: spring.xy.to(transTopLine), backgroundColor: spring.borderColor
+                }} />
+              <Box pos='relative' opacity={0}>
+                <div>
+                  {icon1}
+                </div>
               </Box>
+              <Space />
+              <Box opacity={0}>
+                <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
+              </Box>
+              <Space unit={max850 ? 2 : 0} />
+              <a.div style={{ transform: spring.xy.to(transDescription), }}>
+                <Text fontSize='xs' align='center'>{description}</Text>
+              </a.div>
             </Box>
-            {/* <Space unit={3} /> */}
-            <Box opacity={0}>
-              <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
-            </Box>
-            <Space unit={max850 ? 2 : 0} />
-            <a.div style={{ transform: spring.xy.to(transDescription), }}>
-              <Text fontSize='xs' align='center'>{description}</Text>
-            </a.div>
           </Box>
           <Box 
             pos='absolute' 
@@ -157,20 +160,20 @@ export const SpecialCard = React.memo(({
           alignItems='center'
         >
           <Box pos='relative'>
-            <Box opacity={0} w='calc(320px - 50%)'>
+            <Box opacity={0}>
               {icon1}
             </Box>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans3) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 0, transform: spring.xy.to(trans3) }}>
               {icon1}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans4) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 0, transform: spring.xy.to(trans4) }}>
               {icon2}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans5) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: 0, transform: spring.xy.to(trans5) }}>
               {icon3}
             </a.div>
           </Box>
-          <Space unit={3} />
+          <Space />
           <a.div style={{ padding: '0 16px', transform: spring.xy.to(transTitle) }}>
             <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
           </a.div>

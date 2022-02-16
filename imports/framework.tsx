@@ -1,5 +1,5 @@
-import { Grid, Button } from '@material-ui/core';
-export * from '@material-ui/core';
+import { Button, Text } from '@chakra-ui/react';
+export * from '@chakra-ui/react';
 
 import AddIcon from '@material-ui/icons/Add';
 import YouTubeIcon from '@material-ui/icons/YouTube';
@@ -8,8 +8,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 export { GitHubIcon, ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
 
-import Link from 'next/link';
-export { Link };
+import NextLink from 'next/link';
+export { NextLink };
 
 import useInterval from "@use-it/interval";
 export { useInterval };
@@ -19,23 +19,24 @@ export { Card as GravityCard };
 
 import ConfettiExplosion from '@reonomy/react-confetti-explosion';
 import { useState } from 'react';
+import React from 'react';
 export { default as ConfettiExplosion } from '@reonomy/react-confetti-explosion';
 
-export function ScreenCenter(props) {
-  return (
-    <Grid container justify="center" alignItems="center" {...props} style={{ minHeight: '100vh', minWidth: '100vw', ...props?.style }}/>
-  )
-};
+// export function ScreenCenter(props) {
+//   return (
+//     <Grid container justify="center" alignItems="center" {...props} style={{ minHeight: '100vh', minWidth: '100vw', ...props?.style }}/>
+//   )
+// };
 
-export function Screen({ children, ContainerProps, ItemProps }: { children: any; ContainerProps?: any; ItemProps?: any; }) {
-  return (
-    <ScreenCenter {...ContainerProps}>
-      <Grid item xs={11} sm={9} md={7} lg={6} {...ItemProps}>
-        {children}
-      </Grid>
-    </ScreenCenter>
-  )
-};
+// export function Screen({ children, ContainerProps, ItemProps }: { children: any; ContainerProps?: any; ItemProps?: any; }) {
+//   return (
+//     <ScreenCenter {...ContainerProps}>
+//       <Grid item xs={11} sm={9} md={7} lg={6} {...ItemProps}>
+//         {children}
+//       </Grid>
+//     </ScreenCenter>
+//   )
+// };
 
 export function ButtonExplotion(props: any) {
   const [exp, setExp] = useState(false);
@@ -61,3 +62,10 @@ export function ButtonExplotion(props: any) {
     </Button>
   </>;
 }
+
+export const Typography = React.memo(({children}:{children: any}) => {
+  return(<Text>
+      {children}
+    </Text>
+  )
+})

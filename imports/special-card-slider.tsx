@@ -4,38 +4,18 @@ import { Carousel, CarouselItem } from 'react-round-carousel';
 import { ICard, IProvider } from '../pages/parallax';
 import { Podcast } from './podcast/podcast-card';
 import { useSpringCarousel } from 'react-spring-carousel-js';
-import ArrowLeftRoundedIcon from '@material-ui/icons/ArrowLeftRounded';
-import ArrowRightRoundedIcon from '@material-ui/icons/ArrowRightRounded';
-import { SpecialCard } from './special-card';
-import { useMediaQuery, makeStyles, Box, Button } from './framework';
+import { CgArrowLongLeftC, CgArrowLongRightC } from "react-icons/cg";
+import { SpecialCard } from './special-card-щдв';
+import { VStack, Box, Button, IconButton } from './framework';
 
 
-const useStyles = makeStyles(theme => ({
-  containerSpecialCardSlider: {
-    display: 'flex',
-    flexDirection: 'row',
-    height: '33rem',
-    position: 'relative',
-    '& > :nth-child(1)': {
-      left: 0,
-    },
-    '& > :nth-child(3)': {
-      right: 0,
-    }
-  },
-  button: {
-    position: 'absolute',
-    top: 0,
-    height: '100%',
-    zIndex: 11,
-    background: '#202a3887',
-  },
-  buttonRoot: {
-    '&:hover': {
-      background: '#202a3887',
-    }
-  }
-}));
+const button = {
+  position: 'absolute',
+  top: 0,
+  height: '100%',
+  zIndex: 11,
+  background: '#202a3887',
+};
 
 // podcast's source providers
 const youTubeProvider: IProvider = { 
@@ -76,73 +56,73 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: 'https://www.youtube.com/watch?v=OBem0jEQsVA&ab_channel=DeepFoundation',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
       id: 'c',
       alt: '',
       src: '/logo-speakers/ultratendency.svg',
-      top: 58,
-      left: 72,
+      top: 65,
+      left: 7,
       width: 24,
     }]
   },
-  {
-    id: '2',
-    src: '/speakers/dima_n.webp',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Дмитрий Сотсков',
-    occupation: 'директор компании Нэти Вэб',
-    date: '08.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: 'abc',
-      },
-      {
-        provider: yaProvider,
-        href: 'abc',
-      },
-      {
-        provider: appleProvider,
-        href: 'abc',
-      },
-      {
-        provider: telegramProvider,
-        href: 'abc',
-      },
-      {
-        provider: soundcloudProvider,
-        href: 'abc',
-      },
-    ],
-    imgs: [{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/nite.png',
-      top: 45,
-      left: 68,
-      width: 22,
-    }]
-  },
+  // {
+  //   id: '2',
+  //   src: '/speakers/dima_n.webp',
+  //   srcPng: '/speakers/dima.png',
+  //   guestName: 'Дмитрий Сотсков',
+  //   occupation: 'директор компании Нэти Вэб',
+  //   date: '08.12.21',
+  //   length: '16:20',
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: 'abc',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: 'abc',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/nite.png',
+  //     top: 55,
+  //     left: 75,
+  //     width: 20,
+  //   }]
+  // },
   {
     id: '7',
     src: '/speakers/asset_1.png',
@@ -154,23 +134,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -193,23 +173,139 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/exel.png',
+      top: 2,
+      left: 80,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/sql.png',
+      top: 55,
+      left: 75,
+      width: 18,
+    },{
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/java.png',
+      top: 70,
+      left: 6,
+      width: 14,
+    }]
+  },
+  {
+    id: '17',
+    src: '/speakers/ivan-speaker.webp',
+    srcPng: '/speakers/ivan-speaker.png',
+    guestName: 'Иван Ермолаев',
+    occupation: 'Pазработчик',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: '/',
+      },
+      {
+        provider: yaProvider,
+        href: '/',
+      },
+      {
+        provider: appleProvider,
+        href: '/',
+      },
+      {
+        provider: telegramProvider,
+        href: '/',
+      },
+      {
+        provider: soundcloudProvider,
+        href: '/',
+      },
+    ],
+    imgs: [{
+      id: 'b',
+      alt: 'java',
+      src: '/logo-speakers/java.png',
+      top: 70,
+      left: 78,
+      width: 16,
+    },
+    {
+      id: 'b',
+      alt: 'aws',
+      src: '/logo-speakers/aws.png',
+      top: 0,
+      left: 65,
+      width: 24,
+    },
+    {
+      id: 'b',
+      alt: 'spring',
+      src: '/logo-speakers/spring.png',
+      top: 50,
+      left: 65,
+      width: 42,
+    },
+    {
+      id: 'b',
+      alt: 'rust',
+      src: '/logo-speakers/rust.svg',
+      top: 70,
+      left: 10,
+      width: 14,
+    }]
+  },
+  {
+    id: '3',
+    src: '/speakers/alexey.webp',
+    srcPng: '/speakers/alexey.png',
+    guestName: 'Алексей',
+    occupation: 'аналитик в области оценки риска юр. лиц',
+    date: '08.12.21',
+    length: '16:20',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: '/',
+      },
+      {
+        provider: yaProvider,
+        href: '/',
+      },
+      {
+        provider: appleProvider,
+        href: '/',
+      },
+      {
+        provider: telegramProvider,
+        href: '/',
+      },
+      {
+        provider: soundcloudProvider,
+        href: '/',
       },
     ],
     imgs: [{
@@ -246,23 +342,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -292,23 +388,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -339,23 +435,23 @@ const podcasts: ICard[] = [
     links: [
       {
         provider: youTubeProvider,
-        href: 'abc',
+        href: 'https://www.youtube.com/watch?v=_JFOhNdB9x4',
       },
       {
         provider: yaProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: appleProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: telegramProvider,
-        href: 'abc',
+        href: '/',
       },
       {
         provider: soundcloudProvider,
-        href: 'abc',
+        href: '/',
       },
     ],
     imgs: [{
@@ -378,7 +474,7 @@ const items: CarouselItem[] = podcasts.map( p => ({
 		)
 }));
 
-export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} />);
+export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} nextButtonContent={<CgArrowLongLeftC />} prevButtonContent={<CgArrowLongRightC />} />);
 
 
 export const SpecialCardSlider = React.memo(({
@@ -415,18 +511,29 @@ export const SpecialCardSlider = React.memo(({
 			</div>)
 		})),
   });
-	
-  const classes = useStyles();
 
   return (
-    <div className={classes.containerSpecialCardSlider}>
-      <Button className={classes.button} classes={{root: classes.buttonRoot}} onClick={slideToPrevItem}>
-        <ArrowLeftRoundedIcon fontSize='large' />
-      </Button>
+    <VStack
+      h='33rem'
+      position='relative'
+    >
+      <IconButton
+        variant='outline'
+        colorScheme='teal'
+        aria-label='Send email'
+        icon={<CgArrowLongLeftC />}
+        onClick={slideToPrevItem}
+      />
+    
       	{carouselFragment}
-      <Button className={classes.button} classes={{root: classes.buttonRoot}} onClick={slideToNextItem}>
-        <ArrowRightRoundedIcon fontSize='large' />
-      </Button>
-    </div>
+      <IconButton
+        variant='outline'
+        colorScheme='teal'
+        aria-label='Send email'
+        icon={<CgArrowLongRightC />}
+        onClick={slideToNextItem}
+      />
+     
+    </VStack>
   );
 })

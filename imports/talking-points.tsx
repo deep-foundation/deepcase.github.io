@@ -1,53 +1,20 @@
 import Chance from 'chance';
-import cn from 'classnames';
 import jquery from 'jquery';
 import random from 'lodash/random';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { a } from 'react-spring';
-import { makeStyles, useMediaQuery } from './framework';
+import { Box, useMediaQuery } from './framework';
+
 
 const chance = new Chance();
 
-const useStyles = makeStyles(theme => ({
-  containerListTalkingPoints: {
-    position: 'relative',
-    height: '70%',
-  },
-  mainTalkingPoints: {
-    height: '100%', 
-    width: '100%',
-    overflow: 'hidden',
-    position: 'absolute',
-    top: 0, left: 0,
-    opacity: 0,
-  },
-  leftColumnTalkingPoints: {
-    position: 'relative',
-    height: '60vh',
-    '@media(min-width: 1620px)': {
-      height: '65vh',
-    }
-  },
-  mainTalkingPoint: {
-    opacity: 0,
-    fontSize: 'calc(22px + 1.9vmax)',
-    lineHeight: 'calc(1.45em + 0.5vmax)',
-    fontFamily:  "'Comfortaa', 'sans-serif'",
-    color: '#fff',
-    textTransform: 'uppercase',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: '100%', height: '100%',
-    top: 0, left: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
+
+const classes = {
   talkingPoint: {
-    textAlign: 'right',
     fontSize: 'calc(9px + 0.3vmax)',
     lineHeight: 'calc(1.25em + 0.5vmax)',
-    fontFamily:  "'Comfortaa', 'sans-serif'",
+    fontFamily:  "'Inconsolata', monospace",
     textTransform: 'uppercase',
     color: '#fff',
     opacity: 0.2,
@@ -56,54 +23,70 @@ const useStyles = makeStyles(theme => ({
   active: {
     opacity: 1,
     fontSize: 'calc(15px + 1.9vmax)',
-  }
-}))
+  },
+};
+
+const root = {
+  position: 'relative',
+};
+const mainTalkingPoints = {
+  width: '100%',
+  overflow: 'hidden',
+  position: 'relative',
+  top: 0, left: 0,
+  opacity: 0,
+};
+const flyingLetter = {
+  position: 'absolute',
+  top: 0, left: 0,
+  width: '100%', height: '100%',
+};
+const mainTalkingPoint = {
+  padding: 80, // HEIGHT
+  textAlign: 'center',
+  opacity: 1,
+  fontSize: 'calc(22px + 1.9vmax)',
+  lineHeight: 'calc(1.45em + 0.5vmax)',
+  fontFamily:  "'Inconsolata', monospace",
+  color: '#fff',
+  textTransform: 'uppercase',
+  justifyContent: 'center',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'flex-start',
+  // position: 'absolute',
+  // height: '100%',
+  top: 0, left: 0,
+  width: '100%',
+};
 
 export const TalkingPoints = React.memo(({
   refScrollContainer,
 }: {
   refScrollContainer: any;
 }) => {
-  const classes = useStyles();
   const [ index, setIndex ] = useState(-1);
   const enabledRef = useRef(true);
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    const action = () => {
-      if (enabledRef.current) {
-        setIndex((index) => {
-          let target = index;
-          do {
-            target = random(0, list.length - 1);
-          } while (target == index);
-          return target;
-        });
-      }
-    };
-    action();
-    const interval = setInterval(action, 3000);
-    return () => {
-      clearInterval(interval);
-    };
-  },[]);
-
-  const mainTalkingPointRef = useRef<any>();
-  const leftColumnTalkingPointsRef = useRef<any>();
+  const wordsRef = useRef<any>();
+  const flyingLetterRef = useRef<any>();
 
   const calcWordPosition = useCallback(function calcWordPosition(si, li) {
-    if (!mainTalkingPointRef.current || !leftColumnTalkingPointsRef.current) return { left: 0, top: 0 };
-    const e = jquery(mainTalkingPointRef?.current).children(`div:nth-child(${si + 1})`).children(`div`).children(`div`).children(`span:nth-child(${li + 1})`)[0]?.getBoundingClientRect();
-    const a = leftColumnTalkingPointsRef.current.getBoundingClientRect();
-    const p = jquery(leftColumnTalkingPointsRef.current).children(`div:nth-child(${si + 1})`)[0].getBoundingClientRect();
+    if (!wordsRef.current || !flyingLetterRef.current) return { left: 0, top: 0 };
+    const e = jquery(wordsRef?.current).children(`div:nth-child(${si + 1})`).children(`div`).children(`div`).children(`span:nth-child(${li + 1})`)[0]?.getBoundingClientRect();
+    const a = flyingLetterRef.current.getBoundingClientRect();
+    const p = jquery(flyingLetterRef.current).children(`div:nth-child(${si + 1})`)[0].getBoundingClientRect();
+    
     return {
       left: (e.left / a.width) + 0.05, 
-      top: ((e.top / a.height))
+      top: ((e.top - a.top) / a.height)
       // top: ((e.top / a.height) - (e.height / a.height) - 0.3)
     };
   }, []);
 
   const list = useMemo(() => [
-    { text: 'Готовый к использованию backend', formula: (si, ci) => {
+    { text: t('points--backend'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -112,7 +95,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     } },
-    { text: 'Без рефакторинга', formula: (si, ci) => {
+    { text: t('points--no-more-refactoring'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -122,7 +105,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
     
-    { text: 'Поддержка любых языков и стеков', formula: (si, ci) => {
+    { text: t('points--supports-all-code'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -134,7 +117,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
   
-    { text: 'Гибкая система правил и прав', formula: (si, ci) => {
+    { text: t('points--flexible-system'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -144,7 +127,7 @@ export const TalkingPoints = React.memo(({
       }
     } },
   
-    { text: 'Среда запускающаяся везде', formula: (si, ci) => {
+    { text: t('points--launch-anywhere'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -155,7 +138,7 @@ export const TalkingPoints = React.memo(({
     } },
   
   
-    { text: 'Вся разработка ведется в одном приложении', formula: (si, ci) => {
+    { text: t('points--all-stages-on-single-platform'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -164,7 +147,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     } },
-    { text: 'Бизнес логика и сценарии в одном месте', formula: (si, ci) => {
+    { text: t('points--business-logic'), formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -173,7 +156,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     }  },
-    { text: 'Готовая среда хранения и работы с данными', biggest: true, formula: (si, ci) => {
+    { text: t("points--data-management"), biggest: true, formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {
@@ -190,42 +173,60 @@ export const TalkingPoints = React.memo(({
     });
   }, [index]);
 
+  useEffect(() => {
+    const action = () => {
+      if (enabledRef.current) {
+        setIndex((index) => {
+          return index == list.length - 1 ? 0 : index + 1;
+        });
+      }
+    };
+    action();
+    const interval = setInterval(action, 3000);
+    return () => {
+      clearInterval(interval);
+    };
+  },[]);
+
   const xlUp = useMediaQuery('min-width: 1620px');
   const down1024 = useMediaQuery('max-width: 1025px');
 
-  return(<section className={classes.containerListTalkingPoints} onClick={() => {
+  return(<Box as='section' sx={root} onClick={() => {
     enabledRef.current = !enabledRef.current;
   }}>
-      <div className={classes.leftColumnTalkingPoints}  ref={leftColumnTalkingPointsRef}>
-        {list2.map((l, i) => {
-          return <div key={i} className={cn(classes.talkingPoint, index == i && classes.active)}>{l.map((item, i) => {
+      <Box sx={flyingLetter}  ref={flyingLetterRef}>
+        {list2.map((l, i1) => {
+          // @ts-ignore
+          return <div key={i1} style={{ ...classes.talkingPoint, ...(index == i1 ? classes.active : {}) }}>{l.map((item, i) => {
             return <div key={i} style={{
               position: 'absolute',
               left: `${(item.left * 89)}vw`,
-              top: `${item.top * (xlUp ? 65 : 50)}vh`,
+              top: `${item.top * (index === i1 ? 100 : 500)}%`,
               transition: `all ${1}s ease`,
             }}>{item.content}</div>
           })}</div>
         })}
-      </div>
-      <div className={classes.mainTalkingPoints} ref={mainTalkingPointRef}>
+      </Box>
+      <Box sx={mainTalkingPoints} ref={wordsRef}>
         {list2.map((l, i) => (
           <a.div key={i} style={{
-            position: 'absolute',
+            position: list[i].biggest ? 'static' : 'absolute',
             width: '100%', height: '100%',
             top: 0,
             left: 0,
             // transition: 'all 1s ease',
           }}
-          >
-            <div className={classes.mainTalkingPoint}><div>
-              {l.map((item, i) => {
-              return <span key={i}>{item.content}{item.content === ' ' ? <>&nbsp;</> : ''}</span>
-            })}
-            </div></div>
+        >
+            <Box sx={mainTalkingPoint} position={list[i].biggest ? 'static' : 'absolute'}>
+              <div>
+                {l.map((item, i) => {
+                return <span key={i}>{item.content}{item.content === ' ' ? <>&nbsp;</> : ''}</span>
+              })}
+              </div>
+            </Box>
           </a.div>
         ))}
-      </div>
-    </section>
+      </Box>
+    </Box>
   )
 })

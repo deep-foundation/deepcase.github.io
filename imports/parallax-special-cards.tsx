@@ -5,8 +5,8 @@ import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import cn from 'classnames';
 import React, { useRef } from "react";
-import { makeStyles, Typography } from '../imports/framework';
-import { SpecialCard } from "../imports/special-card";
+import { makeStyles, Typography } from '@material-ui/core';
+import { SpecialCard } from "./special-card-щдв";
 
 
 const useStyles = makeStyles(theme => ({

@@ -1,7 +1,9 @@
-import { theme1 } from '../imports/theme/build';
+import { theme } from '../imports/theme/build';
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { extractCritical } from '@emotion/server';
+// import { ServerStyleSheets } from '@material-ui/core/styles';
 
 export default class MyDocument extends Document {
   render() {
@@ -9,13 +11,17 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme1.palette.primary.main} />
+          <meta name="theme-color" content={theme.colors.dark} />
           <meta name="description" content="Deep Foundation" />
-          <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-3WH4B0WR4L"
-          />
+          <link rel="/logo.png" href="image url" />
+          <meta property="og:image" content="/logo.png" />
+          {/* <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /> */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet" />
+          {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet" /> */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -35,22 +41,3 @@ export default class MyDocument extends Document {
     );
   }
 }
-
-MyDocument.getInitialProps = async (ctx) => {
-  const sheets = new ServerStyleSheets();
-  const originalRenderPage = ctx.renderPage;
-
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
-
-  const initialProps = await Document.getInitialProps(ctx);
-
-  return {
-    ...initialProps,
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
-  };
-};
-
