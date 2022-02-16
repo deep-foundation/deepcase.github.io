@@ -4,9 +4,9 @@ export * from '@chakra-ui/react';
 import AddIcon from '@material-ui/icons/Add';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
+
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-export { GitHubIcon, ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
+export { ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
 
 import NextLink from 'next/link';
 export { NextLink };
