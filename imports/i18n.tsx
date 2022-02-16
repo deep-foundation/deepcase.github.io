@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { Kbd } from './framework';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -14,8 +15,8 @@ const resources = {
       "points--launch-anywhere": "an environment that can be launched anywhere",
       "points--all-stages-on-single-platform": "all stages of development on a single platform",
       "points--backend": "a fully operational backend engine",
-      "points--": "Готовая среда хранения и работы с данными",
-      "points--business-logic": "Бизнес логика и сценарии в одном месте",
+      "points--data-management": "a ready to use storage and data management environment",
+      "points--business-logic": "business logistics and scripting in one space",
 
 
       'talks-form-write-to-us': 'Напишите нам',
@@ -29,11 +30,11 @@ const resources = {
 
       'flag-title--new-programming-paradigm': 'A brand-new programming paradigm',
       'flag-description--new-programming-paradigm': 'We have built a Meta language free of semantic predisposition',
-      'flag-article--new-programming-paradigm': "On one hand, Deep is a system that embodies the idea of Data Driven Development because it is built upon an associative data space. At the same time, the data is split into atomic elements and is represented as a minimal unit of essence - the associative link. This allows it to depict any semantic, logical and abstract constructs in a single dialect for memory operations. Instead of creating a perfect language or a perfect database, Deep is an ideal associative environment with an interchangeable core. This means that it can contain a multitude of competing implementations of databases and API access languages.",
+      'flag-article--new-programming-paradigm': "On one hand, Deep is a system that embodies the idea of Data Driven Development because it is built upon an associative data space. At the same time, the data is split into atomic elements and is represented as a minimal unit of essence - the associative link. This allows to depict any semantic, logical and abstract constructs in a single dialect for memory operations. Instead of creating a perfect language or a perfect database, Deep is an ideal associative environment with an interchangeable core. This means that it can contain a multitude of competing implementations of databases and API access languages.",
 
       'flag-title--all-languages': 'Any and all languages and stacks',
       'flag-description--all-languages': 'You can write your ExecutionProvider for any programming language',
-      'flag-article--all-languages': "In Deep the code is stored in Links and is capable of processing data events. For instance, it is possible to process events triggered by Links of a certain type as well as utilizing strict selectors from an array of trees via a WHERE-like syntax with support of join and/or traverse mechanics. The code can be written in any language compatible with any ExecutionProvider which is available as the DockerImage for our standard GQL API. And the code will be launched in its DockerImage’s connected database. Official in-transaction processor support will be added soon, as well as systems that will enable to run code on remote devices including microcontrollers.",
+      'flag-article--all-languages': "In Deep the code is stored in Links and is capable of processing data events. For instance, it is possible to process events triggered by Links of a certain type as well as utilizing strict selectors from an array of trees via a WHERE-like syntax with support of join and/or traverse mechanics. The code can be written in any language compatible with any ExecutionProvider which is available as the DockerImage for our standard GQL API. And the code will be launched in its DockerImage that is linked to this ExecutionProvider in the database. Official in-transaction handler support will be added soon, as well as systems that will enable to run code on remote devices, including microcontrollers.",
 
       'flag-title--semantic-system': 'A semantic System of Rights',
       'flag-description--semantic-system': "The system that's right for you",
@@ -48,7 +49,7 @@ const resources = {
       "points--launch-anywhere": "Среда запускающаяся везде",
       "points--all-stages-on-single-platform": "Вся разработка ведется в одном приложении",
       "points--backend": "Готовый к использованию backend",
-      "points--": "Готовая среда хранения и работы с данными",
+      "points--data-management": "Готовая среда хранения и работы с данными",
       "points--business-logic": "Бизнес логика и сценарии в одном месте",
 
 

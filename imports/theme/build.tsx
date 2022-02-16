@@ -24,8 +24,10 @@ export const coreTheme = extendTheme({
 
   },
   fonts: {
-    body: "Comfortaa, sans-serif",
-    heading: "Comfortaa, sans-serif",
+    body: "'Inconsolata', monospace",
+    heading: "'Inconsolata', monospace",
+    // body: "Comfortaa, sans-serif",
+    // heading: "Comfortaa, sans-serif",
     mono: "Menlo, monospace",
   },
   fontSizes: {
@@ -114,6 +116,19 @@ export const coreTheme = extendTheme({
         second: '#00a9f3',
       },
       
+    },
+
+    Link: {
+      baseStyle: {
+        fontWeight: 'semibold',
+      },
+      sizes: {
+        sm: {
+          h: '32px',
+          fontSize: 'sm',
+          px: '12px',
+        },
+      },
     },
 
     Modal: {

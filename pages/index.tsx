@@ -173,20 +173,27 @@ export function PageContent() {
          
         { max825 && <>
           <HStack ref={refMenuButtons}>
-            <Button 
+            {/* <Button 
               aria-label='documents' 
               variant='ghost' 
               as='a'
               href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
-            >Docs</Button>
-            <Button aria-label='talks' variant='ghost' as='button' onClick={onOpenTalksModal}>Talks</Button>
-            <Button aria-label='github repository deep foundation' as='a' variant='ghost' href="https://github.com/deep-foundation">GitHub</Button>
-            {/* <Link 
+            >Docs</Button> */}
+            <Link 
               aria-label='documentation'
-              // isExternal
+              isExternal
+              href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+              Docs
+            </Link>
+            <Button aria-label='talks' variant='ghost' size='sm' as='button' onClick={onOpenTalksModal}>Talks</Button>
+            {/* <Button aria-label='github repository deep foundation' as='a' variant='ghost' href="https://github.com/deep-foundation">GitHub</Button> */}
+            <Link 
+              aria-label='github repository deep foundation'
+              isExternal
+              size='sm'
               href='https://github.com/deep-foundation'>
               GitHub
-            </Link> */}
+            </Link>
           </HStack>
           <Space />
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
@@ -194,7 +201,7 @@ export function PageContent() {
         
         <TalkingPoints refScrollContainer={scrollingRef} />
         
-        <GridArea>
+        {/* <GridArea>
           <IFrame 
             title={
               <HStack align='baseline' spacing={8} py='1rem'>
@@ -215,7 +222,7 @@ export function PageContent() {
               </Stack>
             }
           />
-        </GridArea>
+        </GridArea> */}
         
         <Space unit={10} />
         

@@ -8,8 +8,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 export { GitHubIcon, ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
 
-import Link from 'next/link';
-export { Link };
+import NextLink from 'next/link';
+export { NextLink };
 
 import useInterval from "@use-it/interval";
 export { useInterval };

@@ -14,7 +14,7 @@ const classes = {
   talkingPoint: {
     fontSize: 'calc(9px + 0.3vmax)',
     lineHeight: 'calc(1.25em + 0.5vmax)',
-    fontFamily:  "'Comfortaa', 'sans-serif'",
+    fontFamily:  "'Inconsolata', monospace",
     textTransform: 'uppercase',
     color: '#fff',
     opacity: 0.2,
@@ -47,7 +47,7 @@ const mainTalkingPoint = {
   opacity: 1,
   fontSize: 'calc(22px + 1.9vmax)',
   lineHeight: 'calc(1.45em + 0.5vmax)',
-  fontFamily:  "'Comfortaa', 'sans-serif'",
+  fontFamily:  "'Inconsolata', monospace",
   color: '#fff',
   textTransform: 'uppercase',
   justifyContent: 'center',
@@ -156,7 +156,7 @@ export const TalkingPoints = React.memo(({
         });
       }
     }  },
-    { text: 'Готовая среда хранения и работы с данными', biggest: true, formula: (si, ci) => {
+    { text: t("points--data-management"), biggest: true, formula: (si, ci) => {
       if (ci === si) {
         return list[si].text.split('').map((l, i, arr) => ({ content: l, ...calcWordPosition(si, i) }));
       } else {

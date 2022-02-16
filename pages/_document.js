@@ -15,11 +15,13 @@ export default class MyDocument extends Document {
           <meta name="description" content="Deep Foundation" />
           <link rel="/logo.png" href="image url" />
           <meta property="og:image" content="/logo.png" />
-          <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-3WH4B0WR4L"
-          />
+          {/* <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /> */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet" />
+          {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet" /> */}
           <script
             dangerouslySetInnerHTML={{
               __html: `

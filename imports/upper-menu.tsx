@@ -137,7 +137,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     <a.h1 style={{
                       alignSelf: 'center',
                       fontSize: 'calc(32px + 0.5vmax)',
-                      fontFamily: "'Comfortaa', 'sans-serif'",
+                      fontFamily: "'Inconsolata', monospace",
                       margin: 0,
                       transformOrigin: 'top',
                       transform: fontsScroll.x
@@ -227,7 +227,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                           display: 'contents',
                           alignSelf: 'center',
                           fontSize: 'calc(22px + 0.5vmax)',
-                          fontFamily: "'Comfortaa', 'sans-serif'",
+                          fontFamily: "'Inconsolata', monospace",
                           margin: 0,
                           lineHeight: 1,
                           transformOrigin: 'top',
