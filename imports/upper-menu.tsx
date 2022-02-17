@@ -3,7 +3,7 @@ import { VscGithubAlt } from 'react-icons/vsc';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
-import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton } from './framework';
+import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton, Icon } from './framework';
 import { TalksForm } from './talks-form';
 
 
@@ -123,13 +123,18 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
             ...style
           }}>
           <Box
-            p='1rem 0'
             color='#fff'
             transformOrigin='top'
             pos='relative'
             w='100vw'
             h='auto'
             zIndex={1}
+            sx={{
+              padding: '0.2rem 0',
+              '@media(max-width: 825px)': {
+                padding: '1rem 0',
+              }
+            }}
           >
             <Flex direction='row' justify={max825 ? 'center' : 'space-between'} align='center' p={max825 ? '0 1rem' : '0 2rem'}>
               { !max825
@@ -148,17 +153,24 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                     .to(x => `scale(${x})`),
                     }}>Deep.Foundation</a.h1>
                   
-                  <HStack spacing='1.5rem'>
-                    <Button variant="ghost" as='a' aria-label='documentation' href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
-                      <a.span style={{
-                        transformOrigin: 'top',
-                        transform: fontsScroll.x
-                                        .to({
-                                          range: [0, 1, 0],
-                                          output: [1, 0.2, 1],
-                                        })
-                                        .to(x => `scale(${x})`)
-                      }}>Docs</a.span></Button>
+                  <HStack spacing='1rem'>
+                    <a.div style={{
+                      transformOrigin: 'top',
+                      transform: fontsScroll.x
+                                      .to({
+                                        range: [0, 1, 0],
+                                        output: [1, 0.2, 1],
+                                      })
+                                      .to(x => `scale(${x})`)
+                    }}>
+                      <Link 
+                        aria-label='documentation'
+                        isExternal
+                        size='md'
+                        href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                        Docs
+                      </Link>
+                    </a.div>
                     <Button variant="ghost" aria-label='talks' onClick={onOpenTalksModal}>
                       <a.span style={{
                         transformOrigin: 'top',
@@ -168,10 +180,12 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                           output: [1, 0.2, 1],
                                         })
                                         .to(x => `scale(${x})`)
-                      }}>Talks</a.span></Button>
+                      }}>Talks</a.span>
+                    </Button>
                     <IconButton
                       variant='ghost'
                       colorScheme='teal'
+                      target='_blank'
                       aria-label='github repository deep foundation'
                       href="https://github.com/deep-foundation" 
                       title='github repository deep foundation'
@@ -197,12 +211,11 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                           })
                                           .to(x => `scale(${x})`)
                     }}>
-                      <ButtonGroup variant='ghost' spacing='0' size='lg' isAttached>
+                      <ButtonGroup variant='ghost' spacing='0' size='md' isAttached>
                         <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
                         <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Pyc</Button>
                       </ButtonGroup>
                     </a.div>
-                    {/* <IconButton aria-label='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation" title='github repository deep foundation'><GitHub style={{color: '#fff'}}/></IconButton> */}
                   </HStack>
                 </Flex>
                 : <Box 
@@ -257,23 +270,23 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     <Box sx={{...cubeSurface, ...emptySurface1}} />
                     <Box sx={{...cubeSurface, ...emptySurface2}} />
                     <Box sx={{...cubeSurface, ...buttonsMenu}}>
-                      <Button 
-                        variant="ghost" 
-                        as='a' 
-                        aria-label='documentation' 
-                        href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
-                      >
-                        <a.span style={{
-                          fontSize: 'calc(12px + 0.3vmax)',
-                          lineHeight: 1,
-                          transform: fontsMode.x
-                                          .to({
-                                            range: [0, 1, 0],
-                                            output: [0.7, 1.1, 0.7],
-                                          })
-                                          .to(x => `scale(${x})`)
-                        }}>Docs</a.span></Button>
-                      {/* <IconButton aria-label='github repository deep foundation' title='github repository deep foundation' component={'a'} href="https://github.com/deep-foundation"><GitHub style={{color: '#fff'}}/></IconButton> */}
+                      <a.div style={{
+                        
+                        transform: fontsMode.x
+                                        .to({
+                                          range: [0, 1, 0],
+                                          output: [0.7, 1.1, 0.7],
+                                        })
+                                        .to(x => `scale(${x})`)
+                      }}>
+                        <Link 
+                          aria-label='documentation'
+                          isExternal
+                          size='md'
+                          href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                          Docs
+                        </Link>
+                      </a.div>
                       <IconButton
                         variant='ghost'
                         colorScheme='teal'
@@ -281,10 +294,10 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         href="https://github.com/deep-foundation" 
                         title='github repository deep foundation'
                         as='a'
+                        target='_blank'
                         fontSize='xl'
                         icon={
                           <a.span style={{
-                            // fontSize: 'calc(12px + 0.3vmax)',
                             lineHeight: 1,
                             transform: fontsMode.x
                                             .to({
@@ -296,8 +309,8 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                       />
                       <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>
                         <a.span style={{
-                          fontSize: 'calc(12px + 0.3vmax)',
-                          lineHeight: 1,
+                          
+                          
                           transform: fontsMode.x
                                           .to({
                                             range: [0, 1, 0],

@@ -19,9 +19,9 @@ if (typeof(window) === 'object') {
 }
 
 export const IFrame = React.memo(({
-  title, src, download, styles,
+  title, src, download, styles, icon,
 }:{
-  title?: any; src: string; download?: any; styles?: any;
+  title?: any; src: string; download?: any; styles?: any; icon?: any;
 }) => {
   const frameRef = useRef<any>();
   const refDiv = useRef<any>();
@@ -51,6 +51,7 @@ export const IFrame = React.memo(({
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
       >
+        {icon}
         {title}
         <AspectRatio ratio={max825 ? 3 / 4 : 16 / 9}>
           <iframe src={src}

@@ -16,12 +16,12 @@ const classes = {
     lineHeight: 'calc(1.25em + 0.5vmax)',
     fontFamily:  "'Inconsolata', monospace",
     textTransform: 'uppercase',
-    color: '#fff',
-    opacity: 0.2,
+    color: '#6e6e6e',
     height: '100%',
   },
   active: {
     opacity: 1,
+    color: '#EAEAEA',
     fontSize: 'calc(15px + 1.9vmax)',
   },
 };
@@ -42,20 +42,18 @@ const flyingLetter = {
   width: '100%', height: '100%',
 };
 const mainTalkingPoint = {
-  padding: 80, // HEIGHT
+  padding: '10rem', // HEIGHT
   textAlign: 'center',
   opacity: 1,
   fontSize: 'calc(22px + 1.9vmax)',
   lineHeight: 'calc(1.45em + 0.5vmax)',
   fontFamily:  "'Inconsolata', monospace",
-  color: '#fff',
+  color: 'light',
   textTransform: 'uppercase',
   justifyContent: 'center',
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'flex-start',
-  // position: 'absolute',
-  // height: '100%',
   top: 0, left: 0,
   width: '100%',
 };
@@ -80,7 +78,7 @@ export const TalkingPoints = React.memo(({
     
     return {
       left: (e.left / a.width) + 0.05, 
-      top: ((e.top - a.top) / a.height)
+      top: ((e.top - a.top) / a.height),
       // top: ((e.top / a.height) - (e.height / a.height) - 0.3)
     };
   }, []);

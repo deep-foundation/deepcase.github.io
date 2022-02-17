@@ -1,13 +1,9 @@
-import AppleIcon from '@material-ui/icons/Apple';
-import BathtubIcon from '@material-ui/icons/Bathtub';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
 import * as Sentry from '@sentry/nextjs';
 import detectBrowserLanguage from 'detect-browser-language';
 import { useCallback, useRef, useState } from 'react';
 import { ButtonGroupDownload } from '../imports/button-group-download';
 import { CrewCard } from '../imports/crew-card';
-import { Box, Button, HStack, keyframes, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Link } from '../imports/framework';
+import { Box, Button, HStack, keyframes, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Link, IconButton } from '../imports/framework';
 import { GridArea } from '../imports/grid-area';
 import { H2 } from '../imports/headers';
 import { IFrame } from '../imports/iframe';
@@ -21,6 +17,7 @@ import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import i18n from '../imports/i18n';
 import { useTranslation } from 'react-i18next';
+import { BsArrowsFullscreen } from 'react-icons/bs';
 
 
 Sentry.init({
@@ -169,16 +166,10 @@ export function PageContent() {
   return (<>
       <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
       <Box as='main' ref={scrollingRef} sx={root} animation={animation}>
-        <Space unit={7} />
+        <Space unit={8} />
          
         { max825 && <>
-          <HStack ref={refMenuButtons}>
-            {/* <Button 
-              aria-label='documents' 
-              variant='ghost' 
-              as='a'
-              href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
-            >Docs</Button> */}
+          <HStack ref={refMenuButtons} pl={1}>
             <Link 
               aria-label='documentation'
               isExternal
@@ -187,7 +178,6 @@ export function PageContent() {
               Docs
             </Link>
             <Button aria-label='talks' variant='ghost' size='sm' as='button' onClick={onOpenTalksModal}>Talks</Button>
-            {/* <Button aria-label='github repository deep foundation' as='a' variant='ghost' href="https://github.com/deep-foundation">GitHub</Button> */}
             <Link 
               aria-label='github repository deep foundation'
               isExternal
@@ -202,8 +192,25 @@ export function PageContent() {
         
         <TalkingPoints refScrollContainer={scrollingRef} />
         
-        {/* <GridArea>
+        <GridArea>
           <IFrame 
+            icon={
+              <IconButton 
+                variant='outline'
+                colorScheme='white'
+                size='sm'
+                as='a'
+                href='http://deep.deep.foundation:3007'
+                target='_blank'
+                aria-label='open fullscreen'
+                icon={<BsArrowsFullscreen />}
+                sx={{
+                  position: 'absolute',
+                  top: '0.5rem',
+                  right: 0,
+                }}
+              />
+            }
             title={
               <HStack align='baseline' spacing={8} py='1rem'>
                 <H2>Deep.Case</H2>
@@ -223,7 +230,7 @@ export function PageContent() {
               </Stack>
             }
           />
-        </GridArea> */}
+        </GridArea>
         
         <Space unit={10} />
         

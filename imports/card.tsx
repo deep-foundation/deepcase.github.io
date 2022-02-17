@@ -62,7 +62,7 @@ export function Card({
         }}
       >
         <Box
-          boxShadow={disabled ? 'outlined' : 'base'}
+          // boxShadow={disabled ? 'outlined' : 'base'}
           as={paperComponent}
           disabled={disabled}
           h='100%' w='100%'

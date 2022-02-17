@@ -72,7 +72,9 @@ export const SpecialCard = React.memo(({
           pos='relative' 
           boxSizing='border-box'
           overflow='hidden' 
-          p={9}
+          px={3}
+          pt={9}
+          pb={0}
         >
           
           <Box 
@@ -94,7 +96,7 @@ export const SpecialCard = React.memo(({
             justifyContent='flex-start'
             alignItems='center'
             borderRadius={5}
-            pt='3rem'
+            pt='13rem'
             px={min1960 ? '2rem' : '1rem'}
             boxSizing='border-box'
             {...boxProps}
@@ -108,16 +110,16 @@ export const SpecialCard = React.memo(({
                 height: 10,
                 transform: spring.xy.to(transTopLine), backgroundColor: spring.borderColor
               }} />
-            <Box pos='relative' opacity={0}>
-              <Box w='calc(320px - 50%)'>
-                {icon1}
-              </Box>
-            </Box>
-            {/* <Space unit={3} /> */}
-            <Box opacity={0}>
+            
+            
+            {/* <Box opacity={0}>
               <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
-            </Box>
-            <Space unit={max850 ? 2 : 0} />
+            </Box> */}
+            <a.div style={{ padding: '0 16px', transform: spring.xy.to(transTitle) }}>
+              <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
+            </a.div>
+            <Space unit={3} />
+            {/* <Space unit={max850 ? 2 : 0} /> */}
             <a.div style={{ transform: spring.xy.to(transDescription), }}>
               <Text fontSize='xs' align='center'>{description}</Text>
             </a.div>
@@ -148,7 +150,7 @@ export const SpecialCard = React.memo(({
         </Box>
         <Box 
           pos='absolute'
-          top='5rem'
+          top='4rem'
           left={0}
           w='100%'
           display='flex'
@@ -157,24 +159,24 @@ export const SpecialCard = React.memo(({
           alignItems='center'
         >
           <Box pos='relative'>
-            <Box opacity={0} w='calc(320px - 50%)'>
+            <Box opacity={0} w='calc(320px - 60%)'>
               {icon1}
             </Box>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans3) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans3) }}>
               {icon1}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans4) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans4) }}>
               {icon2}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: 'calc(345px - 50%)', width: 'calc(320px - 50%)', transform: spring.xy.to(trans5) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans5) }}>
               {icon3}
             </a.div>
           </Box>
-          <Space unit={3} />
-          <a.div style={{ padding: '0 16px', transform: spring.xy.to(transTitle) }}>
+         
+          {/* <a.div style={{ padding: '0 16px', transform: spring.xy.to(transTitle) }}>
             <H5 align='center' w='calc(100% - 4px)' m='0 auto'>{title}</H5>
-          </a.div>
-          <Space unit={max850 ? 2 : 0} />
+          </a.div> */}
+          {/* <Space unit={max850 ? 2 : 0} /> */}
         </Box>
         <Box>
           <Box 

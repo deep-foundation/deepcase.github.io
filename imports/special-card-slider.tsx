@@ -5,7 +5,7 @@ import { ICard, IProvider } from '../pages/parallax';
 import { Podcast } from './podcast/podcast-card';
 import { useSpringCarousel } from 'react-spring-carousel-js';
 import { CgArrowLongLeftC, CgArrowLongRightC } from "react-icons/cg";
-import { SpecialCard } from './special-card-щдв';
+import { SpecialCard } from './special-card';
 import { VStack, Box, Button, IconButton } from './framework';
 
 

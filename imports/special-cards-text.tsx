@@ -6,6 +6,7 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img } from './framework';
 import { SpecialCard } from "./special-card";
+// import { SpecialCardCopy } from './special-card';
 
 
 const GridCard = React.memo(({
@@ -44,10 +45,10 @@ export const SpecialCardsText = React.memo(() => {
   const { t } = useTranslation();
 
   return (<VStack spacing={{sm: '7rem', lg: '5rem'}}>
-      <GridCard columns='25rem 1fr' direction='column'>
+      <GridCard columns='25rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/1.png' />}
+            icon1={<Img src='/flags/1.png' sx={{transform: 'translateX(-50%)', width: '80%'}} />}
            
             title={t('flag-title--operational-environment')}
             description={t('flag-description--operational-environment')}
@@ -59,13 +60,13 @@ export const SpecialCardsText = React.memo(() => {
       </GridCard>
       {max850 && <Divider />}
 
-      <GridCard>
+      <GridCard alignItem='flex-start'>
         <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}}>
           {t('flag-article--new-programming-paradigm')}
         </Text>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/2.png' />}
+            icon1={<Img src='/flags/2.png' sx={{transform: 'translateX(-50%)'}} />}
             
             title={t('flag-title--new-programming-paradigm')}
             description={t('flag-description--new-programming-paradigm')}
@@ -74,10 +75,10 @@ export const SpecialCardsText = React.memo(() => {
       </GridCard>
       {max850 && <Divider />}
 
-      <GridCard columns='23rem 1fr' direction='column'>
+      <GridCard columns='23rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/3.png' />}
+            icon1={<Img src='/flags/3.png' sx={{transform: 'translateX(-50%)'}} />}
             
             title={t('flag-title--all-languages')}
             description={t('flag-description--all-languages')}
@@ -112,7 +113,7 @@ export const SpecialCardsText = React.memo(() => {
         </Box>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/4.png' />}
+            icon1={<Img src='/flags/4.png' sx={{transform: 'translateX(-50%)'}} />}
            
             title={t('flag-title--semantic-system')}
             description={t('flag-description--semantic-system')}
@@ -120,6 +121,7 @@ export const SpecialCardsText = React.memo(() => {
         </Box>
         
       </GridCard>
+      
     </VStack>
   )
 })

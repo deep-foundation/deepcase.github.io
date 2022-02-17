@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, HStack, IconButton, Img, Modal, Text, ModalOverlay, ModalContent, ModalHeader, ModalBody, Center, Wrap, WrapItem, Image } from '../imports/framework';
-import { Space } from './space';
+import { Button, Center, IconButton, Img, Modal, ModalBody, ModalContent, ModalOverlay, Text, Wrap, WrapItem } from '../imports/framework';
 import { H1 } from './headers';
+import { Space } from './space';
 
 
 const titleModal = {

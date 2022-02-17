@@ -65,26 +65,31 @@ export const coreTheme = extendTheme({
   },
   textStyles: {
     h1: {
-      fontSize: 'calc(18px + 0.5vmax)',
-      fontWeight: 'bold',
+      fontSize: 'calc(20px + 0.5vmax)',
+      fontWeight: 'light',
     },
     h2: {
-      fontSize: 'calc(16px + 0.5vmax)',
-      fontWeight: 'bold',
+      fontSize: 'calc(18px + 0.5vmax)',
+      fontWeight: 'light',
     },
     h5: {
-      fontSize: 'calc(18px + 0.5vmax)',
-      fontWeight: 500,
+      fontSize: 'calc(14px + 0.5vmax)',
+      fontWeight: 'light',
     },
   },
   shadows: {
     lg: '0px 0px 2px 4px rgba(143,143,143,0.13), 0px 0px 4px 6px rgba(143,143,143,0.20)',
+    base: '0 1px 3px 0 rgba(143,143,143, 0.1),0 1px 2px 0 rgba(143,143,143, 0.06)',
   },
   radii: {
     md: '0.175rem',
   },
   components: {
     Button: {
+      baseStyle: {
+        lineHeight: 'base',
+        fontWeight: 'light',
+      },
       variants: {
         outline: {
           borderRadius: {
@@ -120,13 +125,19 @@ export const coreTheme = extendTheme({
 
     Link: {
       baseStyle: {
-        fontWeight: 'semibold',
+        lineHeight: 'base',
+        fontWeight: 'light',
       },
       sizes: {
         sm: {
-          h: '32px',
+          h: '2rem',
           fontSize: 'sm',
-          px: '12px',
+          px: '0.75rem',
+        },
+        md: {
+          h: '2.5rem',
+          fontSize: 'md',
+          px: '1rem',
         },
       },
     },
@@ -134,8 +145,10 @@ export const coreTheme = extendTheme({
     Modal: {
       baseStyle: {
         
+        
         dialog: {
-          bg: mode('#000', "#000"),
+          bg: 'dark',
+          boxShadow: 'base',
           alignItems: 'center',
           padding: '1rem 0.5rem',
           marginLeft: '1rem',
@@ -212,128 +225,4 @@ export const coreTheme = extendTheme({
 });
 export const theme = extendTheme({
   ...coreTheme,
-  
-  // overrides: {
-  //   MuiButton: {
-  //     label: {
-  //       fontSize: 'calc(12px + 0.3vmax)',
-  //       // textTransform: 'none',
-  //     },
-  //   },
-  //   MuiButtonGroup: {
-  //     root: {
-  //       color: '#000',
-  //     }
-  //   },
-  //   MuiPaper: {
-  //     outlined: {
-  //       backgroundColor: '#111720',
-  //       border: '0 solid transparent',
-  //     },
-  //     elevation0: {
-  //       border: '0 solid transparent',
-  //       backgroundColor: 'transparent',
-  //     },
-  //     elevation1: {
-  //       border: '1px dashed #ffffff40',
-  //     },
-  //     elevation2: {
-  //       border: '1px dashed #ffffff60',
-  //     },
-  //     elevation3: {
-  //       border: '1px dashed #ffffff80',
-  //     },
-  //     elevation4: {
-  //       border: '1px dashed #ffffff100',
-  //     },
-  //   },
-  //   MuiAppBar: {
-  //     root: {
-  //       padding: '1rem 0'
-  //     },
-  //     colorDefault: {
-  //       color: '#fff',
-  //       backgroundColor: '#00000030', //darken(coreTheme?.palette?.background?.default, 0.3),
-  //       border: '1px dashed #ffffff40',
-  //     }
-  //   },
-  //   MuiSvgIcon: {
-  //     root: {
-  //       height: '1.5rem',
-  //       width: '1.5rem'
-  //     },
-  //   },
-  //   MuiTooltip: {
-  //     tooltip: {
-  //       backgroundColor: coreTheme.palette.background.default,
-  //       color: 'rgba(256, 256, 256, 0.87)',
-  //       maxWidth: 220,
-  //       fontSize: coreTheme.typography.pxToRem(12),
-  //       borderWidth: 1,
-  //       borderStyle: 'solid',
-  //       borderColor: coreTheme.palette.primary.main,
-  //     },
-  //     arrow: {
-  //       color: coreTheme.palette.background.default,
-  //       '&::before': {
-  //         borderWidth: 1,
-  //         borderStyle: 'solid',
-  //         borderColor: coreTheme.palette.primary.main,
-  //       },
-  //     },
-  //   },
-  //   MuiListItemText: {
-  //     root: {
-  //       marginTop: 0,
-  //       marginBottom: 0,
-  //     },
-  //   },
-  // },
-  // shadows: ['none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none','none'],
-});
-
-export const theme2 = extendTheme({
-  // palette: {
-  //   primary: {
-  //     main: '#000',
-  //     light: '#000',
-  //     dark: '#000',
-  //   },
-  // },
-  // typography: {
-    // fontFamily: ['Comfortaa', 'sans-serif'].join(','),
-    // h1: {
-    //   fontSize: "6rem",
-    //   [breakpoints.down("xs")]: {
-    //     fontSize: "3rem"
-    //   }
-    // },
-    // h2: {
-    //   fontSize: "3.75rem",
-    //   [breakpoints.down("xs")]: {
-    //     fontSize: "2.2rem"
-    //   }
-    // },
-    // h3: {
-    //   fontSize: "3rem",
-    //   [breakpoints.down("xs")]: {
-    //     fontSize: "2rem"
-    //   }
-    // },
-    // h4: {
-    //   fontSize: "2.125rem",
-    //   [breakpoints.down("xs")]: {
-    //     fontSize: "1.8rem"
-    //   }
-    // }
-  // },
-  // overrides: {
-  //   MuiButton: {
-  //     label: {
-  //       fontSize: 20,
-  //       textTransform: 'none',
-  //     },
-      
-  //   }
-  // }
 });
