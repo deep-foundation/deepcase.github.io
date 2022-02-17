@@ -6,7 +6,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import cn from 'classnames';
 import React, { useRef } from "react";
 import { makeStyles, Typography } from '@material-ui/core';
-import { SpecialCard } from "./special-card-щдв";
+import { SpecialCard } from "./special-card";
 
 
 const useStyles = makeStyles(theme => ({
