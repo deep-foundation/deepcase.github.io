@@ -153,7 +153,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                       })
                                       .to(x => `scale(${x})`),
                       }}>
-                        <Img src='./logo.png' />
+                        <Img src='./logo.png' alt='logo' />
                       </a.div>
                       <a.h1 style={{
                         alignSelf: 'center',
