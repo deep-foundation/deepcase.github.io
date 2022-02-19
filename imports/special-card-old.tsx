@@ -119,7 +119,7 @@ export const SpecialCard = React.memo(({
             </Box>
             <Space unit={max850 ? 2 : 0} />
             <a.div style={{ transform: spring.xy.to(transDescription), }}>
-              <Text fontSize='xs' align='center'>{description}</Text>
+              <Text fontSize='sm' align='center'>{description}</Text>
             </a.div>
           </Box>
           <Box 

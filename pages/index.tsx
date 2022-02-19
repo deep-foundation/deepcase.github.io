@@ -42,7 +42,7 @@ export interface ICard {
   guestName: string;
   occupation: string;
   date: string;
-  length: string;
+  duration: string;
   links: { provider: IProvider, href: string }[];
   imgs: {
     id: string;
@@ -200,13 +200,13 @@ export function PageContent() {
                 colorScheme='white'
                 size='sm'
                 as='a'
-                href='http://deep.deep.foundation:3007'
+                href='https://deep.deep.foundation'
                 target='_blank'
                 aria-label='open fullscreen'
                 icon={<BsArrowsFullscreen />}
                 sx={{
                   position: 'absolute',
-                  top: '0.5rem',
+                  top: '1rem',
                   right: 0,
                 }}
               />
@@ -217,7 +217,7 @@ export function PageContent() {
                 <Text fontSize='sm' >pre alpha version</Text>
               </HStack>
             }
-            src='http://deep.deep.foundation:3007/?bg-transparent=true'
+            src='https://deep.deep.foundation/?bg-transparent=true'
             download={
               <Stack direction={max825 ? 'column' : 'row'} justify='center' spacing={10} p='1rem'>
                 <Button aria-label='gitpod' variant="outline" colorScheme="second" size="lg">

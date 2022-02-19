@@ -1,37 +1,23 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { a, useSpring } from 'react-spring';
+import { GiDuration, GiVideoCamera, GiAudioCassette } from 'react-icons/gi';
 import { ICard } from '../../pages/parallax';
-import { Box, GravityCard, Tooltip, Text, Img } from '../framework';
+import { Flex, Box, GravityCard, Tooltip, Text, Img, HStack } from '../framework';
 import { Play } from '../icons/play';
+import { Space } from '../space';
 import { LogoImage } from './logo';
 import { PodcastSource } from './podcast-source';
+import moment from 'moment';
+import momentDurationFormatSetup from "moment-duration-format";
+momentDurationFormatSetup(moment);
 
 
-const podcastCardContainer = {
-  display:'flex', 
-  flexDirection:'column', 
-  position: 'relative', 
-  boxShadow: '0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)', 
-  borderRadius: 'radii.md', 
-  overflow: 'hidden',
-  height: '100%',
-  width: '100%',
-  background: '#19202B',
-};
-const guestArea = {
-  position: 'relative',
-  height: '100%',
-};
 const imageClass = {
   display: 'block',
   transform: 'scale(0.5)',
   transformOrigin: 'bottom',
 };
 
-const logoContainer = {
-  position: 'relative', 
-  width: '100%',
-};
 const controlArea = {
   display: 'flex', 
   flexDirection: 'row', 
@@ -41,12 +27,6 @@ const controlArea = {
   paddingRight: '4%', 
   paddingLeft: '4%',
   zIndex: 2,
-};
-const controlButton = {
-  display: 'flex', 
-  flexDirection: 'row', 
-  justifyContent: 'space-between', 
-  alignItems: 'center',
 };
 
 const trans1 = (x, y) => `translate3d(${x / 2}px,${y / 2}px,0)`;
@@ -73,9 +53,10 @@ export const Podcast = React.memo(({
     guestName,
     occupation,
     date,
-    length,
+    duration,
     privateCast = true,
     imgs,
+    published = false,
   } = card;
   const [openSourcePodcast, setOpenSourcePodcast] = useState(false);
   const [spring, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }));
@@ -112,7 +93,17 @@ export const Podcast = React.memo(({
   }, []);
 
   return(<GravityCard setRef={setRef} onClickCapture={onClickPodcast} onMouseMove={onMouseMove} PaperProps={{style: {padding: 0}}}><>
-      <Box ref={ref} sx={podcastCardContainer}
+      <Box
+        display='flex'
+        flexDirection='column'
+        pos='relative' 
+        boxShadow='0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)' 
+        borderRadius='md' 
+        overflow='hidden'
+        h='100%'
+        w='100%'
+        bg='dark'
+        ref={ref}
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
       >
@@ -121,12 +112,13 @@ export const Podcast = React.memo(({
           height: '150%',
           position: 'absolute',
           top: '-25%',
+          zIndex: !published ? 111 : 0,
           left: '-25%',
-          background: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
+          background: published ? 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)' : '#ffffff',
           backgroundSize: '1em 1em',
           transform: spring.xy.to(trans1), 
         }}/>
-        <Box sx={guestArea}>
+        <Box pos='relative' h='100%'>
           {imgs.map(i => (<LogoImage key={i.id} src={i.src} alt={i.alt} top={i.top} left={i.left} width={i.width} spring={spring} />))}
           <a.div style={{ 
             position: 'absolute', 
@@ -144,21 +136,31 @@ export const Podcast = React.memo(({
             <a.div style={{ 
               position: 'absolute', 
               top: 0, 
-              left: 0,
-              padding: '4%',
+              left: '3%',
+              paddingRight: '2%',
               transform: spring.xy.to(trans2) 
             }}>
               <Text fontSize='sm' as='div' lineHeight='tall' sx={{textTransform: 'uppercase'}}>{guestName}</Text>
-              <Text fontSize='xs' as='div' sx={{whiteSpace: 'normal'}}>{occupation}</Text>
-              <br />
+              <Text 
+                fontSize='sm' 
+                as='div' 
+                sx={{
+                  whiteSpace: 'normal', 
+                  '&:first-letter': {textTransform: 'capitalize'}
+                }}>{occupation}</Text>
+              <Space unit={0.5} />
               <Text fontSize='xs' as='div'>{date}</Text>
             </a.div>
         </Box>
         <Box sx={controlArea} py={1}>
-          <Box sx={controlButton}>
-            <Text fontSize='xs' as='div' sx={{marginRight: '12%'}}>{length}</Text>
-            <Play />
-          </Box>
+          <HStack spacing={2}>
+            <GiDuration />
+            <Text fontSize='xs' as='div'>{(
+              // @ts-ignore
+              moment.duration(duration, "minutes").format("h [hrs] m [min]")
+            )}</Text>
+            <GiAudioCassette />
+          </HStack>
           {privateCast && 
             // <Tooltip TransitionComponent={Zoom} title="the guest chose to keep the entry private" placement="right-start" arrow>
               <Text fontSize='xs' casing='uppercase' as='div'>private</Text>

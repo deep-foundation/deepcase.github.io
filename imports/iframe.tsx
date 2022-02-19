@@ -23,7 +23,6 @@ export const IFrame = React.memo(({
 }:{
   title?: any; src: string; download?: any; styles?: any; icon?: any;
 }) => {
-  const frameRef = useRef<any>();
   const refDiv = useRef<any>();
 
   const localCalc = (x, y) => {
@@ -38,15 +37,14 @@ export const IFrame = React.memo(({
       const box = refDiv?.current?.getBoundingClientRect();
       const { left, top, right, bottom } = box;
       if (!(left < x && right > x && top < y && bottom > y)) {
-        set({xy: [0,0]})
-        frameRef.current({ xys: [0, 0, 1] });
+        set({xy: [0,0]});
       }
     }, 1000);
     return () => clearInterval(i);
   }, []);
   const [max825] = useMediaQuery('(max-width: 825px)');
   
-  return (<GravityCard paperComponent={'div'} setRef={frameRef} xm={0.01} ym={0.01} style={styles}>
+  return (
       <Box ref={refDiv} sx={innerContainer}
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
@@ -64,6 +62,5 @@ export const IFrame = React.memo(({
         </AspectRatio>
         {download}
       </Box>
-    </GravityCard>
   )
 })

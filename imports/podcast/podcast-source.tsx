@@ -23,6 +23,7 @@ const PodcastSourceButton = React.memo(({
       transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
       border={0}
       px='8px'
+      target='_blank'
       borderRadius={0}
       fontSize='14px'
       fontWeight='semibold'

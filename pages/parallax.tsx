@@ -43,7 +43,8 @@ export interface ICard {
   guestName: string;
   occupation: string;
   date: string;
-  length: string;
+  duration: string;
+  published?: boolean;
   links: { provider: IProvider, href: string }[];
   imgs: {
     id: string;
@@ -91,7 +92,7 @@ const _podcasts: ICard[] = [
     guestName: 'Евгений',
     occupation: 'BigData Engineer из Ultra tendency International (Германия)',
     date: '08.12.21',
-    length: '16:20',
+    duration: '16:20',
     links: [
       {
         provider: youTubeProvider,
@@ -130,7 +131,7 @@ const _podcasts: ICard[] = [
     guestName: 'Дмитрий Сотсков',
     occupation: 'директор компании Нэти Вэб',
     date: '08.12.21',
-    length: '16:20',
+    duration: '16:20',
     links: [
       {
         provider: youTubeProvider,
@@ -169,7 +170,7 @@ const _podcasts: ICard[] = [
     guestName: 'Виталий Шубин',
     occupation: 'владелец компании по IT разработке',
     date: '08.12.21',
-    length: '16:20',
+    duration: '16:20',
     links: [
       {
         provider: youTubeProvider,
@@ -208,7 +209,7 @@ const _podcasts: ICard[] = [
     guestName: 'Алексей',
     occupation: 'аналитик в области оценки риска юр. лиц',
     date: '08.12.21',
-    length: '16:20',
+    duration: '16:20',
     links: [
       {
         provider: youTubeProvider,
@@ -261,7 +262,7 @@ const _podcasts: ICard[] = [
     guestName: 'Семен Гординов',
     occupation: 'ведущий программист',
     date: '14.12.21',
-    length: '16:20',
+    duration: '16:20',
     links: [
       {
         provider: youTubeProvider,

@@ -14,7 +14,7 @@ const classes = {
   talkingPoint: {
     fontSize: 'calc(9px + 0.3vmax)',
     lineHeight: 'calc(1.25em + 0.5vmax)',
-    fontFamily:  "'Inconsolata', monospace",
+    fontFamily:  "'Zen Kaku Gothic Antique', sans-serif",
     textTransform: 'uppercase',
     color: '#6e6e6e',
     height: '100%',
@@ -47,7 +47,7 @@ const mainTalkingPoint = {
   opacity: 1,
   fontSize: 'calc(22px + 1.9vmax)',
   lineHeight: 'calc(1.45em + 0.5vmax)',
-  fontFamily:  "'Inconsolata', monospace",
+  fontFamily:  "'Zen Kaku Gothic Antique', sans-serif",
   color: 'light',
   textTransform: 'uppercase',
   justifyContent: 'center',

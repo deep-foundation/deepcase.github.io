@@ -52,7 +52,8 @@ const podcasts: ICard[] = [
     guestName: 'Евгений',
     occupation: 'BigData Engineer из Ultra tendency International (Германия)',
     date: '08.12.21',
-    length: '16:20',
+    duration: '1:17',
+    published: true,
     links: [
       {
         provider: youTubeProvider,
@@ -79,8 +80,8 @@ const podcasts: ICard[] = [
       id: 'c',
       alt: '',
       src: '/logo-speakers/ultratendency.svg',
-      top: 65,
-      left: 7,
+      top: 80,
+      left: 12,
       width: 24,
     }]
   },
@@ -91,7 +92,8 @@ const podcasts: ICard[] = [
   //   guestName: 'Дмитрий Сотсков',
   //   occupation: 'директор компании Нэти Вэб',
   //   date: '08.12.21',
-  //   length: '16:20',
+  //   duration: '16:20',
+        // published: false,
   //   links: [
   //     {
   //       provider: youTubeProvider,
@@ -123,45 +125,46 @@ const podcasts: ICard[] = [
   //     width: 20,
   //   }]
   // },
-  {
-    id: '7',
-    src: '/speakers/asset_1.png',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Виталий Шубин',
-    occupation: 'владелец компании по IT разработке',
-    date: '08.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: '/',
-      },
-      {
-        provider: yaProvider,
-        href: '/',
-      },
-      {
-        provider: appleProvider,
-        href: '/',
-      },
-      {
-        provider: telegramProvider,
-        href: '/',
-      },
-      {
-        provider: soundcloudProvider,
-        href: '/',
-      },
-    ],
-    imgs: [{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/single.svg',
-      top: 70,
-      left: 15,
-      width: 42,
-    }]
-  },
+  // {
+  //   id: '7',
+  //   src: '/speakers/asset_1.png',
+  //   srcPng: '/speakers/dima.png',
+  //   guestName: 'Виталий Шубин',
+  //   occupation: 'владелец компании по IT разработке',
+  //   date: '08.12.21',
+  //   duration: '16:20',
+  //   published: false,
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: '/',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/single.svg',
+  //     top: 70,
+  //     left: 15,
+  //     width: 42,
+  //   }]
+  // },
   {
     id: '3',
     src: '/speakers/alexey.webp',
@@ -169,11 +172,12 @@ const podcasts: ICard[] = [
     guestName: 'Алексей',
     occupation: 'аналитик в области оценки риска юр. лиц',
     date: '08.12.21',
-    length: '16:20',
+    duration: '0:52',
+    published: true,
     links: [
       {
         provider: youTubeProvider,
-        href: '/',
+        href: 'https://www.youtube.com/watch?v=cSv0hcCb2zI',
       },
       {
         provider: yaProvider,
@@ -215,215 +219,166 @@ const podcasts: ICard[] = [
       width: 14,
     }]
   },
-  {
-    id: '17',
-    src: '/speakers/ivan-speaker.webp',
-    srcPng: '/speakers/ivan-speaker.png',
-    guestName: 'Иван Ермолаев',
-    occupation: 'Pазработчик',
-    date: '08.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: '/',
-      },
-      {
-        provider: yaProvider,
-        href: '/',
-      },
-      {
-        provider: appleProvider,
-        href: '/',
-      },
-      {
-        provider: telegramProvider,
-        href: '/',
-      },
-      {
-        provider: soundcloudProvider,
-        href: '/',
-      },
-    ],
-    imgs: [{
-      id: 'b',
-      alt: 'java',
-      src: '/logo-speakers/java.png',
-      top: 70,
-      left: 78,
-      width: 16,
-    },
-    {
-      id: 'b',
-      alt: 'aws',
-      src: '/logo-speakers/aws.png',
-      top: 0,
-      left: 65,
-      width: 24,
-    },
-    {
-      id: 'b',
-      alt: 'spring',
-      src: '/logo-speakers/spring.png',
-      top: 50,
-      left: 65,
-      width: 42,
-    },
-    {
-      id: 'b',
-      alt: 'rust',
-      src: '/logo-speakers/rust.svg',
-      top: 70,
-      left: 10,
-      width: 14,
-    }]
-  },
-  {
-    id: '3',
-    src: '/speakers/alexey.webp',
-    srcPng: '/speakers/alexey.png',
-    guestName: 'Алексей',
-    occupation: 'аналитик в области оценки риска юр. лиц',
-    date: '08.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: '/',
-      },
-      {
-        provider: yaProvider,
-        href: '/',
-      },
-      {
-        provider: appleProvider,
-        href: '/',
-      },
-      {
-        provider: telegramProvider,
-        href: '/',
-      },
-      {
-        provider: soundcloudProvider,
-        href: '/',
-      },
-    ],
-    imgs: [{
-      id: 'a',
-      alt: '',
-      src: '/logo-speakers/exel.png',
-      top: 2,
-      left: 80,
-      width: 22,
-    },{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/sql.png',
-      top: 55,
-      left: 75,
-      width: 18,
-    },{
-      id: 'c',
-      alt: '',
-      src: '/logo-speakers/java.png',
-      top: 70,
-      left: 6,
-      width: 14,
-    }]
-  },
-  {
-    id: '4',
-    src: '/speakers/semen.webp',
-    srcPng: '/speakers/semen.png',
-    guestName: 'Семен Гординов',
-    occupation: 'ведущий программист',
-    date: '14.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: '/',
-      },
-      {
-        provider: yaProvider,
-        href: '/',
-      },
-      {
-        provider: appleProvider,
-        href: '/',
-      },
-      {
-        provider: telegramProvider,
-        href: '/',
-      },
-      {
-        provider: soundcloudProvider,
-        href: '/',
-      },
-    ],
-    imgs: [{
-      id: 'a',
-      alt: '',
-      src: '/logo-speakers/php.png',
-      top: 32,
-      left: 73,
-      width: 22,
-    },{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/ims.png',
-      top: 65,
-      left: 5,
-      width: 25,
-    }]
-  },
-  {
-    id: '5',
-    src: '/speakers/vitaly.webp',
-    srcPng: '/speakers/vitaly.png',
-    guestName: 'Виталий',
-    occupation: 'devOps / backend',
-    date: '14.12.21',
-    length: '16:20',
-    links: [
-      {
-        provider: youTubeProvider,
-        href: '/',
-      },
-      {
-        provider: yaProvider,
-        href: '/',
-      },
-      {
-        provider: appleProvider,
-        href: '/',
-      },
-      {
-        provider: telegramProvider,
-        href: '/',
-      },
-      {
-        provider: soundcloudProvider,
-        href: '/',
-      },
-    ],
-    imgs: [{
-      id: 'a',
-      alt: '',
-      src: '/logo-speakers/php.png',
-      top: 32,
-      left: 73,
-      width: 22,
-    },{
-      id: 'b',
-      alt: '',
-      src: '/logo-speakers/single.svg',
-      top: 75,
-      left: 5,
-      width: 25,
-    }
-  ]
-  },
+  // {
+  //   id: '17',
+  //   src: '/speakers/ivan-speaker.webp',
+  //   srcPng: '/speakers/ivan-speaker.png',
+  //   guestName: 'Иван Ермолаев',
+  //   occupation: 'Pазработчик',
+  //   date: '08.12.21',
+  //   duration: '16:20',
+  //   published: false,
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: '/',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'b',
+  //     alt: 'java',
+  //     src: '/logo-speakers/java.png',
+  //     top: 70,
+  //     left: 78,
+  //     width: 16,
+  //   },
+  //   {
+  //     id: 'b',
+  //     alt: 'aws',
+  //     src: '/logo-speakers/aws.png',
+  //     top: 0,
+  //     left: 65,
+  //     width: 24,
+  //   },
+  //   {
+  //     id: 'b',
+  //     alt: 'spring',
+  //     src: '/logo-speakers/spring.png',
+  //     top: 50,
+  //     left: 65,
+  //     width: 42,
+  //   },
+  //   {
+  //     id: 'b',
+  //     alt: 'rust',
+  //     src: '/logo-speakers/rust.svg',
+  //     top: 70,
+  //     left: 10,
+  //     width: 14,
+  //   }]
+  // },
+  
+  // {
+  //   id: '4',
+  //   src: '/speakers/semen.webp',
+  //   srcPng: '/speakers/semen.png',
+  //   guestName: 'Семен Гординов',
+  //   occupation: 'ведущий программист',
+  //   date: '14.12.21',
+  //   duration: '16:20',
+  //   published: false,
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: '/',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'a',
+  //     alt: '',
+  //     src: '/logo-speakers/php.png',
+  //     top: 32,
+  //     left: 73,
+  //     width: 22,
+  //   },{
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/ims.png',
+  //     top: 65,
+  //     left: 5,
+  //     width: 25,
+  //   }]
+  // },
+  // {
+  //   id: '5',
+  //   src: '/speakers/vitaly.webp',
+  //   srcPng: '/speakers/vitaly.png',
+  //   guestName: 'Виталий',
+  //   occupation: 'devOps / backend',
+  //   date: '14.12.21',
+  //   duration: '16:20',
+  //   published: false,
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: yaProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: appleProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: telegramProvider,
+  //       href: '/',
+  //     },
+  //     {
+  //       provider: soundcloudProvider,
+  //       href: '/',
+  //     },
+  //   ],
+  //   imgs: [{
+  //     id: 'a',
+  //     alt: '',
+  //     src: '/logo-speakers/php.png',
+  //     top: 32,
+  //     left: 73,
+  //     width: 22,
+  //   },{
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/single.svg',
+  //     top: 75,
+  //     left: 5,
+  //     width: 25,
+  //   }
+  // ]
+  // },
   {
     id: '6',
     src: '/speakers/ivanSh.webp',
@@ -431,7 +386,8 @@ const podcasts: ICard[] = [
     guestName: 'Иван Шилов',
     occupation: 'аналитик',
     date: '14.12.21',
-    length: '16:20',
+    duration: '0:38',
+    published: true,
     links: [
       {
         provider: youTubeProvider,

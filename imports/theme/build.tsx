@@ -24,14 +24,14 @@ export const coreTheme = extendTheme({
 
   },
   fonts: {
-    body: "'Inconsolata', monospace",
-    heading: "'Inconsolata', monospace",
+    body: "'Zen Kaku Gothic Antique', sans-serif",
+    heading: "'Zen Kaku Gothic Antique', sans-serif",
     // body: "Comfortaa, sans-serif",
     // heading: "Comfortaa, sans-serif",
     mono: "Menlo, monospace",
   },
   fontSizes: {
-    xs: "calc(0.75rem + 0.5vmax)",
+    xs: "calc(0.35rem + 0.5vmax)",
     sm: 'calc(14px + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
     lg: "calc(1.125rem + 0.5vmax)",
@@ -44,6 +44,12 @@ export const coreTheme = extendTheme({
     "7xl": "4.5rem",
     "8xl": "6rem",
     "9xl": "8rem",
+  },
+  fontWeights: {
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 700,
   },
   styles: {
     global: {
@@ -67,14 +73,17 @@ export const coreTheme = extendTheme({
     h1: {
       fontSize: 'calc(20px + 0.5vmax)',
       fontWeight: 'light',
+      letterSpacing: 'wide',
     },
     h2: {
       fontSize: 'calc(18px + 0.5vmax)',
       fontWeight: 'light',
+      letterSpacing: 'wide',
     },
     h5: {
       fontSize: 'calc(14px + 0.5vmax)',
       fontWeight: 'light',
+      letterSpacing: 'wide',
     },
   },
   shadows: {
@@ -158,6 +167,12 @@ export const coreTheme = extendTheme({
           alignItems: 'center',
         }
       },
+    },
+    Text: {
+      baseStyle: {
+        letterSpacing: 'wide',
+        lineHeight: 'tall',
+      }
     },
   }
   // typography: {

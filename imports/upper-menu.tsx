@@ -3,7 +3,7 @@ import { VscGithubAlt } from 'react-icons/vsc';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
-import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton, Icon } from './framework';
+import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton, Img, Stack } from './framework';
 import { TalksForm } from './talks-form';
 
 
@@ -139,20 +139,36 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
             <Flex direction='row' justify={max825 ? 'center' : 'space-between'} align='center' p={max825 ? '0 1rem' : '0 2rem'}>
               { !max825
                 ? <Flex direction='row' justify='space-between' w='100%'>
-                    <a.h1 style={{
-                      alignSelf: 'center',
-                      fontSize: 'calc(32px + 0.5vmax)',
-                      fontFamily: "'Inconsolata', monospace",
-                      margin: 0,
-                      transformOrigin: 'top',
-                      transform: fontsScroll.x
-                                    .to({
-                                      range: [0, 1, 0],
-                                      output: [1, 0.5, 1],
-                                    })
-                                    .to(x => `scale(${x})`),
-                    }}>Deep.Foundation</a.h1>
-                  
+                    <HStack>
+                      <a.div style={{
+                        width: 52,
+                        lineHeight: 'base',
+                        marginRight: '1rem',
+                        alignSelf: 'center',
+                        transformOrigin: 'top',
+                        transform: fontsScroll.x
+                                      .to({
+                                        range: [0, 1, 0],
+                                        output: [1, 0.5, 1],
+                                      })
+                                      .to(x => `scale(${x})`),
+                      }}>
+                        <Img src='./logo.png' />
+                      </a.div>
+                      <a.h1 style={{
+                        alignSelf: 'center',
+                        fontSize: 'calc(32px + 0.5vmax)',
+                        fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
+                        margin: 0,
+                        transformOrigin: 'top',
+                        transform: fontsScroll.x
+                                      .to({
+                                        range: [0, 1, 0],
+                                        output: [1, 0.5, 1],
+                                      })
+                                      .to(x => `scale(${x})`),
+                      }}>Deep.Foundation</a.h1>
+                  </HStack>
                   <HStack spacing='1rem'>
                     <a.div style={{
                       transformOrigin: 'top',
@@ -240,7 +256,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                           display: 'contents',
                           alignSelf: 'center',
                           fontSize: 'calc(22px + 0.5vmax)',
-                          fontFamily: "'Inconsolata', monospace",
+                          fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
                           margin: 0,
                           lineHeight: 1,
                           transformOrigin: 'top',

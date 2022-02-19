@@ -16,12 +16,15 @@ export default class MyDocument extends Document {
           <link rel="/logo.png" href="image url" />
           <meta property="og:image" content="/logo.png" />
           {/* <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /> */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300&display=swap" rel="stylesheet" />
           {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet" /> */}
+          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300&display=swap" rel="stylesheet" /> */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&display=swap" rel="stylesheet" />
+          {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;600;700&display=swap" rel="stylesheet" /> */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
