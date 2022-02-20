@@ -192,29 +192,27 @@ export function PageContent() {
         
         <TalkingPoints refScrollContainer={scrollingRef} />
         
-        <GridArea>
+        <GridArea innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}>
           <IFrame 
-            icon={
-              <IconButton 
-                variant='outline'
-                colorScheme='white'
-                size='sm'
-                as='a'
-                href='https://deep.deep.foundation'
-                target='_blank'
-                aria-label='open fullscreen'
-                icon={<BsArrowsFullscreen />}
-                sx={{
-                  position: 'absolute',
-                  top: '1rem',
-                  right: 0,
-                }}
-              />
-            }
             title={
-              <HStack align='baseline' spacing={8} py='1rem'>
-                <H2>Deep.Case</H2>
-                <Text fontSize='sm' >pre alpha version</Text>
+              <HStack align='baseline' py='1rem' justifyContent='space-between' alignItems='center'>
+                <HStack spacing={8}>
+                  <H2>Deep.Case</H2>
+                  <Text fontSize='sm' >pre alpha version</Text>
+                </HStack>
+                <Box>
+                  <IconButton 
+                    variant='outline'
+                    colorScheme='white'
+                    size='sm'
+                    as='a'
+                    href='https://deep.deep.foundation'
+                    target='_blank'
+                    aria-label='open fullscreen'
+                    icon={<BsArrowsFullscreen />}
+                    
+                  />
+                </Box>
               </HStack>
             }
             src='https://deep.deep.foundation/?bg-transparent=true'

@@ -11,6 +11,9 @@ export const coreTheme = extendTheme({
   },
   colors: {
     dark: '#19202B',
+    transparentDark: {
+      500: 'rgba(0, 0, 0, 0.19)',
+    },
     light: '#EAEAEA',
     second: {
       100: '#c0e8f9',
@@ -26,8 +29,6 @@ export const coreTheme = extendTheme({
   fonts: {
     body: "'Zen Kaku Gothic Antique', sans-serif",
     heading: "'Zen Kaku Gothic Antique', sans-serif",
-    // body: "Comfortaa, sans-serif",
-    // heading: "Comfortaa, sans-serif",
     mono: "Menlo, monospace",
   },
   fontSizes: {

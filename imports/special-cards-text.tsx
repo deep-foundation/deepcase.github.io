@@ -48,8 +48,8 @@ export const SpecialCardsText = React.memo(() => {
       <GridCard columns='25rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/1.png' sx={{transform: 'translate(-50%, 2.5rem)', width: '80%'}} alt='icon' />}
-            icon2={<Img src='/flags/1_2.png' sx={{transform: 'translateX(-50%)', width: '80%'}} alt='icon' />}
+            icon1={<Img src='/flags/1.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translate(-50%, 2.5rem)'}} alt='icon' />}
+            icon2={<Img src='/flags/1_2.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
             title={t('flag-title--operational-environment')}
             description={t('flag-description--operational-environment')}
           />
@@ -66,8 +66,8 @@ export const SpecialCardsText = React.memo(() => {
         </Text>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/2.png' sx={{transform: 'translate(-50%, 2rem)'}} htmlWidth='70%' alt='icon' />}
-            icon2={<Img src='/flags/2_2.png' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
+            icon1={<Img src='/flags/2.svg' sx={{transform: 'translate(-50%, 2rem)'}} htmlWidth='100%'  htmlHeight='100%' alt='icon' />}
+            icon2={<Img src='/flags/2_2.svg' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
             title={t('flag-title--new-programming-paradigm')}
             description={t('flag-description--new-programming-paradigm')}
           />
@@ -78,8 +78,8 @@ export const SpecialCardsText = React.memo(() => {
       <GridCard columns='23rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/3.png' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' />}
-            icon2={<Img src='/flags/3_2.png' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
+            icon1={<Img src='/flags/3.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
+            icon2={<Img src='/flags/3_2.svg' sx={{transform: 'translateX(-50%)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
             title={t('flag-title--all-languages')}
             description={t('flag-description--all-languages')}
           />
@@ -97,7 +97,7 @@ export const SpecialCardsText = React.memo(() => {
           </Text>
           <Center py='2rem'>
             <pre>
-            <Code variant='solid' colorScheme='linkedin' size='full' sx={{borderRadius: '0.175rem', padding: '1rem', fontSize: '1rem'}}>
+            <Code variant='solid' colorScheme='transparentDark' size='full' sx={{borderRadius: '0.175rem', padding: '1rem', fontSize: '1rem'}}>
               {`{
   can(where: {
     object_id: { _eq: 5 },
@@ -113,8 +113,8 @@ export const SpecialCardsText = React.memo(() => {
         </Box>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
-            icon1={<Img src='/flags/4.png' sx={{transform: 'translate(-50%, 2.5rem)'}} alt='icon' />}
-            icon2={<Img src='/flags/4_2.png' sx={{transform: 'translateX(-50%)'}} htmlWidth='60%' alt='icon' />}
+            icon1={<Img src='/flags/4.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
+            icon2={<Img src='/flags/4_2.svg' sx={{transform: 'translateX(-50%)'}} htmlHeight='100%' htmlWidth='100%' alt='icon' />}
             title={t('flag-title--semantic-system')}
             description={t('flag-description--semantic-system')}
           />
