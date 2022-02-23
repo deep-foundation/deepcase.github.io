@@ -1,6 +1,14 @@
 import { extendTheme } from '@chakra-ui/react';
 import { mode } from "@chakra-ui/theme-tools";
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 
+const breakpoints = createBreakpoints({
+  sm: '20em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+  '2xl': '96em',
+})
 
 
 const temp = extendTheme({});
@@ -9,6 +17,7 @@ export const coreTheme = extendTheme({
   config: {
     cssVarPrefix: 'deep',
   },
+  breakpoints,
   colors: {
     dark: '#19202B',
     transparentDark: {

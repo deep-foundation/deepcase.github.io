@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img, useBreakpointValue, StackDivider } from './framework';
+import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img, useBreakpoint, useBreakpointValue, StackDivider } from './framework';
 import { SpecialCard } from "./special-card";
 
 
@@ -36,12 +36,10 @@ const GridCard = React.memo(({
 });
 
 export const SpecialCardsText = React.memo(() => {
-  const [max850] = useMediaQuery('(max-width: 850px)');
-
-  const divider = useBreakpointValue({ xs: 'gray.200', md: 'transparent' })
+  const divider = useBreakpoint();
   const { t } = useTranslation();
 
-  return (<VStack spacing={{sm: '7rem', lg: '5rem'}} divider={<StackDivider borderColor={divider} />}>
+  return (<VStack spacing={{ sm: '7rem', lg: '5rem' }} divider={<StackDivider borderColor={divider === 'sm' ? 'grey.200' : 'dark'} />}>
       <GridCard columns='25rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard

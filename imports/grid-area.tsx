@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, useMediaQuery } from './framework';
+import { Box, Grid } from './framework';
 
 
 export const GridArea = React.memo(({
@@ -15,7 +15,6 @@ export const GridArea = React.memo(({
   innerGridStyles?: any;
   [key:string]: any;
 }) => {
-  const [max825] = useMediaQuery('(max-width: 825px)');
 
   return (<Grid templateColumns='repeat(8, 1fr)' as={component} {...props}>
       <Box 
