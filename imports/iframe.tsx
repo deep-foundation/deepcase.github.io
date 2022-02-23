@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSpring } from 'react-spring';
-import { GravityCard, AspectRatio, Box, useMediaQuery } from './framework';
+import { AspectRatio, Box, useMediaQuery } from './framework';
 
 
 const innerContainer = {
@@ -51,7 +51,7 @@ export const IFrame = React.memo(({
       >
         {icon}
         {title}
-        <AspectRatio ratio={max825 ? 3 / 4 : 16 / 9}>
+        <AspectRatio ratio={{sm: 3 / 4, md: 16 / 9}}>
           <iframe src={src}
             width='100%'
             height='100%'

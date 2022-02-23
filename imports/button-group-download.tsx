@@ -10,6 +10,7 @@ const ButtonMenu = React.memo(() => {
       colorScheme='second' 
       size='lg'
       aria-label='download deep cased'
+      w='100%'
     >
       <HStack>
         <Text fontSize='sm'>Download</Text>

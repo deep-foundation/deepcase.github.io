@@ -217,7 +217,7 @@ export function PageContent() {
             }
             src='https://deep.deep.foundation/?bg-transparent=true'
             download={
-              <Stack direction={max825 ? 'column' : 'row'} justify='center' spacing={10} p='1rem'>
+              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} p='1rem'>
                 <Button aria-label='gitpod' variant="outline" colorScheme="second" size="lg">
                   <HStack>
                     <Text fontSize='sm'>GitPod</Text>
