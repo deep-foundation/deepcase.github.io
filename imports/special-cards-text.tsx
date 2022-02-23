@@ -1,12 +1,7 @@
-import AppleIcon from '@material-ui/icons/Apple';
-import BathtubIcon from '@material-ui/icons/Bathtub';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import EmojiSymbolsIcon from '@material-ui/icons/EmojiSymbols';
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img } from './framework';
+import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img, useBreakpointValue, StackDivider } from './framework';
 import { SpecialCard } from "./special-card";
-// import { SpecialCardCopy } from './special-card';
 
 
 const GridCard = React.memo(({
@@ -42,9 +37,11 @@ const GridCard = React.memo(({
 
 export const SpecialCardsText = React.memo(() => {
   const [max850] = useMediaQuery('(max-width: 850px)');
+
+  const divider = useBreakpointValue({ xs: 'gray.200', md: 'transparent' })
   const { t } = useTranslation();
 
-  return (<VStack spacing={{sm: '7rem', lg: '5rem'}}>
+  return (<VStack spacing={{sm: '7rem', lg: '5rem'}} divider={<StackDivider borderColor={divider} />}>
       <GridCard columns='25rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
           <SpecialCard
@@ -58,7 +55,7 @@ export const SpecialCardsText = React.memo(() => {
           {t('flag-article--operational-environment')}
         </Text>
       </GridCard>
-      {max850 && <Divider />}
+      {/* {max850 && <Divider />} */}
 
       <GridCard alignItem='flex-start'>
         <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}}>
@@ -73,7 +70,7 @@ export const SpecialCardsText = React.memo(() => {
           />
         </Box>
       </GridCard>
-      {max850 && <Divider />}
+      {/* {max850 && <Divider />} */}
 
       <GridCard columns='23rem 1fr' direction='column' alignItem='flex-start'>
         <Box maxW='25rem' minW='20rem'>
@@ -88,7 +85,7 @@ export const SpecialCardsText = React.memo(() => {
           {t('flag-article--all-languages')}
         </Text>
       </GridCard>
-      {max850 && <Divider />}
+      {/* {max850 && <Divider />} */}
 
       <GridCard alignItem='center'>
         <Box>

@@ -141,17 +141,16 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                 ? <Flex direction='row' justify='space-between' w='100%'>
                     <HStack>
                       <a.div style={{
-                        width: 52,
-                        lineHeight: 'base',
+                        width: '3.25rem',
                         marginRight: '1rem',
                         alignSelf: 'center',
                         transformOrigin: 'top',
                         transform: fontsScroll.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.5, 1],
-                                      })
-                                      .to(x => `scale(${x})`),
+                                                .to({
+                                                  range: [0, 1, 0],
+                                                  output: [1, 0.5, 1],
+                                                })
+                                                .to(x => `scale(${x})`),
                       }}>
                         <Img src='./logo.png' alt='logo' />
                       </a.div>
@@ -252,21 +251,36 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     transform: rotate.r.to(r => `rotateX(${r*90}deg)`)}}> 
                     <Box sx={{...cubeSurface, ...header}}>
                       <HStack justify='space-between'>
-                        <a.h1 style={{
-                          display: 'contents',
-                          alignSelf: 'center',
-                          fontSize: 'calc(22px + 0.5vmax)',
-                          fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
-                          margin: 0,
-                          lineHeight: 1,
-                          transformOrigin: 'top',
-                          transform: fontsMode.x
-                                              .to({
-                                                range: [0, 1],
-                                                output: [1, 0.5],
-                                              })
-                                              .to(x => `scale(${x})`)
-                        }}>Deep.Foundation</a.h1>
+                        <Box>
+                          <HStack  spacing='1rem'>
+                            <a.div style={{
+                              width: '2rem',
+                              alignSelf: 'center',
+                              transformOrigin: 'top',
+                              transform: fontsMode.x
+                                                    .to({
+                                                      range: [0, 1],
+                                                      output: [1, 0.5],
+                                                    })
+                                                    .to(x => `scale(${x})`)
+                            }}><Img src='./logo.png' alt='logo' /></a.div>
+                            <a.h1 style={{
+                              display: 'contents',
+                              alignSelf: 'center',
+                              fontSize: 'calc(22px + 0.5vmax)',
+                              fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
+                              margin: 0,
+                              lineHeight: 1,
+                              transformOrigin: 'top',
+                              transform: fontsMode.x
+                                                  .to({
+                                                    range: [0, 1],
+                                                    output: [1, 0.5],
+                                                  })
+                                                  .to(x => `scale(${x})`)
+                            }}>Deep.Foundation</a.h1>
+                          </HStack>
+                        </Box>
                         <a.div style={{
                           transformOrigin: 'top',
                           transform: fontsMode.x

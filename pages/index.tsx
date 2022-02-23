@@ -166,7 +166,7 @@ export function PageContent() {
   return (<>
       <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
       <Box as='main' ref={scrollingRef} sx={root} animation={animation}>
-        <Space unit={8} />
+        <Space unit={6} />
          
         { max825 && <>
           <HStack ref={refMenuButtons} pl={1}>
