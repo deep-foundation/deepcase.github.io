@@ -100,6 +100,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
   const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
 
   const [max825] = useMediaQuery('(max-width: 825px)');
+
   const { i18n } = useTranslation();
   const active = i18n.language;
 
@@ -251,7 +252,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     <Box sx={{...cubeSurface, ...header}}>
                       <HStack justify='space-between'>
                         <Box>
-                          <HStack  spacing='1rem'>
+                          <HStack spacing='1rem'>
                             <a.div style={{
                               width: '2rem',
                               alignSelf: 'center',

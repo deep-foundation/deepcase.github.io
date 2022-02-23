@@ -1,4 +1,4 @@
-import { Button, Text } from '@chakra-ui/react';
+import { Button, Text, useMediaQuery as useMediaQueryChakra } from '@chakra-ui/react';
 export * from '@chakra-ui/react';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -18,9 +18,16 @@ import { Card } from './card';
 export { Card as GravityCard };
 
 import ConfettiExplosion from '@reonomy/react-confetti-explosion';
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import React from 'react';
 export { default as ConfettiExplosion } from '@reonomy/react-confetti-explosion';
+
+export const useMediaQuery = function useMediaQuery(arg) {
+  const [actualValue, isBrowser] = useMediaQueryChakra(arg);
+  const [value, setValue] = useState(false);
+  useLayoutEffect(() => setValue(actualValue), [actualValue, isBrowser]);
+  return [value, isBrowser];
+}
 
 // export function ScreenCenter(props) {
 //   return (
