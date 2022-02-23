@@ -1,16 +1,16 @@
 import React from 'react';
-import { Grid, SimpleGrid, useMediaQuery } from './framework';
+import { Grid, Box, useMediaQuery } from './framework';
 
 
 export const GridArea = React.memo(({
   children, 
-  column = {sm: '1/9', xl: '2/8'},
+  
   component = 'section',
   innerGridStyles,
   ...props
 }:{
   children: any;
-  column?: any;
+  
   component?: any;
   innerGridStyles?: any;
   [key:string]: any;
@@ -18,9 +18,18 @@ export const GridArea = React.memo(({
   const [max825] = useMediaQuery('(max-width: 825px)');
 
   return (<Grid templateColumns='repeat(8, 1fr)' as={component} {...props}>
-      <SimpleGrid column={column} px={max825 ? '1rem' : '2rem'} {...innerGridStyles}>
+      <Box 
+        sx={{
+          gridColumn: '2/8',
+          px: '2rem',
+          '@media(max-width: 825px)': {
+            gridColumn: '1/9',
+            px: '1rem',
+          }
+        }}
+        {...innerGridStyles}>
         {children}
-      </SimpleGrid>
+      </Box>
     </Grid>
   )
 });
