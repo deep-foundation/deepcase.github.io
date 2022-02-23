@@ -102,7 +102,6 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
   const [max825] = useMediaQuery('(max-width: 825px)');
   const { i18n } = useTranslation();
   const active = i18n.language;
-  console.log(active);
 
   return (<><Box as='header' w='100%' pos='fixed' zIndex={2}>
         {transitions((style, item) => (item && <a.div ref={cubeRef}
@@ -136,7 +135,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
               }
             }}
           >
-            <Flex direction='row' justify={max825 ? 'center' : 'space-between'} align='center' p={max825 ? '0 1rem' : '0 2rem'}>
+            <Flex direction='row' justify={{sm: 'center', md: 'space-between'}} align='center' p={{sm: '0 1rem', md: '0 2rem'}}>
               { !max825
                 ? <Flex direction='row' justify='space-between' w='100%'>
                     <HStack>
