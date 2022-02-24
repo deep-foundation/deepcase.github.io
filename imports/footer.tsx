@@ -11,7 +11,7 @@ export const Footer = React.memo(() => {
     <Box 
       w='100%' 
       h='8rem' 
-      bg='dark' 
+      bg='transparentDark.500' 
       py='2rem'
       px={{sm: '1rem', md: '2rem'}}
       display='flex'
