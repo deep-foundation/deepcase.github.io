@@ -18,6 +18,7 @@ import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import i18n from '../imports/i18n';
 import { useTranslation } from 'react-i18next';
 import { BsArrowsFullscreen } from 'react-icons/bs';
+import { Footer } from '../imports/footer';
 
 
 Sentry.init({
@@ -268,6 +269,9 @@ export function PageContent() {
             ))}
           </Wrap>
         </GridArea>
+        
+        <Space unit={max900 ? 14 : 6} />
+        <Footer />
       </Box>
     </>
   );
