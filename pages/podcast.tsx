@@ -440,7 +440,12 @@ export const Podcasts = React.memo(() => {
   return (<div style={{marginTop: '7rem'}}>
     <VStack spacing='7rem'>
       {podcasts.map( p => (
-        <div style={{width: 'calc(21.875 + 1.5vmax)', height: 'calc(17.875 + 1.5vmax)'}}>
+        <div style={{
+          position: 'relative',
+          width: 'calc(21.875rem + 1.5vmax)', 
+          height: 'calc(17.875rem + 1.5vmax)',
+          }}
+        >
           <Podcast card={p} />
         </div>
       ))}
