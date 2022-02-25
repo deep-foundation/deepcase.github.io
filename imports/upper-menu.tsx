@@ -158,7 +158,6 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         alignSelf: 'center',
                         fontSize: 'calc(32px + 0.5vmax)',
                         fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
-                        margin: 0,
                         transformOrigin: 'top',
                         transform: fontsScroll.x
                                       .to({
