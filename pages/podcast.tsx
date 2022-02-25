@@ -4,6 +4,7 @@ import { Carousel, CarouselItem } from 'react-round-carousel';
 import { Podcast } from '../imports/podcast/podcast-card';
 import { Provider } from '../imports/provider';
 import { ICard, IProvider } from '../pages/parallax';
+import { VStack } from '../imports/framework';
 
 
 
@@ -435,11 +436,24 @@ export const CarouselPodcast = React.memo(() => {
   )}
 );
 
+export const Podcasts = React.memo(() => {
+  return (<div style={{marginTop: '7rem'}}>
+    <VStack spacing='7rem'>
+      {podcasts.map( p => (
+        <div style={{width: 'calc(21.875 + 1.5vmax)', height: 'calc(17.875 + 1.5vmax)'}}>
+          <Podcast card={p} />
+        </div>
+      ))}
+    </VStack>
+  </div>
+  )}
+);
+
 
 export default function Page () {
   return (
     <Provider>
-      <CarouselPodcast/>
+      <Podcasts />
     </Provider>
   );
 };
