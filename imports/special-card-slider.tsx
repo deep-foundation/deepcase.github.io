@@ -125,46 +125,46 @@ const podcasts: ICard[] = [
   //     width: 20,
   //   }]
   // },
-  // {
-  //   id: '7',
-  //   src: '/speakers/asset_1.png',
-  //   srcPng: '/speakers/dima.png',
-  //   guestName: 'Виталий Шубин',
-  //   occupation: 'владелец компании по IT разработке',
-  //   date: '08.12.21',
-  //   duration: '16:20',
-  //   published: false,
-  //   links: [
-  //     {
-  //       provider: youTubeProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: yaProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: appleProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: telegramProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: soundcloudProvider,
-  //       href: '/',
-  //     },
-  //   ],
-  //   imgs: [{
-  //     id: 'b',
-  //     alt: '',
-  //     src: '/logo-speakers/single.svg',
-  //     top: 70,
-  //     left: 15,
-  //     width: 42,
-  //   }]
-  // },
+  {
+    id: '7',
+    src: '/speakers/asset_1.png',
+    srcPng: '/speakers/dima.png',
+    guestName: 'Виталий Шубин',
+    occupation: 'владелец компании по IT разработке',
+    date: '08.12.21',
+    duration: '16:20',
+    published: true,
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=V28SFyLvO5g&t=2s&ab_channel=DeepFoundation',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: soundcloudProvider,
+      //   href: '/',
+      // },
+    ],
+    imgs: [{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/single.svg',
+      top: 70,
+      left: 15,
+      width: 42,
+    }]
+  },
   {
     id: '3',
     src: '/speakers/alexey.webp',
@@ -200,7 +200,7 @@ const podcasts: ICard[] = [
       id: 'a',
       alt: '',
       src: '/logo-speakers/exel.png',
-      top: 2,
+      top: 22,
       left: 80,
       width: 22,
     },{
@@ -272,7 +272,7 @@ const podcasts: ICard[] = [
   //     src: '/logo-speakers/spring.png',
   //     top: 50,
   //     left: 65,
-  //     width: 42,
+  //     width: 24,
   //   },
   //   {
   //     id: 'b',

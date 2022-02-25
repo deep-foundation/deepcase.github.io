@@ -69,6 +69,7 @@ export const TalksForm = React.memo(({
                 isRound
                 size='lg' 
                 as='a' 
+                target='_blank'
                 href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' 
                 aria-label='you tube' 
                 variant='unstyled'
@@ -79,6 +80,7 @@ export const TalksForm = React.memo(({
                 isRound
                 size='lg' 
                 as='a' 
+                target='_blank'
                 href='https://www.facebook.com/DeepFoundation-101491865581762' 
                 aria-label='facebook' 
                 variant='unstyled'
@@ -89,6 +91,7 @@ export const TalksForm = React.memo(({
                 isRound
                 size='lg' 
                 as='a' 
+                target='_blank'
                 href='https://vk.com/deep.foundation' 
                 aria-label='vkontakte' 
                 variant='unstyled'
@@ -99,6 +102,7 @@ export const TalksForm = React.memo(({
                 isRound
                 size='lg' 
                 as='a' 
+                target='_blank'
                 href='https://github.com/deep-foundation' 
                 aria-label='git hub'
                 variant='unstyled'
@@ -109,6 +113,7 @@ export const TalksForm = React.memo(({
                 isRound
                 size='lg' 
                 as='a' 
+                target='_blank'
                 href='https://www.patreon.com/deepfoundation?fan_landing=true' 
                 aria-label='patreon' 
                 variant='unstyled'

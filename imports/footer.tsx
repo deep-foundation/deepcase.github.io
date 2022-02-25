@@ -1,9 +1,10 @@
 import React from 'react';
 import { GiPeaceDove } from 'react-icons/gi';
 import { VscGithubAlt } from 'react-icons/vsc';
-import { RiPatreonLine } from 'react-icons/ri';
+import { CgPatreon } from 'react-icons/cg';
 import { AiOutlineYoutube, AiOutlineFacebook } from 'react-icons/ai';
-import { Box, HStack, Text } from './framework';
+import { VK } from './icons/vk';
+import { Box, HStack, Text, IconButton } from './framework';
 
 
 export const Footer = React.memo(() => {
@@ -18,17 +19,68 @@ export const Footer = React.memo(() => {
       flexDir='column'
       justifyContent='space-between'
       as='footer'>
-      <Box w='100%' display='flex' justifyContent='flex-end'>
-        <HStack spacing='0.3rem' sx={{border: '1px solid #EAEAEA', borderRadius: 'md', height: 'max-content', px: '3px', py: '2px'}}>
+      <Box w='100%' display='flex' justifyContent='center'>
+        <HStack spacing='0.3rem' sx={{}}>
           <GiPeaceDove /> <Text fontSize='xs'>made by humans from earth</Text>
         </HStack>
       </Box>
-      <Box w='100%' display='flex' justifyContent='flex-end'>
+      <Box w='100%' display='flex' justifyContent='center'>
         <HStack spacing='0.5rem'>
-          <AiOutlineYoutube />
-          <AiOutlineFacebook />
-          <VscGithubAlt />
-          <RiPatreonLine />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='github repository deep foundation'
+            href="https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured" 
+            title='youtube'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<AiOutlineYoutube />}
+          />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='github repository deep foundation'
+            href="https://www.facebook.com/DeepFoundation-101491865581762" 
+            title='facebook'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<AiOutlineFacebook />}
+          />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='github repository deep foundation'
+            href="https://vk.com/deep.foundation" 
+            title='vkontakte'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<VK />}
+          />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='github repository deep foundation'
+            href="https://github.com/deep-foundation" 
+            title='github repository deep foundation'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<VscGithubAlt />}
+          />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='github repository deep foundation'
+            href="https://www.patreon.com/deepfoundation?fan_landing=true" 
+            title='patreon'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<CgPatreon />}
+          />
         </HStack>
       </Box>
     </Box>
