@@ -375,8 +375,7 @@ const podcasts: ICard[] = [
       top: 75,
       left: 5,
       width: 25,
-    }
-  ]
+    }]
   },
   {
     id: '6',
@@ -416,8 +415,63 @@ const podcasts: ICard[] = [
       top: 32,
       left: 73,
       width: 22,
+    }]
+  },
+  {
+    id: '16',
+    src: '/speakers/asset_1.png',
+    srcPng: '/speakers/ivanSh.png',
+    guestName: 'Сергей',
+    occupation: 'fullstack web developer',
+    date: '22.12.21',
+    duration: '0:38',
+    published: true,
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=_JFOhNdB9x4',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: soundcloudProvider,
+      //   href: '/',
+      // },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/react.png',
+      top: 72,
+      left: 33,
+      width: 8,
     },
-  ]
+    {
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/dotnet.svg',
+      top: 28,
+      left: 82,
+      width: 12,
+    },
+    {
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/ts.png',
+      top: 42,
+      left: 3,
+      width: 10,
+    }],
   },
 ];
 
