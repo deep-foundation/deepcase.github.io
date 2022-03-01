@@ -1,6 +1,6 @@
 import { LocalStoreProvider } from '@deepcase/store/local';
 import { QueryStoreProvider } from '@deepcase/store/query';
-import { ThemeProvider } from '@material-ui/core/styles';
+
 import { Analitics } from './analitics';
 
 export function Provider({
