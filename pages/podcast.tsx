@@ -424,7 +424,7 @@ const podcasts: ICard[] = [
     guestName: 'Сергей',
     occupation: 'fullstack web developer',
     date: '22.12.21',
-    duration: '0:38',
+    duration: '1:58',
     published: true,
     links: [
       {
