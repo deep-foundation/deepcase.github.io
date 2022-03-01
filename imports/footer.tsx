@@ -21,7 +21,7 @@ export const Footer = React.memo(() => {
       as='footer'>
       <Box w='100%' display='flex' justifyContent='center'>
         <HStack spacing='0.3rem' sx={{}}>
-          <GiPeaceDove /> <Text fontSize='xs'>made by humans from earth</Text>
+          <GiPeaceDove /> <Text fontSize='xs'>made by humans from Earth</Text>
         </HStack>
       </Box>
       <Box w='100%' display='flex' justifyContent='center'>
