@@ -132,7 +132,7 @@ const podcasts: ICard[] = [
     guestName: 'Виталий Шубин',
     occupation: 'владелец компании по IT разработке',
     date: '08.12.21',
-    duration: '16:20',
+    duration: '0:17',
     published: true,
     links: [
       {
@@ -420,6 +420,62 @@ const podcasts: ICard[] = [
     },
   ]
   },
+  // {
+  //   id: '16',
+  //   src: '/speakers/asset_1.png',
+  //   srcPng: '/speakers/ivanSh.png',
+  //   guestName: 'Сергей',
+  //   occupation: 'fullstack web developer',
+  //   date: '22.12.21',
+  //   duration: '0:38',
+  //   published: true,
+  //   links: [
+  //     {
+  //       provider: youTubeProvider,
+  //       href: 'https://www.youtube.com/watch?v=_JFOhNdB9x4',
+  //     },
+  //     // {
+  //     //   provider: yaProvider,
+  //     //   href: '/',
+  //     // },
+  //     // {
+  //     //   provider: appleProvider,
+  //     //   href: '/',
+  //     // },
+  //     // {
+  //     //   provider: telegramProvider,
+  //     //   href: '/',
+  //     // },
+  //     // {
+  //     //   provider: soundcloudProvider,
+  //     //   href: '/',
+  //     // },
+  //   ],
+  //   imgs: [{
+  //     id: 'a',
+  //     alt: '',
+  //     src: '/logo-speakers/react.png',
+  //     top: 32,
+  //     left: 73,
+  //     width: 22,
+  //   },
+  //   {
+  //     id: 'b',
+  //     alt: '',
+  //     src: '/logo-speakers/dotnet.png',
+  //     top: 32,
+  //     left: 73,
+  //     width: 22,
+  //   },
+  //   {
+  //     id: 'c',
+  //     alt: '',
+  //     src: '/logo-speakers/ts.png',
+  //     top: 32,
+  //     left: 73,
+  //     width: 22,
+  //   }]
+  // },
 ];
 
 const items: CarouselItem[] = podcasts.map( p => ({
