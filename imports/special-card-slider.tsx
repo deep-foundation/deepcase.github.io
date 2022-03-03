@@ -9,14 +9,6 @@ import { SpecialCard } from './special-card';
 import { VStack, Box, Button, IconButton } from './framework';
 
 
-const button = {
-  position: 'absolute',
-  top: 0,
-  height: '100%',
-  zIndex: 11,
-  background: '#202a3887',
-};
-
 // podcast's source providers
 const youTubeProvider: IProvider = { 
   icon: '/source/youtube.png', 
