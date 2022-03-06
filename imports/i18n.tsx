@@ -42,9 +42,10 @@ const resources = {
 
 
 
+      'studios--description': 'A community of followers of the cult of depth (Deep), formed around the products of the Deep.Foundation ecosystem',
       'studios--main-tasks-main': 'Main',
       'studios--main-tasks-tasks': 'goals',
-      'studios--main-tasks-first': 'to promote the cult of depth (Deep) and our values: trust, openness, efficiency,',
+      'studios--main-tasks-first': 'to promote the cult of depth (Deep) and our values: trust, openness, efficiency',
       'studios--main-tasks-second': 'building a system of ranks and rewards to encourage community members',
     }
   },
@@ -82,6 +83,7 @@ const resources = {
       'flag-article--semantic-system': 'Больше не нужно описывать программным кодом бизнес логику и ограничения. Теперь можно описать символы операций которые вам нужны в вашем деле, и привязать к ним правила subject (кому) на object (на какие предметы) и action (на какое действие), используя для описания WHERE-like синтаксис позволяющий семантически анализировать ситуацию в момент попытки произведения операции или проверки права. Всегда можно узнать есть ли правила разрешающие выполнение некоторого action или иной операции выполнив gql запрос. Это позволяет полностью вынести бизнес логику из программных решений.',
 
 
+      'studios--description': 'Kомьюнити последователей культа глубины (Deep), формирующееся вокруг продуктов экосистемы Deep.Foundation',
       'studios--main-tasks-main': 'Основные',
       'studios--main-tasks-tasks': 'задачи',
       'studios--main-tasks-first': 'популязировать культ глубины (Deep) и наши ценности: доверие, открытость, эффективность',

@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-
-import { Carousel, CarouselItem } from 'react-round-carousel';
-import { ICard, IProvider } from '../pages/parallax';
-import { Podcast } from './podcast/podcast-card';
-import { useSpringCarousel } from 'react-spring-carousel-js';
+import React from 'react';
 import { CgArrowLongLeftC, CgArrowLongRightC } from "react-icons/cg";
+import { Carousel, CarouselItem } from 'react-round-carousel';
+import { useSpringCarousel } from 'react-spring-carousel-js';
+import { ICard, IProvider } from '../pages/parallax';
+import { IconButton, VStack } from './framework';
+import { Podcast } from './podcast/podcast-card';
 import { SpecialCard } from './special-card';
-import { VStack, Box, Button, IconButton } from './framework';
+
 
 
 // podcast's source providers
