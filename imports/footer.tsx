@@ -1,7 +1,7 @@
 import React from 'react';
 import { GiPeaceDove } from 'react-icons/gi';
 import { VscGithubAlt } from 'react-icons/vsc';
-import { CgPatreon } from 'react-icons/cg';
+import { RiPatreonLine } from 'react-icons/ri';
 import { AiOutlineYoutube, AiOutlineFacebook } from 'react-icons/ai';
 import { VK } from './icons/vk';
 import { Box, HStack, Text, IconButton } from './framework';
@@ -79,7 +79,7 @@ export const Footer = React.memo(() => {
             as='a'
             target='_blank'
             fontSize='xl'
-            icon={<CgPatreon />}
+            icon={<RiPatreonLine />}
           />
         </HStack>
       </Box>
