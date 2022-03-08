@@ -82,7 +82,7 @@ export const SpecialCard = React.memo(({
             boxShadow='0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)'
             borderRadius={5}
             p={0}
-            h='105%'
+            h='100%'
             w='94.5%'
             top='3%'
             left='2.5%'
@@ -140,11 +140,11 @@ export const SpecialCard = React.memo(({
                 left: 'calc(2.4% + 15.8%)',
                 borderRadius: 5,
                 padding: 0,
-                height: '105%',
+                height: '100%',
                 width: 'calc(94.2% - 31.3%)',
                 transform: spring.xy.to(transDashedBorder), borderColor: spring.borderColor 
               }}>
-              <Box pos='absolute' top='2.8%' left='calc(2.4% + 15.8%)' borderRadius={5} p={0} h='105%' w='calc(94.2% - 31.3%)' />
+              <Box pos='absolute' top='2.8%' left='calc(2.4% + 15.8%)' borderRadius={5} p={0} h='100%' w='calc(94.2% - 31.3%)' />
             </a.div>
           </Box>
         </Box>
@@ -159,16 +159,16 @@ export const SpecialCard = React.memo(({
           alignItems='center'
         >
           <Box pos='relative'>
-            <Box opacity={0} w='calc(320px - 60%)'>
+            <Box opacity={0} boxSizing='border-box'>
               {icon1}
             </Box>
-            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans3) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: '7rem', boxSizing: 'border-box', transform: spring.xy.to(trans3) }}>
               {icon1}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans4) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: '7rem', boxSizing: 'border-box', transform: spring.xy.to(trans4) }}>
               {icon2}
             </a.div>
-            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: 'calc(320px - 60%)', transform: spring.xy.to(trans5) }}>
+            <a.div style={{ position: 'absolute', top: 0, left: '50%', width: '7rem', boxSizing: 'border-box', transform: spring.xy.to(trans5) }}>
               {icon3}
             </a.div>
           </Box>
