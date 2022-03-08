@@ -4,7 +4,7 @@ import { Grid, Box } from '../framework';
 import { Round } from './round';
 import { motion } from 'framer-motion'
 import { H1, H2 } from '../headers';
-import { SlitedText } from './splited-text';
+// import { SplitedText } from './splited-text';
 
 
 export const MotionBox = motion<any>(Box);
@@ -32,7 +32,7 @@ export const Welcome = React.memo(() => {
         >
           <Round />
           <Box pos='absolute' top='50%' left='0' transform='translateY(-50%)' w='100%' >
-            <SlitedText />
+            {/* <SplitedText /> */}
           </Box>
         </Box>
         <Box display='flex' w='100%' h='100%' justifyContent='center' flexDirection='column'>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TweenMax, TimelineLite, Power2 } from "gsap/TweenMax";
+import { TweenMax, TimelineLite, Power2 } from "gsap/all";
 import SplitText from "@moxy/react-split-text";
 import { Text, Box } from '../framework';
 
@@ -9,7 +9,7 @@ const box = {
   marginRight: '0.7rem',
 };
 
-export const SlitedText = React.memo(() => {
+export const SplitedText = React.memo(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
