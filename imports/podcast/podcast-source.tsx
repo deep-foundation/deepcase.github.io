@@ -43,7 +43,7 @@ const PodcastSourceButton = React.memo(({
         <Center w='40px' h='40px'>
           <Img src={src} alt={alt} htmlWidth='100%' htmlHeight='100%' />
         </Center>
-        <Text fontSize='xs' as='div'>{title}</Text>
+        <Text fontSize='xs' as='div' color='light'>{title}</Text>
       </HStack>
     </Box>
   )
@@ -71,7 +71,7 @@ export const PodcastSource = React.memo(({
   // @ts-ignore
   return(<>{transitions((style, item) => (item && <a.div style={{
         boxShadow: '0 0 1px 1px #393d40, 0 0 1px 2px rgb(0 0 0 / 16%), 0 0 2px 3px rgb(0 0 0 / 14%), 0 0 4px 5px rgb(0 0 0 / 12%)',
-        background: '#000',
+        background: '#19202B',
         display: 'flex',
         flexDirection: 'column',
         position: 'absolute',

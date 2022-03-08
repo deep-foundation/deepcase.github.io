@@ -30,10 +30,10 @@ const telegramProvider: IProvider = {
   alt: 'Telegram',
   title: 'Telegram',
 };
-const soundcloudProvider: IProvider = { 
-  icon: '/source/soundcloud.png', 
-  alt: 'Soundcloud',
-  title: 'Soundcloud',
+const spotifyProvider: IProvider = { 
+  icon: '/source/spotify.svg', 
+  alt: 'spotify',
+  title: 'Spotify',
 };
 
 const podcasts: ICard[] = [
@@ -55,18 +55,18 @@ const podcasts: ICard[] = [
       //   provider: yaProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: appleProvider,
-      //   href: '/',
-      // },
+      {
+        provider: appleProvider,
+        href: 'https://podcasts.apple.com/ru/podcast/%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0-%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B8%D0%B7-ultratendency/id1613381730?i=1000553342935&l=en',
+      },
       // {
       //   provider: telegramProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: soundcloudProvider,
-      //   href: '/',
-      // },
+      {
+        provider: spotifyProvider,
+        href: 'https://open.spotify.com/episode/32XBeQQThbwjyPeaPUlYYb',
+      },
     ],
     imgs: [{
       id: 'c',
@@ -104,7 +104,7 @@ const podcasts: ICard[] = [
   //       href: 'abc',
   //     },
   //     {
-  //       provider: soundcloudProvider,
+  //       provider: spotifyProvider,
   //       href: 'abc',
   //     },
   //   ],
@@ -135,18 +135,18 @@ const podcasts: ICard[] = [
       //   provider: yaProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: appleProvider,
-      //   href: '/',
-      // },
+      {
+        provider: appleProvider,
+        href: 'https://podcasts.apple.com/ru/podcast/%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0-%D0%B2%D0%B8%D1%82%D0%B0%D0%BB%D0%B8%D0%B9-%D1%88%D1%83%D0%B1%D0%B8%D0%BD-%D0%B8%D0%B7-single-broker/id1613381730?i=1000553342989&l=en',
+      },
       // {
       //   provider: telegramProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: soundcloudProvider,
-      //   href: '/',
-      // },
+      {
+        provider: spotifyProvider,
+        href: 'https://open.spotify.com/episode/6eHqXxsA8NXpmcadUK2ruI',
+      },
     ],
     imgs: [{
       id: 'b',
@@ -175,18 +175,18 @@ const podcasts: ICard[] = [
       //   provider: yaProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: appleProvider,
-      //   href: '/',
-      // },
+      {
+        provider: appleProvider,
+        href: 'https://podcasts.apple.com/ru/podcast/%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D1%82%D0%B8%D0%BA/id1613381730?i=1000553342857&l=en',
+      },
       // {
       //   provider: telegramProvider,
       //   href: '/',
       // },
-      // {
-      //   provider: soundcloudProvider,
-      //   href: '/',
-      // },
+      {
+        provider: spotifyProvider,
+        href: 'https://open.spotify.com/episode/1T2GkMC5Y5y0pDUXDOQmYk',
+      },
     ],
     imgs: [{
       id: 'a',
@@ -238,7 +238,7 @@ const podcasts: ICard[] = [
   //       href: '/',
   //     },
   //     {
-  //       provider: soundcloudProvider,
+  //       provider: spotifyProvider,
   //       href: '/',
   //     },
   //   ],
@@ -276,53 +276,53 @@ const podcasts: ICard[] = [
   //   }]
   // },
   
-  // {
-  //   id: '4',
-  //   src: '/speakers/semen.webp',
-  //   srcPng: '/speakers/semen.png',
-  //   guestName: 'Семен Гординов',
-  //   occupation: 'ведущий программист',
-  //   date: '14.12.21',
-  //   duration: '16:20',
-  //   published: false,
-  //   links: [
-  //     {
-  //       provider: youTubeProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: yaProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: appleProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: telegramProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: soundcloudProvider,
-  //       href: '/',
-  //     },
-  //   ],
-  //   imgs: [{
-  //     id: 'a',
-  //     alt: '',
-  //     src: '/logo-speakers/php.png',
-  //     top: 32,
-  //     left: 73,
-  //     width: 22,
-  //   },{
-  //     id: 'b',
-  //     alt: '',
-  //     src: '/logo-speakers/ims.png',
-  //     top: 65,
-  //     left: 5,
-  //     width: 25,
-  //   }]
-  // },
+  {
+    id: '4',
+    src: '/speakers/semen.webp',
+    srcPng: '/speakers/semen.png',
+    guestName: 'Семен Гординов',
+    occupation: 'ведущий программист',
+    date: '14.12.21',
+    duration: '0:33',
+    published: true,
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=tqv0CTcB9x4&ab_channel=DeepFoundation',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      {
+        provider: appleProvider,
+        href: 'https://podcasts.apple.com/ru/podcast/%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0-%D1%81%D0%B5%D0%BC%D1%91%D0%BD-%D0%B3%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%BE%D0%B2-%D0%B2%D0%B5%D0%B4%D1%83%D1%89%D0%B8%D0%B9-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82/id1613381730?i=1000553342925&l=en',
+      },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      {
+        provider: spotifyProvider,
+        href: 'https://open.spotify.com/episode/6ayHEt57FQrCiafQxFqUDS',
+      },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/php.png',
+      top: 32,
+      left: 73,
+      width: 22,
+    },{
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/ims.png',
+      top: 65,
+      left: 5,
+      width: 25,
+    }]
+  },
   // {
   //   id: '5',
   //   src: '/speakers/vitaly.webp',
@@ -350,7 +350,7 @@ const podcasts: ICard[] = [
   //       href: '/',
   //     },
   //     {
-  //       provider: soundcloudProvider,
+  //       provider: spotifyProvider,
   //       href: '/',
   //     },
   //   ],
@@ -371,6 +371,62 @@ const podcasts: ICard[] = [
   //   }
   // ]
   // },
+  {
+    id: '16',
+    src: '/speakers/asset_1.png',
+    srcPng: '/speakers/ivanSh.png',
+    guestName: 'Сергей',
+    occupation: 'fullstack web developer',
+    date: '22.12.21',
+    duration: '1:50',
+    published: true,
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=Xe81O3fQKHU&ab_channel=DeepFoundation',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: spotifyProvider,
+      //   href: '/',
+      // },
+    ],
+    imgs: [{
+      id: 'a',
+      alt: '',
+      src: '/logo-speakers/react.png',
+      top: 72,
+      left: 33,
+      width: 10,
+    },
+    {
+      id: 'b',
+      alt: '',
+      src: '/logo-speakers/dotnet.svg',
+      top: 28,
+      left: 82,
+      width: 12,
+    },
+    {
+      id: 'c',
+      alt: '',
+      src: '/logo-speakers/ts.png',
+      top: 52,
+      left: 3,
+      width: 10,
+    }],
+  },
   {
     id: '6',
     src: '/speakers/ivanSh.webp',
@@ -398,7 +454,7 @@ const podcasts: ICard[] = [
       //   href: '/',
       // },
       // {
-      //   provider: soundcloudProvider,
+      //   provider: spotifyProvider,
       //   href: '/',
       // },
     ],
@@ -439,7 +495,7 @@ const podcasts: ICard[] = [
   //     //   href: '/',
   //     // },
   //     // {
-  //     //   provider: soundcloudProvider,
+  //     //   provider: spotifyProvider,
   //     //   href: '/',
   //     // },
   //   ],
