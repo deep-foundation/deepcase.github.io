@@ -75,7 +75,7 @@ const crew = [
     id: 3,
     src: '/avatars/petr.webp',
     alt: 'Petr DevOps',
-    name: 'Petr DevOps',
+    name: 'Petr',
     role: 'DevOps',
   },
   {

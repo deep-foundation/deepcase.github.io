@@ -217,7 +217,7 @@ export const studiosTheme = extendTheme({
   },
   fontSizes: {
     xs: "calc(0.35rem + 0.5vmax)",
-    sm: 'calc(14px + 0.5vmax)', //"0.875rem",
+    sm: 'calc(0.875rem + 0.5vmax)',
     md: "calc(1rem + 0.5vmax)",
     lg: "calc(1.125rem + 0.5vmax)",
     xl: "calc(1.25rem + 0.5vmax)",
@@ -255,17 +255,17 @@ export const studiosTheme = extendTheme({
   },
   textStyles: {
     h1: {
-      fontSize: 'calc(20px + 0.5vmax)',
+      fontSize: 'calc(1.25rem + 0.5vmax)',
       fontWeight: 'light',
       letterSpacing: 'wide',
     },
     h2: {
-      fontSize: 'calc(18px + 0.5vmax)',
+      fontSize: 'calc(1.125rem + 0.5vmax)',
       fontWeight: 'light',
       letterSpacing: 'wide',
     },
     h5: {
-      fontSize: 'calc(14px + 0.5vmax)',
+      fontSize: 'calc(0.875rem + 0.5vmax)',
       fontWeight: 'light',
       letterSpacing: 'wide',
     },
