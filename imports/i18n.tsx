@@ -9,6 +9,8 @@ import { Kbd } from './framework';
 const resources = {
   en: {
     translation: {
+      "deep-address": 'Moscow, Bolshaya Sukharevskaya Square, 16/18с1, entrance 4',
+      "deep-meeting": 'We recommend to arrange a meeting in the public channels of our Discord',
       "points--no-more-refactoring": "no more refactoring",
       "points--supports-all-code": "supports all code languages and stacks",
       "points--flexible-system": "a flexible system of permissions and rights",
@@ -51,6 +53,8 @@ const resources = {
   },
   ru: {
     translation: {
+      "deep-address": 'Москва, Большая Сухаревская площадь, 16/18с1, подъезд 4',
+      "deep-meeting": 'Рекомендуем договориться о встрече в публичных каналах нашего Discord',
       "points--no-more-refactoring": "Без рефакторинга",
       "points--supports-all-code": "Поддержка любых языков и стеков",
       "points--flexible-system": "Гибкая система правил и прав",

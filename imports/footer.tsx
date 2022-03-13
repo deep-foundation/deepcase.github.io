@@ -1,17 +1,22 @@
 import React from 'react';
-import { GiPeaceDove } from 'react-icons/gi';
+import { GiPeaceDove, GiCandlestickPhone, GiMailbox, GiDirectionSigns } from 'react-icons/gi';
 import { VscGithubAlt } from 'react-icons/vsc';
-import { RiPatreonLine } from 'react-icons/ri';
+import { RiPatreonLine, RiDiscordLine } from 'react-icons/ri';
+import { SiDiscord } from 'react-icons/si';
 import { AiOutlineYoutube, AiOutlineFacebook } from 'react-icons/ai';
+
 import { VK } from './icons/vk';
-import { Box, HStack, Text, IconButton } from './framework';
+import { Box, HStack, Text, IconButton, Flex, Link, Center } from './framework';
+import { useTranslation } from 'react-i18next';
 
 
 export const Footer = React.memo(() => {
+  const { t } = useTranslation();
+
   return(
     <Box 
       w='100%' 
-      h='8rem' 
+      h='max-content' 
       bg='transparentDark.500' 
       py='2rem'
       px={{sm: '1rem', md: '2rem'}}
@@ -20,11 +25,11 @@ export const Footer = React.memo(() => {
       justifyContent='space-between'
       as='footer'>
       <Box w='100%' display='flex' justifyContent='center'>
-        <HStack spacing='0.3rem' sx={{}}>
+        <HStack spacing='0.3rem'>
           <GiPeaceDove /> <Text fontSize='xs'>made by humans from Earth</Text>
         </HStack>
       </Box>
-      <Box w='100%' display='flex' justifyContent='center'>
+      <Box w='100%' display='flex' justifyContent='center' mb='1em'>
         <HStack spacing='0.5rem'>
           <IconButton
             variant='ghost'
@@ -81,8 +86,39 @@ export const Footer = React.memo(() => {
             fontSize='xl'
             icon={<RiPatreonLine />}
           />
+          <IconButton
+            variant='ghost'
+            colorScheme='teal'
+            aria-label='discord channel deep foundation'
+            href="https://discord.gg/RD8wFKtujH" 
+            title='discord'
+            as='a'
+            target='_blank'
+            fontSize='xl'
+            icon={<SiDiscord />}
+          />
         </HStack>
       </Box>
+      <Flex dir='row' justify='space-between'>
+        <Link href='tel: +7 985 427 12 56'>
+          <HStack>
+            <GiCandlestickPhone /> <Text fontSize='xs'>+7 985 427 12 56</Text>
+          </HStack>  
+        </Link>
+        <Text fontSize='xs'>{t("deep-meeting")}</Text>
+        <Link href='mailto: info@deep.foundation'>
+          <HStack>
+            <GiMailbox /> <Text fontSize='xs'>info@deep.foundation</Text>
+          </HStack>
+        </Link>
+      </Flex>
+      <Center>
+        <Link isExternal href=''>
+          <HStack>
+            <GiDirectionSigns /> <Text fontSize='xs'>{t("deep-address")}</Text>
+          </HStack>
+        </Link>
+      </Center>
     </Box>
   )
 })
