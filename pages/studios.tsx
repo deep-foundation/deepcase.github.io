@@ -10,6 +10,11 @@ import { MainTasks } from '../imports/studios/main-tasks';
 import { Box } from '../imports/framework';
 import { FlexSection } from '../imports/studios/flex-section';
 
+import { MapSvg } from '../imports/icons/map';
+import { MapSvgDraw } from '../imports/icons/mapDraw';
+import { MapText } from '../imports/studios/map-text';
+import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
+
 
 export default function Page () {
   return (
@@ -37,6 +42,14 @@ export const PageContent = React.memo(() => {
       <FlexSection >
         <MainTasks  />
       </FlexSection>
+      <Space unit={12} />
+      <FlexSection position='relative'>
+        <MapSvgDrawCont />
+        <MapText />
+      </FlexSection>
+      {/* <FlexSection position='relative'>
+      <MapSvg />
+      </FlexSection> */}
     </Box>
   );
 });
