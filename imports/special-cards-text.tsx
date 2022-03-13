@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Box, Center, Code, Divider, Text, useMediaQuery, VStack, Img, useBreakpoint, useBreakpointValue, StackDivider } from './framework';
+import { Box, Center, Code, Img, StackDivider, Text, VStack } from './framework';
 import { SpecialCard } from "./special-card";
 
 
@@ -9,11 +9,13 @@ const GridCard = React.memo(({
   columns = '1fr max-content', 
   direction = 'column-reverse',
   alignItem = 'baseline',
+  ...props
 }:{
   children: any; 
   columns?: any;
   direction?: any;
   alignItem?: any;
+  [props: string]: any;
 }) => {
   return (<Box sx={{
     position: 'relative',
@@ -21,22 +23,49 @@ const GridCard = React.memo(({
     width: '100%',
     display: 'grid',
     gridTemplateColumns: columns,
-    columnGap: '2rem',
+    columnGap: '8rem',
+    '@media only screen and (min-width: 1051px) and (max-width: 1396px)': {
+      columnGap: '5rem'
+    },
     alignItems: alignItem,
     '@media(max-width: 1420px)': {
       alignItems: 'center',
     },
-    '@media(max-width: 850px)': {
+    '@media(max-width: 1050px)': {
       alignItems: 'center',
       display: 'flex',
       width: '100%',
       flexDirection: direction,
-    }
+    },
+    ...props
   }}>{children}</Box>)
 });
 
+const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?: any; textStyles?: any;}) => {
+  return ( <Box position='relative' w='100%' h='100%' sx={styles}>
+      <Text 
+        as='div' 
+        fontSize='sm' 
+        align={{sm: 'center', lg: 'justify'}} 
+        width='100%'
+        position='relative'
+        sx={{
+          '@media (min-width: 1051px)': {
+            position: 'absolute',
+            top: '35%',
+            left: 0,
+            transform: 'translateY(-50%)',
+          },
+          textStyles,
+        }}
+      >
+        {text}
+      </Text>
+    </Box>
+  )
+})
+
 export const SpecialCardsText = React.memo(() => {
-  const divider = useBreakpoint();
   const { t } = useTranslation();
 
   return (<VStack spacing={{ sm: '7rem', lg: '5rem' }} divider={<StackDivider borderColor={{sm: 'light', md: 'transparent'}} />}>
@@ -49,15 +78,13 @@ export const SpecialCardsText = React.memo(() => {
             description={t('flag-description--operational-environment')}
           />
         </Box>
-        <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}} as='div' width='100%'>
-          {t('flag-article--operational-environment')}
-        </Text>
+       
+        <TextBlock text={t('flag-article--operational-environment')} />
       </GridCard>
 
       <GridCard alignItem='flex-start'>
-        <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}}>
-          {t('flag-article--new-programming-paradigm')}
-        </Text>
+        <TextBlock text={t('flag-article--new-programming-paradigm')}/>
+  
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
           <SpecialCard
             icon1={<Img src='/flags/3.svg' sx={{transform: 'translate(-50%, 2rem)'}} htmlWidth='100%'  htmlHeight='100%' alt='icon' />}
@@ -77,33 +104,58 @@ export const SpecialCardsText = React.memo(() => {
             description={t('flag-description--all-languages')}
           />
         </Box>
-        <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}}>
-          {t('flag-article--all-languages')}
-        </Text>
+        <TextBlock text={t('flag-article--all-languages')} />
+        
       </GridCard>
 
-      <GridCard alignItem='center'>
-        <Box>
-          <Text fontSize='sm' align={{sm: 'center', lg: 'justify'}}>
-            {t('flag-article--semantic-system')}
-          </Text>
-          <Center py='2rem'>
+      <GridCard>
+        <TextBlock text={t('flag-article--semantic-system')} />
+        {/* <Box 
+          position='relative' 
+          w='100%' 
+          h='100%'
+          sx={{
+            '@media only screen and (min-width: 1051px) and (max-width: 1396px)': {
+              gridColumn: '2/5',
+              gridRow: '2/3',
+            },
+            '@media only screen and (min-width: 1397px) and (max-width: 1950px)': {
+              gridColumn: '1/4',
+              gridRow: '1/2'
+            },
+          }}
+        >
+          <Box py='2rem'
+            sx={{
+              '@media (min-width: 1396px)': {
+                position: 'absolute',
+                top: '35%',
+                left: 0,
+                transform: 'translateY(-50%)',
+                py: 0,
+              }
+            }}
+          >
             <pre>
-            <Code variant='solid' colorScheme='transparentDark' size='full' sx={{borderRadius: '0.175rem', padding: '1rem', fontSize: '1rem'}}>
+            <Code variant='solid' colorScheme='transparent' size='full' sx={{borderRadius: '0.175rem', padding: '1rem', fontSize: '1.5rem', lineHeight: '3rem'}}>
               {`{
-  can(where: {
-    object_id: { _eq: 5 },
-    subject_id: { _eq: 165 },
-    action_id: { _eq: 28 },
-  }) {
-    rule_id
-  }
-}`}
+    can(where: {
+      object_id: { _eq: 5 },
+      subject_id: { _eq: 165 },
+      action_id: { _eq: 28 },
+    }) {
+      rule_id
+    }
+  }`}
             </Code>
             </pre>
-          </Center>
-        </Box>
-        <Box w={{sm: '20rem', '2xl': '23rem'}}>
+          </Box>
+        </Box>         */}
+        
+        <Box 
+          w={{sm: '20rem', '2xl': '23rem'}}
+          
+        >
           <SpecialCard
             icon1={<Img src='/flags/4.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
             icon2={<Img src='/flags/4_2.svg' sx={{transform: 'translateX(-50%)'}} htmlHeight='100%' htmlWidth='100%' alt='icon' />}

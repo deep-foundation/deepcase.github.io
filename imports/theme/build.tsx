@@ -60,6 +60,7 @@ export const coreTheme = extendTheme({
     normal: 400,
     medium: 500,
     semibold: 700,
+    bold: 900,
   },
   styles: {
     global: {

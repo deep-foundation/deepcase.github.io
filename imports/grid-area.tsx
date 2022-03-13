@@ -25,10 +25,13 @@ export const GridArea = React.memo(({
         sx={{
           gridColumn: columnsZone,
           px: '2rem',
+          '@media only screen and (min-width: 826px) and (max-width: 1260px)': {
+            px: 0,
+          },
           '@media(max-width: 825px)': {
             gridColumn: mediaColumnsZone,
             px: '1rem',
-          }
+          },
         }}
         {...innerGridStyles}>
         {children}
