@@ -216,7 +216,7 @@ export function PageContent() {
                 </Box>
               </HStack>
             }
-            src='https://deep.deep.foundation/?bg-transparent=true'
+            src='https://deep.deep.foundation/?bg-transparent=false'
             download={
               <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} p='1rem'>
                 <Button aria-label='gitpod' variant="outline" colorScheme="second" size="lg">
