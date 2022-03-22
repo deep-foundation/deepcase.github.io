@@ -4,7 +4,8 @@ import { Grid, Box } from '../framework';
 import { Round } from './round';
 import { motion } from 'framer-motion'
 import { H1, H2 } from '../headers';
-import { SlitedText } from './splited-text';
+import { SplitedText } from './splited-text';
+import { DeepStudios } from './deep-studios/deep-studios';
 
 
 export const MotionBox = motion<any>(Box);
@@ -12,12 +13,12 @@ export const MotionBox = motion<any>(Box);
 
 export const Welcome = React.memo(() => {
 
-  return (<GridArea repeat={12} columnsZone='2/11' mediaColumnsZone='1/12'>
+  return (<GridArea repeat={12} columnsZone='2/12' mediaColumnsZone='1/13'>
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          columnGap: '5em',
+          gridTemplateColumns: '0.8fr 1fr',
+          columnGap: '3em',
           height: '40vh',
           '@media(max-width: 825px)': {
             display: 'flex',
@@ -32,28 +33,12 @@ export const Welcome = React.memo(() => {
         >
           <Round />
           <Box pos='absolute' top='50%' left='0' transform='translateY(-50%)' w='100%' >
-            <SlitedText />
+            <SplitedText />
           </Box>
         </Box>
         <Box display='flex' w='100%' h='100%' justifyContent='center' flexDirection='column'>
           <Box w='100%' justifyItems='flex-start'>
-            <H1
-              sx={{
-                '@media(min-width: 825px)': {
-                  fontSize: '7rem'
-                }
-              }}
-            >Deep</H1>
-          </Box>
-          <Box w='100%'>
-            <H1 
-              align='end'
-              sx={{
-                '@media(min-width: 825px)': {
-                  fontSize: '7rem'
-                }
-              }}
-            >Studios</H1>
+            <DeepStudios />
           </Box>
         </Box>
       </Box>

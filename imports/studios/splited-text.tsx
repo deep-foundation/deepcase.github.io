@@ -9,7 +9,7 @@ const box = {
   marginRight: '0.7rem',
 };
 
-export const SlitedText = React.memo(() => {
+export const SplitedText = React.memo(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
