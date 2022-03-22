@@ -143,7 +143,7 @@ export default function Page () {
 
 export function PageContent() {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
+  // const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
   const changeLanguage = useCallback((lng) => {
     i18n.changeLanguage(lng);
   }, []);
@@ -191,7 +191,7 @@ export function PageContent() {
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
         </> }
         
-        <TalkingPoints refScrollContainer={scrollingRef} />
+        {[<TalkingPoints refScrollContainer={scrollingRef} key={i18n.language} />]}
         
         <GridArea innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}>
           <IFrame 

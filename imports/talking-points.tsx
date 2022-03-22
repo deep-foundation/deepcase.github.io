@@ -60,8 +60,10 @@ const mainTalkingPoint = {
 
 export const TalkingPoints = React.memo(({
   refScrollContainer,
+  key,
 }: {
   refScrollContainer: any;
+  key?: any;
 }) => {
   const [ index, setIndex ] = useState(-1);
   const enabledRef = useRef(true);
@@ -189,10 +191,10 @@ export const TalkingPoints = React.memo(({
   const xlUp = useMediaQuery('min-width: 1620px');
   const down1024 = useMediaQuery('max-width: 1025px');
 
-  return(<Box as='section' sx={root} onClick={() => {
-    enabledRef.current = !enabledRef.current;
-  }}>
-      <Box sx={flyingLetter}  ref={flyingLetterRef}>
+  return(<Box as='section' sx={root} key={key} onClick={() => {
+      enabledRef.current = !enabledRef.current;
+    }}>
+      <Box sx={flyingLetter} ref={flyingLetterRef}>
         {list2.map((l, i1) => {
           // @ts-ignore
           return <div key={i1} style={{ ...classes.talkingPoint, ...(index == i1 ? classes.active : {}) }}>{l.map((item, i) => {
