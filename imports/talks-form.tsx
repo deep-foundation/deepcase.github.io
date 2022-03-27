@@ -75,7 +75,7 @@ export const TalksForm = React.memo(({
                 variant='unstyled'
                 icon={<Img src='/source/youtube.png' alt='YouTube' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
             </WrapItem>
-            <WrapItem w='48px'>
+            {/* <WrapItem w='48px'>
               <IconButton
                 isRound
                 size='lg' 
@@ -85,7 +85,7 @@ export const TalksForm = React.memo(({
                 aria-label='facebook' 
                 variant='unstyled'
                 icon={<Img src='/fb.png' alt='Facebook' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} /> } />
-            </WrapItem>
+            </WrapItem> */}
             <WrapItem w='48px'>
               <IconButton
                 isRound

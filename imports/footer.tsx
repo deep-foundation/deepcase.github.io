@@ -42,7 +42,7 @@ export const Footer = React.memo(() => {
             fontSize='xl'
             icon={<AiOutlineYoutube />}
           />
-          <IconButton
+          {/* <IconButton
             variant='ghost'
             colorScheme='teal'
             aria-label='github repository deep foundation'
@@ -52,7 +52,7 @@ export const Footer = React.memo(() => {
             target='_blank'
             fontSize='xl'
             icon={<AiOutlineFacebook />}
-          />
+          /> */}
           <IconButton
             variant='ghost'
             colorScheme='teal'
