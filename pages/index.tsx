@@ -19,6 +19,7 @@ import i18n from '../imports/i18n';
 import { useTranslation } from 'react-i18next';
 import { BsArrowsFullscreen } from 'react-icons/bs';
 import { Footer } from '../imports/footer';
+import { JoinDiscord } from '../imports/join-discord';
 
 
 Sentry.init({
@@ -219,7 +220,7 @@ export function PageContent() {
             src='https://deep.deep.foundation/?bg-transparent=false'
             download={
               <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} p='1rem'>
-                <Button aria-label='gitpod' variant="outline" colorScheme="second" size="lg">
+                <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg">
                   <HStack>
                     <Text fontSize='sm'>GitPod</Text>
                     <Text fontSize='xs'>(cloud demo)</Text>
@@ -231,6 +232,8 @@ export function PageContent() {
           />
         </GridArea>
         
+        <Space unit={10} />
+        <JoinDiscord /> 
         <Space unit={10} />
         
         <GridArea>

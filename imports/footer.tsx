@@ -6,7 +6,7 @@ import { SiDiscord } from 'react-icons/si';
 import { AiOutlineYoutube, AiOutlineFacebook } from 'react-icons/ai';
 
 import { VK } from './icons/vk';
-import { Box, HStack, Text, IconButton, Flex, Link, Center } from './framework';
+import { Box, HStack, Text, IconButton, Flex, Link, Center, VisuallyHidden } from './framework';
 import { useTranslation } from 'react-i18next';
 
 
@@ -99,13 +99,24 @@ export const Footer = React.memo(() => {
           />
         </HStack>
       </Box>
-      <Flex dir='row' justify='space-between'>
+      <Flex direction={{'sm': 'column', 'md': 'row'}} alignItems='center' justify='space-between'>
+        <Text 
+          fontSize='xs' 
+          sx={{
+            display: {'sm': 'block','md': 'none'}
+          }}
+        >{t("deep-meeting")}</Text>  
         <Link href='tel: +7 985 427 12 56'>
           <HStack>
             <GiCandlestickPhone /> <Text fontSize='xs'>+7 985 427 12 56</Text>
           </HStack>  
         </Link>
-        <Text fontSize='xs'>{t("deep-meeting")}</Text>
+        <Text 
+          fontSize='xs' 
+          sx={{
+            display: {'sm': 'none','md': 'block'}
+          }}
+        >{t("deep-meeting")}</Text>
         <Link href='mailto: info@deep.foundation'>
           <HStack>
             <GiMailbox /> <Text fontSize='xs'>info@deep.foundation</Text>

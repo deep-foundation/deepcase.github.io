@@ -20,9 +20,12 @@ const resources = {
       "points--business-logic": "business logistics and scripting in one space",
 
 
-      'talks-form-write-to-us': 'Напишите нам',
-      'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в Discord на канал <Kbd>#hi</Kbd>',
-      'talks-form-aria-label': 'Запись на подкаст',
+      'iframe--install': 'Install',
+      'join-us-on-discord': 'Join us on discord',
+
+      'talks-form-write-to-us': 'Write to us',
+      'talks-form-how-to-get-on-our-podcast': 'Want to be on our podcast? Go to Discord channel <Kbd>#hi</Kbd>',
+      'talks-form-aria-label': 'Podcast recording',
 
 
       'flag-title--operational-environment': 'Operational environment',
@@ -63,6 +66,9 @@ const resources = {
       "points--data-management": "Готовая среда хранения и работы с данными",
       "points--business-logic": "Бизнес логика и сценарии в одном месте",
 
+      'iframe--install': 'Установить',
+
+      'join-us-on-discord': 'Присоединяйтесь к нам в дискорд',
 
       'talks-form-write-to-us': 'Напишите нам',
       'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в Discord на канал <Kbd>#hi</Kbd>',

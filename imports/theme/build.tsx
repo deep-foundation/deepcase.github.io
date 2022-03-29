@@ -136,6 +136,11 @@ export const coreTheme = extendTheme({
           justifyContent: 'center',
           padding: '1rem 0',
         },
+        link: {
+          '&:focus': {
+            boxShadow: '0 0 0',
+          },
+        }
       },
       colorScheme: {
         second: '#00a9f3',
