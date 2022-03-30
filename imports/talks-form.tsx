@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Center, IconButton, Img, Modal, ModalBody, ModalContent, ModalOverlay, Text, Wrap, WrapItem } from '../imports/framework';
 import { H1 } from './headers';
+import { BoostyColor } from './icons/boosty-color';
 import { Space } from './space';
 
 
@@ -86,6 +87,17 @@ export const TalksForm = React.memo(({
                 variant='unstyled'
                 icon={<Img src='/fb.png' alt='Facebook' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} /> } />
             </WrapItem> */}
+            <WrapItem w='48px'>
+              <IconButton
+                isRound
+                size='lg' 
+                as='a' 
+                target='_blank'
+                href='https://boosty.to/deep.foundation.official' 
+                aria-label='Boosty' 
+                variant='unstyled'
+                icon={<Img src='/boosty-color.svg' alt='Boosty' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
+            </WrapItem>
             <WrapItem w='48px'>
               <IconButton
                 isRound
