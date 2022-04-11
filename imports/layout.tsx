@@ -9,6 +9,8 @@ export const GridArea = React.memo(({
   mediaColumnsZone = '1/9',
   component = 'section',
   innerGridStyles,
+  originalPx = '2rem',
+  max825Px = '1rem',
   ...props
 }:{
   children: any;
@@ -17,6 +19,8 @@ export const GridArea = React.memo(({
   mediaColumnsZone?: string;
   component?: any;
   innerGridStyles?: any;
+  originalPx?: any;
+  max825Px?: any;
   [key:string]: any;
 }) => {
 
@@ -24,13 +28,13 @@ export const GridArea = React.memo(({
       <Box 
         sx={{
           gridColumn: columnsZone,
-          px: '2rem',
+          px: originalPx,
           '@media only screen and (min-width: 826px) and (max-width: 1260px)': {
             px: 0,
           },
           '@media(max-width: 825px)': {
             gridColumn: mediaColumnsZone,
-            px: '1rem',
+            px: max825Px,
           },
         }}
         {...innerGridStyles}>
@@ -39,3 +43,21 @@ export const GridArea = React.memo(({
     </Grid>
   )
 });
+
+
+
+export const FlexSection = React.memo(({
+  children, 
+  px = {sm: '1rem', md: '0'},
+  ...props
+}:{
+  children: any; 
+  px?: any;
+  [props: string]: any;
+}) => {
+
+  return (<Box as='section' px={px} display='flex' justifyContent='center' {...props}>
+      {children}
+    </Box>
+  )
+})

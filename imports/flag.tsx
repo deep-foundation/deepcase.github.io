@@ -24,7 +24,7 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const SpecialCard = React.memo(({
+export const Flag = React.memo(({
   title,
   src,
   alt,

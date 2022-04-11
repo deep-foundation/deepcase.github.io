@@ -5,7 +5,7 @@ import { useSpringCarousel } from 'react-spring-carousel-js';
 import { ICard, IProvider } from '../pages/parallax';
 import { IconButton, VStack } from './framework';
 import { Podcast } from './podcast/podcast-card';
-import { SpecialCard } from './special-card';
+import { Flag } from './flag';
 
 
 
@@ -537,7 +537,7 @@ const items: CarouselItem[] = podcasts.map( p => ({
 export const CarouselPodcast = React.memo(() => <Carousel items={items} itemWidth={600} nextButtonContent={<CgArrowLongLeftC />} prevButtonContent={<CgArrowLongRightC />} />);
 
 
-export const SpecialCardSlider = React.memo(({
+export const FlagsSlider = React.memo(({
 	cardsContent, 
   itemsPerSlide = 2,
 }:{
@@ -561,7 +561,7 @@ export const SpecialCardSlider = React.memo(({
     items: cardsContent.map((c, i) => ({
       id: i,
       renderItem: (<div key={c.id} style={{ height: 'auto', padding: '2rem 1.5rem', boxSizing: 'border-box', width: 'calc(300px + 3rem)' }}>
-				<SpecialCard
+				<Flag
 					icon1={c.icon1}
 					icon2={c.icon2}
 					icon3={c.icon3}

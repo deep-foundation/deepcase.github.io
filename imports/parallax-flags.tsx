@@ -6,7 +6,7 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import cn from 'classnames';
 import React, { useRef } from "react";
 import { makeStyles, Typography } from '@material-ui/core';
-import { SpecialCard } from "./special-card";
+import { Flag } from "./flag";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,17 +25,11 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 0, left: 0,
     transform: 'translate(10vw, -50%)',
-    // '@media(max-width: 1900px)': {
-    //   transform: 'translate(10vw, -50%)',
-    // }
   },
   absoluteRightFlagContainerParallax: {
     position: 'absolute',
     top: 0, right: 0,
     transform: 'translate(-10vw, -50%)',
-    // '@media(max-width: 1900px)': {
-    //   transform: 'translate(-10vw, -50%)',
-    // }
   },
   typography: {
     color: '#ffffffba',
@@ -55,29 +49,12 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 0, 
     transform: 'translate(10vw, -50%)',
-    // '@media(max-width: 1900px)': {
-    //   transform: 'translate(25%, -50%)',
-    // }
   },
   flagParallax: {
     height: '30vh',
     width: '35vw',
     maxWidth: '25rem', 
   },
-  // shapePolygonLeft: {
-  //   float: 'left',
-  //   height: '100%',
-  //   shapeOutside: 'polygon(0 100%, 100% 0, 0 0)',
-  //   clipPath: 'polygon(0 100%, 100% 0, 0 0)',
-  //   width: '50%',
-  // },
-  // shapePolygonRight: {
-  //   float: 'right',
-  //   height: '100%',
-  //   shapeOutside: 'polygon(0 0, 100% 100%, 100% 0)',
-  //   clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
-  //   width: '50%',
-  // },
   textShapePolygon: {
     // width: '100%', 
     // height: '30vh',
@@ -88,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export const ParallaxSpecialCards = React.memo(() => {
+export const ParallaxFlags = React.memo(() => {
   const parallaxRef = useRef(null);
 
   const classes = useStyles();
@@ -104,8 +81,6 @@ export const ParallaxSpecialCards = React.memo(() => {
         <ParallaxLayer offset={1.9} speed={0.1}>
           <div className={classes.relativePointParallax}>
             <div className={classes.textParallax}>
-              {/* <div className={classes.shapePolygonLeft} />
-              <div className={classes.shapePolygonRight} /> */}
               <Typography variant='body1' align='right' className={classes.typography}>
                 Представьте себе некоторое абстрактное пространство, в котором возможны, изначально, только операции со связями. С Deep.Case можно находится внутри данных, так, будто бы они дополняют ваше собственное мышление. Закреплять связи в пространстве вокруг себя, и автоматизировать их поведение. Пространство Deep.Case может быть использовано аналитиками, как рабочее пространство для данных, или как пространство сборки, администрирования, использования и мониторинга состояния проекта. Это расширяемая среда построенная на d3/threejs/AFrame.
               </Typography>
@@ -115,7 +90,7 @@ export const ParallaxSpecialCards = React.memo(() => {
         <ParallaxLayer offset={1.9} speed={0.35} factor={1}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteLeftFlagContainerParallax}>
-              <SpecialCard
+              <Flag
                 className={classes.flagParallax}
                 icon1={<BathtubIcon />}
                 icon2={<BathtubIcon color='secondary' />}
@@ -139,7 +114,7 @@ export const ParallaxSpecialCards = React.memo(() => {
         <ParallaxLayer offset={2.55} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteRightFlagContainerParallax}>
-              <SpecialCard
+              <Flag
                 className={classes.flagParallax}
                 icon1={<BeachAccessIcon />}
                 icon2={<BeachAccessIcon color='secondary' />}
@@ -164,7 +139,7 @@ export const ParallaxSpecialCards = React.memo(() => {
         <ParallaxLayer offset={3.3} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteLeftFlagContainerParallax}>
-              <SpecialCard
+              <Flag
                 className={classes.flagParallax}
                 icon1={<EmojiSymbolsIcon />}
                 icon2={<EmojiSymbolsIcon color='secondary' />}
@@ -202,7 +177,7 @@ export const ParallaxSpecialCards = React.memo(() => {
         <ParallaxLayer offset={4} speed={0.35}>
           <div className={classes.relativePointParallax}>
             <div className={classes.absoluteRightFlagContainerParallax}>
-              <SpecialCard
+              <Flag
                 className={cn(classes.flagParallax)}
                 icon1={<AppleIcon />}
                 icon2={<AppleIcon color='secondary' />}

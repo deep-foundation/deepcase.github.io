@@ -10,10 +10,10 @@ import { useCallback, useRef, useState } from 'react';
 import { CrewCard } from '../imports/crew-card';
 import { Button, ButtonGroup, Grid, makeStyles, Menu, MenuItem, Paper, Typography } from '@material-ui/core';
 import { IFrame } from '../imports/iframe';
-import { ParallaxSpecialCards } from '../imports/parallax-special-cards';
+import { ParallaxFlags } from '../imports/parallax-flags';
 import { Provider } from '../imports/provider';
 import { Space } from '../imports/space';
-import { CarouselPodcast, SpecialCardSlider } from '../imports/special-card-slider';
+import { CarouselPodcast, FlagsSlider } from '../imports/flags-slider';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
@@ -627,9 +627,9 @@ export function PageContent() {
           </ParallaxLayer>
           { smDown
           ?  <ParallaxLayer offset={2} speed={0}>
-              <SpecialCardSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
+              <FlagsSlider cardsContent={specialCards} itemsPerSlide={up870 ? 2 : 3} />
              </ParallaxLayer>
-          : <ParallaxSpecialCards />
+          : <ParallaxFlags />
           }
           <ParallaxLayer offset={4.5} speed={0}>
             {smDown && <Space unit={4} />}

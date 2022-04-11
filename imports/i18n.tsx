@@ -44,7 +44,14 @@ const resources = {
       'flag-description--semantic-system': "The system that's right for you",
       'flag-article--semantic-system': "No longer are you forced to describe the business logic and restrictions with code. Now you can just define only the operation symbols you need, attach a subject-object-action system using a where-like syntax that will analyze the context upon completing an operation or a rights check. You will always know if there are rules allowing the execution of a single action or any operation using a GQL inquiry. This will keep business logic completely separate from coding decisions.",
 
-
+      'intro--developer--title': 'Developer',
+      'intro--developer--questions': 'ask questions',
+      'intro--developer--research_channel': 'get your Deep research channel',
+      'intro--business--title': 'Business',
+      'intro--business--start_business': 'start business with Deep',
+      'intro--business--need_team': 'need a team',
+      'intro--write': 'write {{tag}} in #hi channel',
+      'intro--contact': 'depth will contact you',
 
       'studios--description': 'A community of followers of the cult of depth (Deep), formed around the products of the Deep.Foundation ecosystem',
       'studios--main-tasks-main': 'Main',
@@ -91,6 +98,14 @@ const resources = {
       'flag-description--semantic-system': 'Всегда именно та система прав, которую вы хотите',
       'flag-article--semantic-system': 'Больше не нужно описывать программным кодом бизнес логику и ограничения. Теперь можно описать символы операций которые вам нужны в вашем деле, и привязать к ним правила subject (кому) на object (на какие предметы) и action (на какое действие), используя для описания WHERE-like синтаксис позволяющий семантически анализировать ситуацию в момент попытки произведения операции или проверки права. Всегда можно узнать есть ли правила разрешающие выполнение некоторого action или иной операции выполнив gql запрос. Это позволяет полностью вынести бизнес логику из программных решений.',
 
+      'intro--developer--title': 'Разработчику',
+      'intro--developer--questions': 'задать вопросы',
+      'intro--developer--research_channel': 'получить свой канал исследования природы',
+      'intro--business--title': 'Бизнесу',
+      'intro--business--start_business': 'запустить бизнес с Deep',
+      'intro--business--need_team': 'нужна команда',
+      'intro--write': 'пишите {{tag}} в канале #hi',
+      'intro--contact': 'глубина вступит с вами в контакт',
 
       'studios--description': 'Kомьюнити последователей культа глубины (Deep), формирующееся вокруг продуктов экосистемы Deep.Foundation',
       'studios--main-tasks-main': 'Основные',

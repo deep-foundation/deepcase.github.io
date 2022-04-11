@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Box, Center, Code, Img, StackDivider, Text, VStack } from './framework';
-import { SpecialCard } from "./special-card";
+import { Flag } from "./flag";
 
 
 const GridCard = React.memo(({
@@ -65,13 +65,13 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
   )
 })
 
-export const SpecialCardsText = React.memo(() => {
+export const FlagsWithText = React.memo(() => {
   const { t } = useTranslation();
 
-  return (<VStack spacing={{ sm: '7rem', lg: '5rem' }} divider={<StackDivider borderColor={{sm: 'light', md: 'transparent'}} />}>
+  return (<VStack spacing={{ sm: '7rem', lg: '5rem' }} divider={<StackDivider borderColor={{sm: 'light', lg: 'transparent'}} mt={{sm: '5rem', lg: 0}} mb={{sm: '5em', md: '3em', lg: 0}} />}>
       <GridCard columns='max-content 1fr' direction='column' alignItem='flex-start'>
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
-          <SpecialCard
+          <Flag
             icon1={<Img src='/flags/1.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translate(-50%, 2.5rem)'}} alt='icon' />}
             icon2={<Img src='/flags/1_2.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
             title={t('flag-title--operational-environment')}
@@ -86,7 +86,7 @@ export const SpecialCardsText = React.memo(() => {
         <TextBlock text={t('flag-article--new-programming-paradigm')}/>
   
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
-          <SpecialCard
+          <Flag
             icon1={<Img src='/flags/3.svg' sx={{transform: 'translate(-50%, 2rem)'}} htmlWidth='100%'  htmlHeight='100%' alt='icon' />}
             icon2={<Img src='/flags/3_2.svg' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
             title={t('flag-title--new-programming-paradigm')}
@@ -97,7 +97,7 @@ export const SpecialCardsText = React.memo(() => {
 
       <GridCard columns='max-content 1fr' direction='column' alignItem='flex-start'>
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
-          <SpecialCard
+          <Flag
             icon1={<Img src='/flags/2.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
             icon2={<Img src='/flags/2_2.svg' sx={{transform: 'translateX(-50%)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
             title={t('flag-title--all-languages')}
@@ -156,7 +156,7 @@ export const SpecialCardsText = React.memo(() => {
           w={{sm: '20rem', '2xl': '23rem'}}
           
         >
-          <SpecialCard
+          <Flag
             icon1={<Img src='/flags/4.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
             icon2={<Img src='/flags/4_2.svg' sx={{transform: 'translateX(-50%)'}} htmlHeight='100%' htmlWidth='100%' alt='icon' />}
             title={t('flag-title--semantic-system')}

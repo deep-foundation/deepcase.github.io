@@ -4,13 +4,13 @@ import { useCallback, useRef, useState } from 'react';
 import { ButtonGroupDownload } from '../imports/button-group-download';
 import { CrewCard } from '../imports/crew-card';
 import { Box, Button, HStack, keyframes, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Link, IconButton } from '../imports/framework';
-import { GridArea } from '../imports/grid-area';
+import { GridArea, FlexSection } from '../imports/layout';
 import { H2 } from '../imports/headers';
 import { IFrame } from '../imports/iframe';
 import { Provider } from '../imports/provider';
 import { Space } from '../imports/space';
-import { CarouselPodcast } from '../imports/special-card-slider';
-import { SpecialCardsText } from '../imports/special-cards-text';
+import { CarouselPodcast } from '../imports/flags-slider';
+import { FlagsWithText } from '../imports/flags-with-text';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { BsArrowsFullscreen } from 'react-icons/bs';
 import { Footer } from '../imports/footer';
 import { JoinDiscord } from '../imports/join-discord';
+import { Intro } from '../imports/intro';
 
 
 Sentry.init({
@@ -194,10 +195,13 @@ export function PageContent() {
         
         {[<TalkingPoints refScrollContainer={scrollingRef} key={i18n.language} />]}
         
-        <GridArea innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}>
+        <GridArea 
+          innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}
+          originalPx='0.25em'
+        >
           <IFrame 
             title={
-              <HStack align='baseline' py='1rem' justifyContent='space-between' alignItems='center'>
+              <HStack align='baseline'  justifyContent='space-between' alignItems='center'>
                 <HStack spacing={8}>
                   <H2>Deep.Case</H2>
                   <Text fontSize='sm' >pre alpha version</Text>
@@ -219,7 +223,7 @@ export function PageContent() {
             }
             src='https://deep.deep.foundation/?bg-transparent=false'
             download={
-              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} p='1rem'>
+              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} pb='0.25em'>
                 <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg">
                   <HStack>
                     <Text fontSize='sm'>GitPod</Text>
@@ -237,8 +241,13 @@ export function PageContent() {
         <Space unit={10} />
         
         <GridArea>
-          <SpecialCardsText />
+          <FlagsWithText />
         </GridArea>
+
+        <Space unit={10} />
+        <FlexSection direction='row' px={0}>
+          <Intro />
+        </FlexSection>
 
         <Space unit={max900 ? 14 : 4} />
 

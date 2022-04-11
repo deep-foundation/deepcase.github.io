@@ -19,9 +19,19 @@ if (typeof(window) === 'object') {
 }
 
 export const IFrame = React.memo(({
-  title, src, download, styles, icon,
+  title, 
+  src, 
+  download, 
+  styles, 
+  icon,
+  ...props
 }:{
-  title?: any; src: string; download?: any; styles?: any; icon?: any;
+  title?: any; 
+  src: string; 
+  download?: any; 
+  styles?: any; 
+  icon?: any;
+  [props: string]: any;
 }) => {
   const refDiv = useRef<any>();
 
@@ -48,6 +58,7 @@ export const IFrame = React.memo(({
       <Box ref={refDiv} sx={innerContainer}
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y) })}
         onMouseLeave={() => set({xy: [0,0]})}
+        {...props}
       >
         {icon}
         {title}
