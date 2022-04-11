@@ -8,7 +8,7 @@ import detectBrowserLanguage from 'detect-browser-language';
 import { Space } from '../imports/space';
 import { MainTasks } from '../imports/studios/main-tasks';
 import { Box } from '../imports/framework';
-import { FlexSection } from '../imports/studios/flex-section';
+import { FlexSection } from '../imports/layout';
 
 import { MapSvg } from '../imports/icons/map';
 import { MapSvgDraw } from '../imports/icons/mapDraw';

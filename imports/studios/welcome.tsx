@@ -1,11 +1,10 @@
+import { motion } from 'framer-motion';
 import React from 'react';
-import { GridArea } from '../grid-area';
-import { Grid, Box } from '../framework';
-import { Round } from './round';
-import { motion } from 'framer-motion'
-import { H1, H2 } from '../headers';
-import { SplitedText } from './splited-text';
+import { Box } from '../framework';
+import { GridArea } from '../layout';
 import { DeepStudios } from './deep-studios/deep-studios';
+import { Round } from './round';
+import { SplitedText } from './splited-text';
 
 
 export const MotionBox = motion<any>(Box);
