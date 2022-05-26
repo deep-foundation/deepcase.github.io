@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 // import { TweenMax, TimelineLite, Power2 } from "gsap/TweenMax";
 import SplitText from "@moxy/react-split-text";
-import { Text, Box } from '../framework';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Box } from '../framework';
 
 const box = {
   display: 'inline-block',

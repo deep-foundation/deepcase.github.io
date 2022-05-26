@@ -1,10 +1,10 @@
 import React from "react";
-import { DLetter, ELetter, PLetter } from "./deep";
-import { SLetter, TLetter, ULetter, ILetter, OLetter } from "./studios";
 import { HStack, VStack } from '../../framework';
+import { DLetter, ELetter, PLetter } from "./deep";
+import { GLetter, ILetter, LLetter, ULetter } from "./guild";
 
 
-export const DeepStudios = React.memo<any>(() => {
+export const DeepGuild = React.memo<any>(() => {
   return (<VStack spacing='3rem'>
       <HStack width='65%' alignSelf='flex-start'>
         <DLetter />
@@ -13,13 +13,11 @@ export const DeepStudios = React.memo<any>(() => {
         <PLetter />
       </HStack>
       <HStack width='65%' alignSelf='flex-end'>
-        <SLetter />
-        <TLetter />
+        <GLetter />
         <ULetter />
-        <DLetter />
         <ILetter />
-        <OLetter />
-        <SLetter />
+        <LLetter />
+        <DLetter />
       </HStack>
     </VStack>
   )

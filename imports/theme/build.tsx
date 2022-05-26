@@ -124,11 +124,14 @@ export const coreTheme = extendTheme({
           _hover: {
             bg: 'initial',
           },
+          _focus: {
+            boxShadow: 'none',
+          },
         },
         solid: {
           _focus: {
             boxShadow: 'none',
-          }
+          },
         },
         unstyled: {
           display: 'flex',
@@ -148,10 +151,20 @@ export const coreTheme = extendTheme({
       
     },
 
+    IconButton: {
+      _focus: {
+        boxShadow: '0 0 0',
+      },
+    },
+
     Link: {
       baseStyle: {
         lineHeight: 'base',
         fontWeight: 'light',
+        _focus: {
+          boxShadow: 'none',
+        },
+        textDecoration: 'none',
       },
       sizes: {
         sm: {

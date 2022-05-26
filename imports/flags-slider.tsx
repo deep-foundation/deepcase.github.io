@@ -2,7 +2,7 @@ import React from 'react';
 import { CgArrowLongLeftC, CgArrowLongRightC } from "react-icons/cg";
 import { Carousel, CarouselItem } from 'react-round-carousel';
 import { useSpringCarousel } from 'react-spring-carousel-js';
-import { ICard, IProvider } from '../pages/parallax';
+import { ICardPodcast, IProvider } from './podcast/podcast-card';
 import { IconButton, VStack } from './framework';
 import { Podcast } from './podcast/podcast-card';
 import { Flag } from './flag';
@@ -36,15 +36,12 @@ const spotifyProvider: IProvider = {
   title: 'Spotify',
 };
 
-const podcasts: ICard[] = [
+const podcasts: ICardPodcast[] = [
   {
     id: '1',
-    src: '/speakers/eugene.webp',
-    srcPng: '/speakers/eugene.png',
-    guestName: 'Евгений',
-    occupation: 'BigData Engineer из Ultra tendency International (Германия)',
-    date: '08.12.21',
     duration: '1:17',
+    privateCast: false,
+    date: '08.12.21', 
     published: true,
     links: [
       {
@@ -70,61 +67,103 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'c',
-      alt: '',
-      src: '/logo-speakers/ultratendency.svg',
-      top: 80,
-      left: 12,
-      width: 24,
-    }]
+      altLogo: 'ultratendency',
+      srcLogo: '/logo-speakers/ultratendency.svg',
+      topLogo: 80,
+      leftLogo: 8,
+      widthLogo: 24,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/eugene.png',
+      guestImgSrcWebp: '/speakers/eugene.webp',
+      guestName: 'Евгений',
+      occupation: 'BigData Engineer из Ultra tendency International (Германия)', 
+    }],
   },
-  // {
-  //   id: '2',
-  //   src: '/speakers/dima_n.webp',
-  //   srcPng: '/speakers/dima.png',
-  //   guestName: 'Дмитрий Сотсков',
-  //   occupation: 'директор компании Нэти Вэб',
-  //   date: '08.12.21',
-  //   duration: '16:20',
-        // published: false,
-  //   links: [
-  //     {
-  //       provider: youTubeProvider,
-  //       href: 'abc',
-  //     },
-  //     {
-  //       provider: yaProvider,
-  //       href: 'abc',
-  //     },
-  //     {
-  //       provider: appleProvider,
-  //       href: 'abc',
-  //     },
-  //     {
-  //       provider: telegramProvider,
-  //       href: 'abc',
-  //     },
-  //     {
-  //       provider: spotifyProvider,
-  //       href: 'abc',
-  //     },
-  //   ],
-  //   imgs: [{
-  //     id: 'b',
-  //     alt: '',
-  //     src: '/logo-speakers/nite.png',
-  //     top: 55,
-  //     left: 75,
-  //     width: 20,
-  //   }]
-  // },
+  {
+    id: '2',
+    date: '30.11.21',
+    duration: '16:20',
+    privateCast: false,
+    published: true,
+    links: [
+      // {
+      //   provider: youTubeProvider,
+      //   href: 'abc',
+      // },
+      // {
+      //   provider: yaProvider,
+      //   href: 'abc',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: 'abc',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: 'abc',
+      // },
+      // {
+      //   provider: spotifyProvider,
+      //   href: 'abc',
+      // },
+    ],
+    imgs: [
+      {
+        id: '1',
+        altLogo: '',
+        srcLogo: '/logo-speakers/rust.svg',
+        topLogo: 35,
+        leftLogo: 73,
+        widthLogo: 20,
+      },
+      {
+        id: '2',
+        altLogo: '',
+        srcLogo: '/logo-speakers/aws.png',
+        topLogo: 5,
+        leftLogo: 75,
+        widthLogo: 20,
+      },
+      {
+        id: '3',
+        altLogo: '',
+        srcLogo: '/logo-speakers/spring.png',
+        topLogo: 45,
+        leftLogo: 5,
+        widthLogo: 20,
+      },
+      {
+        id: '4',
+        altLogo: '',
+        srcLogo: '/logo-speakers/azure.png',
+        topLogo: 65,
+        leftLogo: 10,
+        widthLogo: 16,
+      },
+      {
+        id: '5',
+        altLogo: '',
+        srcLogo: '/logo-speakers/java.png',
+        topLogo: 65,
+        leftLogo: 80,
+        widthLogo: 20,
+      },
+    ],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/ivan-ermolaev.png',
+      guestImgSrcWebp: '/speakers/ivan-ermolaev.webp',
+      guestName: 'Иван Ермолаев',
+      occupation: 'Developer', 
+    }],
+  },
   {
     id: '7',
-    src: '/speakers/asset_1.png',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Виталий Шубин',
-    occupation: 'владелец компании по IT разработке',
-    date: '08.12.21',
     duration: '0:17',
+    privateCast: false,
+    date: '08.12.21', 
     published: true,
     links: [
       {
@@ -150,21 +189,24 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/single.svg',
-      top: 70,
-      left: 15,
-      width: 42,
-    }]
+      altLogo: 'single',
+      srcLogo: '/logo-speakers/single.svg',
+      topLogo: 70,
+      leftLogo: 5,
+      widthLogo: 42,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/asset_1.png',
+      guestName: 'Виталий Шубин',
+      occupation: 'владелец компании по IT разработке', 
+    }],
   },
   {
     id: '3',
-    src: '/speakers/alexey.webp',
-    srcPng: '/speakers/alexey.png',
-    guestName: 'Алексей',
-    occupation: 'аналитик в области оценки риска юр. лиц',
-    date: '08.12.21',
     duration: '0:52',
+    privateCast: false,
+    date: '08.12.21',  
     published: true,
     links: [
       {
@@ -190,100 +232,39 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/exel.png',
-      top: 22,
-      left: 80,
-      width: 22,
+      altLogo: 'exel',
+      srcLogo: '/logo-speakers/exel.png',
+      topLogo: 22,
+      leftLogo: 80,
+      widthLogo: 22,
     },{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/sql.png',
-      top: 55,
-      left: 75,
-      width: 18,
+      altLogo: 'sql',
+      srcLogo: '/logo-speakers/sql.png',
+      topLogo: 55,
+      leftLogo: 75,
+      widthLogo: 18,
     },{
       id: 'c',
-      alt: '',
-      src: '/logo-speakers/java.png',
-      top: 70,
-      left: 6,
-      width: 14,
-    }]
+      altLogo: 'java',
+      srcLogo: '/logo-speakers/java.png',
+      topLogo: 70,
+      leftLogo: 6,
+      widthLogo: 14,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/alexey.png',
+      guestImgSrcWebp: '/speakers/alexey.webp',
+      guestName: 'Алексей',
+      occupation: 'аналитик в области оценки риска юр. лиц',
+    }],
   },
-  // {
-  //   id: '17',
-  //   src: '/speakers/ivan-speaker.webp',
-  //   srcPng: '/speakers/ivan-speaker.png',
-  //   guestName: 'Иван Ермолаев',
-  //   occupation: 'Pазработчик',
-  //   date: '08.12.21',
-  //   duration: '16:20',
-  //   published: false,
-  //   links: [
-  //     {
-  //       provider: youTubeProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: yaProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: appleProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: telegramProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: spotifyProvider,
-  //       href: '/',
-  //     },
-  //   ],
-  //   imgs: [{
-  //     id: 'b',
-  //     alt: 'java',
-  //     src: '/logo-speakers/java.png',
-  //     top: 70,
-  //     left: 78,
-  //     width: 16,
-  //   },
-  //   {
-  //     id: 'b',
-  //     alt: 'aws',
-  //     src: '/logo-speakers/aws.png',
-  //     top: 0,
-  //     left: 65,
-  //     width: 24,
-  //   },
-  //   {
-  //     id: 'b',
-  //     alt: 'spring',
-  //     src: '/logo-speakers/spring.png',
-  //     top: 50,
-  //     left: 65,
-  //     width: 24,
-  //   },
-  //   {
-  //     id: 'b',
-  //     alt: 'rust',
-  //     src: '/logo-speakers/rust.svg',
-  //     top: 70,
-  //     left: 10,
-  //     width: 14,
-  //   }]
-  // },
-  
   {
     id: '4',
-    src: '/speakers/semen.webp',
-    srcPng: '/speakers/semen.png',
-    guestName: 'Семен Гординов',
-    occupation: 'ведущий программист',
-    date: '14.12.21',
     duration: '0:33',
+    privateCast: false,
+    date: '14.12.21',  
     published: true,
     links: [
       {
@@ -309,76 +290,32 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/php.png',
-      top: 32,
-      left: 73,
-      width: 22,
+      altLogo: 'php',
+      srcLogo: '/logo-speakers/php.png',
+      topLogo: 32,
+      leftLogo: 73,
+      widthLogo: 22,
     },{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/ims.png',
-      top: 65,
-      left: 5,
-      width: 25,
-    }]
+      altLogo: 'ims',
+      srcLogo: '/logo-speakers/ims.png',
+      topLogo: 65,
+      leftLogo: 5,
+      widthLogo: 25,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/semen.png',
+      guestImgSrcWebp: '/speakers/semen.webp',
+      guestName: 'Семен Гординов',
+      occupation: 'ведущий программист',
+    }],
   },
-  // {
-  //   id: '5',
-  //   src: '/speakers/vitaly.webp',
-  //   srcPng: '/speakers/vitaly.png',
-  //   guestName: 'Виталий',
-  //   occupation: 'devOps / backend',
-  //   date: '14.12.21',
-  //   duration: '16:20',
-  //   published: false,
-  //   links: [
-  //     {
-  //       provider: youTubeProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: yaProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: appleProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: telegramProvider,
-  //       href: '/',
-  //     },
-  //     {
-  //       provider: spotifyProvider,
-  //       href: '/',
-  //     },
-  //   ],
-  //   imgs: [{
-  //     id: 'a',
-  //     alt: '',
-  //     src: '/logo-speakers/php.png',
-  //     top: 32,
-  //     left: 73,
-  //     width: 22,
-  //   },{
-  //     id: 'b',
-  //     alt: '',
-  //     src: '/logo-speakers/single.svg',
-  //     top: 75,
-  //     left: 5,
-  //     width: 25,
-  //   }
-  // ]
-  // },
   {
     id: '16',
-    src: '/speakers/asset_1.png',
-    srcPng: '/speakers/ivanSh.png',
-    guestName: 'Сергей',
-    occupation: 'fullstack web developer',
-    date: '22.12.21',
     duration: '1:50',
+    privateCast: false,
+    date: '22.12.21',  
     published: true,
     links: [
       {
@@ -404,37 +341,40 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/react.png',
-      top: 72,
-      left: 33,
-      width: 10,
+      altLogo: 'react',
+      srcLogo: '/logo-speakers/react.png',
+      topLogo: 72,
+      leftLogo: 33,
+      widthLogo: 10,
     },
     {
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/dotnet.svg',
-      top: 28,
-      left: 82,
-      width: 12,
+      altLogo: 'dotnet',
+      srcLogo: '/logo-speakers/dotnet.svg',
+      topLogo: 28,
+      leftLogo: 82,
+      widthLogo: 12,
     },
     {
       id: 'c',
-      alt: '',
-      src: '/logo-speakers/ts.png',
-      top: 52,
-      left: 3,
-      width: 10,
+      altLogo: 'ts',
+      srcLogo: '/logo-speakers/ts.png',
+      topLogo: 52,
+      leftLogo: 3,
+      widthLogo: 10,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/asset_1.png',
+      guestName: 'Сергей',
+      occupation: 'fullstack web developer',
     }],
   },
   {
     id: '6',
-    src: '/speakers/ivanSh.webp',
-    srcPng: '/speakers/ivanSh.png',
-    guestName: 'Иван Шилов',
-    occupation: 'аналитик',
-    date: '14.12.21',
     duration: '0:38',
+    privateCast: false,
+    date: '14.12.21',  
     published: true,
     links: [
       {
@@ -460,27 +400,98 @@ const podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/sibur.png',
-      top: 32,
-      left: 73,
-      width: 22,
-    },
-  ]
+      altLogo: 'sibur',
+      srcLogo: '/logo-speakers/sibur.png',
+      topLogo: 32,
+      leftLogo: 73,
+      widthLogo: 22,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/ivanSh.png',
+      guestImgSrcWebp: '/speakers/ivanSh.webp',
+      guestName: 'Иван Шилов',
+      occupation: 'аналитик',
+    }],
+  },
+  {
+    id: '16',
+    duration: '1:35',
+    privateCast: false,
+    published: true,
+    date: '21.12.21', 
+    format: 'video',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=LqHU6M-ykPo&ab_channel=DeepFoundation',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: spotifyProvider,
+      //   href: '/',
+      // },
+    ],
+    // imgs: [{
+    //   id: 'a',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/react.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // },
+    // {
+    //   id: 'b',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/dotnet.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // },
+    // {
+    //   id: 'c',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/ts.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // }],
+    speakers: [
+      {
+        id: '1',
+        guestImgSrcPng: '/speakers/pavel.png',
+        guestImgSrcWebp: '/speakers/pavel.webp',
+        guestName: 'Павел Московой',
+      },
+      {
+        id: '2',
+        guestImgSrcPng: '/speakers/andrei.png',
+        guestImgSrcWebp: '/speakers/andrei.webp',
+        guestName: 'Андрей', 
+      }
+    ],
   },
   // {
   //   id: '16',
-  //   src: '/speakers/asset_1.png',
-  //   srcPng: '/speakers/ivanSh.png',
-  //   guestName: 'Сергей',
-  //   occupation: 'fullstack web developer',
-  //   date: '22.12.21',
-  //   duration: '0:38',
+  //   duration: '1:35',
+  //   privateCast: false,
   //   published: true,
+  //   date: '14.12.21', 
   //   links: [
   //     {
   //       provider: youTubeProvider,
-  //       href: 'https://www.youtube.com/watch?v=_JFOhNdB9x4',
+  //       href: 'https://www.youtube.com/watch?v=LqHU6M-ykPo&ab_channel=DeepFoundation',
   //     },
   //     // {
   //     //   provider: yaProvider,
@@ -499,30 +510,39 @@ const podcasts: ICard[] = [
   //     //   href: '/',
   //     // },
   //   ],
-  //   imgs: [{
-  //     id: 'a',
-  //     alt: '',
-  //     src: '/logo-speakers/react.png',
-  //     top: 32,
-  //     left: 73,
-  //     width: 22,
-  //   },
-  //   {
-  //     id: 'b',
-  //     alt: '',
-  //     src: '/logo-speakers/dotnet.png',
-  //     top: 32,
-  //     left: 73,
-  //     width: 22,
-  //   },
-  //   {
-  //     id: 'c',
-  //     alt: '',
-  //     src: '/logo-speakers/ts.png',
-  //     top: 32,
-  //     left: 73,
-  //     width: 22,
-  //   }]
+  //   // imgs: [{
+  //   //   id: 'a',
+  //   //   altLogo: '',
+  //   //   srcLogo: '/logo-speakers/react.png',
+  //   //   topLogo: 32,
+  //   //   leftLogo: 73,
+  //   //   widthLogo: 22,
+  //   // },
+  //   // {
+  //   //   id: 'b',
+  //   //   altLogo: '',
+  //   //   srcLogo: '/logo-speakers/dotnet.png',
+  //   //   topLogo: 32,
+  //   //   leftLogo: 73,
+  //   //   widthLogo: 22,
+  //   // },
+  //   // {
+  //   //   id: 'c',
+  //   //   altLogo: '',
+  //   //   srcLogo: '/logo-speakers/ts.png',
+  //   //   topLogo: 32,
+  //   //   leftLogo: 73,
+  //   //   widthLogo: 22,
+  //   // }],
+  //   speakers: [
+  //     {
+  //       id: '1',
+  //       guestImgSrcPng: '/speakers/vitaly.png',
+  //       guestImgSrcWebp: '/speakers/vitaly.webp',
+  //       guestName: 'Виталий',
+  //       occupation: 'devOps / backend',
+  //     },
+  //   ],
   // },
 ];
 

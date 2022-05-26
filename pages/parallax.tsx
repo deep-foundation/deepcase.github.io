@@ -18,6 +18,7 @@ import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import * as Sentry from '@sentry/nextjs';
+import { ICardPodcast } from '../imports/podcast/podcast-card';
 
 
 Sentry.init({
@@ -34,27 +35,6 @@ export interface IProvider {
   icon: string;
   alt: string;
   title: string;
-}
-
-export interface ICard {
-  id: string;
-  src: string;
-  srcPng: string;
-  guestName: string;
-  occupation: string;
-  date: string;
-  duration: string;
-  published?: boolean;
-  links: { provider: IProvider, href: string }[];
-  imgs: {
-    id: string;
-    alt: string;
-    src: string;
-    top: number;
-    left: number;
-    width: number;
-  }[];
-  privateCast?: boolean;
 }
 
 // podcast's source providers
@@ -84,15 +64,11 @@ const soundcloudProvider: IProvider = {
   title: 'Soundcloud',
 };
 
-const _podcasts: ICard[] = [
+const _podcasts: ICardPodcast[] = [
   {
     id: '1',
-    src: '/speakers/eugene.webp',
-    srcPng: '/speakers/eugene.png',
-    guestName: 'Евгений',
-    occupation: 'BigData Engineer из Ultra tendency International (Германия)',
-    date: '08.12.21',
     duration: '16:20',
+    date: '08.12.21',  
     links: [
       {
         provider: youTubeProvider,
@@ -117,21 +93,24 @@ const _podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'c',
-      alt: '',
-      src: '/logo-speakers/ultratendency.svg',
-      top: 58,
-      left: 72,
-      width: 24,
-    }]
+      altLogo: 'ultratendency',
+      srcLogo: '/logo-speakers/ultratendency.svg',
+      topLogo: 58,
+      leftLogo: 72,
+      widthLogo: 24,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/eugene.png',
+      guestImgSrcWebp: '/speakers/eugene.webp',
+      guestName: 'Евгений',
+      occupation: 'BigData Engineer из Ultra tendency International (Германия)',
+    }],
   },
   {
     id: '2',
-    src: '/speakers/dima_n.webp',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Дмитрий Сотсков',
-    occupation: 'директор компании Нэти Вэб',
-    date: '08.12.21',
     duration: '16:20',
+    date: '08.12.21', 
     links: [
       {
         provider: youTubeProvider,
@@ -156,21 +135,24 @@ const _podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/nite.png',
-      top: 45,
-      left: 68,
-      width: 22,
-    }]
+      altLogo: 'nite',
+      srcLogo: '/logo-speakers/nite.png',
+      topLogo: 45,
+      leftLogo: 68,
+      widthLogo: 22,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/dima.png',
+      guestImgSrcWebp: '/speakers/dima_n.webp',
+      guestName: 'Дмитрий Сотсков',
+      occupation: 'директор компании Нэти Вэб', 
+    }],
   },
   {
     id: '7',
-    src: '/speakers/asset_1.png',
-    srcPng: '/speakers/dima.png',
-    guestName: 'Виталий Шубин',
-    occupation: 'владелец компании по IT разработке',
-    date: '08.12.21',
     duration: '16:20',
+    date: '08.12.21', 
     links: [
       {
         provider: youTubeProvider,
@@ -195,21 +177,23 @@ const _podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/single.svg',
-      top: 70,
-      left: 15,
-      width: 42,
-    }]
+      altLogo: 'single',
+      srcLogo: '/logo-speakers/single.svg',
+      topLogo: 70,
+      leftLogo: 15,
+      widthLogo: 42,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/asset_1.png',
+      guestName: 'Виталий Шубин',
+      occupation: 'владелец компании по IT разработке', 
+    }],
   },
   {
     id: '3',
-    src: '/speakers/alexey.webp',
-    srcPng: '/speakers/alexey.png',
-    guestName: 'Алексей',
-    occupation: 'аналитик в области оценки риска юр. лиц',
-    date: '08.12.21',
     duration: '16:20',
+    date: '08.12.21',
     links: [
       {
         provider: youTubeProvider,
@@ -234,35 +218,38 @@ const _podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/exel.png',
-      top: 2,
-      left: 80,
-      width: 22,
+      altLogo: 'exel',
+      srcLogo: '/logo-speakers/exel.png',
+      topLogo: 2,
+      leftLogo: 80,
+      widthLogo: 22,
     },{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/sql.png',
-      top: 55,
-      left: 75,
-      width: 18,
+      altLogo: 'sql',
+      srcLogo: '/logo-speakers/sql.png',
+      topLogo: 55,
+      leftLogo: 75,
+      widthLogo: 18,
     },{
       id: 'c',
-      alt: '',
-      src: '/logo-speakers/java.png',
-      top: 70,
-      left: 6,
-      width: 14,
-    }]
+      altLogo: 'java',
+      srcLogo: '/logo-speakers/java.png',
+      topLogo: 70,
+      leftLogo: 6,
+      widthLogo: 14,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/alexey.png',
+      guestImgSrcWebp: '/speakers/alexey.webp',
+      guestName: 'Алексей',
+      occupation: 'аналитик в области оценки риска юр. лиц',  
+    }],
   },
   {
     id: '4',
-    src: '/speakers/semen.webp',
-    srcPng: '/speakers/semen.png',
-    guestName: 'Семен Гординов',
-    occupation: 'ведущий программист',
-    date: '14.12.21',
     duration: '16:20',
+    date: '14.12.21', 
     links: [
       {
         provider: youTubeProvider,
@@ -287,19 +274,26 @@ const _podcasts: ICard[] = [
     ],
     imgs: [{
       id: 'a',
-      alt: '',
-      src: '/logo-speakers/php.png',
-      top: 32,
-      left: 73,
-      width: 22,
+      altLogo: 'php',
+      srcLogo: '/logo-speakers/php.png',
+      topLogo: 32,
+      leftLogo: 73,
+      widthLogo: 22,
     },{
       id: 'b',
-      alt: '',
-      src: '/logo-speakers/ims.png',
-      top: 65,
-      left: 5,
-      width: 25,
-    }]
+      altLogo: 'ims',
+      srcLogo: '/logo-speakers/ims.png',
+      topLogo: 65,
+      leftLogo: 5,
+      widthLogo: 25,
+    }],
+    speakers: [{
+      id: '1',
+      guestImgSrcPng: '/speakers/semen.png',
+      guestImgSrcWebp: '/speakers/semen.webp',
+      guestName: 'Семен Гординов',
+      occupation: 'ведущий программист', 
+    }],
   },
 ];
 

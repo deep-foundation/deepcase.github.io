@@ -53,3 +53,19 @@ export const OLetter = React.memo(() => {
     </DrawSVG>
   )
 })
+export const LLetter = React.memo(() => {
+  return (<DrawSVG strokeWidth="6" loop={false} width='15%' easing='easeInElastic'>
+      <svg height="100%" stroke-miterlimit="10" viewBox="0 0 25 50" width="100%">
+        <path d="M5.03432 5.00133L5.03432 44.9468L19.971 44.9468" fill="none" fill-rule="evenodd" opacity="1" stroke="#14024a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      </svg>
+    </DrawSVG>
+  )
+})
+export const GLetter = React.memo(() => {
+  return (<DrawSVG strokeWidth="6" loop={false} width='30%' easing='easeInOutElastic'>
+      <svg height="100%" stroke-miterlimit="10" viewBox="0 0 50 50" width="100%">
+        <path d="M42.462 13.781C39.5629 10.0958 35.241 5.00133 25.157 5.00133C20.9655 5.00133 6.23085 7.90321 5.03432 25.0205C5.03432 27.4549 5.53827 35.1453 12.9958 40.9218C15.8665 43.1455 19.9342 44.9468 25.157 44.9468C29.8822 44.9468 33.5413 43.4559 36.3775 41.5605C43.7853 36.6101 45.4642 27.6343 45.0037 25.0205C29.2507 25.0205 25.157 25 25.157 25" fill="none" fill-rule="evenodd" opacity="1" stroke="#14024a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      </svg>
+    </DrawSVG>
+  )
+})

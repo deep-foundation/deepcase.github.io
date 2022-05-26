@@ -1,26 +1,24 @@
 import * as Sentry from '@sentry/nextjs';
-import detectBrowserLanguage from 'detect-browser-language';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BsArrowsFullscreen } from 'react-icons/bs';
 import { ButtonGroupDownload } from '../imports/button-group-download';
 import { CrewCard } from '../imports/crew-card';
-import { Box, Button, HStack, keyframes, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Link, IconButton } from '../imports/framework';
-import { GridArea, FlexSection } from '../imports/layout';
-import { H2 } from '../imports/headers';
-import { IFrame } from '../imports/iframe';
-import { Provider } from '../imports/provider';
-import { Space } from '../imports/space';
 import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
+import { Footer } from '../imports/footer';
+import { Box, Button, HStack, IconButton, keyframes, Link, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
+import { H2 } from '../imports/headers';
+import { IFrame } from '../imports/iframe';
+import { IntroMobile } from '../imports/intro/intro-mobile';
+import { IntroDesktop } from '../imports/intro/intro-desktop';
+import { FlexSection, GridArea } from '../imports/layout';
+import { Provider } from '../imports/provider';
+import { Space } from '../imports/space';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
-import i18n from '../imports/i18n';
-import { useTranslation } from 'react-i18next';
-import { BsArrowsFullscreen } from 'react-icons/bs';
-import { Footer } from '../imports/footer';
-import { JoinDiscord } from '../imports/join-discord';
-import { Intro } from '../imports/intro';
 
 
 Sentry.init({
@@ -32,31 +30,6 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-export interface IProvider { 
-  icon: string;
-  alt: string;
-  title: string;
-}
-
-export interface ICard {
-  id: string;
-  src: string;
-  srcPng: string;
-  guestName: string;
-  occupation: string;
-  date: string;
-  duration: string;
-  links: { provider: IProvider, href: string }[];
-  imgs: {
-    id: string;
-    alt: string;
-    src: string;
-    top: number;
-    left: number;
-    width: number;
-  }[];
-  privateCast?: boolean;
-}
 
 const crew = [
   {
@@ -154,6 +127,7 @@ export function PageContent() {
   const scrollingRef = useRef(null);
   const refMenuButtons = useRef();
 
+  const [desktop] = useMediaQuery('(min-width: 768px)');
   const [max825] = useMediaQuery('(max-width: 825px)');
   const [max900] = useMediaQuery('(max-width: 900px)');
 
@@ -223,7 +197,7 @@ export function PageContent() {
             }
             src='https://deep.deep.foundation/?bg-transparent=false'
             download={
-              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} pb='0.25em'>
+              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} py='0.25em'>
                 <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg">
                   <HStack>
                     <Text fontSize='sm'>GitPod</Text>
@@ -235,10 +209,8 @@ export function PageContent() {
             }
           />
         </GridArea>
-        
-        <Space unit={10} />
-        <JoinDiscord /> 
-        <Space unit={10} />
+
+        <Space unit={max900 ? 14 : 6} />
         
         <GridArea>
           <FlagsWithText />
@@ -246,10 +218,12 @@ export function PageContent() {
 
         <Space unit={10} />
         <FlexSection direction='row' px={0}>
-          <Intro />
+          {desktop 
+          ? <IntroDesktop />
+          : <IntroMobile />}
         </FlexSection>
 
-        <Space unit={max900 ? 14 : 4} />
+        <Space unit={max900 ? 14 : 6} />
 
         <Box as='section'>
           <GridArea component='div'>

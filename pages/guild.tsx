@@ -1,18 +1,18 @@
 import React, { useCallback, useState } from 'react';
 import { Provider } from '../imports/provider';
-import { Welcome } from '../imports/studios/welcome';
+import { Welcome } from '../imports/guild/welcome';
 import { ChakraProvider } from '@chakra-ui/react'
 import { studiosTheme } from '../imports/theme/build';
 import { useTranslation } from 'react-i18next';
 import detectBrowserLanguage from 'detect-browser-language';
 import { Space } from '../imports/space';
-import { MainTasks } from '../imports/studios/main-tasks';
+import { MainTasks } from '../imports/guild/main-tasks';
 import { Box } from '../imports/framework';
 import { FlexSection } from '../imports/layout';
 
 import { MapSvg } from '../imports/icons/map';
 import { MapSvgDraw } from '../imports/icons/mapDraw';
-import { MapText } from '../imports/studios/map-text';
+import { MapText } from '../imports/guild/map-text';
 import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
 
 

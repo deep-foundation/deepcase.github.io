@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { Box } from '../framework';
 import { GridArea } from '../layout';
-import { DeepStudios } from './deep-studios/deep-studios';
+import { DeepGuild } from './deep-guild/deep-guild';
 import { Round } from './round';
 import { SplitedText } from './splited-text';
 
@@ -37,7 +37,7 @@ export const Welcome = React.memo(() => {
         </Box>
         <Box display='flex' w='100%' h='100%' justifyContent='center' flexDirection='column'>
           <Box w='100%' justifyItems='flex-start'>
-            <DeepStudios />
+            <DeepGuild />
           </Box>
         </Box>
       </Box>

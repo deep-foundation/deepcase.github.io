@@ -55,6 +55,7 @@ export const TalksForm = React.memo(({
               <Button 
                 as='a' 
                 size='lg' 
+                target='_blank'
                 href='https://discord.gg/RD8wFKtujH' 
                 sx={discordButton} 
                 aria-label='discord'
@@ -72,7 +73,7 @@ export const TalksForm = React.memo(({
                 as='a' 
                 target='_blank'
                 href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' 
-                aria-label='you tube' 
+                aria-label='youtube' 
                 variant='unstyled'
                 icon={<Img src='/source/youtube.png' alt='YouTube' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
             </WrapItem>

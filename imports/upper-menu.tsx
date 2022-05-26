@@ -1,5 +1,5 @@
 import { useQueryStore } from '@deepcase/store/query';
-import { VscGithubAlt } from 'react-icons/vsc';
+import { FaGithubAlt, FaDiscord } from 'react-icons/fa';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
@@ -214,7 +214,27 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                             output: [1, 0.2, 1],
                                           })
                                           .to(x => `scale(${x})`)
-                        }}><VscGithubAlt /></a.span>}
+                        }}><FaGithubAlt /></a.span>}
+                    />
+                    <IconButton
+                      variant='ghost'
+                      colorScheme='teal'
+                      target='_blank'
+                      aria-label='github repository deep foundation'
+                      href="https://discord.gg/RD8wFKtujH" 
+                      title='github repository deep foundation'
+                      as='a'
+                      fontSize='lg'
+                      icon={
+                        <a.span style={{
+                          transformOrigin: 'top',
+                          transform: fontsScroll.x
+                                          .to({
+                                            range: [0, 1, 0],
+                                            output: [1, 0.2, 1],
+                                          })
+                                          .to(x => `scale(${x})`)
+                        }}><FaDiscord /></a.span>}
                     />
                     <a.div style={{
                           transformOrigin: 'top',
@@ -334,7 +354,27 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                               output: [0.7, 1.1, 0.7],
                                             })
                                             .to(x => `scale(${x})`)
-                          }}><VscGithubAlt /></a.span>}
+                          }}><FaGithubAlt /></a.span>}
+                      />
+                      <IconButton
+                        variant='ghost'
+                        colorScheme='teal'
+                        aria-label='github repository deep foundation'
+                        href="https://discord.gg/RD8wFKtujH" 
+                        title='github repository deep foundation'
+                        as='a'
+                        target='_blank'
+                        fontSize='xl'
+                        icon={
+                          <a.span style={{
+                            lineHeight: 1,
+                            transform: fontsMode.x
+                                            .to({
+                                              range: [0, 1, 0],
+                                              output: [0.7, 1.1, 0.7],
+                                            })
+                                            .to(x => `scale(${x})`)
+                          }}><FaDiscord /></a.span>}
                       />
                       <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>
                         <a.span style={{

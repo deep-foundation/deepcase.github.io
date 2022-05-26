@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { a, useSpring } from 'react-spring';
 import { GiDuration, GiVideoCamera, GiAudioCassette } from 'react-icons/gi';
-import { ICard } from '../../pages/parallax';
-import { Flex, Box, GravityCard, Tooltip, Text, Img, HStack } from '../framework';
+import { Flex, Box, GravityCard, Tooltip, Text, Img, HStack, VStack, Grid } from '../framework';
 import { Play } from '../icons/play';
 import { Space } from '../space';
 import { LogoImage } from './logo';
@@ -11,6 +10,36 @@ import moment from 'moment';
 import momentDurationFormatSetup from "moment-duration-format";
 momentDurationFormatSetup(moment);
 
+
+export interface IProvider { 
+  icon: string;
+  alt: string;
+  title: string;
+}
+export interface ICardPodcast {
+  id: string;
+  duration: string;
+  date?: string;
+  published?: boolean;
+  format?: string;
+  links: { provider: IProvider, href: string }[];
+  imgs?: {
+    id: string;
+    altLogo: string;
+    srcLogo: string;
+    topLogo: number;
+    leftLogo: number;
+    widthLogo: number;
+  }[];
+  speakers: {
+    id: string;
+    guestImgSrcPng: string;
+    guestImgSrcWebp?: string;
+    guestName?: string;
+    occupation?: string;
+  }[],
+  privateCast?: boolean;
+}
 
 const imageClass = {
   display: 'block',
@@ -45,17 +74,15 @@ if (typeof(window) === 'object') {
 export const Podcast = React.memo(({
   card,
 }:{
-  card: ICard;
+  card: ICardPodcast;
 }) => {
   const {
-    src: guestImgSrc,
-    srcPng: guestImgSrcPng,
-    guestName,
-    occupation,
-    date,
     duration,
+    date,
+    format = 'audio' || 'video',
     privateCast = true,
     imgs,
+    speakers,
     published = false,
   } = card;
   const [openSourcePodcast, setOpenSourcePodcast] = useState(false);
@@ -92,6 +119,37 @@ export const Podcast = React.memo(({
     }, 30000);
   }, []);
 
+  var source = []; 
+  var data = []; 
+  for(var i = 0; i <= speakers?.length; i++) {
+    var speaker = speakers[i];
+    source.push(<a.div key={speaker?.id} style={{ 
+        // width: '100%',
+        // height: '100%',
+        zIndex: 2,
+        transform: spring.xy.to(trans3)
+      }}>
+        <picture>
+          <source srcSet={speaker?.guestImgSrcWebp} type="image/webp" />
+          <source srcSet={speaker?.guestImgSrcPng} type="image/png" /> 
+          <Img src={speaker?.guestImgSrcPng} alt={speaker?.guestName} htmlWidth='100%' htmlHeight='100%' sx={imageClass} />
+        </picture>
+      </a.div>);
+    data.push(<a.div key={speaker?.id} style={{
+        transform: spring.xy.to(trans2) 
+      }}>
+        <Text fontSize='sm' as='div' lineHeight='tall' sx={{textTransform: 'uppercase'}}>{speaker?.guestName}</Text>
+        <Text 
+          fontSize='sm' 
+          as='div' 
+          sx={{
+            whiteSpace: 'normal', 
+            '&:first-letter': {textTransform: 'capitalize'}
+          }}>{speaker?.occupation}</Text>
+        <Space unit={0.5} />
+      </a.div>)
+  }
+
   return(<GravityCard setRef={setRef} onClickCapture={onClickPodcast} onMouseMove={onMouseMove} PaperProps={{style: {padding: 0}}}><>
       <Box
         display='flex'
@@ -117,40 +175,13 @@ export const Podcast = React.memo(({
           background: published ? 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)' : '#ffffff',
           backgroundSize: '1em 1em',
           transform: spring.xy.to(trans1), 
-        }}/>
+        }} />
         <Box pos='relative' h='100%'>
-          {imgs.map(i => (<LogoImage key={i.id} src={i.src} alt={i.alt} top={i.top} left={i.left} width={i.width} spring={spring} />))}
-          <a.div style={{ 
-            position: 'absolute', 
-            zIndex: 2,
-            right: 0,
-            bottom: 0,
-            transform: spring.xy.to(trans3) 
-          }}>
-            <picture>
-              <source srcSet={guestImgSrc} type="image/webp" />
-              <source srcSet={guestImgSrcPng} type="image/png" /> 
-              <Img src={guestImgSrc} alt={guestName} htmlWidth='100%' htmlHeight='100%' sx={imageClass} />
-            </picture>
-          </a.div>
-            <a.div style={{ 
-              position: 'absolute', 
-              top: 0, 
-              left: '3%',
-              paddingRight: '2%',
-              transform: spring.xy.to(trans2) 
-            }}>
-              <Text fontSize='sm' as='div' lineHeight='tall' sx={{textTransform: 'uppercase'}}>{guestName}</Text>
-              <Text 
-                fontSize='sm' 
-                as='div' 
-                sx={{
-                  whiteSpace: 'normal', 
-                  '&:first-letter': {textTransform: 'capitalize'}
-                }}>{occupation}</Text>
-              <Space unit={0.5} />
-              <Text fontSize='xs' as='div'>{date}</Text>
-            </a.div>
+          {imgs?.map(i => (<LogoImage key={i.id} src={i.srcLogo} alt={i.altLogo} top={i.topLogo} left={i.leftLogo} width={i.widthLogo} spring={spring} />))}
+          <VStack alignItems='flex-start' pl='3%'>{data}</VStack>
+          <Box display='grid' gridAutoFlow='column' pos='absolute' alignItems='flex-end' sx={{bottom: 0, width: '100%', direction: 'rtl'}}>
+            {source}
+          </Box>
         </Box>
         <Box sx={controlArea} py={1}>
           <HStack spacing={2}>
@@ -159,8 +190,9 @@ export const Podcast = React.memo(({
               // @ts-ignore
               moment.duration(duration, "minutes").format("h [hrs] m [min]")
             )}</Text>
-            <GiAudioCassette />
+            {format === 'audio' ? <GiAudioCassette /> : <GiVideoCamera />}
           </HStack>
+          <Text fontSize='xs' as='div'>{date}</Text>
           {privateCast && 
             // <Tooltip TransitionComponent={Zoom} title="the guest chose to keep the entry private" placement="right-start" arrow>
               <Text fontSize='xs' casing='uppercase' as='div'>private</Text>
