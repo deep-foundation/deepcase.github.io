@@ -26,8 +26,8 @@ export const coreTheme = extendTheme({
     light: '#EAEAEA',
     second: {
       100: '#c0e8f9',
-      500: '#00a9f3',
-      600: '#008fcc',
+      500: '#008fcc',
+      600: '#00a9f3',
     }, 
     menuItem: {
       100: '#19202b85',

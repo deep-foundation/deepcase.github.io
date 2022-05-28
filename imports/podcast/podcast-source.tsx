@@ -1,7 +1,7 @@
 import React from 'react';
 import { a, useTransition } from 'react-spring';
-import { ICard } from '../../pages/parallax';
 import { Box, Center, HStack, Img, Text, VStack } from '../framework';
+import { ICardPodcast } from './podcast-card';
 
 
 const PodcastSourceButton = React.memo(({
@@ -55,7 +55,7 @@ export const PodcastSource = React.memo(({
   card: { links },
 }:{
   switcher?: boolean;
-  card: ICard;
+  card: ICardPodcast;
 }) => {
 
   const transitions = useTransition(!switcher, {
