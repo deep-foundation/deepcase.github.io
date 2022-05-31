@@ -12,7 +12,8 @@ export const IntroDesktop = React.memo(() => {
       display='grid'
       gridTemplateRows='repeat(6, 0.1fr)'
       gridTemplateColumns='repeat(4, 1fr)'
-      gap={4}
+      rowGap={3}
+      columnGap={10}
     >
       <Box gridColumn='1/3'>
         <H1 fontSize={{sm: 'xl', md: '5xl'}} colorScheme='white' textAlign={{sm: 'left', md: 'right'}}>{t('intro--developer--title')}</H1>
@@ -45,14 +46,13 @@ export const IntroDesktop = React.memo(() => {
           {t('intro--write')}
         </Text>
       </Box>
-      <Box gridColumn='1/3'>
-        <Text fontSize={{sm: 'sm', md: 'xl'}} colorScheme='white' align={{sm: 'left', md: 'right'}}> 
-          {t('intro--write')} <Text as='kbd'>#iamdev</Text> 
+      <Box gridColumn='1/3' justifySelf='flex-end'>
+        <Text fontSize={{sm: 'sm', md: 'xl'}} as='kbd' colorScheme='white' align={{sm: 'left', md: 'right'}}> 
+          #iamdev
         </Text>
       </Box>
       <Box gridColumn='3/5'>
-        <Text fontSize={{sm: 'sm', md: 'xl'}} colorScheme='white'>
-          {t('intro--write')} <Text as='kbd'>#iambusiness</Text>
+        <Text fontSize={{sm: 'sm', md: 'xl'}} as='kbd' colorScheme='white'>#iambusiness
         </Text>
       </Box>
       <Box gridColumn='2/4' alignSelf='center' justifySelf='center'>

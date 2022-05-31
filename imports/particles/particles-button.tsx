@@ -14,10 +14,12 @@ export const ParticlesButton = React.memo(({
   children,
   options = {},
   styleProps,
+  heightWrapBox = '90px',
 }:{
   children: any;
   options?: any;
   styleProps?: any;
+  heightWrapBox?: string;
 }) => {
   const { t } = useTranslation();
   const pRef = useRef<any>();
@@ -94,7 +96,7 @@ export const ParticlesButton = React.memo(({
             borderRadius='md' 
             bg="#00a9f3"
             w='max-content'
-            height='90px'
+            height={heightWrapBox}
             transform='translateX(-101%)'
             pt='1em'
             pb='1.3em'

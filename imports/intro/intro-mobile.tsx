@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, ListItem, Stack, Text, UnorderedList } from '../framework';
+import { Box, ListItem, Stack, VStack, Text, UnorderedList } from '../framework';
 import { H1 } from '../headers';
 import { ParticlesButton } from '../particles/particles-button';
 
@@ -9,19 +9,19 @@ export const IntroMobile = React.memo(() => {
   const { t } = useTranslation();
   return (
     <Stack width='100%' spacing={0} direction='column'>
-      <Box 
+      <VStack 
         w='100%' 
         pr={2} 
         py='2em'
         bg='transparent'
         overflowX='hidden'
+        textAlign='center'
       >
         <H1 
           fontSize='xl' 
           colorScheme='white' 
-          textAlign='left'
         >{t('intro--developer--title')}</H1>
-        <UnorderedList styleType='none' textAlign='left' ml={0} mr={0}>
+        <UnorderedList styleType='none' ml={0} mr={0}>
           <ListItem>
             <Text fontSize='sm' colorScheme='white'>{t('intro--developer--questions')}</Text>
           </ListItem>
@@ -29,7 +29,7 @@ export const IntroMobile = React.memo(() => {
             <Text fontSize='sm' colorScheme='white'>{t('intro--developer--research_channel')}</Text>
           </ListItem>
         </UnorderedList>
-        <Text fontSize='sm' colorScheme='white' align='left'> 
+        <Text fontSize='sm' colorScheme='white'> 
           {t('intro--write')} <Text as='kbd'>#iamdev</Text> {t('intro--in')}
         </Text>
         <Box
@@ -49,17 +49,18 @@ export const IntroMobile = React.memo(() => {
           >
             <Text as='kbd'>#hi</Text> {t('intro--channel')}
           </Box>
-          <ParticlesButton>
+          <ParticlesButton heightWrapBox='auto'>
             <Text as='kbd'>#hi</Text> {t('intro--channel')}
           </ParticlesButton>
         </Box>
-      </Box>
-      <Box
+      </VStack>
+      <VStack
         w='100%' 
         pl={2} 
         py='2em'
         bg='transparent'
         overflowX='hidden'
+        textAlign='center'
       >
         <H1 
           fontSize='xl' 
@@ -97,7 +98,7 @@ export const IntroMobile = React.memo(() => {
             <Text as='kbd'>#hi</Text> {t('intro--channel')}
           </ParticlesButton>
         </Box>
-      </Box>
+      </VStack>
     </Stack>
   )
 })

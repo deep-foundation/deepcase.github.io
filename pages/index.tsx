@@ -223,13 +223,13 @@ export function PageContent() {
           : <IntroMobile />}
         </FlexSection>
 
-        <Space unit={max900 ? 14 : 6} />
+        <Space unit={max900 ? 9 : 6} />
 
         <Box as='section'>
           <GridArea component='div'>
             <H2>Podcasts</H2>
           </GridArea>
-          <Space unit={4} />
+          <Space unit={3} />
           <Box 
             w='100%'
             height='33rem'
