@@ -231,6 +231,74 @@ const podcasts: ICardPodcast[] = [
     }],
   },
   {
+    id: '16',
+    duration: '1:35',
+    privateCast: false,
+    published: true,
+    date: '21.12.21', 
+    format: 'video',
+    links: [
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=LqHU6M-ykPo&ab_channel=DeepFoundation',
+      },
+      // {
+      //   provider: yaProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: appleProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: telegramProvider,
+      //   href: '/',
+      // },
+      // {
+      //   provider: spotifyProvider,
+      //   href: '/',
+      // },
+    ],
+    // imgs: [{
+    //   id: 'a',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/react.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // },
+    // {
+    //   id: 'b',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/dotnet.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // },
+    // {
+    //   id: 'c',
+    //   altLogo: '',
+    //   srcLogo: '/logo-speakers/ts.png',
+    //   topLogo: 32,
+    //   leftLogo: 73,
+    //   widthLogo: 22,
+    // }],
+    speakers: [
+      {
+        id: '1',
+        guestImgSrcPng: '/speakers/pavel.png',
+        guestImgSrcWebp: '/speakers/pavel.webp',
+        guestName: 'Павел Московой',
+      },
+      {
+        id: '2',
+        guestImgSrcPng: '/speakers/andrei.png',
+        guestImgSrcWebp: '/speakers/andrei.webp',
+        guestName: 'Андрей', 
+      }
+    ],
+  },
+  {
     id: '17',
     date: '08.12.21',
     duration: '16:20',
@@ -602,7 +670,7 @@ export const Podcasts = React.memo(() => {
         <div style={{
           position: 'relative',
           width: 'calc(21.875rem + 1.5vmax)', 
-          height: 'calc(17.875rem + 1.5vmax)',
+          height: 'calc(14rem + 1vmax)',
           }}
         >
           <Podcast card={p} />
