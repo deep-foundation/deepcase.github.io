@@ -2,6 +2,9 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Box, Center, Code, Img, StackDivider, Text, VStack } from './framework';
 import { Flag } from "./flag";
+import { Hands } from "./flags-icons/hands";
+import { Cat } from "./flags-icons/cat";
+import { Stairs } from "./flags-icons/stairs";
 
 
 const GridCard = React.memo(({
@@ -72,8 +75,7 @@ export const FlagsWithText = React.memo(() => {
       <GridCard columns='max-content 1fr' direction='column' alignItem='flex-start'>
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
           <Flag
-            icon1={<Img src='/flags/1.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translate(-50%, 2.5rem)'}} alt='icon' />}
-            icon2={<Img src='/flags/1_2.svg' htmlHeight='100%' htmlWidth='100%' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
+            Icon={Stairs}
             title={t('flag-title--operational-environment')}
             description={t('flag-description--operational-environment')}
           />
@@ -87,8 +89,7 @@ export const FlagsWithText = React.memo(() => {
   
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
           <Flag
-            icon1={<Img src='/flags/3.svg' sx={{transform: 'translate(-50%, 2rem)'}} htmlWidth='100%'  htmlHeight='100%' alt='icon' />}
-            icon2={<Img src='/flags/3_2.svg' sx={{transform: 'translateX(-50%)'}} alt='icon' />}
+            Icon={Cat}
             title={t('flag-title--new-programming-paradigm')}
             description={t('flag-description--new-programming-paradigm')}
           />
@@ -157,8 +158,7 @@ export const FlagsWithText = React.memo(() => {
           
         >
           <Flag
-            icon1={<Img src='/flags/4.svg' sx={{transform: 'translate(-50%, 2rem)'}} alt='icon' htmlHeight='100%' htmlWidth='100%' />}
-            icon2={<Img src='/flags/4_2.svg' sx={{transform: 'translateX(-50%)'}} htmlHeight='100%' htmlWidth='100%' alt='icon' />}
+            Icon={Hands}
             title={t('flag-title--semantic-system')}
             description={t('flag-description--semantic-system')}
           />

@@ -1,5 +1,7 @@
+import { useSpring as useSpringMotion } from 'framer-motion';
 import React, { useRef } from 'react';
 import { a, useSpring } from 'react-spring';
+import { Tower } from './flags-icons/tower';
 import { Box, GravityCard, Img, Text, useMediaQuery } from './framework';
 import { H5 } from './headers';
 import { Space } from './space';
@@ -15,38 +17,29 @@ const trans3 = (x, y) => `translate3d(${x / 12}px,${(y / 12) * 0.1}px,0)`;
 const trans4 = (x, y) => `translate3d(${x / 18}px,${(y / 18) * 0.1}px,0)`;
 const trans5 = (x, y) => `translate3d(${x / 8}px,${(y / 8) * 0.1}px,0)`;
 
-var x = -1;
-var y = -1;
-if (typeof(window) === 'object') {
-  document.onmousemove = function(event) {
-    x = event.pageX;
-    y = event.pageY;
-  }
-}
-
 export const Flag = React.memo(({
   title,
-  src,
-  alt,
   description,
   boxProps,
   icon1,
   icon2,
   icon3,
   fullText,
+  Icon = Tower,
   ...props
 }:{
   title: string;
-  src?: string;
-  alt?: string;
   description?: string;
   boxProps?: any;
   icon1?: any;
   icon2?: any;
   icon3?: any;
   fullText?: any;
+  Icon?: any;
   [prop: string]: any;
 }) => {
+  var xMotion = useSpringMotion(0, { stiffness: 150, damping: 40 });
+  var yMotion = useSpringMotion(0, { stiffness: 200 });
 
   const [spring, set] = useSpring(() => ({ xy: [0, 0], borderColor: '#393d40', config: { mass: 10, tension: 550, friction: 140 } }));
   const ref = useRef<any>();
@@ -64,8 +57,14 @@ export const Flag = React.memo(({
         w='100%' 
         pos='relative' 
         ref={ref} 
-        onMouseMove={({ clientX: x, clientY: y }) => set({ xy: localCalc(x, y), borderColor: '#00a9f4' })} 
-        onMouseLeave={() => set({ xy: [0,0], borderColor: '#393d40' })} 
+        onMouseMove={({ clientX, clientY }) => {
+          set({ xy: localCalc(clientX, clientY), borderColor: '#00a9f4' });
+          (xMotion.set(localCalc(clientX, clientY)[0]), yMotion.set(localCalc(clientX, clientY)[1]));
+        }} 
+        onMouseLeave={() => {
+          set({ xy: [0,0], borderColor: '#393d40' });
+          (xMotion.set(0), yMotion.set(0));
+        }} 
       >
         <Box 
           w='120%' 
@@ -155,7 +154,11 @@ export const Flag = React.memo(({
           alignItems='center'
         >
           <Box pos='relative' mt='1em'>
-            <Box opacity={0} boxSizing='border-box'>
+            <Icon 
+              xM={xMotion}
+              yM={yMotion}
+            />
+            {/* <Box opacity={0} boxSizing='border-box'>
               {icon1}
             </Box>
             <a.div style={{ position: 'absolute', top: 0, left: '50%', width: '7rem', boxSizing: 'border-box', transform: spring.xy.to(trans3) }}>
@@ -166,7 +169,7 @@ export const Flag = React.memo(({
             </a.div>
             <a.div style={{ position: 'absolute', top: 0, left: '50%', width: '7rem', boxSizing: 'border-box', transform: spring.xy.to(trans5) }}>
               {icon3}
-            </a.div>
+            </a.div> */}
           </Box>
         </Box>
         <Box>

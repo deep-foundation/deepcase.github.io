@@ -60,6 +60,11 @@ const resources = {
       'studios--main-tasks-tasks': 'goals',
       'studios--main-tasks-first': 'to promote the cult of depth (Deep) and our values: trust, openness, efficiency',
       'studios--main-tasks-second': 'building a system of ranks and rewards to encourage community members',
+
+      'posts-header': 'Articles',
+      'posts-read': 'read',
+
+      'podcasts-header': 'Podcasts',
     }
   },
   ru: {
@@ -116,6 +121,11 @@ const resources = {
       'studios--main-tasks-tasks': 'задачи',
       'studios--main-tasks-first': 'популязировать культ глубины (Deep) и наши ценности: доверие, открытость, эффективность',
       'studios--main-tasks-second': 'выстраивание системы рангов и вознаграждений, чтобы поощрять участников комьюнити',
+
+      'posts-read': 'читать',
+      'posts-header': 'Статьи',
+
+      'podcasts-header': 'Подкасты',
     }
   }
 };

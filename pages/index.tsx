@@ -19,6 +19,7 @@ import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
+import { PostCards } from '../imports/post';
 
 
 Sentry.init({
@@ -117,7 +118,7 @@ export default function Page () {
 };
 
 export function PageContent() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   // const [language, setLanguage] = useState(process.browser ? detectBrowserLanguage() : 'en-US');
   const changeLanguage = useCallback((lng) => {
     i18n.changeLanguage(lng);
@@ -223,11 +224,23 @@ export function PageContent() {
           : <IntroMobile />}
         </FlexSection>
 
+        {/* <Space unit={max900 ? 9 : 6} />
+        
+        <Box as='section'>
+          <GridArea component='div'>
+            <H2>{t('posts-header')}</H2>
+          </GridArea>
+          <Space unit={3} />
+          <GridArea component='div'>
+            <PostCards />
+          </GridArea>
+        </Box> */}
+
         <Space unit={max900 ? 9 : 6} />
 
         <Box as='section'>
           <GridArea component='div'>
-            <H2>Podcasts</H2>
+            <H2>{t('podcasts-header')}</H2>
           </GridArea>
           <Space unit={3} />
           <Box 
