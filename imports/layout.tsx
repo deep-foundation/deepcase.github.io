@@ -11,6 +11,7 @@ export const GridArea = React.memo(({
   innerGridStyles,
   originalPx = '2rem',
   max825Px = '1rem',
+  InnerGridProps,
   ...props
 }:{
   children: any;
@@ -21,6 +22,7 @@ export const GridArea = React.memo(({
   innerGridStyles?: any;
   originalPx?: any;
   max825Px?: any;
+  InnerGridProps?: any;
   [key:string]: any;
 }) => {
 
@@ -36,8 +38,9 @@ export const GridArea = React.memo(({
             gridColumn: mediaColumnsZone,
             px: max825Px,
           },
+          ...innerGridStyles
         }}
-        {...innerGridStyles}>
+        {...InnerGridProps}>
         {children}
       </Box>
     </Grid>

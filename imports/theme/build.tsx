@@ -19,6 +19,7 @@ export const coreTheme = extendTheme({
   },
   breakpoints,
   colors: {
+    primary: '#008fcc',
     dark: '#19202B',
     transparentDark: {
       500: 'rgba(0, 0, 0, 0.19)',

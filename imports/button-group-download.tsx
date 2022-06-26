@@ -16,6 +16,7 @@ const ButtonMenu = React.memo(() => {
       as='a'
       target='_blank'
       href='https://www.notion.so/ivansglazunov/Install-and-Using-8f213fbd532e4c869626b061b691ba2c'
+      _focus={{ boxShadow: "none" }} _active={{ bg: "second.600", color: "gray.50" }}
     >
       <HStack>
         <Text fontSize='sm'>{t('iframe--install')}</Text>
@@ -38,10 +39,10 @@ export const ButtonGroupDownload = React.memo(() => {
       {/* <Menu autoSelect={false}>
         <MenuButton as={IconButton} icon={<TriangleDownIcon />} size='lg' borderRadius='0.175rem' colorScheme='second' aria-label='download deep cased file format' />
         <MenuList bg='menuItem.100' borderColor='second.500'>
-          <MenuItem onClick={handleClose} _hover={{bg: 'menuItem.200'}} _focus={{bg: 'menuItem.200'}}>.app</MenuItem>
-          <MenuItem onClick={handleClose} _hover={{bg: 'menuItem.200'}} _focus={{bg: 'menuItem.200'}}>.exe</MenuItem>
-          <MenuItem onClick={handleClose} _hover={{bg: 'menuItem.200'}} _focus={{bg: 'menuItem.200'}}>.deb</MenuItem>
-          <MenuItem onClick={handleClose} _hover={{bg: 'menuItem.200'}} _focus={{bg: 'menuItem.200'}}>docker</MenuItem>
+          <MenuItem onClick={handleClose} _hover={{bg: "menuItem.200"}} _focus={{bg: "menuItem.200"}}>.app</MenuItem>
+          <MenuItem onClick={handleClose} _hover={{bg: "menuItem.200"}} _focus={{bg: "menuItem.200"}}>.exe</MenuItem>
+          <MenuItem onClick={handleClose} _hover={{bg: "menuItem.200"}} _focus={{bg: "menuItem.200"}}>.deb</MenuItem>
+          <MenuItem onClick={handleClose} _hover={{bg: "menuItem.200"}} _focus={{bg: "menuItem.200"}}>docker</MenuItem>
         </MenuList>
       </Menu> */}
     </ButtonGroup>

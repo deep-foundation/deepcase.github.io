@@ -71,6 +71,7 @@ export const IntroDesktop = React.memo(() => {
           position='absolute'
           top='50%'
           left={0}
+          pb={[null, '0.3em']}
           transform='translateY(-50%)'
           bg='transparent'
           w='100%'

@@ -153,7 +153,7 @@ export const Flag = React.memo(({
           justifyContent='center'
           alignItems='center'
         >
-          <Box pos='relative' mt='1em'>
+          <Box pos="relative" mt="1em">
             <Icon 
               xM={xMotion}
               yM={yMotion}
@@ -179,7 +179,7 @@ export const Flag = React.memo(({
             overflow='hidden'
             w='153.5%' h='50%'
           >
-            <Box left='16.65%' w='calc(67% - 22.3%)' pos='relative'>
+            <Box left="16.65%" w="calc(67% - 22.3%)" pos="relative">
               <Img htmlWidth='100%' htmlHeight='100%' src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt='px'/>
               <Box 
                 bg='dark'
@@ -214,7 +214,7 @@ export const Flag = React.memo(({
                       transform: spring.xy.to(transArrowBorderCorner), borderColor: spring.borderColor
                     }}
                   >
-                    <Box pos='absolute' left='-100%' top='-100%' w='300%' h='300%' transform='rotate(-45deg)' bgPosition='left' />
+                    <Box pos="absolute" left="-100%" top="-100%" w="300%" h="300%" transform="rotate(-45deg)" bgPosition="left" />
                   </a.div>
                 </Box>
               </Box>
@@ -231,7 +231,7 @@ export const Flag = React.memo(({
                   transform: spring.xy.to(transDashedBorderCorner), borderColor: spring.borderColor 
                 }}
               >
-                <Box pos='absolute' left='-100%' top='-100%' w='300%' h='300%' transform='rotate(-45deg)' bgPosition='left' />
+                <Box pos="absolute" left="-100%" top="-100%" w="300%" h="300%" transform="rotate(-45deg)" bgPosition="left" />
               </a.div>
             </Box>
           </Box>

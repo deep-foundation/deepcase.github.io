@@ -19,7 +19,7 @@ import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
-import { PostCards } from '../imports/post';
+import { ArticlesGrid } from '../imports/article';
 
 
 Sentry.init({
@@ -199,7 +199,7 @@ export function PageContent() {
             src='https://deep.deep.foundation/?bg-transparent=false'
             download={
               <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} py='0.25em'>
-                <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg">
+                <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg" _focus={{ boxShadow: "none" }} _active={{ bg: "second.600", color: "gray.50" }}>
                   <HStack>
                     <Text fontSize='sm'>GitPod</Text>
                     <Text fontSize='xs'>(cloud demo)</Text>
@@ -224,17 +224,17 @@ export function PageContent() {
           : <IntroMobile />}
         </FlexSection>
 
-        {/* <Space unit={max900 ? 9 : 6} />
+        <Space unit={max900 ? 9 : 6} />
         
         <Box as='section'>
           <GridArea component='div'>
             <H2>{t('posts-header')}</H2>
           </GridArea>
           <Space unit={3} />
-          <GridArea component='div'>
-            <PostCards />
+          <GridArea component='div' justifyItems='flex-start'>
+            <ArticlesGrid />
           </GridArea>
-        </Box> */}
+        </Box>
 
         <Space unit={max900 ? 9 : 6} />
 

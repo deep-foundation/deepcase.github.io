@@ -14,7 +14,7 @@ export const ParticlesButton = React.memo(({
   children,
   options = {},
   styleProps,
-  heightWrapBox = '90px',
+  heightWrapBox = '3.75em',
 }:{
   children: any;
   options?: any;
@@ -57,20 +57,16 @@ export const ParticlesButton = React.memo(({
           // oscillationCoefficient: 1
         });
         setTimeout(() => {
-          console.log(3, 'isVisible', isVisible, 'sRef', sRef.current);
           res(true);
         }, 4000);
       });
     } else {
-      console.log(4, 'isVisible', isVisible, 'sRef', sRef.current);
       await promiseRef.current;
-      console.log(5, 'isVisible', isVisible, 'sRef', sRef.current);
       if (!sRef.current) return;
       sRef.current = false;
       promiseRef.current = new Promise((res, rej) => {
         pRef.current.disintegrate();
         setTimeout(() => {
-          console.log(6, 'isVisible', isVisible, 'sRef', sRef.current);
           res(true);
         }, 4000);
       });
@@ -91,16 +87,15 @@ export const ParticlesButton = React.memo(({
         >
           <Box
             ref={eRef}
-            // as='a' href='https://discord.gg/RD8wFKtujH' 
-            // target='_blank'
             borderRadius='md' 
-            bg="#00a9f3"
+            bg="second.500"
             w='max-content'
             height={heightWrapBox}
             transform='translateX(-101%)'
-            pt='1em'
-            pb='1.3em'
-            px='3em'
+            pt={['0.9rem', null, '0.5rem']}
+            pb={['1em', null]}
+            pl='3em'
+            pr='3em'
             {...styleProps}
           >
             {children}

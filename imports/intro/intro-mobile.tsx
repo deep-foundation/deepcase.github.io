@@ -42,8 +42,7 @@ export const IntroMobile = React.memo(() => {
             position='absolute'
             top={0}
             left={0}
-            // py='0.5em'
-            // px='2em'
+            pt={['0.9rem', null, '0.5rem']}
             bg='transparent'
             w='100%'
           >
@@ -87,8 +86,7 @@ export const IntroMobile = React.memo(() => {
             position='absolute'
             top={0}
             left={0}
-            // py='0.5em'
-            // px='2em'
+            pt={['0.9rem', null, '0.5rem']}
             bg='transparent'
             w='100%'
           >
