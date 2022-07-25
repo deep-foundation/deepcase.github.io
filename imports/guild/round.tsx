@@ -8,13 +8,25 @@ export const MotionBox = motion<any>(Box);
 
 
 export const Round = React.memo(({props}:any) => {
-  return(<Box pos='relative' w='100%' h='100%'>
+  return(
+    <Box 
+      pos='absolute' 
+      w='100%' 
+      h='100%'
+      sx={{
+        '@media(max-width: 825px) and (min-width: 511px)': {
+          w: 'calc(20rem + 9.5vmax)',
+          left: '50%',
+          transform: 'translateX(-50%)'
+        } 
+      }}
+    >
       <MotionBox 
         sx={{
           mixBlendMode: 'color-dodge',
           width: 'calc(20rem + 9.5vmax)',
           height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 825px)': {
+          '@media(max-width: 510px)': {
             width: '100%',
             height: '100%',
           } 
@@ -36,7 +48,7 @@ export const Round = React.memo(({props}:any) => {
         sx={{
           width: 'calc(20rem + 9.5vmax)',
           height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 825px)': {
+          '@media(max-width: 510px)': {
             width: '100%',
             height: '100%',
           } 
@@ -55,17 +67,16 @@ export const Round = React.memo(({props}:any) => {
       />
       <MotionBox 
         sx={{
+          pos: 'absolute',
+          top: '0',
+          left: '0',
           width: 'calc(19rem + 9.5vmax)',
           height: 'calc(22rem + 9.5vmax)',
-          '@media(max-width: 825px)': {
+          '@media(max-width: 510px)': {
             width: '100%',
             height: '100%',
-          } 
-          
+          }, 
         }}
-        pos='absolute'
-        top='0'
-        left='0'
         borderRadius='23% 38% 16% 59% / 16% 29% 27% 34%' 
         bg='linear-gradient(34deg, rgba(81,0,134, 0.25) 19%, rgba(0,7,139, 0.25) 44%, rgba(213,0,147, 0.25) 100%)' 
         animate={{
@@ -80,7 +91,7 @@ export const Round = React.memo(({props}:any) => {
           mixBlendMode: 'plus-lighter',
           width: 'calc(20rem + 9.5vmax)',
           height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 825px)': {
+          '@media(max-width: 510px)': {
             width: '100%',
             height: '100%',
           } 

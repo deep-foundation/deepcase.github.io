@@ -30,33 +30,18 @@ export const FlyingWords = React.memo<any>(() => {
     ? undefined
     : `${anim8} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
   
-  const jitter1 = prefersReducedMotion
-    ? undefined
-    : `${anim1} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter2 = prefersReducedMotion
-    ? undefined
-    : `${anim2} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter3 = prefersReducedMotion
-    ? undefined
-    : `${anim3} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter4 = prefersReducedMotion
-    ? undefined
-    : `${anim4} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter5 = prefersReducedMotion
-    ? undefined
-    : `${anim5} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter6 = prefersReducedMotion
-    ? undefined
-    : `${anim6} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter7 = prefersReducedMotion
-    ? undefined
-    : `${anim7} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-  const jitter8 = prefersReducedMotion
-    ? undefined
-    : `${anim8} 4s cubic-bezier(0.470,0.000,0.745,0.715) 1s 1`;
-    
+
   return (
-    <Wrap maxW={{sm: '100%', md: '100%'}} justify={{sm: 'center', md: 'center'}}>
+    <Wrap 
+      maxW='25.3rem' 
+      width='26rem' 
+      justify={{sm: 'center', md: 'center'}}
+      sx={{
+        '@media(max-width: 380px)': {
+          maxW: '21.3rem'
+        }
+      }}
+    >
       <WrapItem>
         <MotionBox 
           w='max' 
@@ -73,14 +58,17 @@ export const FlyingWords = React.memo<any>(() => {
         <MotionBox 
           w='23rem' 
           h='2.1rem' 
-          justifyContent='flex-end' 
-          alignItems='flex-end'
+          sx={{
+            '@media(max-width: 380px)': {
+              w: '18rem'
+            }
+          }}
           animate={{
             rotate: 1.5,
           }}
           transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "reverse" }}
         >
-          <Text fontSize={{sm: '2xl', md: '3xl'}} lineHeight='normal' animation={animation2}>последователей</Text>
+          <Text align='right' fontSize={{sm: '2xl', md: '3xl'}} lineHeight='normal' animation={animation2}>последователей</Text>
         </MotionBox>
       </WrapItem>
       <WrapItem>
@@ -138,6 +126,11 @@ export const FlyingWords = React.memo<any>(() => {
         <MotionBox 
           w='14rem' 
           h='max'
+          sx={{
+            '@media(max-width: 380px)': {
+              w: '11rem'
+            }
+          }}
           align='right'
           animate={{
             rotate: -1,
