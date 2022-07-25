@@ -113,6 +113,9 @@ export const Round = React.memo(({props}:any) => {
           position: 'absolute',
           top: '50%',
           transform: 'translateY(-50%)',
+          '@media(max-width: 325px)': {
+            w: '100%'
+          }
         }}
       >
         <FlyingWords />

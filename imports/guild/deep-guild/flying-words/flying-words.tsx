@@ -39,7 +39,7 @@ export const FlyingWords = React.memo<any>(() => {
       sx={{
         '@media(max-width: 380px)': {
           maxW: '21.3rem'
-        }
+        },
       }}
     >
       <WrapItem>
@@ -90,6 +90,12 @@ export const FlyingWords = React.memo<any>(() => {
           h='max' 
           ml='2' 
           mr='2'
+          sx={{
+            '@media(max-width: 325px)': {
+              ml: '0',
+              mr: '0',
+            }
+          }}
           animate={{ scale: 1.05 }}
           transition={{ type: "spring", damping: 40, repeat: Infinity, repeatType: "reverse" }}
         >
@@ -129,6 +135,9 @@ export const FlyingWords = React.memo<any>(() => {
           sx={{
             '@media(max-width: 380px)': {
               w: '11rem'
+            },
+            '@media(max-width: 325px)': {
+              w: '9rem'
             }
           }}
           align='right'
