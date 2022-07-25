@@ -48,6 +48,14 @@ export const GridArea = React.memo(({
 });
 
 
+export const FluidGrid = React.memo<any>(({children}:{children: any;}) => {
+  return (<Box display='flex' flexDirection={{sm: 'column', md: 'row'}} pos='relative'>
+      {children}
+    </Box>
+  )
+})
+
+
 
 export const FlexSection = React.memo(({
   children, 

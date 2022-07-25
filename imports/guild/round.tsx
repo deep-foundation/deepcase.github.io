@@ -1,16 +1,17 @@
 import React from 'react';
-import { Box } from '../framework';
+import { Box, Center } from '../framework';
 import { motion } from 'framer-motion'
 import { Stars } from './stars';
+import { FlyingWords } from './deep-guild/flying-words/flying-words';
 
 export const MotionBox = motion<any>(Box);
 
 
 export const Round = React.memo(({props}:any) => {
   return(<Box pos='relative' w='100%' h='100%'>
-      
       <MotionBox 
         sx={{
+          mixBlendMode: 'color-dodge',
           width: 'calc(20rem + 9.5vmax)',
           height: 'calc(23rem + 9.5vmax)',
           '@media(max-width: 825px)': {
@@ -76,6 +77,7 @@ export const Round = React.memo(({props}:any) => {
       />
       <MotionBox 
         sx={{
+          mixBlendMode: 'plus-lighter',
           width: 'calc(20rem + 9.5vmax)',
           height: 'calc(23rem + 9.5vmax)',
           '@media(max-width: 825px)': {
@@ -89,7 +91,6 @@ export const Round = React.memo(({props}:any) => {
         left='0'
         borderRadius='30% 70% 64% 36% / 42% 30% 70% 58%' 
         bg='radial-gradient(circle, rgba(11,0,46,1) 0%, rgba(81,0,134,1) 50%, rgba(213,101,0,1) 100%)' 
-        // bg='linear-gradient(34deg, rgba(81,0,134,1) 19%, rgba(0,7,139,1) 44%, rgba(213,0,147,1) 100%)' 
         animate={{
           rotate: 360,
           scale: 1.25
@@ -97,30 +98,13 @@ export const Round = React.memo(({props}:any) => {
         transition={{ duration: 25, repeat: Infinity, repeatType: "reverse" }}
         {...props}
       />
-      <Box
-        sx={{
-          width: 'calc(12rem + 9.5vmax)',
-          height: 'calc(15rem + 9.5vmax)',
-          '@media(max-width: 825px)': {
-            width: '100%',
-            height: '100%',
-          } 
-          
+      <Center sx={{
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
-        pos='absolute'
-        top='50%'
-        left='50%'
-        transform='translate(-50% , -50%)'
-        overflow='hidden'
-        borderRadius='23% 38% 16% 59% / 16% 29% 27% 34%' 
       >
-        <Box 
-          pos='relative' 
-          width='calc(20rem + 9.5vmax)'
-          height='calc(23rem + 9.5vmax)'
-        >
-          <Stars />
-        </Box>
-      </Box>
+        <FlyingWords />
+      </Center>
     </Box>)
 })

@@ -1,17 +1,15 @@
-import React, { useCallback, useState } from 'react';
-import { Provider } from '../imports/provider';
-import { Welcome } from '../imports/guild/welcome';
-import { ChakraProvider } from '@chakra-ui/react'
-import { studiosTheme } from '../imports/theme/build';
-import { useTranslation } from 'react-i18next';
+import { ChakraProvider } from '@chakra-ui/react';
 import detectBrowserLanguage from 'detect-browser-language';
-import { Space } from '../imports/space';
-import { MainTasks } from '../imports/guild/main-tasks';
+import React, { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box } from '../imports/framework';
-import { FlexSection } from '../imports/layout';
+import { MainTasks } from '../imports/guild/main-tasks';
+import { Welcome } from '../imports/guild/welcome';
+import { FlexSection, FluidGrid } from '../imports/layout';
+import { Provider } from '../imports/provider';
+import { Space, AdaptiveSpace } from '../imports/space';
+import { studiosTheme } from '../imports/theme/build';
 
-import { MapSvg } from '../imports/icons/map';
-import { MapSvgDraw } from '../imports/icons/mapDraw';
 import { MapText } from '../imports/guild/map-text';
 import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
 
@@ -34,19 +32,19 @@ export const PageContent = React.memo(() => {
   }, []);
   
   return (<Box as='main'>
-      <Space unit={12} />
+      <AdaptiveSpace unit={{sm: '2rem', md: '12rem'}} />
       <Box as='section'>
         <Welcome />
       </Box>
       <Space unit={12} />
-      <FlexSection >
+      <FluidGrid >
         <MainTasks  />
-      </FlexSection>
+      </FluidGrid>
       <Space unit={12} />
-      <FlexSection position='relative'>
+      {/* <FlexSection position='relative'>
         <MapSvgDrawCont />
         <MapText />
-      </FlexSection>
+      </FlexSection> */}
       {/* <FlexSection position='relative'>
       <MapSvg />
       </FlexSection> */}
