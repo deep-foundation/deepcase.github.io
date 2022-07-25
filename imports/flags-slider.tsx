@@ -48,18 +48,10 @@ const podcasts: ICardPodcast[] = [
         provider: youTubeProvider,
         href: 'https://www.youtube.com/watch?v=OBem0jEQsVA&ab_channel=DeepFoundation',
       },
-      // {
-      //   provider: yaProvider,
-      //   href: '/',
-      // },
       {
         provider: appleProvider,
         href: 'https://podcasts.apple.com/ru/podcast/%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD%D0%B0-%D0%B5%D0%B2%D0%B3%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B8%D0%B7-ultratendency/id1613381730?i=1000553342935&l=en',
       },
-      // {
-      //   provider: telegramProvider,
-      //   href: '/',
-      // },
       {
         provider: spotifyProvider,
         href: 'https://open.spotify.com/episode/32XBeQQThbwjyPeaPUlYYb',
@@ -88,10 +80,10 @@ const podcasts: ICardPodcast[] = [
     privateCast: false,
     published: true,
     links: [
-      // {
-      //   provider: youTubeProvider,
-      //   href: 'abc',
-      // },
+      {
+        provider: youTubeProvider,
+        href: 'https://www.youtube.com/watch?v=z6I5Qjfjhlo&ab_channel=DeepFoundation',
+      },
       // {
       //   provider: yaProvider,
       //   href: 'abc',
