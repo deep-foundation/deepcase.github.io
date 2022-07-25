@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, Flex, HStack } from '../framework';
+import { Text, Flex, HStack, Center } from '../framework';
 import Typist from 'react-typist';
 
 
@@ -18,23 +18,25 @@ const GradientText = React.memo(({text}:{text:  string;}) => {
 
 export const MainTasks = React.memo(() => {
   const { t } = useTranslation();
-  return (<Flex direction='column' maxW='1620px' textAlign='center'>
-      <HStack spacing='4rem'>
-        <GradientText text='studios--main-tasks-main' />
-        <Typist>
-          <Text fontSize='5xl'>
-          {t('studios--main-tasks-first')}
-          </Text>
-        </Typist>
-      </HStack>
-      <HStack spacing='4rem'>
-        <Typist>
-          <Text fontSize='5xl'>
-          {t('studios--main-tasks-second')}
-          </Text>
-        </Typist>
-        <GradientText text='studios--main-tasks-tasks' />
-      </HStack>
-    </Flex>
+  return (<Center width='100%'>
+      <Flex direction='column' maxW='1620px' textAlign='center'>
+        <HStack spacing='4rem'>
+          <GradientText text='studios--main-tasks-main' />
+          <Typist cursor={{hideWhenDone: true}}>
+            <Text fontSize='5xl'>
+            {t('studios--main-tasks-first')}
+            </Text>
+          </Typist>
+        </HStack>
+        <HStack spacing='4rem'>
+          <Typist cursor={{hideWhenDone: true}}>
+            <Text fontSize='5xl'>
+            {t('studios--main-tasks-second')}
+            </Text>
+          </Typist>
+          <GradientText text='studios--main-tasks-tasks' />
+        </HStack>
+      </Flex>
+    </Center>
   )
 })
