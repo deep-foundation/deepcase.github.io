@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '../imports/framework';
 import { MainTasks } from '../imports/guild/main-tasks';
-import { Welcome } from '../imports/guild/welcome';
+import { Welcome } from '../imports/guild/welcome__';
 import { FlexSection, FluidGrid } from '../imports/layout';
 import { Provider } from '../imports/provider';
 import { Space, AdaptiveSpace } from '../imports/space';

@@ -9,17 +9,10 @@ export const MotionBox = motion<any>(Box);
 
 export const Round = React.memo(({props}:any) => {
   return(
-    <Box 
-      pos='absolute' 
-      w='100%' 
-      h='100%'
-      sx={{
-        '@media(max-width: 825px) and (min-width: 511px)': {
-          w: 'calc(20rem + 9.5vmax)',
-          left: '50%',
-          transform: 'translateX(-50%)'
-        } 
-      }}
+    <Center 
+      pos='relative' 
+      w='calc(20rem + 9.5vmax)'
+      h='calc(20rem + 9.5vmax)'
     >
       <MotionBox 
         sx={{
@@ -120,5 +113,5 @@ export const Round = React.memo(({props}:any) => {
       >
         <FlyingWords />
       </Center>
-    </Box>)
+    </Center>)
 })
