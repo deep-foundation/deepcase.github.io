@@ -56,10 +56,19 @@ const resources = {
       'intro--contact': 'depth will contact you',
 
       'studios--description': 'A community of followers of the cult of depth (Deep), formed around the products of the Deep.Foundation ecosystem',
+
+      'studios--community': 'community',
+      'studios--': '',
+      'studios--cult': 'cult',
+      'studios--depth': 'Depth',
+      'studios--around': 'around',
+      'studios--ecosystem': 'ecosystem',
+      'studios--products': 'products',
+
       'studios--main-tasks-main': 'Main',
       'studios--main-tasks-tasks': 'goals',
-      'studios--main-tasks-first': 'to promote the cult of depth (Deep) and our values: trust, openness, efficiency',
-      'studios--main-tasks-second': 'building a system of ranks and rewards to encourage community members',
+      'studios--main-tasks-first': 'Popularization of the cult of depth (Deep) and our values: trust, openness, efficiency.',
+      'studios--main-tasks-second': 'Building a system of ranks and rewards to encourage community members.',
 
       'posts-header': 'Articles',
       'posts-read': 'read',
@@ -117,10 +126,19 @@ const resources = {
       'intro--contact': 'глубина вступит с вами в контакт',
 
       'studios--description': 'Kомьюнити последователей культа глубины (Deep), формирующееся вокруг продуктов экосистемы Deep.Foundation',
+
+      'studios--community': 'Сообщество',
+      'studios--': 'последователей',
+      'studios--cult': 'культа',
+      'studios--depth': 'глубины',
+      'studios--around': 'вокруг',
+      'studios--ecosystem': 'экосистемы',
+      'studios--products': 'продуктов',
+
       'studios--main-tasks-main': 'Основные',
       'studios--main-tasks-tasks': 'задачи',
-      'studios--main-tasks-first': 'популязировать культ глубины (Deep) и наши ценности: доверие, открытость, эффективность',
-      'studios--main-tasks-second': 'выстраивание системы рангов и вознаграждений, чтобы поощрять участников комьюнити',
+      'studios--main-tasks-first': 'Популяризация культа глубины (Deep) и наших ценностей: доверие, открытость, эффективность.',
+      'studios--main-tasks-second': 'Выстраивание системы рангов и вознаграждений, чтобы поощрять участников комьюнити.',
 
       'posts-read': 'читать',
       'posts-header': 'Статьи',
