@@ -48,8 +48,9 @@ export const FlyingWords = React.memo<any>(() => {
           h='max'
           animate={{
             rotate: -2.5,
+            scale: 0.85,
           }}
-          transition={{ type: "spring", damping: 70, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ type: "spring", damping: 70, mass: 2.5, repeat: Infinity, repeatType: "reverse" }}
         >
           <Text fontSize={{sm: '3xl', md: '4xl'}} fontWeight='bold' animation={animation1}>Сообщество</Text>
         </MotionBox>
@@ -65,6 +66,7 @@ export const FlyingWords = React.memo<any>(() => {
           }}
           animate={{
             rotate: 1.5,
+            scale: 0.95
           }}
           transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "reverse" }}
         >
@@ -78,6 +80,7 @@ export const FlyingWords = React.memo<any>(() => {
           alignSelf='center'
           animate={{
             rotate: -2,
+            scale: 0.8
           }}
           transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "mirror" }}
         >
@@ -97,7 +100,7 @@ export const FlyingWords = React.memo<any>(() => {
             }
           }}
           animate={{ scale: 1.05 }}
-          transition={{ type: "spring", damping: 40, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ type: "spring", damping: 40, stiffness: 30, repeat: Infinity, repeatType: "reverse" }}
         >
           <Text fontSize={{sm: '4xl', md: '5xl'}} fontWeight='bold' lineHeight='normal' animation={animation4}>глубины</Text>
         </MotionBox>
@@ -109,7 +112,7 @@ export const FlyingWords = React.memo<any>(() => {
           alignSelf='center'
           animate={{
             rotate: 2.5,
-            // scale: 1.15
+            scale: 1.1
           }}
           transition={{ type: "spring", damping: 40, repeat: Infinity, repeatType: "reverse" }}
         >
@@ -122,6 +125,7 @@ export const FlyingWords = React.memo<any>(() => {
           h='3rem'
           animate={{
             rotate: 1.5,
+            scale: 0.9
           }}
           transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "mirror" }}
         >
@@ -143,6 +147,7 @@ export const FlyingWords = React.memo<any>(() => {
           align='right'
           animate={{
             rotate: -1,
+            scale: 0.85
           }}
           transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "reverse" }}
         >
@@ -155,8 +160,9 @@ export const FlyingWords = React.memo<any>(() => {
           h='max'
           animate={{
             rotate: 2,
+            scale: 0.75
           }}
-          transition={{ type: "spring", damping: 65, repeat: Infinity, repeatType: "mirror" }}
+          transition={{ type: "spring", damping: 95, stiffness: 50, repeat: Infinity, repeatType: "mirror" }}
         >
           <Text fontSize={{sm: '3xl', md: '4xl'}} fontWeight='bold' animation={animation8}>Deep.Foundation</Text>
         </MotionBox>

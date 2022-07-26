@@ -11,18 +11,15 @@ export const Round = React.memo(({props}:any) => {
   return(
     <Center 
       pos='relative' 
-      w='calc(20rem + 9.5vmax)'
-      h='calc(20rem + 9.5vmax)'
+      w='calc(16rem + 9.5vmax)'
+      h='calc(16rem + 9.5vmax)'
+      px={4}
     >
       <MotionBox 
         sx={{
           mixBlendMode: 'color-dodge',
-          width: 'calc(20rem + 9.5vmax)',
-          height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 510px)': {
-            width: '100%',
-            height: '100%',
-          } 
+          width: 'calc(16rem + 9.5vmax)',
+          height: 'calc(16rem + 9.5vmax)',
           
         }}
         pos='absolute'
@@ -32,19 +29,15 @@ export const Round = React.memo(({props}:any) => {
         bg='linear-gradient(34deg, rgba(81,0,134, 0.7) 19%, rgba(0,7,139, 0.7) 44%, rgba(213,0,147, 0.7) 100%)' 
         animate={{
           rotate: -360,
-          scale: 1.15
+          scale: 0.85
         }}
         transition={{ delay: 5, duration: 20, repeat: Infinity, repeatType: "reverse" }}
         {...props}
       />
       <MotionBox 
         sx={{
-          width: 'calc(20rem + 9.5vmax)',
-          height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 510px)': {
-            width: '100%',
-            height: '100%',
-          } 
+          width: 'calc(16rem + 9.5vmax)',
+          height: 'calc(16rem + 9.5vmax)',
           
         }}
         pos='absolute'
@@ -64,7 +57,7 @@ export const Round = React.memo(({props}:any) => {
           top: '0',
           left: '0',
           width: 'calc(19rem + 9.5vmax)',
-          height: 'calc(22rem + 9.5vmax)',
+          height: 'calc(16rem + 9.5vmax)',
           '@media(max-width: 510px)': {
             width: '100%',
             height: '100%',
@@ -74,7 +67,7 @@ export const Round = React.memo(({props}:any) => {
         bg='linear-gradient(34deg, rgba(81,0,134, 0.25) 19%, rgba(0,7,139, 0.25) 44%, rgba(213,0,147, 0.25) 100%)' 
         animate={{
           rotate: -360,
-          scale: 1.2, 
+          scale: 0.8, 
         }}
         transition={{ duration: 30, repeat: Infinity, repeatType: "reverse"}}
         {...props}
@@ -82,12 +75,8 @@ export const Round = React.memo(({props}:any) => {
       <MotionBox 
         sx={{
           mixBlendMode: 'plus-lighter',
-          width: 'calc(20rem + 9.5vmax)',
-          height: 'calc(23rem + 9.5vmax)',
-          '@media(max-width: 510px)': {
-            width: '100%',
-            height: '100%',
-          } 
+          width: 'calc(16rem + 9.5vmax)',
+          height: 'calc(16rem + 9.5vmax)',
           
         }}
         pos='absolute'
@@ -97,7 +86,7 @@ export const Round = React.memo(({props}:any) => {
         bg='radial-gradient(circle, rgba(11,0,46,1) 0%, rgba(81,0,134,1) 50%, rgba(213,101,0,1) 100%)' 
         animate={{
           rotate: 360,
-          scale: 1.25
+          scale: 0.95
         }}
         transition={{ duration: 25, repeat: Infinity, repeatType: "reverse" }}
         {...props}
