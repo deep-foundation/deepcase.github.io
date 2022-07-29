@@ -3,11 +3,18 @@ import { Box, Center } from '../framework';
 import { motion } from 'framer-motion'
 import { Stars } from './stars';
 import { FlyingWords } from './deep-guild/flying-words/flying-words';
+import { FlyingWordsEn } from './deep-guild/flying-words/flying-words-en';
 
 export const MotionBox = motion<any>(Box);
 
 
-export const Round = React.memo(({props}:any) => {
+export const Round = React.memo(({
+  lang, 
+  props,
+}:{
+  lang?: string;
+  [key:string]: any;
+}) => {
   return(
     <Center 
       pos='relative' 
@@ -100,7 +107,7 @@ export const Round = React.memo(({props}:any) => {
           }
         }}
       >
-        <FlyingWords />
+       {lang == 'en-US' ? <FlyingWordsEn /> : <FlyingWords />}
       </Center>
     </Center>)
 })

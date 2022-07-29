@@ -6,7 +6,7 @@ import { DeepGuild } from './deep-guild/deep-guild';
 import { Round } from './round';
 
 
-export const Welcome = React.memo(() => {
+export const Welcome = React.memo(({lang}:{lang?: string;}) => {
 
   return (<FluidGrid>
       <Center
@@ -27,7 +27,7 @@ export const Welcome = React.memo(() => {
           pos='relative'
           pl={{sm: 0, md: '3rem', lg: '0rem'}}
         >
-          <Round />
+          <Round lang={lang} />
         </Center>
         <Box display='flex' w='100%' h='100%' justifyContent='center' flexDirection='column' pr={{sm: '1rem', lg: '3rem', xl: '5rem'}}>
           <Box w='100%' justifyItems='flex-start'>

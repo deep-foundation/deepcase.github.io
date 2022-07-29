@@ -28,11 +28,8 @@ export const ParticlesButton = React.memo(({
   const promiseRef = useRef<Promise<boolean>>();
 
   async function onChange (isVisible) {
-    console.log('onChange', 'isVisible', isVisible, 'sRef', sRef.current);
     if (isVisible) {
-      console.log(1, 'isVisible', isVisible, 'sRef', sRef.current);
       await promiseRef.current;
-      console.log(2, 'isVisible', isVisible, 'sRef', sRef.current);
       if (sRef.current) return;
       sRef.current = true;
       promiseRef.current = new Promise((res, rej) => {

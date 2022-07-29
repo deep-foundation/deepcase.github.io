@@ -67,7 +67,7 @@ const resources = {
 
       'studios--main-tasks-main': 'Main',
       'studios--main-tasks-tasks': 'goals',
-      'studios--main-tasks-first': 'Popularization of the cult of depth (Deep) and our values: trust, openness, efficiency.',
+      'studios--main-tasks-first': 'Promotion of the cult of Deep and our values: trust, openness and efficiency.',
       'studios--main-tasks-second': 'Building a system of ranks and rewards to encourage community members.',
 
       'posts-header': 'Articles',
