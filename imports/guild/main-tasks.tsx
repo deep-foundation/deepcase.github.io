@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, Flex, Stack, Hide, Show, useMediaQuery } from '../framework';
-import TrackVisibility from 'react-on-screen';
 import { TypistEffect } from './deep-guild/typist-effect';
 
 
