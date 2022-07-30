@@ -9,10 +9,9 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "gh-pages": "npm run articles; npm run build; rm -rf ./docs; npm run export -- -o docs; touch ./docs/.nojekyll; cp ./CNAME ./docs/CNAME",
+    "gh-pages": "npm run build; rm -rf ./docs; npm run export -- -o docs; touch ./docs/.nojekyll; cp ./CNAME ./docs/CNAME",
     "gitpod": "npm run gitpod-export; export $(grep -v '^#' .env | xargs); npm run dev",
-    "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev",
-    "articles": "npx ts-node articles.ts"
+    "local": "npm run local-export; export $(grep -v '^#' .env | xargs); npm run dev"
   },
   "dependencies": {
     "@capacitor/core": "^2.4.7",
