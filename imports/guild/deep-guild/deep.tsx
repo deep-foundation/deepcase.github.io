@@ -20,7 +20,6 @@ const draw = {
 export const DLetter = React.memo(() => {
   return (
     <motion.svg 
-      // height="100%" 
       width="100%"
       strokeMiterlimit="10" 
       viewBox="0 0 50 50" 
@@ -60,8 +59,8 @@ export const DLetter = React.memo(() => {
 export const ELetter = React.memo(() => {
   return (
       <motion.svg 
-        // height="100%" 
-        width="max-content"
+
+        width="100%"
         strokeMiterlimit="10" 
         viewBox="0 0 50 50" 
         initial="hidden"
@@ -88,8 +87,8 @@ export const ELetter = React.memo(() => {
 export const PLetter = React.memo(() => {
   return (
       <motion.svg 
-        // height="100%" 
-        width="max-content"
+
+        width="100%"
         strokeMiterlimit="10" 
         viewBox="0 0 50 50" 
         initial="hidden"

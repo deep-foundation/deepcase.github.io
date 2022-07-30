@@ -6,15 +6,19 @@ import { GLetter, ILetter, LLetter, ULetter } from "./guild-motion";
 
 export const DeepGuild = React.memo<any>(() => {
   return (<VStack spacing={{sm: '1.5rem', md: '3rem'}}>
-      <HStack 
+      <Box 
         width='65%' 
+        justifyContent='center'
+        alignItems='center'
         alignSelf='flex-start'
+        display='grid'
+        gridTemplateColumns='repeat(4, 1fr)'
       >
         <DLetter />
         <ELetter />
         <ELetter />
         <PLetter />
-      </HStack>
+      </Box>
       <Box 
         w='65%' 
         h='max-content'
