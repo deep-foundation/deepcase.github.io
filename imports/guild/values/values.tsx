@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Center, Container, Stack, Text } from '../../framework';
-import { Value, ValuesGrid } from './value';
+import { Value } from './value';
 
 const useStyle = {
   items: {
