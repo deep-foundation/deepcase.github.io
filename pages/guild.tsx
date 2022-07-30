@@ -17,6 +17,7 @@ import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
 import { AppSS } from '../imports/guild/menu-animation';
 import { ValuesGrid } from '../imports/guild/values/value';
 import { useScroll } from 'framer-motion';
+import { Values } from '../imports/guild/values/values';
 // import { motion, useScroll } from "framer-motion";
 
 
@@ -64,8 +65,11 @@ export const PageContent = React.memo(() => {
           <MapText />
         </Container>
       </Center>
-      <FlexSection position='relative' height='100%'>
+      {/* <FlexSection position='relative' height='100%'>
         <ValuesGrid />
+      </FlexSection> */}
+      <FlexSection position='relative' height='100%'>
+        <Values />
       </FlexSection>
       <Space unit={52} />
       <AppSS />

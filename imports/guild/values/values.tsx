@@ -1,95 +1,110 @@
-// import React, { useState } from 'react';
 
-// import { Grid } from '../../framework';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-// const useStyle = {
-//   root: {
-//     margin: '32px 0',
-//     padding: '0 200px',
-//     overflow: 'hidden',
-//   },
-//   items: {
-//     transition: 'all 1s ease'
-//   }
-// };
+import { Box, Center, Container, Stack, Text } from '../../framework';
+import { Value, ValuesGrid } from './value';
 
-// const items = [
-//   {
-//     title: require('../../images/1-1.jpg'),
-//     text: 'освещение кухонной рабочей зоны от Fulogy'
-//   },
-//   {
-//     title: require('../../images/1-2.jpg'),
-//     text: 'освещение кухонной рабочей зоны от Fulogy'
-//   },
-//   {
-//     title: require('../../images/1-3.jpg'),
-//     text: 'освещение кухонной рабочей зоны от Fulogy'
-//   },
-//   {
-//     title: require('../../images/1-4.jpg'),
-//     text: 'освещение кухонной рабочей зоны от Fulogy'
-//   },
-// ];
+const useStyle = {
+  items: {
+    transition: 'all 1s ease'
+  }
+};
 
-// export const Slider = React.memo<any>(() => {
-//   const[index, setIndex] = useState(4);
+const items = [
+  {
+    title: 'guild--publicity',
+    text: 'Голос истины неизящен, а изящная речь лжива. Нравственный человек не красноречив, а красноречивый - лжец.'
+  },
+  {
+    title: 'guild--binary_trust',
+    text: 'Великий человек держится существенного и оставляет ничтожное. Он все делает по правде, но никогда не будет опираться на законы.'
+  },
+  {
+    title: 'guild--atomic_responsibility',
+    text: 'Хотя в мире нет предмета, который был бы слабее и нежнее воды, но она может разрушить самый твердый предмет.'
+  },
+  {
+    title: 'guild--counseling',
+    text: 'Кто делает вид, что много знает и ко всему способен, тот ничего не знает и ни к чему не способен.'
+  },
+];
 
-//   const leftSize = index;
-//   const rightSize = items.length - (index + 1);
-//   const diff = Math.abs(leftSize - rightSize);
+export const Values = React.memo<any>(() => {
+  const[index, setIndex] = useState(2);
+  const { t } = useTranslation();
+
+  const leftSize = index;
+  const rightSize = items.length - (index + 1);
+  const diff = Math.abs(leftSize - rightSize);
   
-//   const lastRightIndex = (items.length - 1) - (diff / 2);
-//   const lastLeftIndex = (diff / 2);
+  const lastRightIndex = (items.length - 1) - (diff / 2);
+  const lastLeftIndex = (diff / 2);
 
-//   const onPrevClick = () => {
-//     setIndex(index>0 ? index - 1 : items.length - 1);
-//   };
+  const onPrevClick = () => {
+    setIndex(index>0 ? index - 1 : items.length - 1);
+  };
 
-//   const onNextClick = () => {
-//     setIndex(items.length - 1 == index ? 0 : index + 1);
-//   };
+  const onNextClick = () => {
+    setIndex(items.length - 1 == index ? 0 : index + 1);
+  };
 
-//   return(<>
-//       <Grid justify='center' alignItems='stretch' className={classes.root}>
-//         <Grid item md={6}>
-//         <Grid item md={7} style={{position: 'relative', height: '40vw'}}>
-//           {items.map((item, _i) => {
-//             const i = rightSize < leftSize && _i < lastLeftIndex
-//             ? (items.length) + _i :
-//             rightSize > leftSize && _i > lastRightIndex
-//             ? _i - lastRightIndex - lastLeftIndex - 1 :
-//             _i;
-//             return <div key={_i} className={classes.items}
-//               style={{
-//                 position: 'absolute',
-//                 height: '100%',
-//                 width: '100%',
-//                 transform: `translateX(${(i - index)*20}%) scale(${(items.length - (i - index < 0 ? index - i : i - index))/10})`,
-//                 zIndex: items.length - (i - index < 0 ? index - i : i - index),
-//                 filter: `opacity(${(items.length - (i - index < 0 ? index - i : i - index))*11}%)`,
-//               }}>
-//               <ChildrenResponsive>
-//                 <img src={item.src} alt={item.alt} style={{width: '100%'}} />
-//               </ChildrenResponsive>
-//             </div>
-//           })}
-//           </Grid>
-//         </Grid>
-//         <Grid container justify='center' alignItems='center'>
-//           <Grid item>
-//             <IconButton onClick={onPrevClick}>
-//               <ChevronLeftRounded />
-//             </IconButton>
-//           </Grid>
-//           <Grid item>
-//             <IconButton onClick={onNextClick}>
-//               <ChevronRightRounded />
-//             </IconButton>
-//           </Grid>
-//         </Grid>
-//       </Grid>
-//     </>
-//   )
-// })
-export {};
+  return(<Box display='flex' flexDir='row' width='100%' justifyContent='center' pl={8} pr={8}>
+      <Box 
+        display='flex' 
+        justifyContent='center' 
+        alignItems='stretch' 
+        w='100%'
+        sx={{
+          overflow: 'hidden',
+        }}
+      >
+        <Center sx={{position: 'relative', height: '40vw', width: '100%'}}>
+          {items.map((item, _i) => {
+            const i = rightSize < leftSize && _i < lastLeftIndex
+            ? (items.length) + _i :
+            rightSize > leftSize && _i > lastRightIndex
+            ? _i - lastRightIndex - lastLeftIndex - 1 :
+            _i;
+            return <Box key={_i}
+              id={`${i}`}
+              boxShadow='xs'
+              p={8}
+              bg='teal.300'
+              sx={{
+                position: 'absolute',
+                height: 'max-content',
+                width: 'max-content',
+                borderTopLeftRadius: 'md',
+                borderTopRightRadius: '2xl',
+                borderBottomLeftRadius: '2xl',
+                borderBottomRightRadius: 'md',
+                transition: 'all 1s ease',
+                ...((
+                  i >= index - 1 && i <= index + 1
+                ) ? ({
+                  transform: `translateX(${(i - index)*20}%) scale(${(items.length - (i - index < 0 ? index - i : i - index))/4})`,
+                  zIndex: items.length - (i - index < 0 ? index - i : i - index),
+                  filter: `opacity(${(items.length - (i - index < 0 ? index - i : i - index))*25}%)`,
+                }) : ({
+                  transform: `translateX(0%) scale(${(items.length - (i - index < 0 ? index - i : i - index))/4})`,
+                  zIndex: items.length - (i - index < 0 ? index - i : i - index),
+                  filter: `opacity(${(items.length - (i - index < 0 ? index - i : i - index))*25}%)`,
+                }))
+              }}>
+              <Container maxW='2xs'>
+                <Text>{item.text}</Text>
+              </Container>
+            </Box>
+          })}
+        </Center>
+      </Box>
+      <Stack spacing={2} direction={{sm: 'row', md: 'column'}} justifyContent='center'>
+        <Value onClick={() => setIndex(0)} text={t('guild--publicity')} />
+        <Value onClick={() => setIndex(1)} text={t('guild--binary_trust')} />
+        <Value onClick={() => setIndex(2)} text={t('guild--atomic_responsibility')} />
+        <Value onClick={() => setIndex(3)} text={t('guild--counseling')} />
+      </Stack>
+    </Box>
+  )
+})

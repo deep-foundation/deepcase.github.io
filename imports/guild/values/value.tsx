@@ -10,7 +10,13 @@ const boxVariant = {
   hidden: { opacity: 0, scale: 0 }
 };
 
-export const Value = React.memo<any>(({text = 'привет'}:{text?: string;}) => {
+export const Value = React.memo<any>(({
+  text = 'привет',
+  ...props
+}:{
+  text?: string;
+  [key:string]: any;
+}) => {
   const control = useAnimation();
   const [ref, inView] = useInView();
 
@@ -24,26 +30,16 @@ export const Value = React.memo<any>(({text = 'привет'}:{text?: string;}) 
 
   return (
     <motion.div
-      style={{background: 'yellow', marginBottom: '10rem'}}
+      style={{background: 'yellow', width: 'max-contain'}}
       ref={ref}
       variants={boxVariant}
       animate={control}
       whileHover={{ scale: 1.1 }}
+      {...props}
     >
-      <Center width='5rem' height='5rem'>
+      <Center width='100%' height='100%' p={4}>
         <Text>{text}</Text>
       </Center>
     </motion.div>
-  )
-})
-
-export const ValuesGrid = React.memo<any>(() => {
-  const { t } = useTranslation();
-  return (<Stack spacing={6} direction={{sm: 'column', md: 'row'}}>
-      <Value text={t('guild--publicity')} />
-      <Value text={t('guild--binary_trust')} />
-      <Value text={t('guild--atomic_responsibility')} />
-      <Value text={t('guild--counseling')} />
-    </Stack>
   )
 })
