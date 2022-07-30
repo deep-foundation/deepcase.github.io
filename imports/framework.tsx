@@ -25,7 +25,7 @@ export { default as ConfettiExplosion } from '@reonomy/react-confetti-explosion'
 export const useMediaQuery = function useMediaQuery(arg) {
   const [actualValue, isBrowser] = useMediaQueryChakra(arg);
   const [value, setValue] = useState(false);
-  useLayoutEffect(() => setValue(actualValue), [actualValue, isBrowser]);
+  useEffect(() => setValue(actualValue), [actualValue, isBrowser]);
   return [value, isBrowser];
 }
 

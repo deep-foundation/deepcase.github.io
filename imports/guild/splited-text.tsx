@@ -110,7 +110,7 @@ export const SplitedText = React.memo(() => {
       fontSmoothing: 'antialiased',
     }} className='wrapper'>
       <SplitText className="box">
-        {t('studios--description')}
+        {t('guild--description')}
       </SplitText>
       
     </Box>)

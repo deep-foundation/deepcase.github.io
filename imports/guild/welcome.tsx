@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box, Center } from '../framework';
 import { FluidGrid, GridArea } from '../layout';
 import { DeepGuild } from './deep-guild/deep-guild';
 import { Round } from './round';
 
 
-export const Welcome = React.memo(({lang}:{lang?: string;}) => {
-
+export const Welcome = React.memo(({}:{}) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  
   return (<FluidGrid>
       <Center
         flexDirection='row'

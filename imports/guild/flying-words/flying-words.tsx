@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Box, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../../../framework';
-import { MotionBox } from '../../round';
+import { Text, Box, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../../framework';
+import { MotionBox } from '../round';
 import { anim1, anim2, anim3, anim4, anim5, anim6, anim7, anim8 } from './keyframes';
 
 export const FlyingWords = React.memo<any>(() => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Box, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../../../framework';
-import { MotionBox } from '../../round';
+import { Text, Box, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../../framework';
+import { MotionBox } from '../round';
 import { anim1, anim2, anim3, anim4, anim5, anim6, anim7, anim8 } from './keyframes';
 
 export const FlyingWordsEn = React.memo<any>(() => {
@@ -57,39 +57,7 @@ export const FlyingWordsEn = React.memo<any>(() => {
       </WrapItem>
       <WrapItem>
         <MotionBox 
-          w='23rem' 
-          h='2.1rem' 
-          sx={{
-            '@media(max-width: 380px)': {
-              w: '18rem'
-            }
-          }}
-          animate={{
-            rotate: 1.5,
-            scale: 0.95
-          }}
-          transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "reverse" }}
-        >
-          <Text align='right' fontSize={{sm: '2xl', md: '3xl'}} lineHeight='normal' animation={animation2}>of Deep Cult</Text>
-        </MotionBox>
-      </WrapItem>
-      <WrapItem>
-        <MotionBox 
-          w='max' 
-          h='max' 
-          alignSelf='center'
-          animate={{
-            rotate: -2,
-            scale: 0.8
-          }}
-          transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "mirror" }}
-        >
-          <Text fontSize={{sm: '1xl', md: '2xl'}} animation={animation3}>Followers</Text>
-        </MotionBox>
-      </WrapItem>
-      <WrapItem>
-        <MotionBox 
-          w='max' 
+          w='18rem' 
           h='max' 
           ml='2' 
           mr='2'
@@ -102,7 +70,49 @@ export const FlyingWordsEn = React.memo<any>(() => {
           animate={{ scale: 1.05 }}
           transition={{ type: "spring", damping: 40, stiffness: 30, repeat: Infinity, repeatType: "reverse" }}
         >
-          <Text fontSize={{sm: '4xl', md: '5xl'}} fontWeight='bold' lineHeight='normal' animation={animation4}>centered</Text>
+          <Text fontSize={{sm: '4xl', md: '5xl'}} fontWeight='bold' lineHeight='normal' animation={animation4}>of Deep Cult</Text>
+        </MotionBox>
+      </WrapItem>
+
+      <WrapItem>
+        <MotionBox 
+          w='max' 
+          h='max' 
+          alignSelf='center'
+          animate={{
+            rotate: -2,
+            scale: 0.8
+          }}
+          transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "mirror" }}
+        >
+          <Text fontSize={{sm: '1xl', md: '2xl'}} animation={animation3}>followers</Text>
+        </MotionBox>
+      </WrapItem>
+     
+      <WrapItem>
+        <MotionBox 
+          w='max' 
+          h='2.1rem' 
+          // sx={{
+          //   '@media(max-width: 380px)': {
+          //     w: '18rem'
+          //   }
+          // }}
+          ml='2' 
+          mr='2'
+          sx={{
+            '@media(max-width: 325px)': {
+              ml: '0',
+              mr: '0',
+            }
+          }}
+          animate={{
+            rotate: 1.5,
+            scale: 0.95
+          }}
+          transition={{ delay: 5, duration: 2, repeat: Infinity, repeatType: "reverse" }}
+        >
+          <Text align='right' fontSize={{sm: '2xl', md: '3xl'}} lineHeight='normal' animation={animation2}>centered</Text>
         </MotionBox>
       </WrapItem>
       <WrapItem>
@@ -134,7 +144,7 @@ export const FlyingWordsEn = React.memo<any>(() => {
       </WrapItem>
       <WrapItem h='3rem' alignItems='flex-end'>
         <MotionBox 
-          w='14rem' 
+          w='max' 
           h='max'
           sx={{
             '@media(max-width: 380px)': {

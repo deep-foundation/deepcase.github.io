@@ -208,9 +208,9 @@ export const coreTheme = extendTheme({
 });
 
 
-export const studiosTheme = extendTheme({
+export const guildTheme = extendTheme({
   config: {
-    cssVarPrefix: 'deep-studios',
+    cssVarPrefix: 'deep-guild',
   },
   breakpoints,
   colors: {

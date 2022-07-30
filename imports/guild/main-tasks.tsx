@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, Flex, Stack, Hide, Show, useMediaQuery } from '../framework';
+import { Text, Flex, Stack, Hide, Show, useMediaQuery, Box } from '../framework';
 import { TypistEffect } from './deep-guild/typist-effect';
+import VisibilitySensor from 'react-visibility-sensor';
 
 
 const GradientText = React.memo(({
@@ -35,7 +36,8 @@ export const MainTasks = React.memo(({scrollDocument}:{scrollDocument?: any}) =>
           '@media(max-width: 825px)': {
             p: '0 1rem',
           }
-        }}  
+        }} 
+        w='100%' 
       >
         <Stack 
           spacing={{sm: '0', md: '2rem'}} 
@@ -49,16 +51,27 @@ export const MainTasks = React.memo(({scrollDocument}:{scrollDocument?: any}) =>
             }
           }}
         >
-          <GradientText text='studios--main-tasks-main' />
+          <GradientText text='guild--main-tasks-main' />
           <Show breakpoint='(max-width: 750px)'>
-            <GradientText text='studios--main-tasks-tasks' />
+            <GradientText text='guild--main-tasks-tasks' />
           </Show>
-          <TypistEffect text='studios--main-tasks-first' />
+          <Box pos='relative' w='100%'>
+            <VisibilitySensor>
+              <TypistEffect text='guild--main-tasks-first' />
+            </VisibilitySensor>
+          </Box>
         </Stack>
-        <Stack spacing={{sm: '0', md: '2rem'}} direction={{sm: 'column', lg: 'row'}} alignItems='center'>
-          <TypistEffect text='studios--main-tasks-second' textAlign={max825 ? 'left' : 'right'} />
+        <Stack
+          spacing={{sm: '0', md: '2rem'}}
+          direction={{sm: 'column', lg: 'row'}}
+          alignItems='center'
+          justify={'flex-end'}
+        >
+          <VisibilitySensor>
+            <TypistEffect text='guild--main-tasks-second' textAlign={max825 ? 'left' : 'right'} />
+          </VisibilitySensor>
           <Hide breakpoint='(max-width: 750px)'>
-            <GradientText text='studios--main-tasks-tasks' />
+            <GradientText text='guild--main-tasks-tasks' />
           </Hide>
         </Stack>
       </Flex>

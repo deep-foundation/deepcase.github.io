@@ -23,7 +23,8 @@
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

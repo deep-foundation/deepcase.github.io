@@ -2,19 +2,21 @@ import React from 'react';
 import { Box, Center } from '../framework';
 import { motion } from 'framer-motion'
 import { Stars } from './stars';
-import { FlyingWords } from './deep-guild/flying-words/flying-words';
-import { FlyingWordsEn } from './deep-guild/flying-words/flying-words-en';
+import { FlyingWords } from './flying-words/flying-words';
+import { FlyingWordsEn } from './flying-words/flying-words-en';
+import { useTranslation } from 'react-i18next';
 
 export const MotionBox = motion<any>(Box);
 
 
 export const Round = React.memo(({
-  lang, 
   props,
 }:{
-  lang?: string;
   [key:string]: any;
 }) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+
   return(
     <Center 
       pos='relative' 
@@ -107,7 +109,7 @@ export const Round = React.memo(({
           }
         }}
       >
-       {lang == 'en-US' ? <FlyingWordsEn /> : <FlyingWords />}
+       {lang == 'en' ? <FlyingWordsEn /> : <FlyingWords />}
       </Center>
     </Center>)
 })

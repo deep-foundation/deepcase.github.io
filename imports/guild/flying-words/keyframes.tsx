@@ -1,4 +1,4 @@
-import { keyframes } from '../../../framework';
+import { keyframes } from '../../framework';
 
 export const anim1 = keyframes`
   from {

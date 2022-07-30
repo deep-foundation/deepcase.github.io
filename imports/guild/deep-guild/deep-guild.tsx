@@ -1,7 +1,7 @@
 import React from "react";
-import { HStack, VStack } from '../../framework';
+import { HStack, VStack, Box } from '../../framework';
 import { DLetter, ELetter, PLetter } from "./deep";
-import { GLetter, ILetter, LLetter, ULetter } from "./guild";
+import { GLetter, ILetter, LLetter, ULetter } from "./guild-motion";
 
 
 export const DeepGuild = React.memo<any>(() => {
@@ -12,13 +12,21 @@ export const DeepGuild = React.memo<any>(() => {
         <ELetter />
         <PLetter />
       </HStack>
-      <HStack width='65%' alignSelf='flex-end'>
+      <Box 
+        w='65%' 
+        h='max-content'
+        justifyContent='center'
+        alignItems='center'
+        alignSelf='flex-end'
+        display='grid'
+        gridTemplateColumns='repeat(2, 1fr) 0.5fr repeat(2, 1fr)'
+      >
         <GLetter />
         <ULetter />
         <ILetter />
         <LLetter />
         <DLetter />
-      </HStack>
+      </Box>
     </VStack>
   )
 })
