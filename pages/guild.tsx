@@ -15,7 +15,6 @@ import { guildTheme } from '../imports/theme/build';
 import { MapText } from '../imports/guild/map-text';
 import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
 import { AppSS } from '../imports/guild/menu-animation';
-import { ValuesGrid } from '../imports/guild/values/value';
 import { useScroll } from 'framer-motion';
 import { Values } from '../imports/guild/values/values';
 // import { motion, useScroll } from "framer-motion";
