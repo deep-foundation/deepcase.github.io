@@ -64,6 +64,7 @@ export const PageContent = React.memo(() => {
           <MapText />
         </Container>
       </Center>
+      <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
       {/* <FlexSection position='relative' height='100%'>
         <ValuesGrid />
       </FlexSection> */}
