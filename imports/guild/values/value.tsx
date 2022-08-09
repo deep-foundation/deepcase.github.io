@@ -32,7 +32,6 @@ export const Value = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, inView]);
-  console.log('iam values');
 
   return (
     <motion.div

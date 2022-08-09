@@ -2,14 +2,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Center, Container, Stack, Text } from '../../framework';
+import { Box, Center, Stack } from '../../framework';
 import { CardValue, Value } from './value';
 
-const useStyle = {
-  items: {
-    transition: 'all 1s ease'
-  }
-};
 
 const items = [
   {
@@ -31,7 +26,7 @@ const items = [
 ];
 
 export const Values = React.memo<any>(() => {
-  const[index, setIndex] = useState(2);
+  const[index, setIndex] = useState(0);
   const { t } = useTranslation();
 
   const leftSize = index;
@@ -40,14 +35,6 @@ export const Values = React.memo<any>(() => {
   
   const lastRightIndex = (items.length - 1) - (diff / 2);
   const lastLeftIndex = (diff / 2);
-
-  const onPrevClick = () => {
-    setIndex(index>0 ? index - 1 : items.length - 1);
-  };
-
-  const onNextClick = () => {
-    setIndex(items.length - 1 == index ? 0 : index + 1);
-  };
 
   return(<Box display='flex' flexDir={{sm: 'column-reverse' ,md: 'row'}} width='100%' height='100%' justifyContent='center' pl={{sm: 0, md: 8}} pr={{sm: 0, md: 8}}>
       <Center sx={{position: 'relative', height: '30vh', width: '100%'}} _first={{mr: 4}}>

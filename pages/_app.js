@@ -11,7 +11,7 @@ import Head from 'next/head';
 import { theme } from '../imports/theme/build';
 import jQuery from 'jquery';
 
-import { QueryStoreProvider } from '@deepcase/store/query';
+import { QueryStoreProvider } from '@deep-foundation/store/query';
 import '../imports/i18n';
 
 global.jQuery = jQuery;

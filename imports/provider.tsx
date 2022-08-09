@@ -1,5 +1,5 @@
-import { LocalStoreProvider } from '@deepcase/store/local';
-import { QueryStoreProvider } from '@deepcase/store/query';
+import { LocalStoreProvider } from '@deep-foundation/store/local';
+import { QueryStoreProvider } from '@deep-foundation/store/query';
 
 import { Analitics } from './analitics';
 

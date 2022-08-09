@@ -7,19 +7,20 @@ import { CrewCard } from '../imports/crew-card';
 import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
 import { Footer } from '../imports/footer';
-import { Box, Button, HStack, IconButton, keyframes, Link, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
+import { Box, Button, HStack, IconButton, keyframes, Link, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../imports/framework';
 import { H2 } from '../imports/headers';
 import { IFrame } from '../imports/iframe';
 import { IntroMobile } from '../imports/intro/intro-mobile';
 import { IntroDesktop } from '../imports/intro/intro-desktop';
 import { FlexSection, GridArea } from '../imports/layout';
 import { Provider } from '../imports/provider';
-import { Space } from '../imports/space';
+import { AdaptiveSpace, Space } from '../imports/space';
 import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import { ArticlesGrid } from '../imports/article';
+import { DeepMainTheses } from '../imports/deep-main-theses';
 
 
 Sentry.init({
@@ -168,8 +169,12 @@ export function PageContent() {
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
         </> }
         
-        {[<TalkingPoints refScrollContainer={scrollingRef} key={i18n.language} />]}
-        
+        <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+        {/* {[<TalkingPoints refScrollContainer={scrollingRef} key={i18n.language} />]} */}
+        {/* <Center> */}
+          <DeepMainTheses />
+        {/* </Center> */}
+        <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
         <GridArea 
           innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}
           originalPx='0.25em'

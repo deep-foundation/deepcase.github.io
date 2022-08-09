@@ -1,4 +1,4 @@
-import { useQueryStore } from '@deepcase/store/query';
+import { useQueryStore } from '@deep-foundation/store/query';
 import { FaGithubAlt, FaDiscord } from 'react-icons/fa';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
