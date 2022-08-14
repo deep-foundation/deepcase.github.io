@@ -135,9 +135,6 @@ export const Thesis = React.memo<any>(({
       variants={thesis}
       animate={control}
       custom={i}
-      // whileHover={{ 
-      //   scale: 1.05, 
-      //   originX: 1, originY: 0.5 }}
       whileTap={{ scale: 1.05, fontWeight: 'bold' }}
       whileFocus={{ scale: 1.05 }}
       {...props}
@@ -199,9 +196,9 @@ export const ThesisDescription = React.memo<any>(({
         display={!!item.points && 'flex'}
         flexDirection={!!item.points ? 'column' : 'row'}
       >
-        <Text fontSize={fontSize}>
+        {[<Text fontSize={fontSize}>
           {t(item.text)}
-        </Text>
+        </Text>]}
         {!!item.points && <UnorderedList pt='3'>
           {item.points.map(point => (
             <ListItem key={point.id} fontSize='lg'>{t(point.text)}</ListItem>

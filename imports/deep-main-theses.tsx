@@ -52,7 +52,8 @@ export function useDeepMainTheses() {
 }
 
 export const DeepMainTheses = React.memo<any>(() => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
   const[index, setIndex] = useDeepMainTheses();
 
   return(<Container maxW='container.xl'>
@@ -79,14 +80,14 @@ export const DeepMainTheses = React.memo<any>(() => {
           pl='8'
         >
           <DashedBorder />
-          <Carousel index={index} items={items} />
+          {[<Carousel key={language} index={index} items={items} />]}
         </Box>
       </Box>
     </Container>
   )
 });
 
-const DashedBorder = React.memo(() => {
+const DashedBorder = React.memo<any>(() => {
   return(<svg viewBox="0 10 113 76" style={{position: 'absolute', top: 0, left: 0}}>
       <path 
         d="M 0,10 v100"
