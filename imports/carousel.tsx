@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { Box } from './framework';
@@ -38,7 +37,8 @@ export const Carousel = React.memo<any>(({
           display='flex'
           alignItems='center'
           position='absolute'
-          height='100%'
+          height='max-content'
+          // height='100%'
           width='calc(100% - 4rem)'
           transition='all 1s ease'
           sx={{

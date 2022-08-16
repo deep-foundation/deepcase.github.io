@@ -112,7 +112,6 @@ export const Thesis = React.memo<any>(({
 }) => {
   const control = useAnimation();
   const [ref, inView] = useInView();
-  if (i === 0) console.log('Thesis', index, i);
 
   useLayoutEffect(() => {
     if (inView) {
@@ -125,7 +124,8 @@ export const Thesis = React.memo<any>(({
   return (
     <motion.div
       style={{
-        width: 'max-contain',
+        // width: 'max-content',
+        width: '100%',
         transformOrigin: 'right',
         zIndex: 3,
         color: index === i ? '#00b6fe' : '#ffffff',
@@ -196,9 +196,9 @@ export const ThesisDescription = React.memo<any>(({
         display={!!item.points && 'flex'}
         flexDirection={!!item.points ? 'column' : 'row'}
       >
-        {[<Text fontSize={fontSize}>
+        {<Text fontSize={fontSize}>
           {t(item.text)}
-        </Text>]}
+        </Text>}
         {!!item.points && <UnorderedList pt='3'>
           {item.points.map(point => (
             <ListItem key={point.id} fontSize='lg'>{t(point.text)}</ListItem>
