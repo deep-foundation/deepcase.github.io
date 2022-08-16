@@ -144,6 +144,11 @@ export const coreTheme = extendTheme({
           '&:focus': {
             boxShadow: '0 0 0',
           },
+        },
+        text: {
+          '&:focus': {
+            boxShadow: '0 0 0',
+          },
         }
       },
       colorScheme: {

@@ -80,6 +80,10 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
   const transitions = useTransition(!scrolled, {
     initial: { transform: "translateY(0%)" },
     enter: { transform: "translateY(0%)" },
+    // leave: {item => async next => {
+    //   await next({ transform: "translateY(-100%)" })
+    //   await next({ display: 'none' })
+    // }},
     leave: { transform: "translateY(-100%)" },
     reverse: scrolled,
     trail: 2000,
@@ -96,7 +100,10 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
     delay: scrolled ? 0 : 600,
   });
   
-  const onOpenTalksModal = useCallback(() => setOpenTalksModal(true), []);
+  const onOpenTalksModal = useCallback((event) => {
+    setOpenTalksModal(true);
+    event.stopPropagation();
+  }, []);
   const onCloseTalksModal = useCallback(() => setOpenTalksModal(false), []);
 
   const [max825] = useMediaQuery('(max-width: 825px)');
@@ -146,11 +153,11 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         alignSelf: 'center',
                         transformOrigin: 'top',
                         transform: fontsScroll.x
-                                                .to({
-                                                  range: [0, 1, 0],
-                                                  output: [1, 0.5, 1],
-                                                })
-                                                .to(x => `scale(${x})`),
+                          .to({
+                            range: [0, 1, 0],
+                            output: [1, 0.5, 1],
+                          })
+                          .to(x => `scale(${x})`),
                       }}>
                         <Img src='./logo.png' alt='logo' />
                       </a.div>
@@ -160,40 +167,42 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
                         transformOrigin: 'top',
                         transform: fontsScroll.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.5, 1],
-                                      })
-                                      .to(x => `scale(${x})`),
+                          .to({
+                            range: [0, 1, 0],
+                            output: [1, 0.5, 1],
+                          })
+                          .to(x => `scale(${x})`),
                       }}>Deep.Foundation</a.h1>
                   </HStack>
                   <HStack spacing='1rem'>
-                    <a.div style={{
-                      transformOrigin: 'top',
-                      transform: fontsScroll.x
-                                      .to({
-                                        range: [0, 1, 0],
-                                        output: [1, 0.2, 1],
-                                      })
-                                      .to(x => `scale(${x})`)
-                    }}>
-                      <Link 
-                        aria-label='documentation'
-                        isExternal
-                        size='md'
-                        href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                    <Button 
+                      aria-label='documentation'
+                      as='a' 
+                      target='_blank'
+                      variant='ghost'
+                      // size='md'
+                      href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                      <a.span style={{
+                        transformOrigin: 'top',
+                        transform: fontsScroll.x
+                          .to({
+                            range: [0, 1, 0],
+                            output: [1, 0.2, 1],
+                          })
+                          .to(x => `scale(${x})`)
+                      }}>
                         Docs
-                      </Link>
-                    </a.div>
+                      </a.span>
+                    </Button>
                     <Button variant="ghost" aria-label='talks' onClick={onOpenTalksModal}>
                       <a.span style={{
                         transformOrigin: 'top',
                         transform: fontsScroll.x
-                                        .to({
-                                          range: [0, 1, 0],
-                                          output: [1, 0.2, 1],
-                                        })
-                                        .to(x => `scale(${x})`)
+                          .to({
+                            range: [0, 1, 0],
+                            output: [1, 0.2, 1],
+                          })
+                          .to(x => `scale(${x})`)
                       }}>Talks</a.span>
                     </Button>
                     <IconButton
@@ -209,11 +218,11 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         <a.span style={{
                           transformOrigin: 'top',
                           transform: fontsScroll.x
-                                          .to({
-                                            range: [0, 1, 0],
-                                            output: [1, 0.2, 1],
-                                          })
-                                          .to(x => `scale(${x})`)
+                            .to({
+                              range: [0, 1, 0],
+                              output: [1, 0.2, 1],
+                            })
+                            .to(x => `scale(${x})`)
                         }}><FaGithubAlt /></a.span>}
                     />
                     <IconButton
@@ -229,25 +238,25 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         <a.span style={{
                           transformOrigin: 'top',
                           transform: fontsScroll.x
-                                          .to({
-                                            range: [0, 1, 0],
-                                            output: [1, 0.2, 1],
-                                          })
-                                          .to(x => `scale(${x})`)
+                            .to({
+                              range: [0, 1, 0],
+                              output: [1, 0.2, 1],
+                            })
+                            .to(x => `scale(${x})`)
                         }}><FaDiscord /></a.span>}
                     />
                     <a.div style={{
                           transformOrigin: 'top',
                           transform: fontsScroll.x
-                                          .to({
-                                            range: [0, 1, 0],
-                                            output: [1, 0.2, 1],
-                                          })
-                                          .to(x => `scale(${x})`)
+                            .to({
+                              range: [0, 1, 0],
+                              output: [1, 0.2, 1],
+                            })
+                            .to(x => `scale(${x})`)
                     }}>
                       <ButtonGroup variant='ghost' spacing='0' size='md' isAttached>
                         <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
-                        <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Pyc</Button>
+                        <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
                       </ButtonGroup>
                     </a.div>
                   </HStack>
@@ -277,11 +286,11 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                               alignSelf: 'center',
                               transformOrigin: 'top',
                               transform: fontsMode.x
-                                                    .to({
-                                                      range: [0, 1],
-                                                      output: [1, 0.5],
-                                                    })
-                                                    .to(x => `scale(${x})`)
+                                .to({
+                                  range: [0, 1],
+                                  output: [1, 0.5],
+                                })
+                                .to(x => `scale(${x})`)
                             }}><Img src='./logo.png' alt='logo' /></a.div>
                             <a.h1 style={{
                               display: 'contents',
@@ -292,26 +301,29 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                               lineHeight: 1,
                               transformOrigin: 'top',
                               transform: fontsMode.x
-                                                  .to({
-                                                    range: [0, 1],
-                                                    output: [1, 0.5],
-                                                  })
-                                                  .to(x => `scale(${x})`)
+                                .to({
+                                  range: [0, 1],
+                                  output: [1, 0.5],
+                                })
+                                .to(x => `scale(${x})`)
                             }}>Deep.Foundation</a.h1>
                           </HStack>
                         </Box>
                         <a.div style={{
                           transformOrigin: 'top',
                           transform: fontsMode.x
-                                              .to({
-                                                range: [0, 1],
-                                                output: [1, 0.5],
-                                              })
-                                              .to(x => `scale(${x})`)
+                            .to({
+                              range: [0, 1],
+                              output: [1, 0.5],
+                            })
+                            .to(x => `scale(${x})`)
                         }}>
                           <ButtonGroup variant='ghost' spacing='0' size='sm' isAttached>
-                            <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
-                            <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Pyc</Button>
+                            <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => {
+                              console.log('click');
+                              onChangeLanguage('en');
+                              }}>En</Button>
+                            <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
                           </ButtonGroup>
                         </a.div>
                       </HStack>
@@ -319,23 +331,23 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     <Box sx={{...cubeSurface, ...emptySurface1}} />
                     <Box sx={{...cubeSurface, ...emptySurface2}} />
                     <Box sx={{...cubeSurface, ...buttonsMenu}}>
-                      <a.div style={{
-                        
-                        transform: fontsMode.x
-                                        .to({
-                                          range: [0, 1, 0],
-                                          output: [0.7, 1.1, 0.7],
-                                        })
-                                        .to(x => `scale(${x})`)
-                      }}>
-                        <Link 
-                          aria-label='documentation'
-                          isExternal
-                          size='md'
-                          href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                      <Button 
+                        aria-label='documentation'
+                        as='a' 
+                        target='_blank'
+                        variant='text'
+                        href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+                        <a.span style={{
+                          transform: fontsMode.x
+                            .to({
+                              range: [0, 1, 0],
+                              output: [0.7, 1.1, 0.7],
+                            })
+                            .to(x => `scale(${x})`)
+                        }}>
                           Docs
-                        </Link>
-                      </a.div>
+                        </a.span>
+                      </Button>
                       <IconButton
                         variant='ghost'
                         colorScheme='teal'
@@ -378,14 +390,12 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                       />
                       <Button aria-label='talks' variant="text" onClick={onOpenTalksModal}>
                         <a.span style={{
-                          
-                          
                           transform: fontsMode.x
-                                          .to({
-                                            range: [0, 1, 0],
-                                            output: [0.7, 1.1, 0.7],
-                                          })
-                                          .to(x => `scale(${x})`)
+                            .to({
+                              range: [0, 1, 0],
+                              output: [0.7, 1.1, 0.7],
+                            })
+                            .to(x => `scale(${x})`)
                         }}>Talks</a.span></Button>
                     </Box>
                   </a.div>

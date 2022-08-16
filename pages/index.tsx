@@ -149,21 +149,36 @@ export function PageContent() {
          
         { max825 && <>
           <HStack ref={refMenuButtons} pl={1}>
-            <Link 
+            <Button 
               aria-label='documentation'
-              isExternal
+              as='a' target='_blank'
+              variant='ghost'
+              // isExternal
               size='sm'
-              href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'>
+              href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
+            >
               Docs
-            </Link>
-            <Button aria-label='talks' variant='ghost' size='sm' as='button' onClick={onOpenTalksModal}>Talks</Button>
-            <Link 
+            </Button>
+            <Button 
+              aria-label='talks' 
+              variant='ghost' 
+              size='sm' 
+              as='button' 
+              onClick={onOpenTalksModal}
+            >
+              Talks
+            </Button>
+            <Button 
+              as='a' 
+              target='_blank'
+              variant='ghost'
               aria-label='github repository deep foundation'
-              isExternal
+              // isExternal
               size='sm'
-              href='https://github.com/deep-foundation'>
+              href='https://github.com/deep-foundation'
+            >
               GitHub
-            </Link>
+            </Button>
           </HStack>
           <Space />
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
