@@ -16,10 +16,10 @@ export const IntroDesktop = React.memo(() => {
       columnGap={10}
     >
       <Box gridColumn='1/3'>
-        <H1 fontSize={{sm: 'xl', md: '5xl'}} colorScheme='white' textAlign={{sm: 'left', md: 'right'}}>{t('intro--developer--title')}</H1>
+        <H1 fontSize={{sm: 'xl', md: '5xl'}} color='white' textAlign={{sm: 'left', md: 'right'}}>{t('intro--developer--title')}</H1>
       </Box>
       <Box gridColumn='3/5'>
-        <H1 fontSize={{sm: 'xl', md: '5xl'}} colorScheme='white'>{t('intro--business--title')}</H1>
+        <H1 fontSize={{sm: 'xl', md: '5xl'}} color='white'>{t('intro--business--title')}</H1>
       </Box>
       <Box gridColumn='1/3'>
         <UnorderedList styleType='none' textAlign={{sm: 'left', md: 'right'}} ml={0} mr={0} >

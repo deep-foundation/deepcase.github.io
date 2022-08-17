@@ -19,7 +19,7 @@ export const IntroMobile = React.memo(() => {
       >
         <H1 
           fontSize='xl' 
-          colorScheme='white' 
+          color='white' 
         >{t('intro--developer--title')}</H1>
         <UnorderedList styleType='none' ml={0} mr={0}>
           <ListItem>
@@ -63,7 +63,7 @@ export const IntroMobile = React.memo(() => {
       >
         <H1 
           fontSize='xl' 
-          colorScheme='white'
+          color='white'
         >{t('intro--business--title')}</H1>
         <UnorderedList styleType='none' ml={0}>
           <ListItem>
