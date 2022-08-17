@@ -43,7 +43,7 @@ export const coreTheme = extendTheme({
   },
   fontSizes: {
     xs: "calc(0.35rem + 0.5vmax)",
-    sm: 'calc(14px + 0.5vmax)', //"0.875rem",
+    sm: 'calc(0.8125rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
     lg: "calc(1.125rem + 0.5vmax)",
     xl: "calc(1.25rem + 0.5vmax)",

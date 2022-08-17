@@ -1,6 +1,6 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from "react-i18next";
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -37,6 +37,21 @@ const resources = {
       'talks-form-write-to-us': 'Write to us',
       'talks-form-how-to-get-on-our-podcast': 'Want to be on our podcast? Go to Discord channel <Kbd>#hi</Kbd>',
       'talks-form-aria-label': 'Podcast recording',
+
+      'podcast-invitation': 'Podcast invitation',
+      'podcast-invitation--dragon_cave': 'DRAGON CAVE',
+      'podcast-invitation--description': 'Do you want to challenge the dragon in the cave that protects the portal to the depths?',
+      'podcast-invitation--all_record': 'Everything is recorded',
+      'podcast-invitation--podcast_published': "It's up to you to decide if the recording will be published.",
+      'podcast-invitation--podcast_available_for_crew': "Recordings will remain available only to the Deep.Foundation crew",
+      'podcast-invitation--button_enter_the_cave': 'Enter the cave',
+      'podcast-invitation--your_name': 'What is your name, mortal?',
+      'podcast-invitation--your_phone': 'Phone',
+      'podcast-invitation--your_email': 'Email',
+      'podcast-invitation--greatest_achievement': 'What is your greatest achievement?',
+      'podcast-invitation--legendary_event': 'Name of the legendary event',
+      'podcast-invitation--podcast_name': 'Podcast name, can be left blank',
+      'podcast-invitation--button_call_the_dragon': 'Call the dragon',
 
 
       'flag-title--operational-environment': 'Operational environment',
@@ -125,6 +140,21 @@ const resources = {
       'talks-form-write-to-us': 'Напишите нам',
       'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в Discord на канал <Kbd>#hi</Kbd>',
       'talks-form-aria-label': 'Запись на подкаст',
+
+      'podcast-invitation': 'Приглашение на подкаст',
+      'podcast-invitation--dragon_cave': 'ПЕЩЕРА ДРАКОНА',
+      'podcast-invitation--description': 'Ты хочешь бросить вызов дракону в пещере защищающей портал в глубины?',
+      'podcast-invitation--all_record': 'Всё записывается',
+      'podcast-invitation--podcast_published': 'Тебе решать, будет ли опубликована запись',
+      'podcast-invitation--podcast_available_for_crew': 'Записи останутся доступны только для экипажа Deep.Foundation',
+      'podcast-invitation--button_enter_the_cave': 'Войти в пещеру',
+      'podcast-invitation--your_name': 'Твое имя, смертный?',
+      'podcast-invitation--your_phone': 'Телефон',
+      'podcast-invitation--your_email': 'Почта',
+      'podcast-invitation--greatest_achievement': 'Ваше величайшее деяние?',
+      'podcast-invitation--legendary_event': 'Название легендарного события',
+      'podcast-invitation--podcast_name': 'Имя подкаста, можно оставить пустым',
+      'podcast-invitation--button_call_the_dragon': 'Позвать дракона',
 
 
       'flag-title--operational-environment': 'Операционное пространство',

@@ -1,10 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Center, IconButton, Img, Modal, ModalBody, ModalContent, ModalOverlay, Text, Wrap, WrapItem } from '../imports/framework';
-import { H1 } from './headers';
-import { BoostyColor } from './icons/boosty-color';
-import { Space } from './space';
+import { Modal, ModalBody, ModalContent, ModalOverlay, Box } from '../imports/framework';
+import { InvitationToTheCave } from './invitation-to-the-cave';
+import { motion } from 'framer-motion';
 
+
+
+const FilterOverlay = () => (
+  <ModalOverlay
+    bg='none'
+    backdropFilter='
+      blur(2px) 
+      contrast(1.2)
+    '
+    backdropInvert='25%'
+  />
+)
 
 const titleModal = {
   '&:first-letter': {
@@ -35,107 +46,30 @@ export const TalksForm = React.memo(({
 }) => {
   const { t } = useTranslation();
 
-  return (<Modal
+  return (
+    // <Box as={motion.div}>
+    //  <InvitationToTheCave />
+    // </Box>
+    <Modal
       aria-modal={true}
       aria-labelledby={t('talks-form-aria-label')}
       aria-describedby={t('talks-form-aria-label')}
       isCentered
-      size='xl'
+      autoFocus
+      size='sm'
       blockScrollOnMount={false} 
       isOpen={portalOpen}
       onClose={onClosePortal}
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalBody>
-          <H1 sx={titleModal} align='center'>{t('talks-form-write-to-us')}</H1>
-          <Space unit={1} />
-          <Wrap spacing='2rem' justify='center'>
-            <WrapItem w='100%'>
-              <Button 
-                as='a' 
-                size='lg' 
-                target='_blank'
-                href='https://discord.gg/RD8wFKtujH' 
-                sx={discordButton} 
-                aria-label='discord'
-                variant='unstyled'
-              >
-                <Center>
-                  <Img src='/discord.svg' alt='Discord' htmlWidth='50%' htmlHeight='100%' />
-                </Center>
-              </Button>
-            </WrapItem>
-            <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://www.youtube.com/channel/UCWn8rWuwZ4ISFVNTgy0GEow/featured' 
-                aria-label='youtube' 
-                variant='unstyled'
-                icon={<Img src='/source/youtube.png' alt='YouTube' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
-            </WrapItem>
-            {/* <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://www.facebook.com/DeepFoundation-101491865581762' 
-                aria-label='facebook' 
-                variant='unstyled'
-                icon={<Img src='/fb.png' alt='Facebook' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} /> } />
-            </WrapItem> */}
-            <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://boosty.to/deep.foundation.official' 
-                aria-label='Boosty' 
-                variant='unstyled'
-                icon={<Img src='/boosty-color.svg' alt='Boosty' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
-            </WrapItem>
-            <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://vk.com/deep.foundation' 
-                aria-label='vkontakte' 
-                variant='unstyled'
-                icon={<Img src='/vk.png' alt='VKontakte' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
-            </WrapItem>
-            <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://github.com/deep-foundation' 
-                aria-label='git hub'
-                variant='unstyled'
-                icon={<Img src='/github.png' alt='GitHub' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
-            </WrapItem>
-            <WrapItem w='48px'>
-              <IconButton
-                isRound
-                size='lg' 
-                as='a' 
-                target='_blank'
-                href='https://www.patreon.com/deepfoundation?fan_landing=true' 
-                aria-label='patreon' 
-                variant='unstyled'
-                icon={<Img src='/pt.png' alt='Patreon' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
-            </WrapItem>
-            <WrapItem w='100%'>
-              <Text fontSize='sm' align='center' dangerouslySetInnerHTML={{ __html: t('talks-form-how-to-get-on-our-podcast') }} />
-            </WrapItem>
-          </Wrap>
+      <FilterOverlay />
+      <ModalContent 
+        border='1px solid rgb(255, 255, 251)' 
+        borderRadius='none'
+        bg='rgb(46, 69, 84)'
+        px={0}
+      >
+        <ModalBody px={0}>
+          <InvitationToTheCave />
         </ModalBody>
       </ModalContent>
     </Modal>
