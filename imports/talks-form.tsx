@@ -60,8 +60,9 @@ export const TalksForm = React.memo<any>(({
           <ModalBody>
             <H1 sx={titleModal} align='center'>{t('talks-form-write-to-us')}</H1>
             <Space unit={1} />
-            <Wrap spacing='2rem' justify='center'>
-              <WrapItem w='100%'>
+            <Wrap spacing='1rem' justify='center'>
+              <WrapItem w='100%' flexDirection='column' alignItems='center'>
+                <Text fontSize='sm' pb={3}>{t('talks-form--feel_free_to_write')}</Text>
                 <Button 
                   as='a' 
                   size='lg' 
@@ -142,9 +143,13 @@ export const TalksForm = React.memo<any>(({
                   variant='unstyled'
                   icon={<Img src='/pt.png' alt='Patreon' htmlWidth='100%' htmlHeight='100%' sx={hoverSocialIcon} />} />
               </WrapItem>
-              <WrapItem w='100%'>
-                  <Text fontSize='sm' align='center' dangerouslySetInnerHTML={{ __html: t('talks-form-how-to-get-on-our-podcast') }} />
-                </WrapItem>
+              <WrapItem w='100%' justifyContent='center'>
+                <Button as='a' variant='ghost' href='tel: +7985 427-12-56'>+7 985 427-12-56</Button>
+                <Button as='a' variant='ghost' href='mailto: info@deep.foundation'>info@deep.foundation</Button>
+              </WrapItem>
+              <WrapItem w='100%' justifyContent='center'>
+                <Text fontSize='sm' align='center' dangerouslySetInnerHTML={{ __html: t('talks-form-how-to-get-on-our-podcast') }} />
+              </WrapItem>
             </Wrap>
           </ModalBody>
         </ModalContent>

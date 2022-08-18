@@ -35,6 +35,7 @@ const resources = {
       'join-us-on-discord': 'Join us on discord',
 
       'talks-form-write-to-us': 'Write to us',
+      'talks-form--feel_free_to_write': 'Feel free to write to the #talks channel in the Discord',
       'talks-form-how-to-get-on-our-podcast': 'Want to be on our podcast? Go to Discord channel <Kbd>#hi</Kbd>',
       'talks-form-aria-label': 'Podcast recording',
 
@@ -138,6 +139,7 @@ const resources = {
       'join-us-on-discord': 'Присоединяйтесь к нам в дискорд',
 
       'talks-form-write-to-us': 'Напишите нам',
+      'talks-form--feel_free_to_write': 'Смело пишите в канал #talks в Discord',
       'talks-form-how-to-get-on-our-podcast': 'Хотите попасть к нам на подкаст? Заходите в Discord на канал <Kbd>#hi</Kbd>',
       'talks-form-aria-label': 'Запись на подкаст',
 
