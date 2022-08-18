@@ -28,6 +28,7 @@
     "@mdx-js/react": "^1.6.22",
     "@moxy/react-split-text": "^1.0.1",
     "@next/mdx": "^10.2.0",
+    "@react-hook/debounce": "^4.0.0",
     "@react-spring/parallax": "^9.3.1",
     "@reonomy/react-confetti-explosion": "^1.0.3",
     "@sentry/nextjs": "^6.12.0",
