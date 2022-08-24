@@ -1,9 +1,8 @@
 import { motion, useAnimation } from 'framer-motion';
 import { t } from 'i18next';
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useDeepMainTheses } from './deep-main-theses';
-import { Center, Flex, ListItem, Text, UnorderedList, Container } from './framework';
+import { Container, Flex, ListItem, Text, UnorderedList } from './framework';
 
 
 const thesis = {
@@ -27,6 +26,7 @@ const thesisDescription = {
     opacity: [0, 1], 
     rotateX: [-90, 0],  
     scale: [0.5, 1], 
+    display: 'block',
     y: [-200, 0],
     transition: { 
       duration: .9, 
@@ -36,6 +36,7 @@ const thesisDescription = {
   hidden: { 
     opacity: [1, 0], 
     scale: [1, 1.4], 
+    display: 'none',
     transition: { 
       duration: .9, 
       delay: 0,
@@ -85,7 +86,7 @@ const ThesisBorder = React.memo(({
       style={{
         position: 'absolute', 
         background: '#00b6fe',
-        top: 0, right: -2.5,
+        top: 0, right: -1.9,
         width: 4,
         height: "100%",
         borderTopLeftRadius: 2,
@@ -113,7 +114,7 @@ export const Thesis = React.memo<any>(({
   const control = useAnimation();
   const [ref, inView] = useInView();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (inView) {
       control.start("show");
     } else {
@@ -124,7 +125,6 @@ export const Thesis = React.memo<any>(({
   return (
     <motion.div
       style={{
-        // width: 'max-content',
         width: '100%',
         transformOrigin: 'right',
         zIndex: 3,
@@ -139,7 +139,7 @@ export const Thesis = React.memo<any>(({
       whileFocus={{ scale: 1.05 }}
       {...props}
     >
-      <Container centerContent={false} width='100%' height='100%' py={2} px={2} pos='relative'>
+      <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
         <ThesisBorder i={i} index={index} />
         <Text fontSize={fontSize} style={{
         }}>{text}</Text>
@@ -156,6 +156,7 @@ export const ThesisDescription = React.memo<any>(({
   ...props
 }:{
   item: {
+    title?: string;
     text: string;
     points?: {
       id: number;
@@ -183,7 +184,7 @@ export const ThesisDescription = React.memo<any>(({
 
   return (
     <motion.div
-      style={{opacity: 0}}
+      style={{opacity: 0, display: 'none'}}
       ref={ref}
       custom={i}
       variants={thesisDescription}
@@ -201,7 +202,7 @@ export const ThesisDescription = React.memo<any>(({
         </Text>}
         {!!item.points && <UnorderedList pt='3'>
           {item.points.map(point => (
-            <ListItem key={point.id} fontSize='lg'>{t(point.text)}</ListItem>
+            <ListItem key={point.id} fontSize='md'>{t(point.text)}</ListItem>
           ))}
         </UnorderedList>}
       </Flex>

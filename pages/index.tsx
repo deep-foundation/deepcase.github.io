@@ -190,7 +190,7 @@ export function PageContent() {
           <DeepMainTheses />
         {/* </Center> */}
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
-        <GridArea 
+        {/* <GridArea 
           innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}
           originalPx='0.25em'
         >
@@ -229,9 +229,7 @@ export function PageContent() {
               </Stack>
             }
           />
-        </GridArea>
-
-        <Space unit={max900 ? 14 : 6} />
+        </GridArea> */}
         
         <GridArea>
           <FlagsWithText />
