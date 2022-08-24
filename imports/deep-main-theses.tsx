@@ -113,7 +113,7 @@ export const DeepMainTheses = React.memo<any>(() => {
             {items.map((item, i) => {
               return (
                 <motion.div
-                  style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box'}}
+                  style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box',}}
                   animate={{
                     opacity: index === i ? [0, 0.5, 1] : 0,
                     scale: index === i ? 1.2 : 1,
@@ -127,7 +127,7 @@ export const DeepMainTheses = React.memo<any>(() => {
                   key={i}
                   onClick={() => setIndex(i)}
                 >
-                  <Text size='md' fontWeight='bold'>
+                  <Text size='md' fontWeight='bold' color='white'>
                     {t(item.title)}
                   </Text>
                 </motion.div>
