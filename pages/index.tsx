@@ -153,7 +153,6 @@ export function PageContent() {
               aria-label='documentation'
               as='a' target='_blank'
               variant='ghost'
-              // isExternal
               size='sm'
               href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
             >
@@ -173,7 +172,6 @@ export function PageContent() {
               target='_blank'
               variant='ghost'
               aria-label='github repository deep foundation'
-              // isExternal
               size='sm'
               href='https://github.com/deep-foundation'
             >
@@ -185,51 +183,8 @@ export function PageContent() {
         </> }
         
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
-        {/* {[<TalkingPoints refScrollContainer={scrollingRef} key={i18n.language} />]} */}
-        {/* <Center> */}
-          <DeepMainTheses />
-        {/* </Center> */}
+        <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
-        {/* <GridArea 
-          innerGridStyles={{bg: 'transparentDark.500', borderRadius: '0.175rem'}}
-          originalPx='0.25em'
-        >
-          <IFrame 
-            title={
-              <HStack align='baseline'  justifyContent='space-between' alignItems='center'>
-                <HStack spacing={8}>
-                  <H2>Deep.Case</H2>
-                  <Text fontSize='sm' >pre alpha version</Text>
-                </HStack>
-                <Box>
-                  <IconButton 
-                    variant='outline'
-                    colorScheme='white'
-                    size='sm'
-                    as='a'
-                    href='https://deep.deep.foundation'
-                    target='_blank'
-                    aria-label='open fullscreen'
-                    icon={<BsArrowsFullscreen />}
-                    
-                  />
-                </Box>
-              </HStack>
-            }
-            src='https://deep.deep.foundation/?bg-transparent=false'
-            download={
-              <Stack direction={{sm: 'column', md : 'row'}} justify='center' spacing={10} py='0.25em'>
-                <Button aria-label='gitpod' as='a' href='https://gitpod.io/#https://github.com/deep-foundation/dev' target='_blank' variant="outline" colorScheme="second" size="lg" _focus={{ boxShadow: "none" }} _active={{ bg: "second.600", color: "gray.50" }}>
-                  <HStack>
-                    <Text fontSize='sm'>GitPod</Text>
-                    <Text fontSize='xs'>(cloud demo)</Text>
-                  </HStack>
-                </Button>
-                <ButtonGroupDownload />
-              </Stack>
-            }
-          />
-        </GridArea> */}
         
         <GridArea>
           <FlagsWithText />
