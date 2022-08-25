@@ -113,7 +113,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
             position: 'absolute',
             top: 0, left: 0,
             backfaceVisibility: 'hidden',
-            // perspective: 0,
+            perspective: 'none',
             transformStyle: 'preserve-3d',
             perspectiveOrigin: 'top center',
             borderTop: '1px dashed #ffffff40',
