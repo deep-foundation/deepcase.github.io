@@ -1,12 +1,12 @@
 import { useQueryStore } from '@deep-foundation/store/query';
-import { FaGithubAlt, FaDiscord } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
+import { FaDiscord, FaGithubAlt } from 'react-icons/fa';
 import { a, useSpring, useTransition } from 'react-spring';
-import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton, Img, Stack } from './framework';
-import { TalksForm } from './talks-form';
-import { motion, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { Box, Button, ButtonGroup, Flex, HStack, IconButton, Img, useMediaQuery } from './framework';
 import { H1 } from './headers';
+import { TalksForm } from './talks-form';
 
 
 export function useSwitcherModalTalks () { 
@@ -63,7 +63,6 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
     }, 100)
     return () => clearInterval(id);
   }, []);
-  console.log(mode);
 
   const { n } = useSpring({ 
     n: scrolled ? 0.97 : 0.19,
