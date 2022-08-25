@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { a, useSpring, useTransition } from 'react-spring';
 import { Box, Flex, HStack, Button, useMediaQuery, Link, ButtonGroup, IconButton, Img, Stack } from './framework';
 import { TalksForm } from './talks-form';
+import { motion, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { H1 } from './headers';
 
 
 export function useSwitcherModalTalks () { 
@@ -15,10 +17,9 @@ const cubeSurface = {
   display: 'block',
   position: 'absolute',
   width: '100%',
-  // height: '100%',
 };
 const header = {
-  transform: 'translate3d(0, 0, 30px)',
+  transform: 'translateZ(30px)',
 };
 const emptySurface1 = {
   transform: 'rotateY(180deg) translateZ(30px)',
@@ -42,7 +43,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
   const [openTalksModal, setOpenTalksModal] = useSwitcherModalTalks();
   const old = useRef({scrollTop: 0});
   const cubeRef = useRef<HTMLInputElement>();
-  
+
   useEffect(() => {
     const id = setInterval(() => {
       const scrollArea = scrollContainer?.current;
@@ -62,6 +63,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
     }, 100)
     return () => clearInterval(id);
   }, []);
+  console.log(mode);
 
   const { n } = useSpring({ 
     n: scrolled ? 0.97 : 0.19,
@@ -72,18 +74,9 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
     config: { mass: 1.7, tension: 65, friction: 25 },
   });
 
-  const rotate = useSpring({ 
-    r: mode == 2 ? 1 : modeHidden == 2 ? 2 : 0,
-    config: { mass: 1, tension: 215, friction: 45 },
-  });
-
   const transitions = useTransition(!scrolled, {
     initial: { transform: "translateY(0%)" },
     enter: { transform: "translateY(0%)" },
-    // leave: {item => async next => {
-    //   await next({ transform: "translateY(-100%)" })
-    //   await next({ display: 'none' })
-    // }},
     leave: { transform: "translateY(-100%)" },
     reverse: scrolled,
     trail: 2000,
@@ -270,67 +263,97 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     },
                   }}
                 >
-                  <a.div style={{
+                  <motion.div style={{
                     width: '100%',
                     height: '100%',
                     position: 'relative',
                     transformStyle: 'preserve-3d',
-                    perspectiveOrigin: 'center',
-                    transform: rotate.r.to(r => `rotateX(${r*90}deg)`)}}> 
-                    <Box sx={{...cubeSurface, ...header}}>
-                      <HStack justify='space-between'>
+                    perspectiveOrigin: 'top',
+                  }}
+                    animate={{ 
+                      rotateX: mode == 2 ? '90deg' : modeHidden == 2 ? '-90deg' : 0, 
+                    }}
+                    transition={{ type: 'spring', damping: 20}}
+                  > 
+                    <Box
+                      sx={{
+                        display: 'block',
+                        position: 'absolute',
+                        ...header,
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      // animate={{ 
+                        // z: mode == 2 ? -90 : 0,
+                        // y: mode == 2 ? '-100%' : '0%',
+                        // rotateX:mode == 2 ? '180deg' : 0, 
+                        // skewX: mode == 2 ? '10deg' : 0, 
+                        // rotateY: mode == 2 ? '-90deg' : 0,
+                        // display: mode == 2 ? 'none' : 'block', 
+                      // }}
+                      // transition={{ duration: 5 } as any}
+                    >
+                      <HStack  
+                        justify='space-between'
+                      >
                         <Box>
                           <HStack spacing='1rem'>
-                            <a.div style={{
-                              width: '2rem',
-                              alignSelf: 'center',
-                              transformOrigin: 'top',
-                              transform: fontsMode.x
-                                .to({
-                                  range: [0, 1],
-                                  output: [1, 0.5],
-                                })
-                                .to(x => `scale(${x})`)
-                            }}><Img src='./logo.png' alt='logo' /></a.div>123
-                            <a.h1 style={{
-                              display: 'contents',
-                              alignSelf: 'center',
-                              fontSize: 'calc(22px + 0.5vmax)',
-                              fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
-                              margin: 0,
-                              lineHeight: 1,
-                              transformOrigin: 'top',
-                              transform: fontsMode.x
-                                .to({
-                                  range: [0, 1],
-                                  output: [1, 0.5],
-                                })
-                                .to(x => `scale(${x})`)
-                            }}>Deep.Foundation</a.h1>
+                            <motion.div style={{
+                                width: '2rem',
+                                alignSelf: 'center',
+                                transformOrigin: 'top',
+                                marginRight: '0.5rem',
+                              }}
+                              animate={{ 
+                                scale: mode == 2 ? 0 : 1, 
+                              }}
+                              transition={{ type: 'spring' }}
+                            >
+                              <Img src='./logo.png' alt='logo' />
+                            </motion.div>
+                            <motion.div style={{
+                                transformOrigin: 'top',
+                              }}
+                              animate={{ 
+                                scale: mode == 2 ? 0 : 1, 
+                              }}
+                              transition={{ type: 'spring' }}
+                            >
+                              <H1>Deep.Foundation</H1>
+                            </motion.div>
                           </HStack>
                         </Box>
-                        <a.div style={{
-                          transformOrigin: 'top',
-                          transform: fontsMode.x
-                            .to({
-                              range: [0, 1],
-                              output: [1, 0.5],
-                            })
-                            .to(x => `scale(${x})`)
-                        }}>
-                          <ButtonGroup variant='ghost' spacing='0' size='sm' isAttached>
-                            <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => {
-                              console.log('click');
-                              onChangeLanguage('en');
-                              }}>En</Button>
-                            <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
-                          </ButtonGroup>
-                        </a.div>
+                        <ButtonGroup
+                          as={motion.div} 
+                          variant='ghost' 
+                          spacing='0' 
+                          size='sm' 
+                          isAttached
+                          sx={{transformOrigin: 'top',}}
+                          animate={{ 
+                            scale: mode == 2 ? 0 : 1, 
+                          }}
+                          transition={{ type: 'spring' }}
+                        >
+                          <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => {
+                            console.log('click');
+                            onChangeLanguage('en');
+                            }}>En</Button>
+                          <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
+                        </ButtonGroup>
                       </HStack>
                     </Box>
                     <Box sx={{...cubeSurface, ...emptySurface1}} />
                     <Box sx={{...cubeSurface, ...emptySurface2}} />
-                    <Box sx={{...cubeSurface, ...buttonsMenu}}>
+                    <Box
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'block',
+                        position: 'absolute', 
+                        ...buttonsMenu
+                        }}
+                      >
                       <Button 
                         aria-label='documentation'
                         as='a' 
@@ -398,7 +421,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                             .to(x => `scale(${x})`)
                         }}>Talks</a.span></Button>
                     </Box>
-                  </a.div>
+                  </motion.div>
                 </Box>
               }
             </Flex>

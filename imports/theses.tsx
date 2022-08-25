@@ -127,7 +127,7 @@ export const Thesis = React.memo<any>(({
       style={{
         width: '100%',
         transformOrigin: 'right',
-        zIndex: 3,
+        // zIndex: 3,
         color: index === i ? '#00b6fe' : '#ffffff',
         transition: 'color 1s ease',
       }}
