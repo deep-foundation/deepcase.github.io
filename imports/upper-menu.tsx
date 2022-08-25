@@ -19,13 +19,13 @@ const cubeSurface = {
   width: '100%',
 };
 const header = {
-  transform: 'translateZ(30px)',
+  transform: 'translate3d(0, 0, 30px)',
 };
 const emptySurface1 = {
-  transform: 'rotateY(180deg) translateZ(30px)',
+  transform: 'rotateY(180deg) translate3d(0, 0, 30px)',
 };
 const emptySurface2 = {
-  transform: 'rotateX(90deg) translateZ(30px)',
+  transform: 'rotateX(90deg) translate3d(0, 0, 30px)',
 };
 
 const buttonsMenu = {
@@ -33,7 +33,7 @@ const buttonsMenu = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  transform: 'rotateX(-90deg) translateZ(30px)',
+  transform: 'rotateX(-90deg) translate3d(0, 0, 30px)',
 };
 
 export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeLanguage}:{scrollContainer: any, refMenuButtons: any; onChangeLanguage?: any;}) => {
@@ -113,8 +113,8 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
             position: 'absolute',
             top: 0, left: 0,
             backfaceVisibility: 'hidden',
-            perspective: 0,
-            transformStyle: 'flat',
+            // perspective: 0,
+            transformStyle: 'preserve-3d',
             perspectiveOrigin: 'top center',
             borderTop: '1px dashed #ffffff40',
             borderBottom: '1px dashed #ffffff40',
