@@ -306,7 +306,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                               animate={{ 
                                 scale: mode == 2 ? 0 : 1, 
                               }}
-                              transition={{ type: 'spring' }}
+                              transition={{ type: 'spring', damping: 20 }}
                             >
                               <Img src='./logo.png' alt='logo' />
                             </motion.div>
@@ -316,7 +316,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                               animate={{ 
                                 scale: mode == 2 ? 0 : 1, 
                               }}
-                              transition={{ type: 'spring' }}
+                              transition={{ type: 'spring', damping: 20 }}
                             >
                               <H1>Deep.Foundation</H1>
                             </motion.div>
