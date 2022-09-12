@@ -66,7 +66,6 @@ export const CardValue = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, inView]);
-  console.log('iam here');
 
   return (
     <motion.div

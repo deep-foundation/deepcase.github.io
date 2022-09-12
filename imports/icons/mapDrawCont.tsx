@@ -27,7 +27,6 @@ export const MapSvgDrawCont = React.memo(() => {
   useEffect(() => {
     if (inView) {
       control.start("visible");
-      console.log("visible");
     } else {
       control.start("hidden");
     }

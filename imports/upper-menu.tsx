@@ -325,10 +325,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                           }}
                           transition={{ type: 'spring' }}
                         >
-                          <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => {
-                            console.log('click');
-                            onChangeLanguage('en');
-                            }}>En</Button>
+                          <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
                           <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
                         </ButtonGroup>
                       </HStack>
