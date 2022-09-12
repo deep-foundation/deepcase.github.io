@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '../framework';
 import _ from 'lodash';
 import { DocumentationContent } from './documentation-content';
-import { DocumentationMenu } from './documentation-menu';
+import { DocumentationMenu, Menu } from './documentation-menu';
 
 
 const chapters = _.times(10, (i) => {
@@ -14,10 +14,36 @@ const chapters = _.times(10, (i) => {
 });
 
 export const Documentation = React.memo(() => {
+  const [expanded, setExpanded] = useState(0);
+
+  const placeholderMenu: Menu = [
+    {
+      id: 123,
+      title: 'Abc',
+      body: <div>123</div>,
+      children: [
+        {
+          id: 234,
+          title: 'Qwe',
+          body: <div>234</div>,
+        },
+      ],
+    },
+  ];
 
   return (<Box as='main' display='flex' flexDir={{sm: 'column', md: 'row'}}>
       <Box as='nav' w='100%'>
-        <DocumentationMenu />
+        {placeholderMenu.map((p, i) => (
+          <DocumentationMenu 
+            key={p.id}
+            i={i}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            title={p.title}
+            children={p.children} 
+            id={p.id}
+          />
+        ))}
       </Box>
       <Box>
         {chapters.map(c => (<DocumentationContent key={c.id} title={c.title} description={c.description} />))}

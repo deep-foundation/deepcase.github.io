@@ -1,47 +1,62 @@
 import { Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Box } from '../framework';
-import React from 'react';
+import React, { ReactElement, useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 
 
-interface Menu {
+interface IMenuItem {
+  i?: number;
+  expanded?: boolean | number;
+  setExpanded?: (i: any) => any;
+  id: number;
   title: string;
-  subtitle: string;
+  body?: ReactElement;
+  children?: IMenuItem[];
 }
 
-export const DocumentationMenu = React.memo(() => {
-  return (<Accordion allowToggle>
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Section 1 title
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-        </AccordionPanel>
-      </AccordionItem>
-    
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Section 2 title
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+export type Menu = IMenuItem[];
+
+export const ContentPlaceholder = React.memo<any>((title) => {
+  return (<motion.div
+      variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
+      transition={{ duration: 0.8 }}
+      style={{ originY: 0 }}
+    >
+      {title}
+    </motion.div>
+  )
+});
+
+export const SubMenu = React.memo<any>((isOpen, title) => {
+  return (<AnimatePresence initial={false}>
+    {isOpen && (
+      <motion.section
+        key="content"
+        initial="collapsed"
+        animate="open"
+        exit="collapsed"
+        variants={{
+          open: { opacity: 1, height: "auto" },
+          collapsed: { opacity: 0, height: 0 }
+        }}
+        transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+      >
+        <ContentPlaceholder title={title} />
+      </motion.section>
+    )}
+  </AnimatePresence>)
+});
+
+
+export const DocumentationMenu = React.memo<any>(({i, expanded, setExpanded, title, children}:IMenuItem) => {
+  const isOpen = i === expanded;
+
+  return (<>
+      <motion.header
+        initial={false}
+        animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
+        onClick={() => setExpanded(isOpen ? false : i)}
+      >{title}</motion.header>
+      {children && children.map(c => (<SubMenu key={c.id} title={c.title} />))}
+    </>
   )
 })
