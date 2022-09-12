@@ -42,8 +42,8 @@ export const PageContent = React.memo(() => {
   
   
   return (<Box as='main' pos='relative'>
-      <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} />
-      <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+      {/* <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} /> */}
+      {/* <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} /> */}
       <Documentation />
     </Box>
   );

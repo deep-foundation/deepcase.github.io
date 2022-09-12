@@ -45,8 +45,6 @@ export const SubMenu = React.memo<any>(({isOpen, title}) => {
 export const DocumentationMenu = React.memo<any>(({i, expanded, setExpanded, title, children}:IMenuItem) => {
   const isOpen = i === expanded;
 
-  console.log({children});
-
   return (<>
       <motion.header
         initial={false}
