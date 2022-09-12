@@ -151,7 +151,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                           })
                           .to(x => `scale(${x})`),
                       }}>
-                        <Img src='./logo.png' alt='logo' />
+                        <Img src='./logo_n.svg' alt='logo' />
                       </a.div>
                       <a.h1 style={{
                         alignSelf: 'center',
@@ -282,15 +282,6 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         width: '100%',
                         height: '100%',
                       }}
-                      // animate={{ 
-                        // z: mode == 2 ? -90 : 0,
-                        // y: mode == 2 ? '-100%' : '0%',
-                        // rotateX:mode == 2 ? '180deg' : 0, 
-                        // skewX: mode == 2 ? '10deg' : 0, 
-                        // rotateY: mode == 2 ? '-90deg' : 0,
-                        // display: mode == 2 ? 'none' : 'block', 
-                      // }}
-                      // transition={{ duration: 5 } as any}
                     >
                       <HStack  
                         justify='space-between'
