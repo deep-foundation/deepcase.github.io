@@ -3,13 +3,13 @@ import React, { ReactElement, useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 
 
-interface IMenuItem {
+export interface IMenuItem {
   i?: number;
   expanded?: boolean | number;
   setExpanded?: (i: any) => any;
   id: number;
   title: string;
-  body?: ReactElement;
+  body?: string;
   children?: IMenuItem[];
 }
 
@@ -56,7 +56,7 @@ export const DocumentationMenu = React.memo<any>(({i, expanded, setExpanded, tit
         animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >{title}</motion.header>
-      {children && children.map(c => (<SubMenu key={c.id} title={c.title} />))}
+      {children && children.map(c => (<SubMenu key={c.id} {...c} />))}
     </>
   )
 })

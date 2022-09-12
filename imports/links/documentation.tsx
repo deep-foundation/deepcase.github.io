@@ -20,12 +20,12 @@ export const Documentation = React.memo(() => {
     {
       id: 123,
       title: 'Abc',
-      body: <div>123</div>,
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
       children: [
         {
           id: 234,
           title: 'Qwe',
-          body: <div>234</div>,
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
         },
       ],
     },
@@ -46,7 +46,7 @@ export const Documentation = React.memo(() => {
         ))}
       </Box>
       <Box>
-        {chapters.map(c => (<DocumentationContent key={c.id} title={c.title} description={c.description} />))}
+        {placeholderMenu.map(p => (<DocumentationContent key={p.id} {...p} />))}
       </Box>
     </Box>
   )
