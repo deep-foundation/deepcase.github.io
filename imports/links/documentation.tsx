@@ -42,7 +42,7 @@ export const Documentation = React.memo<any>(() => {
   ];
   console.log({placeholderMenu});
 
-  return (<Box as='main' display='flex' flexDir={{sm: 'column', md: 'row'}}>
+  return (<Box as='main' display='grid' gridColumn='minmax(4rem, 20rem) 1fr'>
       <Box as='nav' w='100%'>
         {placeholderMenu.map((p, i) => (
           <DocumentationMenu 
