@@ -13,7 +13,7 @@ const chapters = _.times(10, (i) => {
   }
 });
 
-export const Documentation = React.memo(() => {
+export const Documentation = React.memo<any>(() => {
   const [expanded, setExpanded] = useState(0);
 
   const placeholderMenu: Menu = [
@@ -24,6 +24,11 @@ export const Documentation = React.memo(() => {
       children: [
         {
           id: 234,
+          title: 'Qwe',
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
+        },
+        {
+          id: 274,
           title: 'Qwe',
           body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
         },

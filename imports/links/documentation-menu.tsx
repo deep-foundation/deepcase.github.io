@@ -9,22 +9,11 @@ export interface IMenuItem {
   setExpanded?: (i: any) => any;
   id: number;
   title: string;
-  body?: string;
+  body?: any;
   children?: IMenuItem[];
 }
 
 export type Menu = IMenuItem[];
-
-export const ContentPlaceholder = React.memo<any>((title) => {
-  return (<motion.div
-      variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
-      transition={{ duration: 0.8 }}
-      style={{ originY: 0 }}
-    >
-      {title}
-    </motion.div>
-  )
-});
 
 export const SubMenu = React.memo<any>((isOpen, title) => {
   return (<AnimatePresence initial={false}>
@@ -40,7 +29,13 @@ export const SubMenu = React.memo<any>((isOpen, title) => {
         }}
         transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
       >
-        <ContentPlaceholder title={title} />
+        <motion.div
+          variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
+          transition={{ duration: 0.8 }}
+          style={{ originY: 0 }}
+        >
+          {title}
+        </motion.div>
       </motion.section>
     )}
   </AnimatePresence>)
