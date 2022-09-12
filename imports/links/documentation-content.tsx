@@ -35,13 +35,13 @@ export const DocumentationContent = React.memo(({title, body, children}:IMenuIte
       }
       {children && children.map(c => (<>
         <H2 as='header'>{c.title}</H2>
-        body && <Text fontSize='sm' as={motion.div}
+        {body && <Text fontSize='sm' as={motion.div}
           animate={controls}
           variants={animationVariants}
           style={{ transformOrigin: 'top center' }}
         >
           {c.body}
-        </Text>
+        </Text>}
       </>))}
     </Box>
   )

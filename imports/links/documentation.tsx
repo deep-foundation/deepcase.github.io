@@ -34,7 +34,13 @@ export const Documentation = React.memo<any>(() => {
         },
       ],
     },
+    {
+      id: 1223,
+      title: 'Abc',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
+    },
   ];
+  console.log({placeholderMenu});
 
   return (<Box as='main' display='flex' flexDir={{sm: 'column', md: 'row'}}>
       <Box as='nav' w='100%'>
@@ -51,7 +57,8 @@ export const Documentation = React.memo<any>(() => {
         ))}
       </Box>
       <Box>
-        {placeholderMenu.map(p => (<DocumentationContent key={p.id} {...p} />))}
+        {placeholderMenu.map(p => (<DocumentationContent key={p.id} {...p} />
+        ))}
       </Box>
     </Box>
   )

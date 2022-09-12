@@ -15,7 +15,7 @@ export interface IMenuItem {
 
 export type Menu = IMenuItem[];
 
-export const SubMenu = React.memo<any>((isOpen, title) => {
+export const SubMenu = React.memo<any>(({isOpen, title}) => {
   return (<AnimatePresence initial={false}>
     {isOpen && (
       <motion.section
@@ -45,13 +45,15 @@ export const SubMenu = React.memo<any>((isOpen, title) => {
 export const DocumentationMenu = React.memo<any>(({i, expanded, setExpanded, title, children}:IMenuItem) => {
   const isOpen = i === expanded;
 
+  console.log({children});
+
   return (<>
       <motion.header
         initial={false}
         animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >{title}</motion.header>
-      {children && children.map(c => (<SubMenu key={c.id} {...c} />))}
+      {children && children.map(c => (<SubMenu key={c.id} title={c.title} isOpen={isOpen} />))}
     </>
   )
 })
