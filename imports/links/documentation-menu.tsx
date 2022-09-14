@@ -92,7 +92,11 @@ export const DocumentationMenu = React.memo<any>(({
           animate={{ color: isOpen ? "#FF0088" : "#0055FF" }}
           onClick={() => setExpanded(isOpen ? false : i)}
           rightIcon={<TbArrowTopCircle />}
-          {...style}
+          sx={{
+            justifyContent: 'flex-start',
+            p: 0,
+            ...style
+          }}
         >{title}</Button>
         {children && children.map(c => (<SubMenu key={c.id} title={c.title} isOpen={isOpen} onClick={() => setExpanded(isOpen ? false : i)} />))}
       </motion.li>
