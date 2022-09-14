@@ -1,70 +1,118 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { ReactElement } from 'react';
+import { useRef, useEffect } from "react";
+import { motion, useCycle } from "framer-motion";
+import { Button } from '../framework';
 
 
-const itemVariants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 }
-  },
-  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+export const useDimensions = ref => {
+  const dimensions = useRef({ width: 0, height: 0 });
+
+  useEffect(() => {
+    dimensions.current.width = ref.current.offsetWidth;
+    dimensions.current.height = ref.current.offsetHeight;
+  }, []);
+
+  return dimensions.current;
 };
 
-export const DocumentationMenuMobile = React.memo<any>(() => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  return (<motion.nav
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2
+    }
+  }),
+  closed: {
+    clipPath: "circle(30px at 40px 40px)",
+    transition: {
+      delay: 0.5,
+      type: "spring",
+      stiffness: 400,
+      damping: 40
+    }
+  }
+};
+
+const Path = React.memo<any>(props => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="3"
+    stroke="hsl(0, 0%, 18%)"
+    strokeLinecap="round"
+    {...props}
+  />
+));
+
+const MenuToggle = React.memo<any>(({ toggle }) => (
+  <Button 
+    onClick={toggle}
+    variant='ghost'
+    sx={{
+      outline: 'none',
+      border: 'none',
+      userSelect: 'none',
+      cursor: 'pointer',
+      position: 'absolute',
+      top: 18,
+      left: 15,
+      width: 50,
+      height: 50,
+      borderRadius: '50%',
+      background: 'transparent',
+    }}
+  >
+    <svg width="23" height="23" viewBox="0 0 23 23">
+      <Path
+        variants={{
+          closed: { d: "M 2 2.5 L 20 2.5" },
+          open: { d: "M 3 16.5 L 17 2.5" }
+        }}
+      />
+      <Path
+        d="M 2 9.423 L 20 9.423"
+        variants={{
+          closed: { opacity: 1 },
+          open: { opacity: 0 }
+        }}
+        transition={{ duration: 0.1 }}
+      />
+      <Path
+        variants={{
+          closed: { d: "M 2 16.346 L 20 16.346" },
+          open: { d: "M 3 2.5 L 17 16.346" }
+        }}
+      />
+    </svg>
+  </Button>
+));
+
+export const DocumentationMenuMobile = React.memo<any>(({menuList}:{menuList?: ReactElement}) => {
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
+  const { height } = useDimensions(containerRef);
+
+  return ( <motion.div
     initial={false}
     animate={isOpen ? "open" : "closed"}
-    className="menu"
+    custom={height}
+    ref={containerRef}
+    style={{position: 'relative'}}
   >
-    <motion.button
-      whileTap={{ scale: 0.97 }}
-      onClick={() => setIsOpen(!isOpen)}
-    >
-      Menu
-      <motion.div
-        variants={{
-          open: { rotate: 180 },
-          closed: { rotate: 0 }
-        }}
-        transition={{ duration: 0.2 }}
-        style={{ originY: 0.55 }}
-      >
-        <svg width="15" height="15" viewBox="0 0 20 20">
-          <path d="M0 7 L 20 7 L 10 16" />
-        </svg>
-      </motion.div>
-    </motion.button>
-    <motion.ul
-      variants={{
-        open: {
-          clipPath: "inset(0% 0% 0% 0% round 10px)",
-          transition: {
-            type: "spring",
-            bounce: 0,
-            duration: 0.7,
-            delayChildren: 0.3,
-            staggerChildren: 0.05
-          }
-        },
-        closed: {
-          clipPath: "inset(10% 50% 90% 50% round 10px)",
-          transition: {
-            type: "spring",
-            bounce: 0,
-            duration: 0.3
-          }
-        }
-      }}
-      style={{ pointerEvents: isOpen ? "auto" : "none" }}
-    >
-      <motion.li variants={itemVariants}>Item 1 </motion.li>
-      <motion.li variants={itemVariants}>Item 2 </motion.li>
-      <motion.li variants={itemVariants}>Item 3 </motion.li>
-      <motion.li variants={itemVariants}>Item 4 </motion.li>
-      <motion.li variants={itemVariants}>Item 5 </motion.li>
-    </motion.ul>
-  </motion.nav>)
+    <motion.div 
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        width: '100%',
+        background: '#fff',
+      }} 
+      variants={sidebar} 
+    />
+    {menuList}
+    <MenuToggle toggle={() => toggleOpen()} />
+  </motion.div>)
 })

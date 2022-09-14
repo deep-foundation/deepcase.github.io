@@ -10,7 +10,7 @@ import { Welcome } from '../imports/guild/welcome';
 import { FlexSection } from '../imports/layout';
 import { Provider } from '../imports/provider';
 import { AdaptiveSpace, Space } from '../imports/space';
-import { coreTheme, guildTheme } from '../imports/theme/build';
+import { coreTheme, linksTheme } from '../imports/theme/build';
 
 import { MapText } from '../imports/guild/map-text';
 import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
@@ -23,7 +23,7 @@ import { Documentation } from '../imports/links/documentation';
 
 export default function Page () {
   return (
-    <ChakraProvider theme={guildTheme}>
+    <ChakraProvider theme={linksTheme}>
       <Provider>
         <PageContent />
       </Provider>

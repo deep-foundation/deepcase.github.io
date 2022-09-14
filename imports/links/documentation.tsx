@@ -5,6 +5,7 @@ import { DocumentationContent } from './documentation-content';
 import { DocumentationMenu, Menu } from './documentation-menu';
 import { H1 } from '../headers';
 import { motion, useAnimation } from 'framer-motion';
+import { DocumentationMenuMobile } from './documentation-menu-mobile';
 
 
 const chapters = _.times(10, (i) => {
@@ -64,37 +65,8 @@ export const Documentation = React.memo<any>(() => {
     }
   }, [controls, max820]);
 
-  return (<Box display='grid' gridTemplateColumns={{sm: '1fr', md: 'minmax(4rem, 20rem) 1px 1fr'}}>
-      
-        {/* <Box as={motion.div} 
-          w='100%'
-          display='flex'
-          flexDirection='column'
-          animate={controls}
-          variants={menuVariants}
-        >
-          <Box display='flex' flexDirection='row' alignItems='center' p={4} boxSize='border-box'>
-            <Circle size='3rem'>
-              <Img src='./logo_n.svg' alt='logo' />
-            </Circle>
-            <H1>Deep.Case</H1>
-          </Box>
-          <Box w='100%' h='1px' bg='blackAlpha.200' mb={4} />
-          {placeholderMenu.map((p, i) => (
-            <DocumentationMenu 
-              key={p.id}
-              i={i}
-              expanded={expanded}
-              setExpanded={setExpanded}
-              title={p.title}
-              children={p.children} 
-              id={p.id}
-            />
-          ))}
-        </Box>
-        <Box h='100vh' w='1px' bg='blackAlpha.200' /> */}
-      
-      <Hide breakpoint='(max-width: 820px)'>
+  return (<Box display='grid' gridTemplateColumns={{sm: '1fr', md: 'minmax(4rem, 20rem) 1px 1fr'}} gridTemplateRows={{sm: '0.2fr 1fr', md: '1fr'}}>
+      {/* <Hide breakpoint='(max-width: 820px)'> */}
         <Box as='nav' w='100%' display='flex' flexDirection='column'>
           <Box display='flex' flexDirection='row' alignItems='center' p={4} boxSize='border-box'>
             <Circle size='3rem'>
@@ -103,22 +75,31 @@ export const Documentation = React.memo<any>(() => {
             <H1>Deep.Case</H1>
           </Box>
           <Box w='100%' h='1px' bg='blackAlpha.200' mb={4} />
-          {placeholderMenu.map((p, i) => (
-            <DocumentationMenu 
-              key={p.id}
-              i={i}
-              expanded={expanded}
-              setExpanded={setExpanded}
-              title={p.title}
-              children={p.children} 
-              id={p.id}
-            />
-          ))}
+          <DocumentationMenuMobile menuList={
+            <Box sx={{
+              p: 4,
+              position: 'absolute',
+              top: 100,
+              width: '100%',
+            }}>
+              {placeholderMenu.map((p, i) => (
+                <DocumentationMenu 
+                  key={p.id}
+                  i={i}
+                  expanded={expanded}
+                  setExpanded={setExpanded}
+                  title={p.title}
+                  children={p.children} 
+                  id={p.id}
+                />
+              ))}
+            </Box>} 
+          />
         </Box>
         <Box h='100vh' w='1px' bg='blackAlpha.200' />
-      </Hide>
+      {/* </Hide> */}
       {/* <Show breakpoint='(max-width: 820px)'>
-        
+        <DocumentationMenuMobile />
       </Show> */}
       <Box boxSize='border-box' p={8}>
         {placeholderMenu.map(p => (<DocumentationContent key={p.id} {...p} />
