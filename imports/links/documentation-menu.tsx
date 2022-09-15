@@ -1,26 +1,96 @@
-import { Accordion, AccordionItem, Button, AccordionIcon, AccordionPanel, Box } from '../framework';
-import React, { ReactElement, useState } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
-import { TbArrowTopCircle } from 'react-icons/tb';
+import React, { ReactElement } from 'react';
+import { useRef, useEffect } from "react";
+import { motion, useCycle } from "framer-motion";
+import { Button, Hide, useMediaQuery } from '../framework';
 
 
-export interface IMenuItem {
-  i?: number;
-  expanded?: boolean | number;
-  setExpanded?: (i: any) => any;
-  id: number;
-  title: string;
-  body?: any;
-  children?: IMenuItem[];
-}
+export const useDimensions = ref => {
+  const dimensions = useRef({ width: 0, height: 0 });
 
-interface IMenuItemProps extends IMenuItem {
-  style?: any;
-}
+  useEffect(() => {
+    dimensions.current.width = ref.current.offsetWidth;
+    dimensions.current.height = ref.current.offsetHeight;
+  }, []);
 
-export type Menu = IMenuItem[];
+  return dimensions.current;
+};
 
-const variantsUl = {
+
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2
+    }
+  }),
+  closed: {
+    clipPath: "circle(30px at 40px 40px)",
+    transition: {
+      delay: 0.5,
+      type: "spring",
+      stiffness: 400,
+      damping: 40
+    }
+  }
+};
+
+const Path = React.memo<any>(props => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="3"
+    stroke="hsl(0, 0%, 18%)"
+    strokeLinecap="round"
+    {...props}
+  />
+));
+
+const MenuToggle = React.memo<any>(({ toggle }) => (
+  <Button 
+    onClick={toggle}
+    variant='ghost'
+    sx={{
+      outline: 'none',
+      border: 'none',
+      userSelect: 'none',
+      cursor: 'pointer',
+      position: 'absolute',
+      top: 18,
+      left: 15,
+      width: 50,
+      height: 50,
+      borderRadius: '50%',
+      background: 'transparent',
+    }}
+  >
+    <svg width="23" height="23" viewBox="0 0 23 23">
+      <Path
+        variants={{
+          closed: { d: "M 2 2.5 L 20 2.5" },
+          open: { d: "M 3 16.5 L 17 2.5" }
+        }}
+      />
+      <Path
+        d="M 2 9.423 L 20 9.423"
+        variants={{
+          closed: { opacity: 1 },
+          open: { opacity: 0 }
+        }}
+        transition={{ duration: 0.1 }}
+      />
+      <Path
+        variants={{
+          closed: { d: "M 2 16.346 L 20 16.346" },
+          open: { d: "M 3 2.5 L 17 16.346" }
+        }}
+      />
+    </svg>
+  </Button>
+));
+
+const variantsNav = {
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 }
   },
@@ -29,77 +99,49 @@ const variantsUl = {
   }
 };
 
-const variantsLi = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 }
-    }
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 }
-    }
-  }
-};
+export const DocumentationMenu = React.memo<any>(({menuList, breakpoint}:{menuList?: ReactElement; breakpoint?: string;}) => {
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
+  const { height } = useDimensions(containerRef);
+  const [isDesktop] = useMediaQuery('(min-width: 820px)');
 
-export const SubMenu = React.memo<any>(({isOpen, title, onClick}) => {
-  return (<AnimatePresence initial={false}>
-    {isOpen && (
-      <motion.section
-        key="content"
-        initial="collapsed"
-        animate="open"
-        exit="collapsed"
-        variants={{
-          open: { opacity: 1, height: "auto" },
-          collapsed: { opacity: 0, height: 0 }
-        }}
-        transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-        onClick={onClick}
-      >
-        <motion.div
-          variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
-          transition={{ duration: 0.8 }}
-          style={{ originY: 0 }}
-        >
-          {title}
-        </motion.div>
-      </motion.section>
-    )}
-  </AnimatePresence>)
-});
-
-
-export const DocumentationMenu = React.memo<any>(({
-  i, 
-  expanded, 
-  setExpanded, 
-  title, 
-  children, 
-  style
-}:IMenuItemProps) => {
-  const isOpen = i === expanded;
-
-  return (<motion.ul variants={variantsUl}>
-      <motion.li variants={variantsLi} style={{listStyle: "none"}}>
-        <Button variant='ghost' as={motion.div}
-          width='100%'
-          initial={false}
-          animate={{ color: isOpen ? "#FF0088" : "#0055FF" }}
-          onClick={() => setExpanded(isOpen ? false : i)}
-          rightIcon={<TbArrowTopCircle />}
-          sx={{
-            justifyContent: 'flex-start',
-            p: 0,
-            ...style
-          }}
-        >{title}</Button>
-        {children && children.map(c => (<SubMenu key={c.id} title={c.title} isOpen={isOpen} onClick={() => setExpanded(isOpen ? false : i)} />))}
-      </motion.li>
-    </motion.ul>
-  )
+  return ( <motion.div
+    initial={false}
+    animate={isDesktop ? "open" : isOpen ? "open" : "closed"}
+    custom={height}
+    ref={containerRef}
+    style={{
+      position: 'absolute',
+      top: isDesktop ? '5.1rem' : 0,
+      left: 0,
+      bottom: 0,
+      width: '20rem',
+      // minWidth: '4rem',
+      // maxWidth: '20rem',
+    }}
+  >
+    <motion.div 
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        width: '100%',
+        background: '#fff',
+      }} 
+      variants={sidebar} 
+    />
+     <motion.ul 
+      variants={variantsNav} 
+      style={{
+        pointerEvents: isDesktop ? 'auto' : isOpen ? 'auto' : 'none',
+        // background: '#fff',
+      }}
+    >
+      {menuList}
+     </motion.ul>
+     <Hide breakpoint={breakpoint}>
+      <MenuToggle toggle={() => toggleOpen()} />
+     </Hide>
+  </motion.div>)
 })

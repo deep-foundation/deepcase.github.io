@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Box, Text } from '../framework';
 import { H1, H2 } from '../headers';
-import { IMenuItem } from './documentation-menu';
+import { IMenuItem } from './documentation-menu-item';
 import { motion, useAnimation, useInView } from "framer-motion";
 
 
