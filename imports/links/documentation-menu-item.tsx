@@ -1,8 +1,7 @@
-import { Accordion, AccordionItem, Button, AccordionIcon, AccordionPanel, Box } from '../framework';
-import React, { ReactElement, useState } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import React from 'react';
 import { TbArrowTopCircle } from 'react-icons/tb';
-
+import { Button } from '../framework';
 
 export interface IMenuItem {
   i?: number;

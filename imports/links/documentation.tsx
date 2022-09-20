@@ -8,14 +8,6 @@ import { motion, useAnimation } from 'framer-motion';
 import { DocumentationMenu } from './documentation-menu';
 
 
-const chapters = _.times(10, (i) => {
-  return {
-    id: i.toString(),
-    title: 'Lorem Ipsum',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis. Quisque hendrerit molestie feugiat. Fusce aliquet tellus sed ex congue, vel commodo mauris dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla eleifend ante nulla, sit amet iaculis lacus vulputate in. Proin ipsum lorem, vulputate ac mauris eu, facilisis aliquet magna. Vestibulum dignissim lacinia varius. Sed gravida quam vitae posuere commodo. Phasellus lacus mauris, faucibus eu rhoncus a, pulvinar a ante. Aliquam eu nibh euismod enim porta semper at auctor nisl. Aliquam pharetra varius sapien vitae fermentum. Aliquam rhoncus erat et dui luctus sagittis. Phasellus quis tellus vulputate, pretium ligula ut, iaculis quam. Sed accumsan egestas bibendum. Sed sed finibus eros."
-  }
-});
-
 const menuVariants = {
   visible: { borderRadius: '50%', transition: { duration: 0.8 } },
   hidden: { borderRadius: 'none', transition: { duration: 0.8 } }
@@ -55,17 +47,8 @@ export const Documentation = React.memo<any>(() => {
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo ultrices lacus luctus mattis.',
     },
   ];
-  const controls = useAnimation();
-  const [max820] = useMediaQuery('(max-width: 820px)');
+
   const [min820] = useMediaQuery('(min-width: 820px)');
-  // useEffect(() => {
-  //   if (max820) {
-  //     controls.start("visible");
-  //   } else {
-  //     controls.start("hidden");
-  //   }
-  // }, [controls, max820]);
-  
 
   return (<Box display='grid' gridTemplateColumns={{sm: '1fr', md: 'minmax(4rem, 20rem) 1px 1fr'}} gridTemplateRows={{sm: '0.2fr 1fr', md: '1fr'}}>
         <Box as='nav' w='100%' display='flex' flexDirection={min820 ? 'column' : 'row-reverse'}>
