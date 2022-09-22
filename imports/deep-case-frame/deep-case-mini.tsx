@@ -1,21 +1,13 @@
-import React from 'react';
 import { motion } from "framer-motion";
-import { IconContext } from 'react-icons/';
-import { BsFillBrightnessHighFill } from 'react-icons/bs';
+import React from 'react';
+import { Box } from '../framework';
 
-
-const PlayIcon = React.memo<any>(() => {
-  return (<IconContext.Provider value={{ color: "#008fcc", size: '4.5rem' }}>
-      <div>
-        <BsFillBrightnessHighFill />
-      </div>
-    </IconContext.Provider>
-  )
-})
 
 const variants = {
-    hoverState: { borderRadius: "4.8rem", padding: '0.5rem'},
-    tapState: { backgroundColor: "#ffd700" }
+    start: { borderRadius: "1.8rem", },
+    hoverState: { borderRadius: "50%" },
+    end: { borderRadius: "1.8rem" }
+    // tapState: { backgroundColor: "#ffd700" }
 };
 
 export const DeepCaseMini =  React.memo<any>(() => {
@@ -30,14 +22,25 @@ export const DeepCaseMini =  React.memo<any>(() => {
         display: "flex",
         placeItems: "center",
         placeContent: "center",
+        overflow: 'hidden',
       }}
+      animate="start"
       variants={variants}
-      // animate="start"
       // whileHover="hoverState"
       // whileTap="tapState"
-      // transition={{
-      //   type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
-      // }}
-    ><PlayIcon /></motion.div>
+      transition={{
+        type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
+      }}
+    >
+      <Box w='100%' h='100%'>
+        <iframe
+          width='100%'
+          height='100%'
+          title='deep case'
+          src='https://deep.deep.foundation/'
+          allowFullScreen
+        />
+      </Box>
+    </motion.div>
   );
 })

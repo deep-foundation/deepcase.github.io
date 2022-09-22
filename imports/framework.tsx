@@ -29,22 +29,6 @@ export const useMediaQuery = function useMediaQuery(arg) {
   return [value, isBrowser];
 }
 
-// export function ScreenCenter(props) {
-//   return (
-//     <Grid container justify="center" alignItems="center" {...props} style={{ minHeight: '100vh', minWidth: '100vw', ...props?.style }}/>
-//   )
-// };
-
-// export function Screen({ children, ContainerProps, ItemProps }: { children: any; ContainerProps?: any; ItemProps?: any; }) {
-//   return (
-//     <ScreenCenter {...ContainerProps}>
-//       <Grid item xs={11} sm={9} md={7} lg={6} {...ItemProps}>
-//         {children}
-//       </Grid>
-//     </ScreenCenter>
-//   )
-// };
-
 export function ButtonExplotion(props: any) {
   const [exp, setExp] = useState(false);
   return <>

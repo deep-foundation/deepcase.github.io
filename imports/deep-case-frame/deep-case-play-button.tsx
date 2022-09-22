@@ -15,9 +15,9 @@ const PlayIcon = React.memo<any>(() => {
 })
 
 const variants = {
-    // start: { rotate: 360 },
-    hoverState: { borderRadius: "4.8rem", padding: '0.5rem'},
-    // tapState: { borderRadius: "1.5rem"  }
+    start: { rotate: 360, borderRadius: "1.8rem", },
+    hoverState: { borderRadius: "50%"  },
+    tapState: { borderRadius: "1.5rem"  }
 };
 
 export const DeepCasePlayButton =  React.memo<any>(({onTapButton}:{onTapButton?: () => any;}) => {
@@ -26,7 +26,6 @@ export const DeepCasePlayButton =  React.memo<any>(({onTapButton}:{onTapButton?:
       style={{
         width: '100%',
         height: '100%',
-        borderRadius: "1.8rem",
         backgroundColor: "#19202B",
         cursor: "pointer",
         display: "flex",
@@ -34,21 +33,15 @@ export const DeepCasePlayButton =  React.memo<any>(({onTapButton}:{onTapButton?:
         placeContent: "center",
       }}
       variants={variants}
-      // animate="start"
+      animate="start"
       whileHover="hoverState"
-      // whileTap="tapState"
+      whileTap="tapState"
       onTap={onTapButton}
       transition={{
         type: "spring", mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
       }}
     >
-      <AspectRatio maxW='200px' ratio={1}>
-        <iframe
-          title='naruto'
-          src='https://www.deep.deepcese'
-          allowFullScreen
-        />
-      </AspectRatio>
+      <PlayIcon />
     </motion.div>
   );
 })
