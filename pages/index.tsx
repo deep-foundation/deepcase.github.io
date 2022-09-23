@@ -1,26 +1,23 @@
 import * as Sentry from '@sentry/nextjs';
 import { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BsArrowsFullscreen } from 'react-icons/bs';
-import { ButtonGroupDownload } from '../imports/button-group-download';
+import { ArticlesGrid } from '../imports/article';
 import { CrewCard } from '../imports/crew-card';
+import { DeepMainTheses } from '../imports/deep-main-theses';
 import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
 import { Footer } from '../imports/footer';
-import { Box, Button, HStack, IconButton, keyframes, Link, Stack, Text, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem, Center } from '../imports/framework';
+import { Blob } from '../imports/form-blob';
+import { Box, Button, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
 import { H2 } from '../imports/headers';
-import { IFrame } from '../imports/iframe';
-import { IntroMobile } from '../imports/intro/intro-mobile';
 import { IntroDesktop } from '../imports/intro/intro-desktop';
+import { IntroMobile } from '../imports/intro/intro-mobile';
 import { FlexSection, GridArea } from '../imports/layout';
 import { Provider } from '../imports/provider';
 import { AdaptiveSpace, Space } from '../imports/space';
-import { TalkingPoints } from '../imports/talking-points';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
-import { ArticlesGrid } from '../imports/article';
-import { DeepMainTheses } from '../imports/deep-main-theses';
 
 
 Sentry.init({
@@ -182,6 +179,21 @@ export function PageContent() {
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
         </> }
         
+        <Space unit={6} />
+        {/* <Box 
+          as='section'
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            maxH: '80vh',
+          }}
+        >
+          <Blob />
+        </Box> */}
+
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />

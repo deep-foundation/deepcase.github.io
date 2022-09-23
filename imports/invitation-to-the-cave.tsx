@@ -71,6 +71,7 @@ const Invitation = React.memo(({onEnterCave, ref}:{onEnterCave: (e: any) => any;
         }}
         _last={{mt: 6}}
         onClick={(e: any) => onEnterCave(e)}
+        aria-label={t('podcast-invitation--button_enter_the_cave')}
       >
         {t('podcast-invitation--button_enter_the_cave')}
       </Button>
@@ -78,7 +79,7 @@ const Invitation = React.memo(({onEnterCave, ref}:{onEnterCave: (e: any) => any;
   )
 })
 
-export const InvitationToTheCave = React.memo<any>(() => {
+export const InvitationToTheCave = React.memo<any>(({...boxProps}:{boxProps?: any;}) => {
   const { t } = useTranslation();
   const [ contentReplacement, setContentReplacement ] = useState(false);
   const control = useAnimation();
@@ -108,8 +109,23 @@ export const InvitationToTheCave = React.memo<any>(() => {
     };
   }, []);
 
-  return (<Box pos='relative' w='100%' h='100%'>
-      <motion.div variants={invitation} animate={control}>
+  return (<Box 
+      pos='relative' 
+      w='100%' 
+      h='100%' 
+      {...boxProps}
+    >
+      <motion.div 
+        variants={invitation} 
+        animate={control}
+        style={{
+          // position: 'absolute',
+          // top: '50%',
+          // transform: 'translateY(-50%) translateX(-25%)',
+          // left: '50%',
+          width: '100%',
+        }}
+      >
        <Invitation onEnterCave={(e) => {
         e.stopPropagation();
         setContentReplacement(!contentReplacement);
@@ -140,7 +156,8 @@ const EntryForm = React.memo<any>(() => {
         as='label' 
         fontSize='sm' 
         color='primary'
-      >
+        id="nameLabel"
+        >
         {t('podcast-invitation--your_name')}
       </Text>
       <Input 
@@ -149,13 +166,17 @@ const EntryForm = React.memo<any>(() => {
         size='sm' 
         value={value}
         onChange={handleChange}
-      />
+        aria-placeholder={t('podcast-invitation--your_name')}
+        aria-required="false"
+        aria-labelledby='nameLabel'
+        />
       <Text
         htmlFor='phone'
         as='label' 
         fontSize='sm' 
         color='primary'
-      >
+        id="phoneLabel"
+        >
         {t('podcast-invitation--your_phone')}
       </Text>
       <Input 
@@ -164,13 +185,17 @@ const EntryForm = React.memo<any>(() => {
         size='sm' 
         value={value}
         onChange={handleChange}
-      />
+        aria-placeholder={t('podcast-invitation--your_phone')}
+        aria-required="false"
+        aria-labelledby='phoneLabel'
+        />
       <Text
         htmlFor='email'
         as='label' 
         fontSize='sm' 
         color='primary'
-      >
+        id="emailLabel"
+        >
         {t('podcast-invitation--your_email')}
       </Text>
       <Input 
@@ -179,13 +204,17 @@ const EntryForm = React.memo<any>(() => {
         size='sm' 
         value={value}
         onChange={handleChange}
-      />
+        aria-placeholder={t('podcast-invitation--your_email')}
+        aria-required="false"
+        aria-labelledby='emailLabel'
+        />
       <Text
         htmlFor='greatest_achievement'
         as='label' 
         fontSize='sm' 
         color='primary'
-      >
+        id='greatest_achievementLabel'
+        >
         {t('podcast-invitation--greatest_achievement')}
       </Text>
       <Input 
@@ -194,12 +223,17 @@ const EntryForm = React.memo<any>(() => {
         size='sm' 
         value={value}
         onChange={handleChange}
+        aria-placeholder={t('podcast-invitation--greatest_achievement')}
+        aria-required="false"
+        aria-multiline='true'
+        aria-labelledby='greatest_achievementLabel'
       />
       <Text
         htmlFor='legendary_event'
         as='label' 
         fontSize='sm' 
         color='primary'
+        id='legendary_eventLabel'
       >
         {t('podcast-invitation--legendary_event')}
       </Text>
@@ -209,6 +243,9 @@ const EntryForm = React.memo<any>(() => {
         size='sm' 
         value={value}
         onChange={handleChange}
+        aria-required="false"
+        aria-placeholder={t('podcast-invitation--legendary_event')}
+        aria-labelledby='legendary_eventLabel'
       />
       <Text color='whiteAlpha.800' fontSize='xs'>{t('podcast-invitation--podcast_name')}</Text>
       <Button 
@@ -220,6 +257,7 @@ const EntryForm = React.memo<any>(() => {
         }}
         _last={{mt: 6}}
         onClick={() => {}}
+        aria-label={t('podcast-invitation--button_call_the_dragon')}
       >
         {t('podcast-invitation--button_call_the_dragon')}
       </Button>

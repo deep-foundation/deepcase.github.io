@@ -41,7 +41,7 @@ const backdrop = {
 }
 
 export const TalksFormCust = React.memo<any>(({
-  portalOpen1 = false, 
+  portalOpen1 = true, 
   onClosePortal1
 }:{
   portalOpen1?: boolean; 
@@ -62,8 +62,6 @@ export const TalksFormCust = React.memo<any>(({
       control.start("inactive");
     }
   }, [control, portalOpen1]);
-
-  console.log(portalOpen1);
 
   return (
     <Portal>
