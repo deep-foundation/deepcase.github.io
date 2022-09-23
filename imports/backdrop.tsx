@@ -25,19 +25,33 @@ const backdrop = {
 }
 
 export const Backdrop = React.memo<any>(({
+  Provider,
+  PortalProps,
+  ComponentProps,
+  PortalComponent = Portal,
+  Component = Center,
   portalOpen = true, 
   onClosePortal,
+  animationVariants = backdrop,
+  refModal,
   children,
 }:{
+  Provider?: any;
+  PortalProps?: any;
+  ComponentProps?: any;
+  PortalComponent?: any;
+  Component?: any;
   portalOpen?: boolean; 
   onClosePortal: () => any;
+  animationVariants?: any;
+  refModal: any;
   children: any;
 }) => {
   const { t } = useTranslation();
   const control = useAnimation();
-  const ref = useRef();
+  
   useOutsideClick({
-    ref: ref,
+    ref: refModal,
     handler: onClosePortal,
   })
 
@@ -50,14 +64,15 @@ export const Backdrop = React.memo<any>(({
   }, [control, portalOpen]);
 
   return (
-    <Portal>
-      <Center 
+    <PortalComponent {...PortalProps}>
+      <Component 
         as={motion.div}
         animate={control}
-        variants={backdrop}
+        variants={animationVariants}
         width='100vw' 
         height='100vh'
         position='fixed'
+        background='#FFA99C'
         top={0}
         left={0}
         zIndex={3}
@@ -67,9 +82,8 @@ export const Backdrop = React.memo<any>(({
         '
         backdropInvert='25%'
         onClick={onClosePortal}
-      >
-       {children}
-      </Center>
-    </Portal>
+        {...ComponentProps}
+      />
+    </PortalComponent>
     )
   })

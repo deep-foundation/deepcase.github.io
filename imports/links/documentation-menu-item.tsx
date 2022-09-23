@@ -4,9 +4,6 @@ import { TbArrowTopCircle } from 'react-icons/tb';
 import { Button } from '../framework';
 
 export interface IMenuItem {
-  i?: number;
-  expanded?: boolean | number;
-  setExpanded?: (i: any) => any;
   id: number;
   title: string;
   body?: any;
@@ -14,7 +11,12 @@ export interface IMenuItem {
 }
 
 interface IMenuItemProps extends IMenuItem {
+  i?: number;
+  expanded?: boolean | number;
+  onOpen?: (e: any) => any;
   style?: any;
+  variants?: any;
+  transition?: any;
 }
 
 export type Menu = IMenuItem[];
@@ -65,24 +67,30 @@ export const SubMenu = React.memo<any>(({isOpen, title, onClick}) => {
 
 
 export const DocumentationMenuItem = React.memo<any>(({
-  i, 
+  // i, 
+  id,
   expanded, 
-  setExpanded, 
+  onOpen, 
   title, 
   children, 
-  style
+  style,
+  variants = {},
+  transition = {},
 }:IMenuItemProps) => {
-  const isOpen = i === expanded;
+  // const open = expanded === id ? true : false;
+const open = expanded;
 
   return (<motion.li variants={variantsLi} style={{listStyle: "none"}}>
       <Button variant='ghost' as={motion.div}
         width='100%'
         animate={{ 
-          color: isOpen ? "#FF0088" : "#0055FF", 
+          color: open ? "#FF0088" : "#0055FF", 
         }}
-        onClick={() => setExpanded(isOpen ? false : i)}
+        variants={variants}
+        transition={transition}
+        onClick={(e) => onOpen(e)}
         rightIcon={children && (
-          <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+          <motion.div animate={{ rotate: open ? 180 : 0 }}>
             <TbArrowTopCircle />
           </motion.div>
         )}
@@ -93,15 +101,32 @@ export const DocumentationMenuItem = React.memo<any>(({
         }}
       >{title}</Button>
       {children && children.map((c, i) =>(
-        <DocumentationMenuItem 
-          key={c.id}
-          i={i}
-          expanded={expanded}
-          setExpanded={setExpanded}
-          title={c.title}
-          id={c.id}
-        />))
-      // <SubMenu key={c.id} title={c.title} isOpen={isOpen} onClick={() => setExpanded(isOpen ? false : i)} />))
+        expanded && <AnimatePresence>
+          <motion.section
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 }
+            }}
+            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            <DocumentationMenuItem 
+              key={c.id}
+              // i={i}
+              expanded={expanded}
+              onOpen={(e) => onOpen(e)}
+              title={c.title}
+              id={c.id}
+              variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
+              transition={{ duration: 0.8 }}
+              children={c.children}
+            />
+          </motion.section>
+          </AnimatePresence>
+        ))
       }
     </motion.li>
   )

@@ -1,15 +1,16 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useRef, useEffect } from "react";
 import { motion, useCycle } from "framer-motion";
-import { Button, Hide, useMediaQuery } from '../framework';
+import { Button, Hide, useMediaQuery, Box } from '../framework';
+import { Backdrop } from '../backdrop';
 
 
 export const useDimensions = ref => {
   const dimensions = useRef({ width: 0, height: 0 });
 
   useEffect(() => {
-    dimensions.current.width = ref.current.offsetWidth;
-    dimensions.current.height = ref.current.offsetHeight;
+    dimensions.current.width = ref?.current?.offsetWidth;
+    dimensions.current.height = ref?.current?.offsetHeight;
   }, []);
 
   return dimensions.current;
@@ -47,7 +48,7 @@ const Path = React.memo<any>(props => (
   />
 ));
 
-const MenuToggle = React.memo<any>(({ toggle }) => (
+const MenuToggle = React.memo<any>(({ toggle }:{ toggle?: () => any; }) => (
   <Button 
     onClick={toggle}
     variant='ghost'
@@ -63,6 +64,7 @@ const MenuToggle = React.memo<any>(({ toggle }) => (
       height: 50,
       borderRadius: '50%',
       background: 'transparent',
+      zIndex: 3,
     }}
   >
     <svg width="23" height="23" viewBox="0 0 23 23">
@@ -99,49 +101,72 @@ const variantsNav = {
   }
 };
 
-export const DocumentationMenu = React.memo<any>(({menuList, breakpoint}:{menuList?: ReactElement; breakpoint?: string;}) => {
-  const [isOpen, toggleOpen] = useCycle(false, true);
+export const DocumentationMenu = React.memo<any>(({
+  menuList, 
+  breakpoint
+}:{
+  menuList?: ReactElement; 
+  breakpoint?: string;
+}) => {
+  const [isOpen, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const [isDesktop] = useMediaQuery('(min-width: 820px)');
 
-  return ( <motion.div
-    initial={false}
-    animate={isDesktop ? "open" : isOpen ? "open" : "closed"}
-    custom={height}
-    ref={containerRef}
-    style={{
-      position: 'absolute',
-      top: isDesktop ? '5.1rem' : 0,
-      left: 0,
-      bottom: 0,
-      width: '20rem',
-      // minWidth: '4rem',
-      // maxWidth: '20rem',
-    }}
-  >
-    <motion.div 
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        width: '100%',
-        background: '#fff',
-      }} 
-      variants={sidebar} 
-    />
-     <motion.ul 
-      variants={variantsNav} 
-      style={{
-        pointerEvents: isDesktop ? 'auto' : isOpen ? 'auto' : 'none',
-        // background: '#fff',
-      }}
-    >
-      {menuList}
-     </motion.ul>
-     <Hide breakpoint={breakpoint}>
-      <MenuToggle toggle={() => toggleOpen()} />
-     </Hide>
-  </motion.div>)
+  return (<>
+      <Backdrop
+        Component={Box}
+        portalOpen={isDesktop ? true : isOpen == true ? true : false} 
+        refModal={containerRef}
+        onClosePortal={() => setOpen(isOpen)}
+        ComponentProps={{
+          style: { originY: 0, originX: 0, zIndex: 1 },
+          backdropFilter: isDesktop ? 'none' : 'blur(12px)',
+          backdropInvert: isDesktop ? '0%' : ' 25%',
+          background: isDesktop && 'transparent'
+        }}
+      />
+      <motion.div
+        initial={false}
+        animate={isDesktop ? "open" : isOpen ? "open" : "closed"}
+        custom={height}
+        ref={containerRef}
+        style={{
+          position: 'absolute',
+          top: isDesktop ? '5.1rem' : 0,
+          left: 0,
+          bottom: 0,
+          width: '20rem',
+          height: '100vh',
+          zIndex: 2,
+        }}
+      >
+        <motion.div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: '100%',
+            background: '#fff',
+          }} 
+          variants={sidebar} 
+        />
+        <motion.ul 
+          variants={variantsNav} 
+          style={{
+            pointerEvents: isDesktop ? 'auto' : isOpen ? 'auto' : 'none',
+          }}
+        >
+          {menuList}
+        </motion.ul>
+        <Hide breakpoint={breakpoint}>
+          <MenuToggle toggle={() => {
+            setOpen(!isOpen);
+            console.log(isOpen);
+          }} />
+        </Hide>
+      </motion.div>
+    </>
+  )
 })
