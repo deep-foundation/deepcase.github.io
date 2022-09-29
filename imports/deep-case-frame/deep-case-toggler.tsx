@@ -5,69 +5,52 @@ import React from 'react';
 export const DeepCaseToggler =  React.memo<any>(({
   current, 
   children,
-  rotateX,
-  rotateY,
-  width = 300, 
-  height = 300,
-  parentProps,
 }:{
   current: number; 
   children: any;
-  rotateX: any;
-  rotateY: any;
-  width?: number;
-  height?: number;
-  parentProps?: any;
 }) => {
 
   const variants = {
     initial: { scale: 0, rotate: -280 },
-    animate: { scale: 1, rotate: 0 },
-    exit: { scale: 0, rotate: -280 },
+    animate: { 
+      scale: 1, 
+      rotate: 0, 
+      // borderRadius: ["1.375rem", "3.375rem", "6.375rem", "9.375rem" ] 
+    },
+    exit: { 
+      scale: 0, 
+      rotate: -280, 
+      // borderRadius: ["9.375rem", "6.375rem", "3.375rem", "1.375rem"] 
+    },
 };
 
-  return (<motion.div 
-      style={{ 
-        width: width, 
-        height: height, 
-        borderRadius: 30,
-        position: "relative",
-        rotateX: rotateX,
-        rotateY: rotateY,
-      }}
-      {...parentProps}
+  return (<AnimatePresence
+      initial={false}
+      custom={current}
     >
-      <AnimatePresence
-        initial={false}
-        custom={current}
+      <motion.div
+        style={{
+          position: "absolute",
+          top: 0, left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: "transparent",
+          // overflow: 'hidden',
+        }}
+        variants={variants}
+        initial='initial'
+        animate="animate"
+        exit="exit"
+        transition={{
+          duration: 1,
+            type: "spring",
+            stiffness: 100,
+            damping: 20, 
+        }}
+        key={current}
       >
-        <motion.div
-          style={{
-
-            position: "absolute",
-            top: 0, left: 0,
-            width: width,
-            height: height,
-            borderRadius: 30,
-            backgroundColor: "transparent",
-            overflow: 'hidden',
-            // rotateX: rotateX,
-            // rotateY: rotateY,
-          }}
-          variants={variants}
-          initial='initial'
-          animate="animate"
-          exit="exit"
-          transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 20,
-          }}
-          key={current}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 })

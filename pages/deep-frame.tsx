@@ -6,6 +6,7 @@ import { linksTheme } from '../imports/theme/build';
 
 import { useScroll } from 'framer-motion';
 import { DeepFrame } from '../imports/deep-case-frame/deep-frame';
+import { AdaptiveSpace } from '../imports/space';
 
 
 export default function Page () {
@@ -30,7 +31,7 @@ export const PageContent = React.memo(() => {
   
   return (<Box as='main' pos='relative' h='150vh'>
       {/* <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} /> */}
-      {/* <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} /> */}
+      <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
       <DeepFrame />
     </Box>
   );
