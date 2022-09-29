@@ -1,24 +1,14 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import detectBrowserLanguage from 'detect-browser-language';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import VisibilitySensor from 'react-visibility-sensor';
-import { Box, Center, Container } from '../imports/framework';
-import { Menu } from '../imports/guild/menu';
-import { MainTasks } from '../imports/guild/main-tasks';
-import { Welcome } from '../imports/guild/welcome';
-import { FlexSection } from '../imports/layout';
+import React, { useEffect, useState } from 'react';
+import { Box } from '../imports/framework';
 import { Provider } from '../imports/provider';
-import { AdaptiveSpace, Space } from '../imports/space';
-import { coreTheme, linksTheme } from '../imports/theme/build';
+import { coreTheme } from '../imports/theme/build';
 
-import { MapText } from '../imports/guild/map-text';
-import { MapSvgDrawCont } from '../imports/icons/mapDrawCont';
-import { AppSS } from '../imports/guild/menu-animation';
 import { useScroll } from 'framer-motion';
-import { Values } from '../imports/guild/values/values';
-import { Documentation } from '../imports/links/documentation';
 import { Blob } from '../imports/form-blob';
+import { InvitationToTheCave } from '../imports/invitation-to-the-cave';
+import { Backdrop } from '../imports/backdrop';
+import { TalksFormCust } from '../imports/invitation-modal';
 // import { motion, useScroll } from "framer-motion";
 
 
@@ -33,6 +23,7 @@ export default function Page () {
 };
 
 export const PageContent = React.memo(() => {
+
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -42,23 +33,22 @@ export const PageContent = React.memo(() => {
   }, [])
   
   
-  return (<Box as='main' pos='relative'>
+  return (<Box as='main' pos='relative' w='100vw'>
       {/* <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} /> */}
       {/* <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} /> */}
-      <Box 
-        as='section'
-        h='100vh'
-        sx={{
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-          maxH: '80vh',
-        }}
-      >
-        <Blob />
-      </Box>
+        <Box 
+          as='section'
+          h='100vh'
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            maxH: '80vh',
+          }}
+        >
+          <TalksFormCust />
+        </Box>
     </Box>
   );
 });

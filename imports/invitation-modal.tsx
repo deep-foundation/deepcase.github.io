@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, ModalBody, ModalContent, ModalOverlay, Box, Portal, Center, useOutsideClick } from '../imports/framework';
 import { InvitationToTheCave } from './invitation-to-the-cave';
 import { motion, useAnimation } from 'framer-motion';
+import { Blob } from './form-blob';
 
 
 const spring = {
@@ -41,27 +42,28 @@ const backdrop = {
 }
 
 export const TalksFormCust = React.memo<any>(({
-  portalOpen1 = true, 
-  onClosePortal1
+  portalOpen = true, 
+  onClosePortal
 }:{
-  portalOpen1?: boolean; 
-  onClosePortal1: () => any;
+  portalOpen?: boolean; 
+  onClosePortal: () => any;
 }) => {
   const { t } = useTranslation();
+  const [ contentReplacement, setContentReplacement ] = useState(false);
   const control = useAnimation();
   const ref = useRef();
   useOutsideClick({
     ref: ref,
-    handler: onClosePortal1,
+    handler: onClosePortal,
   })
 
   useEffect(() => {
-    if (portalOpen1 === true) {
+    if (portalOpen === true) {
       control.start("active"); 
     } else {
       control.start("inactive");
     }
-  }, [control, portalOpen1]);
+  }, [control, portalOpen]);
 
   return (
     <Portal>
@@ -80,23 +82,25 @@ export const TalksFormCust = React.memo<any>(({
           contrast(1.2)
         '
         backdropInvert='25%'
-        onClick={onClosePortal1}
+        onClick={onClosePortal}
       >
-        {portalOpen1 && <Box 
+        {portalOpen && <Box 
           as={motion.div} 
           animate={control} 
           variants={invitationForm} 
-          maxW='md'
-          minW='sm'
-          // width='calc(18rem + 0.5vmax)' 
-          height='max-content'  
-          border='1px solid rgb(255, 255, 251)'
-          bg='rgb(46, 69, 84)'
-          py={6}
-          px={4}
+          w='100%'
+          h='100%'
           ref={ref}
         >
-        <InvitationToTheCave />
+          <Blob contentReplacement={contentReplacement}>
+            <InvitationToTheCave
+              display="flex"
+              alignItems="center"
+              contentReplacement={contentReplacement}
+              setContentReplacement={() => setContentReplacement(!contentReplacement)}
+              onSubmit={() => setContentReplacement(false)}
+            />
+          </Blob>
         </Box>}
       </Center>
     </Portal>

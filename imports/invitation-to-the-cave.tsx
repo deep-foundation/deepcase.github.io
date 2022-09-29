@@ -20,7 +20,7 @@ const invitation = {
   },
   inactive: {
     opacity: 1,
-    display: 'block',
+    display: 'flex',
     transition: spring 
   }
 }
@@ -38,12 +38,13 @@ const form = {
   }
 }
 
-const Invitation = React.memo(({onEnterCave, ref}:{onEnterCave: (e: any) => any; ref?: any;}) => {
+const Invitation = React.memo<any>(({onEnterCave, ref}:{onEnterCave: (e: any) => any; ref?: any;}) => {
   const { t } = useTranslation(); 
 
   return ( <VStack
       spacing={2}
       textAlign='center'
+      width='max-content'
     >
       <Text 
         color='rgb(252, 255, 254)'
@@ -79,14 +80,20 @@ const Invitation = React.memo(({onEnterCave, ref}:{onEnterCave: (e: any) => any;
   )
 })
 
-export const InvitationToTheCave = React.memo<any>(({...boxProps}:{boxProps?: any;}) => {
+export const InvitationToTheCave = React.memo<any>(({
+  contentReplacement = false,
+  setContentReplacement,
+  onSubmit,
+  ...boxProps
+}:{
+  contentReplacement?: boolean;
+  onSubmit?: () => any;
+  setContentReplacement?: (state: boolean) => any;
+  boxProps?: any;
+}) => {
   const { t } = useTranslation();
-  const [ contentReplacement, setContentReplacement ] = useState(false);
+  
   const control = useAnimation();
-
-  // const onEnterCave = useCallback(() => {
-  //   setContentReplacement(!contentReplacement);
-  // },[contentReplacement])
 
   useEffect(() => {
     if (contentReplacement === true) {
@@ -113,33 +120,36 @@ export const InvitationToTheCave = React.memo<any>(({...boxProps}:{boxProps?: an
       pos='relative' 
       w='100%' 
       h='100%' 
+      justifyContent='center'
       {...boxProps}
     >
-      <motion.div 
+      <Box 
+        as={motion.div}
         variants={invitation} 
         animate={control}
-        style={{
-          // position: 'absolute',
-          // top: '50%',
-          // transform: 'translateY(-50%) translateX(-25%)',
-          // left: '50%',
-          width: '100%',
+        sx={{
+          width: 'calc(19rem + 5vmax)',
         }}
       >
-       <Invitation onEnterCave={(e) => {
-        e.stopPropagation();
-        setContentReplacement(!contentReplacement);
-        }} 
-      />
-      </motion.div>
-      <motion.div variants={form} animate={control}>
-        <EntryForm />
-      </motion.div>
+        <Invitation onEnterCave={(e) => {
+          e.stopPropagation();
+          setContentReplacement(!contentReplacement);
+          }} 
+        />
+      </Box>
+      <Box
+        as={motion.div}
+        variants={form} 
+        animate={control}
+        sx={{width: 'calc(19rem + 5vmax)'}}
+      >
+        <EntryForm onSubmit={onSubmit} />
+      </Box>
     </Box>
   )
 })
 
-const EntryForm = React.memo<any>(() => {
+const EntryForm = React.memo<any>(({onSubmit}:{onSubmit?: () => any;}) => {
   const { t } = useTranslation();
   const [value, setValue] = useState('');
   
@@ -256,7 +266,7 @@ const EntryForm = React.memo<any>(() => {
           transform: 'scale(0.85)',
         }}
         _last={{mt: 6}}
-        onClick={() => {}}
+        onClick={onSubmit}
         aria-label={t('podcast-invitation--button_call_the_dragon')}
       >
         {t('podcast-invitation--button_call_the_dragon')}

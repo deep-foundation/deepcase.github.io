@@ -45,7 +45,7 @@ export const Backdrop = React.memo<any>(({
   onClosePortal: () => any;
   animationVariants?: any;
   refModal: any;
-  children: any;
+  children?: any;
 }) => {
   const { t } = useTranslation();
   const control = useAnimation();
@@ -83,7 +83,7 @@ export const Backdrop = React.memo<any>(({
         backdropInvert='25%'
         onClick={onClosePortal}
         {...ComponentProps}
-      />
+      >{children}</Component>
     </PortalComponent>
     )
   })
