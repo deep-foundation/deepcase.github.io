@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React from 'react';
 import { IconContext } from 'react-icons/';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -14,13 +13,7 @@ const PlayIcon = React.memo<any>(() => {
   )
 })
 
-const variants = {
-    start: { rotate: 360, borderRadius: '50%', },
-    hoverState: { borderRadius: "50%"  },
-    tapState: { scale: "1.1"  }
-};
-
-export const DeepCasePlayButton =  React.memo<any>(({onTapButton}:{onTapButton?: () => any;}) => {
+export const DeepCasePlayButton =  React.memo<any>(() => {
 
   return (
     <Box
@@ -34,14 +27,6 @@ export const DeepCasePlayButton =  React.memo<any>(({onTapButton}:{onTapButton?:
         placeContent: "center",
         borderRadius: "1.8rem"
       }}
-      // variants={variants}
-      // animate={isInView && "start"}
-      // whileHover="hoverState"
-      // whileTap="tapState"
-      // onTap={onTapButton}
-      // transition={{
-      //   type: "spring", mass: 0.5, bounce: 0.25, stiffness: 180, damping: 100
-      // }}
     >
       <PlayIcon />
     </Box>

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from 'react';
 
 
@@ -11,16 +11,16 @@ export const DeepCaseToggler =  React.memo<any>(({
 }) => {
 
   const variants = {
-    initial: { scale: 0, rotate: -280 },
+    initial: { 
+      opacity: 1, scale: 1, borderRadius: "1.375rem"
+    },
     animate: { 
-      scale: 1, 
-      rotate: 0, 
-      // borderRadius: ["1.375rem", "3.375rem", "6.375rem", "9.375rem" ] 
+      opacity: [0, 1], scale: [0.3, 1], borderRadius: "1.375rem",
+      transition: { delay: 0.5 }
     },
     exit: { 
-      scale: 0, 
-      rotate: -280, 
-      // borderRadius: ["9.375rem", "6.375rem", "3.375rem", "1.375rem"] 
+      opacity: [1, 0], scale: [1, 0.3], 
+      borderRadius: "1.375rem",
     },
 };
 
@@ -35,17 +35,18 @@ export const DeepCaseToggler =  React.memo<any>(({
           width: '100%',
           height: '100%',
           backgroundColor: "transparent",
-          // overflow: 'hidden',
+          borderRadius: "1.375rem",
         }}
         variants={variants}
         initial='initial'
         animate="animate"
         exit="exit"
         transition={{
-          duration: 1,
+            duration: 1,
             type: "spring",
-            stiffness: 100,
-            damping: 20, 
+            // stiffness: 100,
+            // damping: 20, 
+            mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100
         }}
         key={current}
       >

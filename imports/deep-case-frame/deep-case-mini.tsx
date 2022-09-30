@@ -3,34 +3,22 @@ import React from 'react';
 import { Box } from '../framework';
 
 
-const variants = {
-    start: { borderRadius: "1.8rem", },
-    hoverState: { borderRadius: "50%" },
-    end: { borderRadius: "1.8rem" }
-};
-
 export const DeepCaseMini =  React.memo<any>(() => {
-  return (
-    // <motion.div
-    //   style={{
-    //     width: '100%',
-    //     height: '100%',
-    //     backgroundColor: "#0ea61",
-    //     cursor: "pointer",
-    //     display: "flex",
-    //     placeItems: "center",
-    //     placeContent: "center",
-    //   }}
-    // >
-      <Box w='100%' h='100%'>
-        <iframe
-          width='100%'
-          height='100%'
-          title='deep case'
-          src='https://deep.deep.foundation/'
-          allowFullScreen
-        />
-      </Box>
-    // </motion.div>
+  return (<Box
+      as={motion.div}
+      animate={{ boxShadow: "0 0 2px 3px #6a6a6a" }}
+      width='100%' height='100%'
+      borderRadius="1.375rem"
+     
+      overflow='hidden'
+    >
+      <iframe
+        width='100%'
+        height='100%'
+        title='deep case'
+        src='https://deep.deep.foundation/'
+        allowFullScreen
+      />
+    </Box>
   );
 })

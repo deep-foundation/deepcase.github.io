@@ -29,9 +29,9 @@ export const PageContent = React.memo(() => {
   }, [])
   
   
-  return (<Box as='main' pos='relative' h='150vh'>
+  return (<Box as='main' pos='relative' h='180vh'>
       {/* <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} /> */}
-      <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+      <AdaptiveSpace unit={{sm: '1rem', md: '2rem'}} />
       <DeepFrame />
     </Box>
   );

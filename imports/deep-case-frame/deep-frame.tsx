@@ -1,15 +1,10 @@
 import { useDebounceCallback } from '@react-hook/debounce';
 import { motion, useAnimation, useInView, useSpring, useTransform } from 'framer-motion';
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { DeepCaseMini } from './deep-case-mini';
 import { DeepCasePlayButton } from './deep-case-play-button';
 import { DeepCaseToggler } from './deep-case-toggler';
 
-const variants = {
-  start: { rotate: 360, scale: [0.4, 0.7, 1], borderRadius: ["9.375rem", "6.375rem", "3.375rem", "1.375rem"] },
-  hoverState: { borderRadius: "9.375rem"  },
-  tapState: { scale: "1.1"  }
-};
 
 export const DeepFrame = React.memo<any>(({
   blockWidth = 300,
@@ -26,7 +21,7 @@ export const DeepFrame = React.memo<any>(({
   const ref = useRef<any>();
   const viewRef = useRef<any>();
   const controls = useAnimation();
-
+  
   const areaWidth = blockWidth * 1.25;
   const areaHeight = blockHeight * 1.25;
   const startX = areaWidth / 2;
@@ -35,10 +30,10 @@ export const DeepFrame = React.memo<any>(({
   const x = useSpring(startX, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
   const y = useSpring(startY, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
   
-
+  
   const rotateX = useTransform(y, [0, areaWidth], [15, -15])
   const rotateY = useTransform(x, [0, areaHeight], [-15, 15])
-
+  
   function handleMouseMove(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     x.set(event.clientX - rect.left);
@@ -48,25 +43,25 @@ export const DeepFrame = React.memo<any>(({
       y.set(startY);
     }
   }
-
+  
   function handleMouseLeave() {
     x.set(startY);
     y.set(startY);
   }
+  
+  const variants = {
+    start: { opacity: [0, 0.5, 1], scale: [0.3, 0.65, 1], borderRadius: "1.375rem" },
+    hoverState: { borderRadius: current == 0 ? "9.375rem" : '1.375rem' },
+    tapState: { scale: "1.1", borderRadius: '1.375rem'  },
+  };
 
   const inViewport = useDebounceCallback(() => {
     setCurrent(0);
   }, 2000);
-
-  // useLayoutEffect(() => {
-  //   if (viewRef.addEventListener("mouseover"))
-  // })
-
+  
   const isInView = useInView(viewRef);
 
-  return (
-    
-      <motion.div
+  return (<motion.div
         ref={ref}
         style={{
           width: 450,
@@ -88,8 +83,7 @@ export const DeepFrame = React.memo<any>(({
             rotateX: rotateX,
             rotateY: rotateY,
             position: 'relative',
-            borderRadius: '1.8rem',
-            // border: '1px solid #6a6a6a',
+            borderRadius: '1.375rem',
             overflow: 'hidden',
           }}
           variants={isInView && variants}
