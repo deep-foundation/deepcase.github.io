@@ -77,6 +77,10 @@ export const ParticlesButton = React.memo(({
         position="relative"
         bg="transparent"
         borderRadius='lg'
+        aria-label='discord channel #hi'
+        as='a' 
+        target='_blank'
+        href='https://discord.com/channels/739430470345031692/837157492089552946'
       >
         <ParticlesComponent
           // @ts-ignore

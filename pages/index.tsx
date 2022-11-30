@@ -7,7 +7,6 @@ import { DeepMainTheses } from '../imports/deep-main-theses';
 import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
 import { Footer } from '../imports/footer';
-import { Blob } from '../imports/form-blob';
 import { Box, Button, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
 import { H2 } from '../imports/headers';
 import { IntroDesktop } from '../imports/intro/intro-desktop';
@@ -194,7 +193,7 @@ export function PageContent() {
           <Blob />
         </Box> */}
 
-        <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+        <AdaptiveSpace unit={{sm: '2rem', md: '0rem'}} />
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
         

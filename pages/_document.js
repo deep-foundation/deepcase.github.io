@@ -20,7 +20,8 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <link rel="/logo.png" href="image url" />
-          <meta property="og:image" content="/logo.png" />
+          <meta property="og:image" content="/logo_n. svg" />
+          {/* <meta property="og:image" content="/logo.png" /> */}
           {/* <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /> */}
          
           <link rel="preconnect" href="https://fonts.googleapis.com" />
