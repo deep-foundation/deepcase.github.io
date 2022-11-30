@@ -78,7 +78,7 @@ export const DocumentationMenuItem = React.memo<any>(({
   transition = {},
 }:IMenuItemProps) => {
   // const open = expanded === id ? true : false;
-const open = expanded;
+  const open = expanded;
 
   return (<motion.li variants={variantsLi} style={{listStyle: "none"}}>
       <Button variant='ghost' as={motion.div}

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Img, Circle, Hide, Show, useMediaQuery } from '../framework';
-import _ from 'lodash';
-import { DocumentationContent } from './documentation-content';
-import { DocumentationMenuItem, Menu } from './documentation-menu-item';
+import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { Box, Circle, Hide, Img, useMediaQuery } from '../framework';
 import { H1 } from '../headers';
-import { motion, useAnimation } from 'framer-motion';
+import { DocumentationContent } from './documentation-content';
 import { DocumentationMenu } from './documentation-menu';
+import { DocumentationMenuItem, Menu } from './documentation-menu-item';
 
 
 const menuVariants = {
@@ -93,10 +92,10 @@ export const Documentation = React.memo<any>(() => {
                 id={p.id}
                 // i={i}
                 expanded={expanded}
-                onOpen={(event) => {
-                  console.log(event.target.value);
-                  if (event.target.value == p.id) setExpanded(!expanded)
-                  console.log(event.target.value);
+                onOpen={(e) => {
+                  console.log(e.target.value);
+                  if (e.target.value == p.id) setExpanded(!expanded)
+                  console.log(e.target.value);
                 }}
                 title={p.title}
                 children={p.children} 
