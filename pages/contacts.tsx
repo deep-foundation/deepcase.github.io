@@ -19,6 +19,7 @@ import { useScroll } from 'framer-motion';
 import { Values } from '../imports/guild/values/values';
 import { Documentation } from '../imports/links/documentation';
 import { TalksFormCust } from '../imports/invitation-modal';
+
 // import { motion, useScroll } from "framer-motion";
 
 
