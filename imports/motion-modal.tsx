@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Modal, ModalBody, ModalContent, ModalOverlay, Box, Portal, Center, useOutsideClick } from '../imports/framework';
-import { InvitationToTheCave } from './invitation-to-the-cave';
 import { motion, useAnimation } from 'framer-motion';
-import { Blob } from './form-blob';
+import React, { useEffect, useRef } from 'react';
+import { Box, Center, Portal, useOutsideClick } from './framework';
 
 
 const spring = {
@@ -41,15 +38,15 @@ const backdrop = {
   }
 }
 
-export const TalksFormCust = React.memo<any>(({
+export const MotionModal = React.memo<any>(({
   portalOpen = true, 
-  onClosePortal
+  onClosePortal,
+  children,
 }:{
   portalOpen?: boolean; 
   onClosePortal: () => any;
+  children: any;
 }) => {
-  const { t } = useTranslation();
-  const [ contentReplacement, setContentReplacement ] = useState(false);
   const control = useAnimation();
   const ref = useRef();
   useOutsideClick({
@@ -92,15 +89,7 @@ export const TalksFormCust = React.memo<any>(({
           h='100%'
           ref={ref}
         >
-          <Blob contentReplacement={contentReplacement}>
-            <InvitationToTheCave
-              display="flex"
-              alignItems="center"
-              contentReplacement={contentReplacement}
-              setContentReplacement={() => setContentReplacement(!contentReplacement)}
-              onSubmit={() => setContentReplacement(false)}
-            />
-          </Blob>
+          {children}
         </Box>}
       </Center>
     </Portal>
