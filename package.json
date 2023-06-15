@@ -17,6 +17,7 @@
     "@capacitor/core": "^2.4.7",
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.3",
+    "@chakra-ui/system": "^1.12.1",
     "@deep-foundation/store": "0.0.6",
     "@emotion/css": "^11.7.1",
     "@emotion/react": "^11.7.1",
@@ -26,7 +27,6 @@
     "@material-ui/icons": "^4.11.2",
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@moxy/react-split-text": "^1.0.1",
     "@next/mdx": "^10.2.0",
     "@react-hook/debounce": "^4.0.0",
     "@react-spring/parallax": "^9.3.1",
@@ -58,7 +58,6 @@
     "react-i18next": "^11.15.3",
     "react-icons": "^4.3.1",
     "react-intersection-observer": "^9.4.0",
-    "react-locomotive-scroll": "^0.2.0",
     "react-notion": "^0.10.0",
     "react-round-carousel": "^1.0.0",
     "react-spring": "^9.1.2",
@@ -68,8 +67,7 @@
     "react-visibility-sensor": "^5.1.1",
     "react-yandex-metrika": "^2.6.0",
     "touchsweep": "^1.2.0",
-    "ts-node": "^10.2.1",
-    "waitlistapi": "^0.6.2"
+    "ts-node": "^10.2.1"
   },
   "devDependencies": {
     "@types/node": "^15.3.0",
