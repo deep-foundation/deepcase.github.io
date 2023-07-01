@@ -31,7 +31,7 @@ export const useMediaQuery = function useMediaQuery(arg) {
 
 export function ButtonExplotion(props: any) {
   const [exp, setExp] = useState(false);
-  return <>
+  return (
     <Button {...props} onClick={(e) => {
       setExp(true);
       setTimeout(() => setExp(false), 1000);
@@ -51,11 +51,11 @@ export function ButtonExplotion(props: any) {
       }}/></div>}
       {props?.children}
     </Button>
-  </>;
+  )
 }
 
 export const Typography = React.memo(({children}:{children: any}) => {
-  return(<Text>
+  return (<Text>
       {children}
     </Text>
   )

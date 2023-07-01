@@ -21,7 +21,7 @@ export const Blob = React.memo<any>(({
   contentReplacement?: boolean;
   children: ReactNode;
 }) => {
-  const ref = useRef(null);
+  const ref = useRef();
   const control = useAnimation();
   const x = useSpring(0.5, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });
   const y = useSpring(0.5, { mass: 0.5, bounce: 0.25, stiffness: 200, damping: 100 });

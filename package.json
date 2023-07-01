@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@capacitor/core": "^2.4.7",
-    "@chakra-ui/icons": "^1.1.5",
-    "@chakra-ui/react": "^1.8.3",
-    "@chakra-ui/system": "^1.12.1",
+    "@chakra-ui/icons": "^2.0.19",
+    "@chakra-ui/react": "^2.6.1",
+    "@chakra-ui/system": "^2.5.7",
     "@deep-foundation/store": "0.0.6",
     "@emotion/css": "^11.7.1",
     "@emotion/react": "^11.7.1",
@@ -32,6 +32,8 @@
     "@react-spring/parallax": "^9.3.1",
     "@reonomy/react-confetti-explosion": "^1.0.3",
     "@sentry/nextjs": "^6.12.0",
+    "@types/i18next": "^13.0.0",
+    "@types/react-dom": "^18.2.6",
     "@use-it/interval": "^1.0.0",
     "animejs": "^3.2.1",
     "axios": "^0.21.1",
@@ -52,8 +54,8 @@
     "next": "^12.2.3",
     "normalize.css": "^8.0.1",
     "pre-commit": "^1.2.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-ga": "^3.3.0",
     "react-i18next": "^11.15.3",
     "react-icons": "^4.3.1",
@@ -71,7 +73,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.3.0",
-    "@types/react": "^17.0.2",
+    "@types/react": "^18.2.14",
     "typescript": "^5.0.4"
   },
   "engines": {

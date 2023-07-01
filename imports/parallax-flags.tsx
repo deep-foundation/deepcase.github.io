@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const ParallaxFlags = React.memo(() => {
-  const parallaxRef = useRef(null);
+  const parallaxRef = useRef();
 
   const classes = useStyles();
 

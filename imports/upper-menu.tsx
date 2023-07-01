@@ -166,7 +166,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                           .to(x => `scale(${x})`),
                       }}>Deep.Foundation</a.h1>
                   </HStack>
-                  <HStack spacing='1rem'>
+                  <HStack spacing='1rem' alignSelf='center'>
                     <Button 
                       aria-label='documentation'
                       as='a' 

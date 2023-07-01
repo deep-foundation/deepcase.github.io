@@ -72,7 +72,7 @@ const sidebar = {
 
 export const Menu = React.memo<any>((props) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const containerRef = useRef(null);
+  const containerRef = useRef();
   const { height } = useDimensions(containerRef);
   const { i18n } = useTranslation();
   const language = i18n.language;

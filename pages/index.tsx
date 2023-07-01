@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticlesGrid } from '../imports/article';
 import { CrewCard } from '../imports/crew-card';
@@ -89,22 +89,6 @@ const keyframe = keyframes`
     background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
   }
 `;
-const root = {
-  position: 'absolute', 
-  top: 0, 
-  bottom: 0, 
-  right: 0, 
-  left: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: theme?.colors?.dark,
-  backgroundImage: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
-  backgroundSize:'80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
-  backgroundPosition: 'center',
-  overflowY: 'scroll',
-  overflowX: 'hidden',
-};
-
 
 export default function Page () {
   return (
@@ -122,9 +106,9 @@ export function PageContent() {
   }, []);
   
   const [ openTalksModal, setOpenTalksModal ] = useSwitcherModalTalks();
-  const scrollingRef = useRef(null);
+  const scrollingRef = useRef<any>();
   const refMenuButtons = useRef();
-
+  
   const [desktop] = useMediaQuery('(min-width: 768px)');
   const [max825] = useMediaQuery('(max-width: 825px)');
   const [max900] = useMediaQuery('(max-width: 900px)');
@@ -140,7 +124,26 @@ export function PageContent() {
 
   return (<>
       <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
-      <Box as='main' ref={scrollingRef} sx={root} animation={animation}>
+      <Box 
+        as='main' 
+        ref={scrollingRef} 
+        sx={{
+          position: 'absolute', 
+          top: 0, 
+          bottom: 0, 
+          right: 0, 
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: theme?.colors?.dark,
+          backgroundImage: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
+          backgroundSize:'80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
+          backgroundPosition: 'center',
+          overflowY: 'scroll',
+          overflowX: 'hidden',
+        }} 
+        animation={animation}
+      >
         <Space unit={6} />
          
         { max825 && <>
@@ -235,7 +238,7 @@ export function PageContent() {
             alignItems='center'
             justifyContent='center'
           >
-            <CarouselPodcast />
+            {/* <CarouselPodcast /> */}
           </Box>
         </Box>
         

@@ -1,15 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
 import { mode } from "@chakra-ui/theme-tools";
-import { createBreakpoints } from '@chakra-ui/theme-tools'
-
-const breakpoints = createBreakpoints({
-  sm: '20em',
-  md: '52em',
-  lg: '62em',
-  xl: '80em',
-  '2xl': '122.5em',
-})
-
 
 const temp = extendTheme({});
 
@@ -17,7 +7,22 @@ export const coreTheme = extendTheme({
   config: {
     cssVarPrefix: 'deep',
   },
-  breakpoints,
+  semanticTokens: {
+    colors: {
+      error: 'red.500',
+      text: {
+        default: 'gray.900',
+        _dark: 'gray.50',
+      },
+    },
+  },
+  breakpoints: {
+    sm: '20em',
+    md: '52em',
+    lg: '62em',
+    xl: '80em',
+    '2xl': '122.5em',
+  },
   colors: {
     primary: '#008fcc',
     dark: '#19202B',
@@ -217,7 +222,13 @@ export const guildTheme = extendTheme({
   config: {
     cssVarPrefix: 'deep-guild',
   },
-  breakpoints,
+  breakpoints: {
+    sm: '20em',
+    md: '52em',
+    lg: '62em',
+    xl: '80em',
+    '2xl': '122.5em',
+  },
   colors: {
     dark: '#19202B',
     transparentDark: {
@@ -390,7 +401,13 @@ export const linksTheme = extendTheme({
   config: {
     cssVarPrefix: 'deep-links',
   },
-  breakpoints,
+  breakpoints: {
+    sm: '20em',
+    md: '52em',
+    lg: '62em',
+    xl: '80em',
+    '2xl': '122.5em',
+  },
   colors: {
     dark: '#19202B',
     transparentDark: {

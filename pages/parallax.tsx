@@ -529,7 +529,7 @@ export function PageContent() {
   const [electronOpen, setElectronOpen] = useState(null);
   
   const [ openTalksModal, setOpenTalksModal ] = useSwitcherModalTalks();
-  const parallaxRef = useRef(null);
+  const parallaxRef = useRef<any>(null);
   const refMenuButtons = useRef();
 
   const handleClick = useCallback((event) => {

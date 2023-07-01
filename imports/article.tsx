@@ -6,13 +6,13 @@ import { FaEye, FaComment } from 'react-icons/fa';
 interface IArticle {
   src?: string;
   alt?: string;
-  href: string;
-  title: string;
-  read: string;
-  comments: number;
+  href?: string;
+  title?: string;
+  read?: string;
+  comments?: number;
 }
 
-const HabrButton = React.memo(({text, href}:{text: string; href: string;}) => {
+const HabrButton = React.memo(({text, href}:{text?: string; href?: string;}) => {
   return (<Box
       as={LinkOverlay}
       href={href}
@@ -38,7 +38,7 @@ const HabrButton = React.memo(({text, href}:{text: string; href: string;}) => {
         <Box w='3.5em' display='flex'>
           <Img src='./posts/habr.png' alt='habr' htmlHeight='100%' htmlWidth='100%' />
         </Box>
-        {/* <Text 
+        <Text 
           fontSize='sm' 
           as='span' 
           fontWeight='semibold' 
@@ -51,7 +51,7 @@ const HabrButton = React.memo(({text, href}:{text: string; href: string;}) => {
           }}
         >
           {text}
-        </Text> */}
+        </Text>
       </HStack>
     </Box>
   )

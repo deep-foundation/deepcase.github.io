@@ -12,7 +12,7 @@ const animationVariants = {
 
 export const DocumentationContent = React.memo(({title, body, children}:IMenuItem) => {
   const controls = useAnimation();
-  const ref = useRef(null);
+  const ref = useRef();
   const isInView = useInView(ref);
 
   useEffect(() => {

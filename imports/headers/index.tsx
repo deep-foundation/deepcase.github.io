@@ -9,7 +9,7 @@ export const H1 = React.memo(({
   children: any;
   [key:string]: any;
 }) => {
-  return <Box textStyle='h1' as='h1' {...props}>{children}</Box>
+  return <Box as='h1' sx={{ lineHeight: 1, marginTop: 0, marginBottom: 0 }} {...props}>{children}</Box>
 });
 
 export const H2 = React.memo(({
@@ -19,7 +19,7 @@ export const H2 = React.memo(({
   children: any;
   [key:string]: any;
 }) => {
-  return <Box textStyle='h2' as='h2' {...props}>{children}</Box>
+  return <Box as='h2' {...props}>{children}</Box>
 });
 
 export const H3 = React.memo(({
@@ -29,7 +29,7 @@ export const H3 = React.memo(({
   children: any;
   [key:string]: any;
 }) => {
-  return <Box textStyle='h3' as='h3' {...props}>{children}</Box>
+  return <Box as='h3' {...props}>{children}</Box>
 });
 
 export const H5 = React.memo(({
@@ -39,6 +39,6 @@ export const H5 = React.memo(({
   children: any;
   [key:string]: any;
 }) => {
-  return <Box textStyle='h5' as='h5' {...props}>{children}</Box>
+  return <Box as='h5' {...props}>{children}</Box>
 });
 
