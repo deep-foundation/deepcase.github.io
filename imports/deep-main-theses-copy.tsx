@@ -1,40 +1,49 @@
 import { motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Container, Flex, Hide, HStack, Show, Text } from './framework';
-import { Thesis, ThesisDescription } from './theses';
+import { Thesis, ThesisDescription } from './theses-copy';
+import { ImageListItem } from '@material-ui/core';
 
 
 const items = [
   {
+    id: 0,
     title: 'points--no-more-refactoring',
     text: 'points--no-more-refactoring--description',
   },
   {
+    id: 1,
     title: 'points--supports-all-code',
     text: 'points--supports-all-code--description'
   },
   {
+    id: 2,
     title: 'points--flexible-system',
     text: 'points--flexible-system--description'
   },
   {
+    id: 3,
     title: 'points--launch-anywhere',
     text: 'points--launch-anywhere--description'
   },
   {
+    id: 4,
     title: 'points--all-stages-on-single-platform',
     text: 'points--all-stages-on-single-platform--description'
   },
   {
+    id: 5,
     title: 'points--backend',
     text: 'points--backend--description'
   },
   {
+    id: 6,
     title: 'points--data-management',
     text: 'points--data-management--description'
   },
   {
+    id: 7,
     title: 'points--business-logic',
     text: 'points--business-logic--description_title',
     points: [
@@ -64,6 +73,7 @@ const indicatorAlpha = 0.3;
 export const DeepMainTheses = React.memo<any>(() => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
+  // const[active, setActive] = useState(false);
   const[index, setIndex] = useState(0);
   const control = useAnimation();
   // useEffect(() => {
@@ -72,6 +82,10 @@ export const DeepMainTheses = React.memo<any>(() => {
   //     setIndex(index + 1)
   //   }, 1000)
   // })
+
+  // const clickActivation = useCallback((i) => {
+  //   setActive(!active);
+  // }, [active]);
 
   return(<Container maxW='container.xl'>
       <Box
@@ -83,7 +97,7 @@ export const DeepMainTheses = React.memo<any>(() => {
         justifyItems='center'
         w='100%'
       >
-        <Show below='md'>
+        {/* <Show below='md'>
           <Box py={2} px={4}>
             {items.map((item, i) => {
               return (
@@ -109,7 +123,7 @@ export const DeepMainTheses = React.memo<any>(() => {
               );
             })}
           </Box>
-        </Show>
+        </Show> */}
         <Hide below='md'>
           <Flex 
             direction='column'
@@ -122,19 +136,17 @@ export const DeepMainTheses = React.memo<any>(() => {
               }
             }}
           >
-            <Thesis index={index} onClick={() => setIndex(0)} text={t("points--no-more-refactoring")} i={0} />
-            <Thesis index={index} onClick={() => setIndex(1)} text={t("points--supports-all-code")} i={1} />
-            <Thesis index={index} onClick={() => setIndex(2)} text={t("points--flexible-system")} i={2} />
-            <Thesis index={index} onClick={() => setIndex(3)} text={t("points--launch-anywhere")} i={3} />
-            <Thesis index={index} onClick={() => setIndex(4)} text={t("points--all-stages-on-single-platform")} i={4} />
-            <Thesis index={index} onClick={() => setIndex(5)} text={t("points--backend")} i={5} />
-            <Thesis index={index} onClick={() => setIndex(6)} text={t("points--data-management")} i={6} />
-            <Thesis index={index} onClick={() => setIndex(7)} text={t("points--business-logic")} i={7} />
+            {items.map((item, i) => (<Thesis isActive={index == i ? true : false} text={t(item.title)} key={item.id} onClickActive={() => {
+                const index = item.id;
+                setIndex(i);
+                console.log('index', index);
+                console.log('i', i);
+              }} />))}
           </Flex>
         </Hide>
-        {[<Box
+        <Box
           pos='relative'
-          key={language}
+          // key={language}
           w='100%'
           display='flex'
           flexDirection='column'
@@ -142,9 +154,15 @@ export const DeepMainTheses = React.memo<any>(() => {
           boxSizing='border-box'
           pl={{sm: 0, md: 8}}
         >
-          {items.map((item, i) => (<ThesisDescription key={i} index={i} item={item} i={i} />))}
-        </Box>]}
-        <Show below='md'>
+          {items.map((item, i) => (
+            <ThesisDescription 
+              isActive={index == i ? true : false} 
+              key={item.id} 
+              description={item.text} 
+              points={item.points} 
+            />))}
+        </Box>
+        {/* <Show below='md'>
           <HStack justifyContent='center' py={2}>
             {items.map((item, i) => {
               return (
@@ -168,7 +186,7 @@ export const DeepMainTheses = React.memo<any>(() => {
               );
             })}
           </HStack>
-        </Show>
+        </Show> */}
       </Box>
     </Container>
   )

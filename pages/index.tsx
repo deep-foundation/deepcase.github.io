@@ -3,11 +3,11 @@ import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticlesGrid } from '../imports/article';
 import { CrewCard } from '../imports/crew-card';
-import { DeepMainTheses } from '../imports/deep-main-theses';
+import { DeepMainTheses } from '../imports/deep-main-theses-copy';
 import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
 import { Footer } from '../imports/footer';
-import { Box, Button, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
+import { Box, Button, ChakraProvider, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
 import { H2 } from '../imports/headers';
 import { IntroDesktop } from '../imports/intro/intro-desktop';
 import { IntroMobile } from '../imports/intro/intro-mobile';
@@ -92,9 +92,11 @@ const keyframe = keyframes`
 
 export default function Page () {
   return (
-    <Provider>
-      <PageContent/>
-    </Provider>
+    <ChakraProvider theme={theme}>
+      <Provider>
+        <PageContent/>
+      </Provider>
+    </ChakraProvider>
   );
 };
 

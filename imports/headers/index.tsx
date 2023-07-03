@@ -9,7 +9,7 @@ export const H1 = React.memo(({
   children: any;
   [key:string]: any;
 }) => {
-  return <Box as='h1' sx={{ lineHeight: 1, marginTop: 0, marginBottom: 0 }} {...props}>{children}</Box>
+  return <Box as='h1' fontSize='xl' sx={{ lineHeight: 1, margin: 0 }} {...props}>{children}</Box>
 });
 
 export const H2 = React.memo(({

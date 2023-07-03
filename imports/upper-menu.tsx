@@ -7,6 +7,7 @@ import { a, useSpring, useTransition } from 'react-spring';
 import { Box, Button, ButtonGroup, Flex, HStack, IconButton, Img, useMediaQuery } from './framework';
 import { H1 } from './headers';
 import { TalksForm } from './talks-form';
+import { theme } from './theme/build';
 
 
 export function useSwitcherModalTalks () { 
@@ -135,13 +136,13 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
               }
             }}
           >
-            <Flex direction='row' justify={{sm: 'center', md: 'space-between'}} align='center' p={{sm: '0 1rem', md: '0 2rem'}}>
+            <Flex direction='row' justify={{sm: 'center', md: 'space-between'}} align='center' p='0 1rem'>
               { !max825
                 ? <Flex direction='row' justify='space-between' w='100%'>
                     <HStack>
                       <a.div style={{
                         width: '3.25rem',
-                        marginRight: '1rem',
+                        // marginRight: '1rem',
                         alignSelf: 'center',
                         transformOrigin: 'top',
                         transform: fontsScroll.x
@@ -156,7 +157,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                       <a.h1 style={{
                         alignSelf: 'center',
                         fontSize: 'calc(32px + 0.5vmax)',
-                        fontFamily: "'Zen Kaku Gothic Antique', sans-serif",
+                        fontFamily: theme.fonts.body,
                         transformOrigin: 'top',
                         transform: fontsScroll.x
                           .to({
@@ -246,9 +247,9 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                             })
                             .to(x => `scale(${x})`)
                     }}>
-                      <ButtonGroup variant='ghost' spacing='0' size='md' isAttached>
-                        <Button isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
-                        <Button isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
+                      <ButtonGroup spacing='0' size='md' isAttached>
+                        <Button variant='ghost' isActive={active == 'en'} aria-label='switch to english' onClick={() => onChangeLanguage('en')}>En</Button>
+                        <Button variant='ghost' isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
                       </ButtonGroup>
                     </a.div>
                   </HStack>
@@ -292,14 +293,14 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                 width: '2rem',
                                 alignSelf: 'center',
                                 transformOrigin: 'top',
-                                marginRight: '0.5rem',
+                                // marginRight: '0.5rem',
                               }}
                               animate={{ 
                                 scale: mode == 2 ? 0 : 1, 
                               }}
                               transition={{ type: 'spring', damping: 20 }}
                             >
-                              <Img src='./logo.png' alt='logo' />
+                              <Img src='./logo_n.svg' alt='logo' />
                             </motion.div>
                             <motion.div style={{
                                 transformOrigin: 'top',

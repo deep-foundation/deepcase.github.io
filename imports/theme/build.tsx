@@ -39,7 +39,6 @@ export const coreTheme = extendTheme({
       100: '#19202b85',
       200: '#19202bad',
     }
-
   },
   fonts: {
     body: "'Zen Kaku Gothic Antique', sans-serif",
@@ -51,7 +50,7 @@ export const coreTheme = extendTheme({
     sm: 'calc(0.8125rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
     lg: "calc(1.125rem + 0.5vmax)",
-    xl: "calc(1.25rem + 0.5vmax)",
+    xl: "calc(1.2rem + 0.5vmax)",
     "2xl": "1.5rem",
     "3xl": "1.875rem",
     "4xl": "2.25rem",
@@ -138,6 +137,7 @@ export const coreTheme = extendTheme({
           _focus: {
             boxShadow: 'none',
           },
+          
         },
         unstyled: {
           display: 'flex',
@@ -154,7 +154,7 @@ export const coreTheme = extendTheme({
           '&:focus': {
             boxShadow: '0 0 0',
           },
-        }
+        },
       },
       colorScheme: {
         second: '#00a9f3',
