@@ -1,4 +1,4 @@
-import { motion, useAnimation } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Container, Flex, ListItem, Text, Box, UnorderedList } from './framework';
@@ -23,24 +23,20 @@ const thesis = {
 
 const thesisDescription = {
   visible: { 
-    opacity: [0, 1], 
-    rotateX: [-90, 0],  
-    scale: [0.5, 1], 
+    opacity: [0, 0.3, 0.6, 0.9, 1], 
     display: 'block',
-    y: [-200, 0],
     transition: { 
-      duration: .9, 
+      duration: .5, 
       delay: 0.5 
     } 
   },
   hidden: { 
-    opacity: [1, 0], 
-    scale: [1, 1.4], 
+    opacity: [1, 0.9, 0.6, 0.3, 0], 
     display: 'none',
     transition: { 
-      duration: .9, 
+      display: { delay: 3 },
+      duration: .5, 
       delay: 0,
-      opacity: {duration: .5,}
     } 
   }
 };
@@ -130,34 +126,38 @@ export const Thesis = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, isInView, isActive]);
+  console.log('isActiveUE', isActive);
 
-  return (
-    <Box 
-      as={motion.div}
-      width='100%'
-      transformOrigin='right'
-      ref={ref}
-      sx={{
-        color: isActive ? '#00b6fe' : '#ffffff',
-        transition: 'color 1s ease',
-      }}
-      // ref={ref}
-      initial={{color: '#ffffff'}}
-      variants={thesis}
-      animate={control}
-      // custom={i}
-      whileTap={{ scale: 1.05, fontWeight: 600 }}
-      whileFocus={{ scale: 1.05 }}
-      onClick={() => {
-        onClickActive && onClickActive({id, isActive});
-      }}
-    >
-      <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
-        {/* <ThesisBorder i={i} index={index} /> */}
-        <Text fontSize={fontSize} style={{
-        }}>{t(text)}</Text>
-      </Container>
-    </Box>
+  return (<AnimatePresence>
+      <Box 
+        as={motion.div}
+        width='100%'
+        transformOrigin='right'
+        ref={ref}
+        // sx={{
+        //   color: isActive ? '#00b6fe' : '#ffffff',
+        //   transition: 'color 1s ease',
+        // }}
+        initial={{color: '#ffffff'}}
+        variants={thesis}
+        animate={control}
+        exit='nonActive'
+        // custom={i}
+        whileTap={{ scale: 1.05, fontWeight: 600 }}
+        whileFocus={{ scale: 1.05 }}
+        onClick={() => {
+          console.log('isActive', isActive);
+          onClickActive && onClickActive({id, isActive});
+          console.log('isActive2', isActive);
+        }}
+      >
+        <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
+          {/* <ThesisBorder i={i} index={index} /> */}
+          <Text fontSize={fontSize} style={{
+          }}>{t(text)}</Text>
+        </Container>
+      </Box>
+    </AnimatePresence>
   )
 })
 
@@ -192,6 +192,15 @@ export const ThesisDescription = React.memo<any>(({
     }
   }, [control, isActive]);
   // useEffect(() => {
+  //   if (isInView) {
+  //     control.start("visible");
+  //   } else if (isActive == true) {
+  //     control.start("visible");
+  //   } else {
+  //     control.start("hidden");
+  //   }
+  // }, [control, isActive, isInView]);
+  // useEffect(() => {
   //   if (isInView && (isActive == true)) {
   //     control.start("visible");
   //   } else if (isActive == true) {
@@ -201,32 +210,37 @@ export const ThesisDescription = React.memo<any>(({
   //   }
   // }, [control, isInView, isActive]);
 
-  return (
-    <Box 
-      as={motion.div}
-      position='absolute'
-      top={0}
-      initial={{opacity: 0, display: 'none'}}
-      ref={ref}
-      variants={thesisDescription}
-      animate={control}
-      {...props}
-    >
-      <Flex 
-        w='100%' 
-        h='100%' 
-        display={points && 'flex'}
-        flexDirection={!!points ? 'column' : 'row'}
+  return (<AnimatePresence>
+      <Box 
+        as={motion.div}
+        position='absolute'
+        height='100%'
+        top={0}
+        initial={{opacity: 0, display: 'none'}}
+        ref={ref}
+        variants={thesisDescription}
+        animate={control}
+        exit='hidden'
+        {...props}
       >
-        {<Text fontSize={fontSize}>
-          {t(description)}
-        </Text>}
-        {!!points && <UnorderedList pt='3'>
-          {points.map(point => (
-            <ListItem key={point.id} fontSize='md'>{t(point.text)}</ListItem>
-          ))}
-        </UnorderedList>}
-      </Flex>
-    </Box>
+        <Flex 
+          w='100%' 
+          h='100%' 
+          display={points && 'flex'}
+          flexDirection={!!points ? 'column' : 'row'}
+          alignItems='center'
+          justifyContent='center'
+        >
+          {<Text fontSize={fontSize}>
+            {t(description)}
+          </Text>}
+          {!!points && <UnorderedList pt='3'>
+            {points.map(point => (
+              <ListItem key={point.id} fontSize='md'>{t(point.text)}</ListItem>
+            ))}
+          </UnorderedList>}
+        </Flex>
+      </Box>
+    </AnimatePresence>
   )
 })

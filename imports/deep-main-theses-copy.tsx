@@ -80,7 +80,7 @@ export const DeepMainTheses = React.memo<any>(() => {
   //   setInterval(() => {
   //     index < 7 ? index + 1 : index == 0
   //     setIndex(index + 1)
-  //   }, 1000)
+  //   }, 3000)
   // })
 
   // const clickActivation = useCallback((i) => {
@@ -96,6 +96,7 @@ export const DeepMainTheses = React.memo<any>(() => {
         alignItems='center'
         justifyItems='center'
         w='100%'
+        h='100%'
       >
         {/* <Show below='md'>
           <Box py={2} px={4}>
@@ -127,6 +128,7 @@ export const DeepMainTheses = React.memo<any>(() => {
         <Hide below='md'>
           <Flex 
             direction='column'
+            height='100%'
             sx={{
               '@media(min-width: 830px)': {
                 backgroundImage: 'linear-gradient(to top, #ccc 0%, #ccc 50%, transparent 50%)',
@@ -136,7 +138,8 @@ export const DeepMainTheses = React.memo<any>(() => {
               }
             }}
           >
-            {items.map((item, i) => (<Thesis isActive={index == i ? true : false} text={t(item.title)} key={item.id} onClickActive={() => {
+            {items.map((item, i) => (<Thesis isActive={
+              index === i ? console.log('index-true', index) : console.log('index-false', index)} text={t(item.title)} key={item.id} onClickActive={() => {
                 const index = item.id;
                 setIndex(i);
                 console.log('index', index);
@@ -148,6 +151,7 @@ export const DeepMainTheses = React.memo<any>(() => {
           pos='relative'
           // key={language}
           w='100%'
+          h='100%'
           display='flex'
           flexDirection='column'
           alignItems='center'
@@ -160,6 +164,7 @@ export const DeepMainTheses = React.memo<any>(() => {
               key={item.id} 
               description={item.text} 
               points={item.points} 
+              onClick={() => console.log('iTD', i)}
             />))}
         </Box>
         {/* <Show below='md'>
