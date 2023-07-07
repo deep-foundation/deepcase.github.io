@@ -1,19 +1,21 @@
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { Container, Flex, ListItem, Text, Box, UnorderedList } from './framework';
 import { useTranslation } from 'react-i18next';
+import { useInView } from 'react-intersection-observer';
+import { Box, Container, Flex, ListItem, Text, UnorderedList } from './framework';
 
 
 const thesis = {
-  show: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { 
-      duration: 0.5, 
-      // delay: custom * 0.2,
-      delayChildren: 0.5, 
-      staggerChildren: 0.1,
+  show: (custom) => {
+    return { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { 
+        duration: 0.5, 
+        delay: custom * 0.2,
+        // delayChildren: 0.5, 
+        staggerChildren: 0.1,
+      }
     } 
   },
   hidden: { opacity: 0, scale: 0, },
@@ -94,26 +96,35 @@ const ThesisBorder = React.memo<any>(({
   )
 })
 
+const transition = {
+  transition: { 
+    duration: 0.5, 
+    delay: 0.2,
+    // delayChildren: 0.5, 
+    // staggerChildren: 0.1,
+  }
+}
+
 export const Thesis = React.memo<any>(({
   text = 'привет',
   fontSize = 'sm',
-  isActive = false,
+  isActive,
   onClickActive,
   id,
 }:{
   text?: string;
   fontSize?: string;
   isActive?: boolean;
-  onClickActive?: (item: any) => any;
+  onClickActive?: (id: any) => any;
   id?: number;
 }) => {
-  const control = useAnimation();
+  const animation = useRef(null);
   const ref = useRef(null);
   // @ts-ignore
   const isInView = useInView(ref);
+  const control = useAnimation();
 
   const { t } = useTranslation();
-  console.log('isActiveT', isActive);
 
   useEffect(() => {
     if (isInView) {
@@ -126,7 +137,6 @@ export const Thesis = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, isInView, isActive]);
-  console.log('isActiveUE', isActive);
 
   return (<AnimatePresence>
       <Box 
@@ -135,26 +145,33 @@ export const Thesis = React.memo<any>(({
         transformOrigin='right'
         ref={ref}
         // sx={{
-        //   color: isActive ? '#00b6fe' : '#ffffff',
+        //   color: isActive == true ? '#00b6fe' : '#ffffff',
         //   transition: 'color 1s ease',
         // }}
-        initial={{color: '#ffffff'}}
+        // initial={{color: '#ffffff'}}
         variants={thesis}
         animate={control}
         exit='nonActive'
-        // custom={i}
         whileTap={{ scale: 1.05, fontWeight: 600 }}
         whileFocus={{ scale: 1.05 }}
+        // onTap={() => isActive && animation.current.play()}
         onClick={() => {
+          onClickActive && onClickActive(id);
           console.log('isActive', isActive);
-          onClickActive && onClickActive({id, isActive});
-          console.log('isActive2', isActive);
+          console.log('id', id);
         }}
+        // layout
+        // sx={{ color: id }}
+        // @ts-ignore
+        // transition={{
+        //     type: "spring",
+        //     stiffness: 350,
+        //     damping: 25,
+        // }}
       >
         <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
           {/* <ThesisBorder i={i} index={index} /> */}
-          <Text fontSize={fontSize} style={{
-          }}>{t(text)}</Text>
+          <Text fontSize={fontSize} cursor='pointer'>{t(text)}</Text>
         </Container>
       </Box>
     </AnimatePresence>
@@ -183,7 +200,6 @@ export const ThesisDescription = React.memo<any>(({
   const isInView = useInView(ref);
   const { t } = useTranslation();
 
-  console.log('isActiveTD', isActive);
   useEffect(() => {
     if (isActive == true) {
       control.start("visible");

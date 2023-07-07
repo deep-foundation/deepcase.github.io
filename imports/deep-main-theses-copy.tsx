@@ -1,4 +1,4 @@
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useCycle } from 'framer-motion';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Container, Flex, Hide, HStack, Show, Text } from './framework';
@@ -75,10 +75,25 @@ export const DeepMainTheses = React.memo<any>(() => {
   const language = i18n.language;
   // const[active, setActive] = useState(false);
   const[index, setIndex] = useState(0);
+  const[isActive, setIsActive] = useState(false);
   const control = useAnimation();
+
+  function _useCycle(items){
+    let [index, setIndex] = React.useState(0)
+    let currentOption = items[index]
+    function cycle() {
+      setIndex(index < items.length-1 ? index + 1 : 0)
+    }
+    return(
+      [currentOption, cycle]
+    )
+  }
+
+  const [mode, cycleMode] = useCycle(["off", "on"]);
+
   // useEffect(() => {
   //   setInterval(() => {
-  //     index < 7 ? index + 1 : index == 0
+  //     index < items.length-1 ? index + 1 : index == 0
   //     setIndex(index + 1)
   //   }, 3000)
   // })
@@ -138,13 +153,23 @@ export const DeepMainTheses = React.memo<any>(() => {
               }
             }}
           >
-            {items.map((item, i) => (<Thesis isActive={
-              index === i ? console.log('index-true', index) : console.log('index-false', index)} text={t(item.title)} key={item.id} onClickActive={() => {
-                const index = item.id;
-                setIndex(i);
-                console.log('index', index);
-                console.log('i', i);
-              }} />))}
+            {items.map((item, i) => (
+              <Thesis 
+                isActive={isActive} 
+                id={item.id}
+                text={t(item.title)} 
+                key={item.id} 
+                onClickActive={(i) => {
+                  const index = i;
+                  const u = index == i; 
+                  setIndex(index == i ? index : 0);
+                  setIsActive(index == i ? true : false)
+                  console.log('index', index);
+                  console.log('i', i);
+                  console.log('u', u);
+                }} 
+              />
+            ))}
           </Flex>
         </Hide>
         <Box
