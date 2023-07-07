@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { Box, Center, Code, Img, StackDivider, Text, VStack } from './framework';
 import { Flag } from "./flag";
 import { Hands } from "./flags-icons/hands";
 import { Cat } from "./flags-icons/cat";
 import { Stairs } from "./flags-icons/stairs";
+import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
 
 
 const GridCard = React.memo(({
@@ -20,6 +21,7 @@ const GridCard = React.memo(({
   alignItem?: any;
   [props: string]: any;
 }) => {
+
   return (<Box sx={{
     position: 'relative',
     height: '100%',
@@ -44,14 +46,64 @@ const GridCard = React.memo(({
   }}>{children}</Box>)
 });
 
+const textVariants = {
+  inView: {
+    transform: 'translateY(0%)',
+    opacity: 1,
+    transition: { 
+      type: 'spring',
+      stiffness: 350,
+      damping: 25, 
+    }
+  },
+  outView: {
+    opacity: 0,
+    transform: 'translateY(-20%)',
+    transition: { 
+      type: 'spring',
+      stiffness: 350,
+      damping: 25, 
+    }
+  }
+}
+
 const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?: any; textStyles?: any;}) => {
-  return ( <Box position='relative' w='100%' h='100%' sx={styles}>
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const control = useAnimation();
+  const [scope, animate] = useAnimate();
+  // const animation = useRef();
+  
+  // useEffect(() => {
+  //   animation.current = animate(scope.current, { x: 320 }, { ease: "easeOut", repeat: Infinity, repeatType: "reverse" });
+  //   animation.current.cancel();
+  // }, []);
+
+  useEffect(() => {
+    if (isInView) {
+      control.start('inView');
+    } else {
+      control.start('outView');
+    }
+  },[isInView])
+
+  return ( <Box 
+      as={motion.div} 
+      animate={control} 
+      variants={textVariants} 
+      initial={{opacity: 0,
+        transform: 'translateY(-20%)'}}
+      position='relative' w='100%' h='100%' 
+      sx={styles} 
+      ref={ref} 
+    >
       <Text 
-        as='div' 
+        as={motion.div} 
         fontSize='sm' 
         align={{sm: 'center', lg: 'justify'}} 
         width='100%'
         position='relative'
+        ref={scope}
         sx={{
           '@media (min-width: 1051px)': {
             position: 'absolute',
@@ -61,6 +113,27 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
           },
           textStyles,
         }}
+        onHoverStart={() =>
+          animate(
+            scope.current,
+            { scale: [1, 1.02] },
+            { ease: "easeOut", 
+              repeat: Infinity, 
+              duration: 1,
+              // repeatType: "reverse", 
+            }
+            )
+        }
+        onHoverEnd={() =>
+          animate(
+            scope.current,
+            { scale: 1 },
+            { 
+              ease: "easeIn", 
+              duration: 1,
+            }
+            )
+        }
       >
         {text}
       </Text>
