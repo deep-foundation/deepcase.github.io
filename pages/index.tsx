@@ -206,7 +206,7 @@ export function PageContent() {
         </GridArea>
 
         <Space unit={10} />
-        <FlexSection direction='row' px={0}>
+        <FlexSection direction='row' pl={{sm: '1rem', md: '2rem'}}>
           {desktop 
           ? <IntroDesktop />
           : <IntroMobile />}
@@ -247,8 +247,8 @@ export function PageContent() {
 
         <GridArea>
           <H2>Crew</H2>
-          <Space unit={5} />
-          <Wrap justify='center' spacing='7rem'>
+          <AdaptiveSpace unit={{sm: 0, md: 5}} />
+          <Wrap justify='center' spacing='7rem' pt={{sm: '3rem', md: '2rem'}}>
             {crew.map(i => (
               <WrapItem key={i.id} >
                 <CrewCard src={i.src} alt={i.alt} name={i.name} role={i.role} />

@@ -71,28 +71,13 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
   const ref = useRef(null);
   const isInView = useInView(ref);
   const control = useAnimation();
-  const [scope, animate] = useAnimate();
-  // const animation = useRef();
-  
-  // useEffect(() => {
-  //   animation.current = animate(scope.current, { x: 320 }, { ease: "easeOut", repeat: Infinity, repeatType: "reverse" });
-  //   animation.current.cancel();
-  // }, []);
-
-  useEffect(() => {
-    if (isInView) {
-      control.start('inView');
-    } else {
-      control.start('outView');
-    }
-  },[isInView])
 
   return ( <Box 
       as={motion.div} 
-      animate={control} 
-      variants={textVariants} 
-      initial={{opacity: 0,
-        transform: 'translateY(-20%)'}}
+      // animate={control} 
+      // variants={textVariants} 
+      // initial={{opacity: 0,
+      //   transform: 'translateY(-20%)'}}
       position='relative' w='100%' h='100%' 
       sx={styles} 
       ref={ref} 
@@ -103,7 +88,6 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
         align={{sm: 'center', lg: 'justify'}} 
         width='100%'
         position='relative'
-        ref={scope}
         sx={{
           '@media (min-width: 1051px)': {
             position: 'absolute',
@@ -113,27 +97,6 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
           },
           textStyles,
         }}
-        onHoverStart={() =>
-          animate(
-            scope.current,
-            { scale: [1, 1.02] },
-            { ease: "easeOut", 
-              repeat: Infinity, 
-              duration: 1,
-              // repeatType: "reverse", 
-            }
-            )
-        }
-        onHoverEnd={() =>
-          animate(
-            scope.current,
-            { scale: 1 },
-            { 
-              ease: "easeIn", 
-              duration: 1,
-            }
-            )
-        }
       >
         {text}
       </Text>
@@ -144,7 +107,9 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
 export const FlagsWithText = React.memo(() => {
   const { t } = useTranslation();
 
-  return (<VStack spacing={{ sm: '7rem', lg: '5rem' }} divider={<StackDivider borderColor={{sm: 'light', lg: 'transparent'}} mt={{sm: '5rem', lg: 0}} mb={{sm: '5em', md: '3em', lg: 0}} />}>
+  return (<VStack 
+      spacing={{ sm: '7rem', lg: '5rem' }} 
+      divider={<StackDivider borderColor={{sm: 'light', lg: 'transparent'}} m={{sm: '5rem', lg: 0}} />}>
       <GridCard columns='max-content 1fr' direction='column' alignItem='flex-start'>
         <Box w={{sm: '20rem', '2xl': '23rem'}}>
           <Flag
@@ -227,8 +192,7 @@ export const FlagsWithText = React.memo(() => {
         </Box>         */}
         
         <Box 
-          w={{sm: '20rem', '2xl': '23rem'}}
-          
+          w={{sm: '20rem', '2xl': '23rem'}} 
         >
           <Flag
             Icon={Hands}
@@ -237,8 +201,7 @@ export const FlagsWithText = React.memo(() => {
           />
         </Box>
         
-      </GridCard>
-      
+      </GridCard>   
     </VStack>
   )
 })
