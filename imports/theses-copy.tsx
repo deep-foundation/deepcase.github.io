@@ -1,109 +1,92 @@
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useInView } from 'react-intersection-observer';
 import { Box, Container, Flex, ListItem, Text, UnorderedList } from './framework';
 
 
+const thesisTransition = {
+  transition: { type: "spring", duration: 2, bounce: 0 }
+};
+
 const thesis = {
-  show: (custom) => {
-    return { 
-      opacity: 1, 
-      scale: 1, 
-      transition: { 
-        duration: 0.5, 
-        delay: custom * 0.2,
-        // delayChildren: 0.5, 
-        staggerChildren: 0.1,
-      }
-    } 
-  },
-  hidden: { opacity: 0, scale: 0, },
-  active : { color: '#00b6fe' },
-  notActive : { color: '#ffffff' },
+  active : { color: '#00b6fe', scale: 1.05, thesisTransition, },
+  notActive : { color: '#ffffff', scale: 1, thesisTransition, },
 };
 
 const thesisDescription = {
   visible: { 
-    opacity: [0, 0.3, 0.6, 0.9, 1], 
+    opacity: [0, 1], 
     display: 'block',
+    scale: 1,
+    x: '0%',
     transition: { 
       duration: .5, 
-      delay: 0.5 
     } 
   },
   hidden: { 
-    opacity: [1, 0.9, 0.6, 0.3, 0], 
+    opacity: [1, 0], 
     display: 'none',
+    scale: 0.5,
+    x: '100%',
     transition: { 
-      display: { delay: 3 },
-      duration: .5, 
-      delay: 0,
+      display: { delay: 0.3 },
+      duration: .5,
     } 
   }
 };
 
 const drawLine = {
-  hidden: { opacity: 0, height: 0 },
-  visible: (i) => {
-    return {
-      zIndex: 3,
-      opacity: 1,
-      height: '100%',
-      transition: {
-        height: { delay: 0.5, type: "spring", duration: 1.5, bounce: 0 }
-      }
-    };
-  }
+  hidden: { 
+    opacity: 0, 
+    height: '0%',
+    originY: 1,
+    transition: {
+      height: { delay: 0.2, type: "spring", duration: 1.5, bounce: 0 } ,
+      opacity: { delay: 0.3 } 
+    }
+  },
+  visible: {
+    zIndex: 3,
+    opacity: 1,
+    originY: 0,
+    height: '100%',
+    transition: {
+      height: { delay: 0.2, type: "spring", duration: 1.5, bounce: 0 }
+    }
+  },
 };
 
 const ThesisBorder = React.memo<any>(({
-  i,
-  index,
+  isActive,
 }:{
-  i?: number;
-  index?: number;
+  isActive?: boolean;
 }) => {
   const control = useAnimation();
 
-  const activatedRef = useRef(false);
   useEffect(() => {
-    if (index === i) {
-      activatedRef.current = true;
+    if (isActive == true) {
       control.start("visible");
-    } else if(activatedRef.current && index != i) {
-      activatedRef.current = false;
+    } else {
       control.start("hidden");
     }
-  }, [control, index, i]);
+  }, [control, isActive]);
 
-  return(<motion.div
-      initial="hidden"
-      animate={control}
-      variants={drawLine}
-      style={{
-        position: 'absolute', 
-        background: '#00b6fe',
-        top: 0, right: -1.9,
-        width: 1,
-        height: "100%",
-        borderTopLeftRadius: 2,
-        borderTopRightRadius: 2,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-      }}
-    />
+  return(<AnimatePresence>
+      <Box as={motion.div}
+        animate={control}
+        variants={drawLine}
+        exit='hidden'
+        style={{
+          position: 'absolute', 
+          background: '#00b6fe',
+          top: 0, right: '-0.07rem',
+          width: '0.25rem',
+          borderRadius: 2,
+        }}
+      />
+    </AnimatePresence>
   )
 })
-
-const transition = {
-  transition: { 
-    duration: 0.5, 
-    delay: 0.2,
-    // delayChildren: 0.5, 
-    // staggerChildren: 0.1,
-  }
-}
 
 export const Thesis = React.memo<any>(({
   text = 'привет',
@@ -118,60 +101,36 @@ export const Thesis = React.memo<any>(({
   onClickActive?: (id: any) => any;
   id?: number;
 }) => {
-  const animation = useRef(null);
-  const ref = useRef(null);
-  // @ts-ignore
-  const isInView = useInView(ref);
   const control = useAnimation();
-
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (isInView) {
-      control.start("show");
-    } else if (isActive == true) {
+    if (isActive == true) {
       control.start("active");
-    } else if (isActive == false) {
-      control.start("notActive");
     } else {
-      control.start("hidden");
-    }
-  }, [control, isInView, isActive]);
+      control.start("notActive");
+    } 
+  }, [isActive]);
 
   return (<AnimatePresence>
       <Box 
         as={motion.div}
         width='100%'
-        transformOrigin='right'
-        ref={ref}
-        // sx={{
-        //   color: isActive == true ? '#00b6fe' : '#ffffff',
-        //   transition: 'color 1s ease',
-        // }}
-        // initial={{color: '#ffffff'}}
-        variants={thesis}
-        animate={control}
-        exit='nonActive'
-        whileTap={{ scale: 1.05, fontWeight: 600 }}
-        whileFocus={{ scale: 1.05 }}
-        // onTap={() => isActive && animation.current.play()}
+        transformOrigin='center'
         onClick={() => {
           onClickActive && onClickActive(id);
-          console.log('isActive', isActive);
-          console.log('id', id);
         }}
-        // layout
-        // sx={{ color: id }}
-        // @ts-ignore
-        // transition={{
-        //     type: "spring",
-        //     stiffness: 350,
-        //     damping: 25,
-        // }}
-      >
+        >
         <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
-          {/* <ThesisBorder i={i} index={index} /> */}
-          <Text fontSize={fontSize} cursor='pointer'>{t(text)}</Text>
+          <ThesisBorder isActive={isActive} />
+          <Text as={motion.h4} 
+            whileTap={{ scale: 1.05, fontWeight: 600, transition: { type: "spring", duration: 1, bounce: 0 } }}
+            whileHover={{ scale: 1.05, fontWeight: 600, transition: { type: "spring", duration: 1, bounce: 0 } }}
+            initial={{color: '#ffffff'}}
+            variants={thesis}
+            animate={control}
+            exit='nonActive' fontSize={fontSize} cursor='pointer'
+          >{t(text)}</Text>
         </Container>
       </Box>
     </AnimatePresence>
@@ -195,9 +154,6 @@ export const ThesisDescription = React.memo<any>(({
   [key:string]: any;
 }) => {
   const control = useAnimation();
-  const ref = useRef(null);
-  // @ts-ignore
-  const isInView = useInView(ref);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -207,33 +163,15 @@ export const ThesisDescription = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, isActive]);
-  // useEffect(() => {
-  //   if (isInView) {
-  //     control.start("visible");
-  //   } else if (isActive == true) {
-  //     control.start("visible");
-  //   } else {
-  //     control.start("hidden");
-  //   }
-  // }, [control, isActive, isInView]);
-  // useEffect(() => {
-  //   if (isInView && (isActive == true)) {
-  //     control.start("visible");
-  //   } else if (isActive == true) {
-  //     control.start("visible");
-  //   } else {
-  //     control.start("hidden");
-  //   }
-  // }, [control, isInView, isActive]);
 
   return (<AnimatePresence>
       <Box 
         as={motion.div}
         position='absolute'
         height='100%'
+        layout
         top={0}
         initial={{opacity: 0, display: 'none'}}
-        ref={ref}
         variants={thesisDescription}
         animate={control}
         exit='hidden'
@@ -247,16 +185,17 @@ export const ThesisDescription = React.memo<any>(({
           alignItems='center'
           justifyContent='center'
         >
-          {<Text fontSize={fontSize}>
+          {<Text fontSize={{sm: 'sm', md: 'md'}}>
             {t(description)}
           </Text>}
           {!!points && <UnorderedList pt='3'>
             {points.map(point => (
-              <ListItem key={point.id} fontSize='md'>{t(point.text)}</ListItem>
+              <ListItem key={point.id} fontSize={{sm: 'sm', md: 'md'}}>{t(point.text)}</ListItem>
             ))}
           </UnorderedList>}
         </Flex>
       </Box>
     </AnimatePresence>
+   
   )
 })

@@ -183,7 +183,6 @@ export function PageContent() {
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
         </> }
         
-        <Space unit={6} />
         {/* <Box 
           as='section'
           sx={{
@@ -198,7 +197,7 @@ export function PageContent() {
           <Blob />
         </Box> */}
 
-        <AdaptiveSpace unit={{sm: '2rem', md: '0rem'}} />
+        <AdaptiveSpace unit={{sm: 0, md: 6}} />
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
         
