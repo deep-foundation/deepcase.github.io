@@ -135,13 +135,13 @@ export const Footer = React.memo(() => {
           </HStack>
         </Link>
       </Flex>
-      <Center>
+      {/* <Center>
         <Link isExternal href=''>
           <HStack>
             <GiDirectionSigns /> <Text fontSize='xs'>{t("deep-address")}</Text>
           </HStack>
         </Link>
-      </Center>
+      </Center> */}
     </Box>
   )
 })
