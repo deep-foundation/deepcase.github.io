@@ -157,7 +157,7 @@ export const DeepMainTheses = React.memo<any>(() => {
       <Box
         display='grid'
         gridTemplateColumns={{sm: '1fr', md: '0.5fr 1fr'}}
-        gridTemplateRows={{sm: 'minmax(40vmax, 1fr) 0.1fr', md: '1fr'}}
+        gridTemplateRows={{sm: 'minmax(25vmax, 1fr) 0.1fr', md: '1fr'}}
         rowGap={4}
         alignItems='center'
         justifyItems='center'
