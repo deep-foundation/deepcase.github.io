@@ -258,7 +258,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/factors.jpeg',
       alt: 'Фактор рефакторинга',
       title: 'Фактор рефакторинга',
-      read: '4.8К',
+      read: '5.6К',
       comments: 36,
       href: 'https://habr.com/ru/post/576326/'
     },
@@ -267,7 +267,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/links.png',
       alt: 'Ассоциативные связи',
       title: 'Ассоциативные связи',
-      read: '2.5К',
+      read: '3.7К',
       comments: 8,
       href: 'https://habr.com/ru/post/576398/'
     },
@@ -276,7 +276,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/math.jpeg',
       alt: 'Math introduction to Deep Theory',
       title: 'Math introduction to Deep Theory',
-      read: '1.4К',
+      read: '2.4К',
       comments: 0,
       href: 'https://habr.com/ru/post/658705/'
     },
@@ -285,9 +285,18 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/startup.png',
       alt: 'Стартап с другой планеты',
       title: 'Стартап с другой планеты',
-      read: '5.8К',
+      read: '8.3К',
       comments: 26,
       href: 'https://habr.com/ru/post/656879/'
+    },
+    {
+      id: '5',
+      src: './posts/article.png',
+      alt: 'Хроники безумного стартапа. День 581',
+      title: 'Хроники безумного стартапа. День 581',
+      read: '2.7К',
+      comments: 26,
+      href: 'https://habr.com/ru/companies/deepfoundation/articles/745454/'
     },
   ];
   return (<VStack spacing={10}>
