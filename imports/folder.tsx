@@ -1,7 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { withStyles } from '@material-ui/styles';
-import { useSpring, animated } from 'react-spring';
-import { ButtonBase, makeStyles, Paper, Popover } from '@material-ui/core';
+import { Popover } from '@material-ui/core';
+import { useState } from 'react';
 
 export function Folder({
   children,

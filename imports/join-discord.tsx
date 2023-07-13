@@ -3,13 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SiDiscord } from 'react-icons/si';
 import { Button, Text, Center, useMediaQuery } from './framework';
 import { IconContext } from "react-icons";
-import { makeStyles } from '@material-ui/styles';
 
-
-const useStyles = makeStyles(theme => ({
-  icon: {
-  }
-}))
 
 const StyledIcon = React.memo(() => {
   return (<IconContext.Provider value={{ size: '4.5rem' }}>
