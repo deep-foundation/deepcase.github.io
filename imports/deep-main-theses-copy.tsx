@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Container, Flex, Hide, HStack, Show, Text } from './framework';
 import { Thesis, ThesisDescription } from './theses-copy';
-import { ImageListItem } from '@material-ui/core';
+import { AdaptiveSpace } from './space';
 
 
 const items = [
@@ -138,7 +138,7 @@ export const DeepMainTheses = React.memo<any>(() => {
   }
   const timer = new Timer(() => {
     cycleMode();
-  }, 3000);
+  }, 4000);
 
   useEffect(() => {
     timer.start();
@@ -222,6 +222,8 @@ export const DeepMainTheses = React.memo<any>(() => {
           // key={language}
           w='100%'
           h='100%'
+          maxH='19rem'
+          minH='18.75rem'
           display='flex'
           flexDirection='column'
           alignItems='center'
@@ -237,7 +239,8 @@ export const DeepMainTheses = React.memo<any>(() => {
             />
           ))}
         </Box>
-        <Show below='md'>
+        <AdaptiveSpace unit={{sm: 1, md: 0}} />
+        {/* <Show below='md'>
           <HStack justifyContent='center' py={2}>
             {items.map((item, i) => {
               return (
@@ -261,7 +264,7 @@ export const DeepMainTheses = React.memo<any>(() => {
               );
             })}
           </HStack>
-        </Show>
+        </Show> */}
       </Box>
     </Container>
   )
