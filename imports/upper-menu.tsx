@@ -136,7 +136,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
               }
             }}
           >
-            <Flex direction='row' justify={{sm: 'center', md: 'space-between'}} align='center' p='0 1rem'>
+            <Flex direction='row' justify={{sm: 'center', md: 'space-between'}} align='center' p={{sm: '0 0.3rem', md: '0 1rem'}}>
               { !max825
                 ? <Flex direction='row' justify='space-between' w='100%'>
                     <HStack>

@@ -294,7 +294,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/article.png',
       alt: 'Хроники безумного стартапа. День 581',
       title: 'Хроники безумного стартапа. День 581',
-      read: '2.7К',
+      read: '2.8К',
       comments: 26,
       href: 'https://habr.com/ru/companies/deepfoundation/articles/745454/'
     },
