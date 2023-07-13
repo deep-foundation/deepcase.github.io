@@ -17,6 +17,7 @@ import { AdaptiveSpace, Space } from '../imports/space';
 import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
+import { GitpodButton, GitpodButton2 } from '../imports/gitpod-button';
 
 
 Sentry.init({
@@ -113,6 +114,7 @@ export function PageContent() {
   
   const [desktop] = useMediaQuery('(min-width: 768px)');
   const [max825] = useMediaQuery('(max-width: 825px)');
+  const [min826] = useMediaQuery('(min-width: 826px)');
   const [max900] = useMediaQuery('(max-width: 900px)');
 
   const onOpenTalksModal = useCallback(() => setOpenTalksModal(true), []);
@@ -149,36 +151,40 @@ export function PageContent() {
         <Space unit={6} />
          
         { max825 && <>
-          <HStack ref={refMenuButtons} pl={1}>
-            <Button 
-              aria-label='documentation'
-              as='a' target='_blank'
-              variant='ghost'
-              size='sm'
-              href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
-            >
-              Docs
-            </Button>
-            <Button 
-              aria-label='talks' 
-              variant='ghost' 
-              size='sm' 
-              as='button' 
-              onClick={onOpenTalksModal}
-            >
-              Talks
-            </Button>
-            <Button 
-              as='a' 
-              target='_blank'
-              variant='ghost'
-              aria-label='github repository deep foundation'
-              size='sm'
-              href='https://github.com/deep-foundation'
-            >
-              GitHub
-            </Button>
-          </HStack>
+          <Box display='flex' justifyContent='space-between'>
+
+            <HStack ref={refMenuButtons}>
+              <Button 
+                aria-label='documentation'
+                as='a' target='_blank'
+                variant='ghost'
+                size='sm'
+                href='https://ivansglazunov.notion.site/documentation-83e8d1fc18e644b6a66ff05cd3a2e157'
+              >
+                Docs
+              </Button>
+              <Button 
+                aria-label='talks' 
+                variant='ghost' 
+                size='sm' 
+                as='button' 
+                onClick={onOpenTalksModal}
+              >
+                Talks
+              </Button>
+              <Button 
+                as='a' 
+                target='_blank'
+                variant='ghost'
+                aria-label='github repository deep foundation'
+                size='sm'
+                href='https://github.com/deep-foundation'
+              >
+                GitHub
+              </Button>
+            </HStack>
+            <GitpodButton2 />
+          </Box>
           <Space />
           <TalksForm portalOpen={openTalksModal} onClosePortal={onCloseTalksModal} />
         </> }
@@ -197,9 +203,18 @@ export function PageContent() {
           <Blob />
         </Box> */}
 
-        <AdaptiveSpace unit={{sm: 0, md: 6}} />
+        {min826 
+        ? (<><AdaptiveSpace unit={{sm: 0, md: 3}} />
+            <Box w='100%' h='max-content' display='flex' justifyContent='flex-end'>
+              <GitpodButton />
+            </Box>
+          <AdaptiveSpace unit={{sm: '2rem', md: '3rem'}} /></>) 
+        : null}
+
+        <AdaptiveSpace unit={{sm: 2, md: 0}} />
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+
         
         <GridArea>
           <FlagsWithText />
@@ -239,7 +254,7 @@ export function PageContent() {
             alignItems='center'
             justifyContent='center'
           >
-            <CarouselPodcast />
+            {/* <CarouselPodcast /> */}
           </Box>
         </Box>
         
@@ -248,7 +263,15 @@ export function PageContent() {
         <GridArea>
           <H2>Crew</H2>
           <AdaptiveSpace unit={{sm: 0, md: 5}} />
-          <Wrap justify='center' spacing='7rem' pt={{sm: '3rem', md: '2rem'}}>
+          <Wrap 
+            justify='center' 
+            align='center' 
+            spacing='7rem' 
+            display='flex'
+            alignItems='center'
+            width='calc(100% + 2rem)'
+            height='calc(100% + 4rem)'
+          >
             {crew.map(i => (
               <WrapItem key={i.id} >
                 <CrewCard src={i.src} alt={i.alt} name={i.name} role={i.role} />
@@ -257,7 +280,7 @@ export function PageContent() {
           </Wrap>
         </GridArea>
         
-        <Space unit={max900 ? 14 : 6} />
+        <Space unit={max900 ? 14 : 8} />
         <Footer />
       </Box>
     </>
