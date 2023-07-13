@@ -254,7 +254,7 @@ export function PageContent() {
             alignItems='center'
             justifyContent='center'
           >
-            {/* <CarouselPodcast /> */}
+            <CarouselPodcast />
           </Box>
         </Box>
         
