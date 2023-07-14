@@ -3,7 +3,7 @@ import useAxios from 'axios-hooks';
 import { NotionRenderer } from "react-notion";
 
 export function NotionPage({ page }: { page: string }) {
-  const [{ data: notionPage, loading, error }, refetch] = useAxios(`/${page}.json`);
+  // const [{ data: notionPage, loading, error }, refetch] = useAxios(`/${page}.json`);
 
   return (<>
     <Text>
