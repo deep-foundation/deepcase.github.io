@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from 'react';
-import { TbArrowTopCircle } from 'react-icons/tb';
+import { TbArrowUpCircle } from 'react-icons/tb';
 import { Button } from '../framework';
 
 export interface IMenuItem {
@@ -91,7 +91,7 @@ export const DocumentationMenuItem = React.memo<any>(({
         onClick={(e) => onOpen(e)}
         rightIcon={children && (
           <motion.div animate={{ rotate: open ? 180 : 0 }}>
-            <TbArrowTopCircle />
+            <TbArrowUpCircle />
           </motion.div>
         )}
         sx={{
