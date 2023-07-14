@@ -148,9 +148,15 @@ export function PageContent() {
           overflowY: 'scroll',
           overflowX: 'hidden',
         }} 
-        animate={{ scale: [0.8, 0.5, 1.2, 1] }}
+        animate={{ 
+          // scale: [0.8, 0.9, 1.2, 1], 
+          // backgroundSize: ['65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px', '80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px'] 
+        }}
         // @ts-ignore
-        transition={{ duration: 3 }}
+        transition={{ 
+          duration: 5,
+          ease: "backInOut", 
+        }}
       >
         <Space unit={6} />
          
@@ -238,7 +244,7 @@ export function PageContent() {
             <H2>{t('posts-header')}</H2>
           </GridArea>
           <Space unit={3} />
-          <GridArea component='div' justifyItems='flex-start'>
+          <GridArea component='div' justifyItems='flex-start' pl='1rem'>
             <ArticlesGrid />
           </GridArea>
         </Box>
@@ -249,10 +255,10 @@ export function PageContent() {
           <GridArea component='div'>
             <H2>{t('podcasts-header')}</H2>
           </GridArea>
-          <Space unit={3} />
+          {/* <Space unit={3} /> */}
           <Box 
             w='100%'
-            height='33rem' //'19rem'
+            height='23rem' //'19rem'
             display='flex'
             flexDir='column'
             alignItems='center'
@@ -264,7 +270,7 @@ export function PageContent() {
           </Box>
         </Box>
         
-        <Space unit={max900 ? 14 : 6} />
+        <Space unit={max900 ? 1 : 6} />
 
         <GridArea>
           <H2>Crew</H2>

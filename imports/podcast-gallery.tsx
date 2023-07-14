@@ -466,6 +466,7 @@ export const PodcastsScroll = React.memo(() => {
 
   return (<>
     <Box 
+      width={{sm: '80%', md: '70%'}}
       sx={{
         display: 'grid',
         gridTemplateColumns: 'repeat(8, 20rem)',
@@ -473,8 +474,7 @@ export const PodcastsScroll = React.memo(() => {
         columnGap: '5rem',
         gridTemplateRows: '15rem',
         position: 'absolute',
-        width: '80%',
-        padding: '4rem 0',
+        padding: '2rem 0',
         alignContent: 'center',
         '&::-webkit-scrollbar': {
           height: '0.2rem',
