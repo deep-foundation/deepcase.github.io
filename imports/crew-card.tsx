@@ -69,7 +69,7 @@ export const CrewCard = React.memo(({
       >
         <Box data-id="containerImage" position='relative' sx={{
           '.card:hover &': {
-            mixBlendMode: 'difference'
+                filter: 'brightness(0.1)',
           },
           ...containerImage}}>
           <Img 
@@ -85,9 +85,6 @@ export const CrewCard = React.memo(({
           />
         </Box>
         <Box data-id="containerImage" position='absolute' sx={{
-          '.card:hover &': {
-            mixBlendMode: 'difference'
-          },
           ...containerImage}}>
           <Img 
             src={src} 
@@ -97,6 +94,7 @@ export const CrewCard = React.memo(({
               '.card:hover &': {
                   transition: 'all 1.2s ease-in-out',
                   transform: 'scale(0.95)',
+                  filter: 'brightness(0.1)',
                 },
             }}
           />
@@ -104,6 +102,7 @@ export const CrewCard = React.memo(({
             sx={{
               '.card:hover &': {
                 opacity: 1,
+                mixBlendMode: 'difference',
               },
               ...filterText
             }}
