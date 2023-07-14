@@ -86,6 +86,28 @@ export function useDeepMainTheses() {
 const indicatorSize = 10;
 const indicatorAlpha = 0.3;
 
+const thesesMobile = {
+  visible: { 
+    opacity: [0, 1], 
+    display: 'block',
+    scale: 1,
+    x: '0%',
+    transition: { 
+      duration: .5, 
+    } 
+  },
+  hidden: { 
+    opacity: [1, 0], 
+    display: 'none',
+    scale: 0.5,
+    x: '100%',
+    transition: { 
+      display: { delay: 0.3 },
+      duration: .5,
+    } 
+  }
+};
+
 export const DeepMainTheses = React.memo<any>(() => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
@@ -153,35 +175,58 @@ export const DeepMainTheses = React.memo<any>(() => {
     timer.start();
   }, [index, isActive, timer]);
 
+  const controlThesesMobile = useAnimation();
+
+  useEffect(() => {
+    if (isActive == true) {
+      controlThesesMobile.start("visible");
+    } else {
+      controlThesesMobile.start("hidden");
+    }
+  }, [controlThesesMobile, isActive]);
+
   return(<Container maxW='container.xl' pl='1rem' pr='1rem'>
       <Box
         display='grid'
         gridTemplateColumns={{sm: '1fr', md: '0.5fr 1fr'}}
-        gridTemplateRows={{sm: 'minmax(25vmax, 1fr) 0.1fr', md: '1fr'}}
+        gridTemplateRows={{sm: 'minmax(5vmax, 0.5fr) 0.1fr', md: '1fr'}}
         rowGap={4}
         alignItems='center'
         justifyItems='center'
         w='100%'
         h='100%'
       >
-        {/* <Show below='md'>
+        <Show below='md'>
           <Box py={2} px={4}>
-              {items.map((item, i) => {
-                return (
-                  <AnimatePresence>
-                    <Text as={motion.h4} 
-                      // initial={{color: '#ffffff'}}
-                      key={i}
-                      variants={thesesMobile}
-                      animate={controlThesesMobile}
-                      exit='hide' 
-                      cursor='pointer'
-                    >{t(item.title)}</Text>
-                  </AnimatePresence>
-                );
-              })}
+            {items.map((item, i) => {
+              return (
+                <AnimatePresence>
+                  <Box as={motion.div}
+                    style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box',}}
+                    animate={{
+                      opacity: index === i ? [0, 0.5, 1] : 0,
+                      scale: index === i ? 1.2 : 1,
+                      x: index === i ? '0%' : '100%',
+                      display: index === i ? 'block' : 'none',
+                      originX: '50%',
+                    }}
+                    // @ts-ignore
+                    transition={{
+                      type: "spring", damping: 5, bounce: 0.5, stiffness: 30, mass: 0.4
+                    }}
+                    exit={{ opacity: 0, x: '100%', display: 'none' }}
+                    key={i}
+                    onClick={() => setIndex(i)}
+                  >
+                    <Text size='md' fontWeight='bold' color='white'>
+                      {t(item.title)}
+                    </Text>
+                  </Box>
+                </AnimatePresence>
+              );
+            })}
           </Box>
-        </Show> */}
+        </Show>
         <Hide below='md'>
           <Flex
             as={motion.div} 
@@ -239,8 +284,7 @@ export const DeepMainTheses = React.memo<any>(() => {
             />
           ))}
         </Box>
-        <AdaptiveSpace unit={{sm: 1, md: 0}} />
-        {/* <Show below='md'>
+        <Show below='md'>
           <HStack justifyContent='center' py={2}>
             {items.map((item, i) => {
               return (
@@ -258,13 +302,15 @@ export const DeepMainTheses = React.memo<any>(() => {
                     opacity: index === i ? 1 : indicatorAlpha,
                     scale: index === i ? 1.1 : 1
                   }}
-                  key={i}
-                  onClick={(i) => clickActivation(i)}
+                  key={item.id}
+                  onClick={() => {
+                    clickActivation(i);
+                  }}
                 />
               );
             })}
           </HStack>
-        </Show> */}
+        </Show>
       </Box>
     </Container>
   )

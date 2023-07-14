@@ -18,6 +18,7 @@ import { TalksForm } from '../imports/talks-form';
 import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import { GitpodButton, GitpodButton2 } from '../imports/gitpod-button';
+import { motion } from 'framer-motion';
 
 
 Sentry.init({
@@ -129,7 +130,7 @@ export function PageContent() {
   return (<>
       <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
       <Box 
-        as='main' 
+        as={motion.div}
         ref={scrollingRef} 
         sx={{
           position: 'absolute', 
@@ -146,7 +147,9 @@ export function PageContent() {
           overflowY: 'scroll',
           overflowX: 'hidden',
         }} 
-        animation={animation}
+        animate={{ scale: [1, 0.5, 1.5, 1] }}
+        // @ts-ignore
+        transition={{ duration: 3 }}
       >
         <Space unit={6} />
          
@@ -254,7 +257,7 @@ export function PageContent() {
             alignItems='center'
             justifyContent='center'
           >
-            <CarouselPodcast />
+            {/* <CarouselPodcast /> */}
           </Box>
         </Box>
         

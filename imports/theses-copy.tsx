@@ -124,8 +124,8 @@ export const Thesis = React.memo<any>(({
         <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
           <ThesisBorder isActive={isActive} />
           <Text as={motion.h4} 
-            whileTap={{ scale: 1.05, fontWeight: 600, transition: { type: "spring", duration: 1, bounce: 0 } }}
-            whileHover={{ scale: 1.05, fontWeight: 600, transition: { type: "spring", duration: 1, bounce: 0 } }}
+            whileTap={{ scale: 1.05, transition: { type: "spring", duration: 1, bounce: 0 } }}
+            whileHover={{ scale: 1.05, transition: { type: "spring", duration: 1, bounce: 0 } }}
             initial={{color: '#ffffff'}}
             variants={thesis}
             animate={control}
