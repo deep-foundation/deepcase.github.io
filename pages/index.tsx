@@ -216,7 +216,7 @@ export function PageContent() {
         {min826 
         ? (<><AdaptiveSpace unit={{sm: 0, md: 3}} />
             <Box w='100%' h='max-content' display='flex' justifyContent='flex-end'>
-              <GitpodButton />
+              <GitpodButton2 />
             </Box>
           <AdaptiveSpace unit={{sm: '2rem', md: '3rem'}} /></>) 
         : null}
