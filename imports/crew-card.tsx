@@ -67,7 +67,7 @@ export const CrewCard = React.memo(({
         w='100%'
         h='100%'
       >
-        <Box data-id="containerImage" position='relative' sx={{
+        <Box data-id="containerImage" position='relative' sx={{ overflow: 'hidden',
           '.card:hover &': {
                 filter: 'brightness(0.1)',
           },
@@ -84,7 +84,7 @@ export const CrewCard = React.memo(({
             }}
           />
         </Box>
-        <Box data-id="containerImage" position='absolute' sx={{
+        <Box data-id="containerImage" position='absolute' sx={{ overflow: 'hidden',
           ...containerImage}}>
           <Img 
             src={src} 
@@ -102,7 +102,6 @@ export const CrewCard = React.memo(({
             sx={{
               '.card:hover &': {
                 opacity: 1,
-                mixBlendMode: 'difference',
               },
               ...filterText
             }}
