@@ -1,13 +1,6 @@
 import { Button, Text, useMediaQuery as useMediaQueryChakra } from '@chakra-ui/react';
 export * from '@chakra-ui/react';
 
-import AddIcon from '@material-ui/icons/Add';
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import FacebookIcon from '@material-ui/icons/Facebook';
-
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-export { ArrowBackIcon, AddIcon, YouTubeIcon, FacebookIcon };
-
 import NextLink from 'next/link';
 export { NextLink };
 
