@@ -304,7 +304,7 @@ const podcasts: ICardPodcast[] = [
     }],
   },
   {
-    id: '16',
+    id: '24',
     duration: '1:50',
     privateCast: false,
     date: '22.12.21',  
