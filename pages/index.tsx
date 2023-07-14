@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
-import { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticlesGrid } from '../imports/article';
 import { CrewCard } from '../imports/crew-card';
