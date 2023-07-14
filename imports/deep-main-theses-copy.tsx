@@ -86,28 +86,6 @@ export function useDeepMainTheses() {
 const indicatorSize = 10;
 const indicatorAlpha = 0.3;
 
-const thesesMobile = {
-  visible: { 
-    opacity: [0, 1], 
-    display: 'block',
-    scale: 1,
-    x: '0%',
-    transition: { 
-      duration: .5, 
-    } 
-  },
-  hidden: { 
-    opacity: [1, 0], 
-    display: 'none',
-    scale: 0.5,
-    x: '100%',
-    transition: { 
-      display: { delay: 0.3 },
-      duration: .5,
-    } 
-  }
-};
-
 export const DeepMainTheses = React.memo<any>(() => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
@@ -175,16 +153,6 @@ export const DeepMainTheses = React.memo<any>(() => {
     timer.start();
   }, [index, isActive, timer]);
 
-  const controlThesesMobile = useAnimation();
-
-  useEffect(() => {
-    if (isActive == true) {
-      controlThesesMobile.start("visible");
-    } else {
-      controlThesesMobile.start("hidden");
-    }
-  }, [controlThesesMobile, isActive]);
-
   return(<Container maxW='container.xl' pl='1rem' pr='1rem'>
       <Box
         display='grid'
@@ -212,7 +180,7 @@ export const DeepMainTheses = React.memo<any>(() => {
                       }}
                       // @ts-ignore
                       transition={{
-                        type: "spring", damping: 5, bounce: 0.5, stiffness: 30, mass: 0.4
+                        type: "spring", damping: 9, bounce: 0.5, stiffness: 120, mass: 0.7
                       }}
                       exit={{ opacity: 0, x: '100%', display: 'none' }}
                       key={item.id}
