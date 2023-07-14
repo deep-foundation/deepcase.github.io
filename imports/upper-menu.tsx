@@ -159,6 +159,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         fontSize: 'calc(32px + 0.5vmax)',
                         fontFamily: theme.fonts.body,
                         transformOrigin: 'top',
+                        margin: '0.25rem 0',
                         transform: fontsScroll.x
                           .to({
                             range: [0, 1, 0],
@@ -293,7 +294,6 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                                 width: '2rem',
                                 alignSelf: 'center',
                                 transformOrigin: 'top',
-                                // marginRight: '0.5rem',
                               }}
                               animate={{ 
                                 scale: mode == 2 ? 0 : 1, 
