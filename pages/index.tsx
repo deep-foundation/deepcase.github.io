@@ -19,6 +19,7 @@ import { theme } from '../imports/theme/build';
 import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
 import { GitpodButton, GitpodButton2 } from '../imports/gitpod-button';
 import { motion } from 'framer-motion';
+import { PodcastsGallery, PodcastsScroll } from '../imports/podcast-gallery';
 
 
 Sentry.init({
@@ -251,13 +252,15 @@ export function PageContent() {
           <Space unit={3} />
           <Box 
             w='100%'
-            height='33rem'
+            height='33rem' //'19rem'
             display='flex'
             flexDir='column'
             alignItems='center'
             justifyContent='center'
           >
             {/* <CarouselPodcast /> */}
+            {/* <PodcastsGallery /> */}
+            <PodcastsScroll />
           </Box>
         </Box>
         
