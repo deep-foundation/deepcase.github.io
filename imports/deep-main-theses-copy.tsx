@@ -198,33 +198,33 @@ export const DeepMainTheses = React.memo<any>(() => {
       >
         <Show below='md'>
           <Box py={2} px={4}>
-            {items.map((item, i) => {
-              return (
-                <AnimatePresence>
-                  <Box as={motion.div}
-                    style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box',}}
-                    animate={{
-                      opacity: index === i ? [0, 0.5, 1] : 0,
-                      scale: index === i ? 1.2 : 1,
-                      x: index === i ? '0%' : '100%',
-                      display: index === i ? 'block' : 'none',
-                      originX: '50%',
-                    }}
-                    // @ts-ignore
-                    transition={{
-                      type: "spring", damping: 5, bounce: 0.5, stiffness: 30, mass: 0.4
-                    }}
-                    exit={{ opacity: 0, x: '100%', display: 'none' }}
-                    key={i}
-                    onClick={() => setIndex(i)}
-                  >
-                    <Text size='md' fontWeight='bold' color='white'>
-                      {t(item.title)}
-                    </Text>
-                  </Box>
-                </AnimatePresence>
-              );
-            })}
+            <AnimatePresence>
+              {items.map((item, i) => {
+                return (
+                    <Box as={motion.div}
+                      style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box',}}
+                      animate={{
+                        opacity: index === i ? [0, 0.5, 1] : 0,
+                        scale: index === i ? 1.2 : 1,
+                        x: index === i ? '0%' : '100%',
+                        display: index === i ? 'block' : 'none',
+                        originX: '50%',
+                      }}
+                      // @ts-ignore
+                      transition={{
+                        type: "spring", damping: 5, bounce: 0.5, stiffness: 30, mass: 0.4
+                      }}
+                      exit={{ opacity: 0, x: '100%', display: 'none' }}
+                      key={item.id}
+                      onClick={() => setIndex(i)}
+                    >
+                      <Text size='md' fontWeight='bold' color='white'>
+                        {t(item.title)}
+                      </Text>
+                    </Box>
+                );
+              })}
+            </AnimatePresence>
           </Box>
         </Show>
         <Hide below='md'>
@@ -248,12 +248,12 @@ export const DeepMainTheses = React.memo<any>(() => {
             {items.map((item, i) => (
               <motion.div
                 variants={theses}
+                key={item.id}
               >
                 <Thesis 
                   isActive={index == i} 
                   id={item.id}
                   text={t(item.title)} 
-                  key={item.id} 
                   onClickActive={(i) => {
                     clickActivation(i);
                   }} 
