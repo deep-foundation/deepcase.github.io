@@ -148,7 +148,7 @@ export function PageContent() {
           overflowY: 'scroll',
           overflowX: 'hidden',
         }} 
-        animate={{ scale: [1, 0.5, 1.5, 1] }}
+        animate={{ scale: [0.8, 0.5, 1.2, 1] }}
         // @ts-ignore
         transition={{ duration: 3 }}
       >
