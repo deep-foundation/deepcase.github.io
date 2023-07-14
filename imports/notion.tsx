@@ -7,7 +7,7 @@ export function NotionPage({ page }: { page: string }) {
 
   return (<>
     <Text>
-      {!loading && <NotionRenderer blockMap={notionPage} />}
+      {/* {!loading && <NotionRenderer blockMap={notionPage} />} */}
     </Text>
   </>)
 };
