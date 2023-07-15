@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import fs from 'fs';
 
 const articles = [
@@ -9,8 +9,8 @@ const articles = [
 (async () => {
   for (let a = 0; a < articles.length; a++) {
     const article = articles[a];
-    // axios.get(`https://notion-api.splitbee.io/v1/page/${article}`).then(({ data }) => {
-    //   fs.writeFileSync(`${__dirname}/public/${article}.json`, JSON.stringify(data));
-    // });
+    axios.get(`https://notion-api.splitbee.io/v1/page/${article}`).then(({ data }) => {
+      fs.writeFileSync(`${__dirname}/public/${article}.json`, JSON.stringify(data));
+    });
   }
 })();
