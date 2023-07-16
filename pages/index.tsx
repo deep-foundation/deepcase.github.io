@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { ArticlesGrid } from '../imports/article';
 import { CrewCard } from '../imports/crew-card';
 import { DeepMainTheses } from '../imports/deep-main-theses-copy';
-import { CarouselPodcast } from '../imports/flags-slider';
 import { FlagsWithText } from '../imports/flags-with-text';
 import { Footer } from '../imports/footer';
 import { Box, Button, ChakraProvider, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
@@ -224,7 +223,6 @@ export function PageContent() {
         <AdaptiveSpace unit={{sm: 2, md: 0}} />
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
-
         
         <GridArea>
           <FlagsWithText />
@@ -264,7 +262,6 @@ export function PageContent() {
             alignItems='center'
             justifyContent='center'
           >
-            {/* <CarouselPodcast /> */}
             {/* <PodcastsGallery /> */}
             <PodcastsScroll />
           </Box>

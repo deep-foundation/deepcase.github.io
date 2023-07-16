@@ -1,12 +1,6 @@
 import { Button, Text, useMediaQuery as useMediaQueryChakra } from '@chakra-ui/react';
 export * from '@chakra-ui/react';
 
-import NextLink from 'next/link';
-export { NextLink };
-
-import useInterval from "@use-it/interval";
-export { useInterval };
-
 import { Card } from './card';
 export { Card as GravityCard };
 
