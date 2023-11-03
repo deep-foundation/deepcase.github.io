@@ -109,7 +109,7 @@ export const DocumentationMenu = React.memo<any>(({
   breakpoint?: string;
 }) => {
   const [isOpen, setOpen] = useState(false);
-  const containerRef = useRef();
+  const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const [isDesktop] = useMediaQuery('(min-width: 820px)');
 

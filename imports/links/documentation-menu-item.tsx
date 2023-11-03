@@ -13,7 +13,7 @@ export interface IMenuItem {
 interface IMenuItemProps extends IMenuItem {
   i?: number;
   expanded?: boolean | number;
-  onOpen?: (e: any) => any;
+  onOpen?: (e: any) => void;
   style?: any;
   variants?: any;
   transition?: any;
@@ -88,7 +88,8 @@ export const DocumentationMenuItem = React.memo<any>(({
         }}
         variants={variants}
         transition={transition}
-        onClick={(e) => onOpen(e)}
+        onClick={(e) => onOpen && onOpen(e)} // add null check
+
         rightIcon={children && (
           <motion.div animate={{ rotate: open ? 180 : 0 }}>
             <TbArrowUpCircle />
@@ -117,7 +118,7 @@ export const DocumentationMenuItem = React.memo<any>(({
               key={c.id}
               // i={i}
               expanded={expanded}
-              onOpen={(e) => onOpen(e)}
+                onOpen={onOpen && ((e) => onOpen(e))}
               title={c.title}
               id={c.id}
               variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}

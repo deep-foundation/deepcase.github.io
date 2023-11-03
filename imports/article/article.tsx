@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LinkBox, Box, LinkOverlay, Img, Flex, Text, HStack, VStack, Heading, AspectRatio } from './framework';
+import { LinkBox, Box, LinkOverlay, Img, Flex, Text, HStack, VStack, Heading, AspectRatio } from '../framework';
 import { FaEye, FaComment } from 'react-icons/fa';
 
 interface IArticle {
@@ -12,7 +12,12 @@ interface IArticle {
   comments?: number;
 }
 
-const HabrButton = React.memo(({text, href}:{text?: string; href?: string;}) => {
+interface IHabrButton {
+  text?: string;
+  href?: string;
+}
+
+const HabrButton = React.memo(({text, href}:IHabrButton) => {
   return (<Box
       as={LinkOverlay}
       href={href}
@@ -50,7 +55,7 @@ const HabrButton = React.memo(({text, href}:{text?: string; href?: string;}) => 
             transform: 'scale(0.98)',
           }}
         >
-          {text}
+          {text as string}
         </Text>
       </HStack>
     </Box>
@@ -60,6 +65,7 @@ const HabrButton = React.memo(({text, href}:{text?: string; href?: string;}) => 
 export const ArticleCard = React.memo(({src, alt, href, title}:IArticle) => {
   
   const { t } = useTranslation();
+
   return (<LinkBox as='article' maxW='sm' p='5' borderWidth='1px' borderRadius='5px' rounded='md'>
       <Box className="clip-block">
         <Box
@@ -258,8 +264,8 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/factors.jpeg',
       alt: 'Фактор рефакторинга',
       title: 'Фактор рефакторинга',
-      read: '5.6К',
-      comments: 36,
+      read: '6.1К',
+      comments: 39,
       href: 'https://habr.com/ru/post/576326/'
     },
     {
@@ -267,7 +273,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/links.png',
       alt: 'Ассоциативные связи',
       title: 'Ассоциативные связи',
-      read: '3.7К',
+      read: '4.2К',
       comments: 8,
       href: 'https://habr.com/ru/post/576398/'
     },
@@ -276,7 +282,7 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/math.jpeg',
       alt: 'Math introduction to Deep Theory',
       title: 'Math introduction to Deep Theory',
-      read: '2.4К',
+      read: '2.9К',
       comments: 0,
       href: 'https://habr.com/ru/post/658705/'
     },
@@ -285,8 +291,8 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/startup.png',
       alt: 'Стартап с другой планеты',
       title: 'Стартап с другой планеты',
-      read: '8.3К',
-      comments: 26,
+      read: '10К',
+      comments: 28,
       href: 'https://habr.com/ru/post/656879/'
     },
     {
@@ -294,9 +300,27 @@ export const ArticlesGrid = React.memo(() => {
       src: './posts/article.png',
       alt: 'Хроники безумного стартапа. День 581',
       title: 'Хроники безумного стартапа. День 581',
-      read: '2.8К',
-      comments: 26,
+      read: '3.5К',
+      comments: 1,
       href: 'https://habr.com/ru/companies/deepfoundation/articles/745454/'
+    },
+    {
+      id: '6',
+      src: './posts/startup.png',
+      alt: 'Ассоциативный Эксель и Сквозная валидация',
+      title: 'Ассоциативный Эксель и Сквозная валидация',
+      read: '2.1К',
+      comments: 2,
+      href: 'https://habr.com/ru/companies/deepfoundation/articles/750140/'
+    },
+    {
+      id: '7',
+      src: './posts/article.png',
+      alt: 'Просто о Deep #1',
+      title: 'Просто о Deep #1',
+      read: '3.9К',
+      comments: 8,
+      href: 'https://habr.com/ru/companies/deepfoundation/articles/757166/'
     },
   ];
   return (<VStack spacing={10}>

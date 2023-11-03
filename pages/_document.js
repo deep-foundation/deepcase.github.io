@@ -1,11 +1,8 @@
 import { theme } from '../imports/theme/build';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { extractCritical } from '@emotion/server';
+import { Html, Head, Main, NextScript } from 'next/document';
 
-export default class MyDocument extends Document {
-  render() {
+export default function Document() {
     return (
       <Html lang="en">
         <Head>
@@ -21,9 +18,6 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <link rel="/logo.png" href="image url" />
           <meta property="og:image" content="/logo_n. svg" />
-          {/* <meta property="og:image" content="/logo.png" /> */}
-          {/* <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /> */}
-         
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
@@ -45,5 +39,4 @@ export default class MyDocument extends Document {
         </body>
       </Html>
     );
-  }
 }

@@ -1,5 +1,4 @@
 import 'normalize.css';
-import 'react-round-carousel/dist/index.css';
 import '../imports/index.css';
 
 import { ChakraProvider } from '@chakra-ui/react'
@@ -13,8 +12,6 @@ import jQuery from 'jquery';
 
 import { QueryStoreProvider } from '@deep-foundation/store/query';
 import '../imports/i18n';
-
-global.jQuery = jQuery;
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -34,9 +31,7 @@ export default function MyApp(props) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <QueryStoreProvider>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
+        <Component {...pageProps} />
       </QueryStoreProvider>
     </React.Fragment>
   );

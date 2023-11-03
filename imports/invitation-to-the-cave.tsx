@@ -107,7 +107,7 @@ export const InvitationToTheCave = React.memo<any>(({
     const listener = event => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         event.preventDefault();
-        setContentReplacement(!contentReplacement);
+        setContentReplacement && setContentReplacement(!contentReplacement);
       }
     };
     document.addEventListener("keydown", listener);
@@ -133,7 +133,7 @@ export const InvitationToTheCave = React.memo<any>(({
       >
         <Invitation onEnterCave={(e) => {
           e.stopPropagation();
-          setContentReplacement(!contentReplacement);
+          setContentReplacement && setContentReplacement(!contentReplacement);
           }} 
         />
       </Box>
