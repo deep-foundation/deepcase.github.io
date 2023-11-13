@@ -90,13 +90,13 @@ const ThesisBorder = React.memo<any>(({
 
 export const Thesis = React.memo<any>(({
   text = 'привет',
-  fontSize = 'sm',
+  textStyle = 'Medium16',
   isActive,
   onClickActive,
   id,
 }:{
   text?: string;
-  fontSize?: string;
+  textStyle?: string;
   isActive?: boolean;
   onClickActive?: (id: any) => any;
   id?: number;
@@ -129,7 +129,7 @@ export const Thesis = React.memo<any>(({
             initial={{color: '#ffffff'}}
             variants={thesis}
             animate={control}
-            exit='nonActive' fontSize={fontSize} cursor='pointer'
+            exit='nonActive' textStyle={textStyle} cursor='pointer'
           >{t(text)}</Text>
         </Container>
       </Box>
@@ -185,12 +185,12 @@ export const ThesisDescription = React.memo<any>(({
           alignItems='center'
           justifyContent='center'
         >
-          {<Text fontSize={{sm: 'sm', md: 'md'}}>
+          {<Text textStyle='Regular16'>
             {t(description)}
           </Text>}
           {!!points && <UnorderedList pt='3'>
             {points.map(point => (
-              <ListItem key={point.id} fontSize={{sm: 'sm', md: 'md'}}>{t(point.text)}</ListItem>
+              <ListItem key={point.id} textStyle='Regular16'>{t(point.text)}</ListItem>
             ))}
           </UnorderedList>}
         </Flex>

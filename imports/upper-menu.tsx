@@ -8,6 +8,7 @@ import { Box, Button, ButtonGroup, Flex, HStack, IconButton, Img, useMediaQuery 
 import { H1 } from './headers';
 import { TalksForm } from './talks-form';
 import { theme } from './theme/build';
+import { Switch } from './switch-mode';
 
 
 export function useSwitcherModalTalks () { 
@@ -43,7 +44,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
   const [modeHidden, setModeHidden] = useState(1);
   const [openTalksModal, setOpenTalksModal] = useSwitcherModalTalks();
   const old = useRef({scrollTop: 0});
-  const cubeRef = useRef<HTMLInputElement>();
+  const cubeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -106,6 +107,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
 
   return (<><Box as='header' w='100%' pos='fixed' zIndex={2}>
         {transitions((style, item) => (item && <a.div ref={cubeRef}
+
           style={{
             overflow: 'hidden',
             width: '150vw',
@@ -253,6 +255,8 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                         <Button variant='ghost' isActive={active == 'ru'} aria-label='switch to russian' onClick={() => onChangeLanguage('ru')}>Ru</Button>
                       </ButtonGroup>
                     </a.div>
+
+                    <Switch />
                   </HStack>
                 </Flex>
                 : <Box 
@@ -335,13 +339,13 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                     <Box sx={{...cubeSurface, ...emptySurface2}} />
                     <Box
                       sx={{
-                        width: '100%',
+                        // width: '100%',
                         height: '100%',
-                        display: 'block',
+                        // display: 'block',
                         position: 'absolute', 
                         ...buttonsMenu
-                        }}
-                      >
+                      }}
+                    >
                       <Button 
                         aria-label='documentation'
                         as='a' 
@@ -409,6 +413,7 @@ export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeL
                             .to(x => `scale(${x})`)
                         }}>Talks</a.span></Button>
                     </Box>
+                    <Switch />
                   </motion.div>
                 </Box>
               }

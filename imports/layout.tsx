@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Box, Grid } from './framework';
+import { Masonry } from "masonic";
 
 
 export const GridArea = React.memo(({
@@ -12,6 +13,7 @@ export const GridArea = React.memo(({
   originalPx = '2rem',
   max825Px = '1rem',
   InnerGridProps,
+  width,
   ...props
 }:{
   children: any;
@@ -23,6 +25,7 @@ export const GridArea = React.memo(({
   originalPx?: any;
   max825Px?: any;
   InnerGridProps?: any;
+  width?: any;
   [key:string]: any;
 }) => {
 
@@ -49,7 +52,7 @@ export const GridArea = React.memo(({
 
 
 export const FluidGrid = React.memo<any>(({children}:{children: any;}) => {
-  return (<Box display='flex' flexDirection={{sm: 'column', md: 'row'}} pos='relative'>
+  return (<Box display='flex' flexDirection={{sm: 'column', md: 'row'}} pos='relative' alignItems='center' justifyContent='center' w='100%'>
       {children}
     </Box>
   )
@@ -72,3 +75,16 @@ export const FlexSection = React.memo(({
     </Box>
   )
 })
+
+
+type GridMasonryProps = {
+  children: (item: any) => React.ReactNode;
+  items: any[];
+}
+
+export const GridMasonry = memo(function GridMasonry(props: GridMasonryProps) {
+  const { items, children } = props;
+  return (
+    <Masonry items={items} render={children} />
+  )
+});

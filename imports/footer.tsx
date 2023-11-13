@@ -24,13 +24,15 @@ export const Footer = React.memo(() => {
       display='flex'
       flexDir='column'
       justifyContent='space-between'
-      as='footer'>
+      as='footer'
+    >
       <Box w='100%' display='flex' justifyContent='center'>
         <HStack spacing='0.3rem'>
-          <GiPeaceDove /> <Text fontSize='xs'>made by humans from Earth</Text>
+          <GiPeaceDove /> <Text textStyle='Bold14'>made by humans from Earth</Text>
         </HStack>
       </Box>
-      <Box w='100%' display='flex' justifyContent='center' mb='1em'>
+      <Box w='100%' display='flex' justifyContent='center' 
+        mb={{sm: '0.5rem', lg: '1rem'}}>
         <HStack spacing='0.5rem'>
           <IconButton
             variant='ghost'
@@ -40,7 +42,7 @@ export const Footer = React.memo(() => {
             title='youtube'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<AiOutlineYoutube />}
           />
           {/* <IconButton
@@ -51,7 +53,7 @@ export const Footer = React.memo(() => {
             title='facebook'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<AiOutlineFacebook />}
           /> */}
           <IconButton
@@ -62,7 +64,7 @@ export const Footer = React.memo(() => {
             title='vkontakte'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<VK />}
           />
           <IconButton
@@ -73,7 +75,7 @@ export const Footer = React.memo(() => {
             title='github repository deep foundation'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<VscGithubAlt />}
           />
           <IconButton
@@ -84,7 +86,7 @@ export const Footer = React.memo(() => {
             title='patreon'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<RiPatreonFill />}
           />
           <IconButton
@@ -95,7 +97,7 @@ export const Footer = React.memo(() => {
             title='boosty'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<Boosty />}
           />
           <IconButton
@@ -106,32 +108,32 @@ export const Footer = React.memo(() => {
             title='discord'
             as='a'
             target='_blank'
-            fontSize='xl'
+            fontSize={{sm: 'md', lg: 'xl'}}
             icon={<SiDiscord />}
           />
         </HStack>
       </Box>
       <Flex direction={{'sm': 'column', 'md': 'row'}} alignItems='center' justify='space-between'>
         <Text 
-          fontSize='xs' 
+          textStyle='Regular14' 
           sx={{
             display: {'sm': 'block','md': 'none'}
           }}
         >{t("deep-meeting")}</Text>  
         <Link href='tel: +7 985 427 12 56'>
           <HStack>
-            <GiCandlestickPhone /> <Text fontSize='xs'>+7 985 427 12 56</Text>
+            <GiCandlestickPhone /> <Text textStyle='Regular14'>+7 985 427 12 56</Text>
           </HStack>  
         </Link>
         <Text 
-          fontSize='xs' 
+          textStyle='Regular14' 
           sx={{
             display: {'sm': 'none','md': 'block'}
           }}
         >{t("deep-meeting")}</Text>
         <Link href='mailto: info@deep.foundation'>
           <HStack>
-            <GiMailbox /> <Text fontSize='xs'>info@deep.foundation</Text>
+            <GiMailbox /> <Text textStyle='Regular14'>info@deep.foundation</Text>
           </HStack>
         </Link>
       </Flex>

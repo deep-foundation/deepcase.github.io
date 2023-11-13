@@ -115,7 +115,7 @@ export const Flag = React.memo(({
               </a.div>
               <Space unit={1.5} />
               <a.div style={{ transform: spring.xy.to(transDescription), padding: '0 1em' }}>
-                <Text fontSize='sm' align='center'>{description}</Text>
+                <Text textStyle='Regular20' align='center'>{description}</Text>
               </a.div>
             </Box>
             <Box 

@@ -84,7 +84,7 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
     >
       <Text 
         as={motion.div} 
-        fontSize='sm' 
+        textStyle='Regular16' 
         align={{sm: 'center', lg: 'justify'}} 
         width='100%'
         position='relative'

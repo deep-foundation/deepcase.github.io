@@ -119,6 +119,7 @@ export const DeepMainTheses = React.memo<any>(() => {
     this.stop = function () {
       if (timerObj) {
         clearInterval(timerObj)
+        //@ts-ignore
         timerObj = null;
       }
       return this;
@@ -153,7 +154,7 @@ export const DeepMainTheses = React.memo<any>(() => {
     timer.start();
   }, [index, isActive, timer]);
 
-  return(<Container maxW='container.xl' pl='1rem' pr='1rem'>
+  return(<Container maxW='container.2xl' pl={{sm: '1rem', lg: '2rem'}} pr={{sm: '1rem', lg: '2rem'}}>
       <Box
         display='grid'
         gridTemplateColumns={{sm: '1fr', md: '0.5fr 1fr'}}
@@ -186,7 +187,7 @@ export const DeepMainTheses = React.memo<any>(() => {
                       key={item.id}
                       onClick={() => setIndex(i)}
                     >
-                      <Text size='md' fontWeight='bold' color='white'>
+                      <Text textStyle='Bold16'>
                         {t(item.title)}
                       </Text>
                     </Box>
@@ -197,7 +198,7 @@ export const DeepMainTheses = React.memo<any>(() => {
         </Show>
         <Hide below='md'>
           <Flex
-            as={motion.div} 
+            as={motion.div}
             direction='column'
             height='100%'
             sx={{
@@ -235,8 +236,8 @@ export const DeepMainTheses = React.memo<any>(() => {
           // key={language}
           w='100%'
           h='100%'
-          maxH='19rem'
-          minH='18.75rem'
+          maxH='26rem'
+          minH='21rem'
           display='flex'
           flexDirection='column'
           alignItems='center'

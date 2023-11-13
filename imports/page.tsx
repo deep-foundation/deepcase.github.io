@@ -1,34 +1,29 @@
-import * as Sentry from '@sentry/nextjs';
 import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArticlesGrid } from '../imports/article';
-import { CrewCard } from '../imports/crew-card';
-import { DeepMainTheses } from '../imports/deep-main-theses-copy';
-import { FlagsWithText } from '../imports/flags-with-text';
-import { Footer } from '../imports/footer';
-import { Box, Button, ChakraProvider, HStack, keyframes, useMediaQuery, usePrefersReducedMotion, Wrap, WrapItem } from '../imports/framework';
-import { H2 } from '../imports/headers';
-import { IntroDesktop } from '../imports/intro/intro-desktop';
-import { IntroMobile } from '../imports/intro/intro-mobile';
-import { FlexSection, GridArea } from '../imports/layout';
-import { Provider } from '../imports/provider';
-import { AdaptiveSpace, Space } from '../imports/space';
-import { TalksForm } from '../imports/talks-form';
-import { theme } from '../imports/theme/build';
-import { UpperMenu, useSwitcherModalTalks } from '../imports/upper-menu';
-import { GitpodButton, GitpodButton2 } from '../imports/gitpod-button';
-import { motion } from 'framer-motion';
-import { PodcastsGallery, PodcastsScroll } from '../imports/podcast-gallery';
-
-
-Sentry.init({
-  dsn: "https://eb433b917ff04aa88678e074f4ee3c61@o871361.ingest.sentry.io/5940912",
-  
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-});
+import { Box, Button, HStack, useMediaQuery, usePrefersReducedMotion, keyframes, Wrap, WrapItem, Center } from "@chakra-ui/react";
+import { UpperMenu, useSwitcherModalTalks } from "./upper-menu";
+import { motion } from "framer-motion";
+import { AdaptiveSpace, Space } from "./space";
+import { Switch } from "./switch-mode";
+import { GitpodButton2 } from "./gitpod-button";
+import { TalksForm } from "./talks-form";
+import { DeepMainTheses } from "./deep-main-theses-copy";
+import { FlagsWithText } from "./flags-with-text";
+import { FlexSection, FluidGrid, GridArea } from "./layout";
+import { IntroDesktop } from './intro/intro-desktop';
+import { IntroMobile } from './intro/intro-mobile';
+import { H2 } from './headers';
+import { ArticlesGallery } from './article/grid';
+import { PodcastsScroll } from './podcast-gallery';
+import { CrewCard } from './crew-card';
+import { Footer } from './footer';
+import { DeepFrameMouseTracking } from './flag/frame-mouse-tracking';
+import { DeepFlag } from './flag/deep-flag';
+import { Hands } from "./flags-icons/hands";
+import { Cat } from "./flags-icons/cat";
+import { Stairs } from "./flags-icons/stairs";
+import { Tower } from "./flags-icons/tower";
+import { DeepFrameMouseShift } from './flag/frame-mouse-shift';
 
 
 const crew = [
@@ -82,7 +77,38 @@ const crew = [
     role: 'Front',
   }
 ];
-  
+
+const flags = [
+  {
+    id: 0,
+    title: 'flag-title--operational-environment',
+    subtitle: 'flag-description--operational-environment',
+    description: 'flag-article--operational-environment',
+    Icon: Stairs,
+  },
+  {
+    id: 1,
+    title: 'flag-title--new-programming-paradigm',
+    subtitle: 'flag-description--new-programming-paradigm',
+    description: 'flag-article--new-programming-paradigm',
+    Icon: Cat,
+  },
+  {
+    id: 2,
+    title: 'flag-title--all-languages',
+    subtitle: 'flag-description--all-languages',
+    description: 'flag-article--all-languages',
+    Icon: Tower,
+  },
+  {
+    id: 3,
+    title: 'flag-title--semantic-system',
+    subtitle: 'flag-description--semantic-system',
+    description: 'flag-article--semantic-system',
+    Icon: Hands,
+  },
+];
+
 const keyframe = keyframes`
   from {
     background-size: 65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px;
@@ -91,16 +117,6 @@ const keyframe = keyframes`
     background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
   }
 `;
-
-export default function Page () {
-  return (
-    <ChakraProvider theme={theme}>
-      <Provider>
-        <PageContent/>
-      </Provider>
-    </ChakraProvider>
-  );
-};
 
 export function PageContent() {
   const { i18n, t } = useTranslation();
@@ -132,6 +148,7 @@ export function PageContent() {
 
   return (<>
       <UpperMenu scrollContainer={scrollingRef} refMenuButtons={refMenuButtons} onChangeLanguage={changeLanguage} />
+      
       <Box 
         as={motion.div}
         ref={scrollingRef} 
@@ -142,31 +159,27 @@ export function PageContent() {
           right: 0, 
           left: 0,
           width: '100%',
-          height: '100%',
-          backgroundColor: theme?.colors?.dark,
-          backgroundImage: 'linear-gradient(-90deg, rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255,.08) 1px, transparent 1px), linear-gradient(transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(-90deg, rgba(255, 255, 255,.8) 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, #202a38 1px, #202a38 80px, transparent 80px), linear-gradient(rgba(255, 255, 255,.8) 1px, transparent 1px)',
+          height: '100vh',
+          backgroundColor: 'bodyBg',
+          backgroundImage: `linear-gradient(-90deg, ${'gridColor'} 1px, transparent 1px), linear-gradient(0deg, ${'gridColor'} 1px, transparent 1px), linear-gradient(transparent 0px, ${'bodyBg'} 1px, ${'bodyBg'} 80px, transparent 80px), linear-gradient(-90deg, ${'gridColor'} 1px, transparent 1px), linear-gradient(-90deg, transparent 0px, ${'bodyBg'} 1px, ${'bodyBg'} 80px, transparent 80px), linear-gradient(0deg, ${'gridColor'} 1px, transparent 1px)`,
           backgroundSize:'80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px',
           backgroundPosition: 'center',
           overflowY: 'scroll',
           overflowX: 'hidden',
         }} 
-        animate={{ 
-          // scale: [0.8, 0.9, 1.2, 1], 
-          // backgroundSize: ['65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px, 65px 65px', '80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px'] 
-        }}
         // @ts-ignore
         transition={{ 
           duration: 5,
           ease: "backInOut", 
         }}
       >
-        <Space unit={6} />
+        <Space unit={9} />
          
         { max825 && <>
           <Box display='flex' justifyContent='space-between'>
 
             <HStack ref={refMenuButtons}>
-              <Button 
+              <Button
                 aria-label='documentation'
                 as='a' target='_blank'
                 variant='ghost'
@@ -227,12 +240,23 @@ export function PageContent() {
         <DeepMainTheses />
         <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
         
-        <GridArea>
-          <FlagsWithText />
-        </GridArea>
+        <FlexSection>
+        <Box display='grid' gridTemplateColumns='repeat(2, 450px)'>
+          {/* <FlagsWithText /> */}
+          {flags.map(flag => (
+            <DeepFrameMouseShift 
+              key={flag.id}
+              subtitle={flag.subtitle}
+              title={flag.title}
+              description={flag.description}
+              Icon = {flag.Icon}
+            />
+          ))}
+        </Box>
+        </FlexSection>
 
         <Space unit={10} />
-        <FlexSection direction='row' pl={{sm: '1rem', md: '2rem'}}>
+        <FlexSection direction='row' pl={{sm: '1rem', md: '2rem'}} overflow='hidden'>
           {desktop 
           ? <IntroDesktop />
           : <IntroMobile />}
@@ -240,14 +264,14 @@ export function PageContent() {
 
         <Space unit={max900 ? 9 : 6} />
         
-        <Box as='section'>
+        <Box as='section' overflow='hidden'>
           <GridArea component='div'>
             <H2>{t('posts-header')}</H2>
           </GridArea>
           <Space unit={3} />
-          <GridArea component='div' justifyItems='flex-start' pl='1rem'>
-            <ArticlesGrid />
-          </GridArea>
+          <FluidGrid>
+            <ArticlesGallery />
+          </FluidGrid>
         </Box>
 
         <Space unit={max900 ? 9 : 6} />
@@ -272,7 +296,7 @@ export function PageContent() {
         
         <Space unit={max900 ? 1 : 6} />
 
-        <GridArea>
+        {/* <GridArea>
           <H2>Crew</H2>
           <AdaptiveSpace unit={{sm: 0, md: 5}} />
           <Wrap 
@@ -290,7 +314,7 @@ export function PageContent() {
               </WrapItem>
             ))}
           </Wrap>
-        </GridArea>
+        </GridArea> */}
         
         <Space unit={max900 ? 14 : 8} />
         <Footer />

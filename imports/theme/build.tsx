@@ -1,22 +1,85 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, StyleFunctionProps, ThemeConfig } from '@chakra-ui/react';
 import { mode } from "@chakra-ui/theme-tools";
 
 const temp = extendTheme({});
 
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: true,
+  cssVarPrefix: 'deep-foundation',
+}
+
 export const coreTheme = extendTheme({
-  config: {
-    cssVarPrefix: 'deep',
+  config,
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      'body': {
+        color: mode('graphite.900', 'white')(props),
+      },
+    }),
   },
   semanticTokens: {
     colors: {
       error: 'red.500',
       text: {
-        default: 'gray.900',
-        _dark: 'gray.50',
+        default: 'graphite.900',
+        _dark: 'white',
+      },
+      bodyBg: {
+        default: 'gray.100',
+        _dark: 'cyDark',
+      },
+      gridColor: {
+        default: '#0000000d',
+        _dark: '#ffffff14',
       },
       flagBackground: {
         default: 'white',
         _dark: 'darkBg',
+      },
+      colorModeButton: {
+        default: 'blue.900',
+        _dark: 'blue.50',
+      },
+      switchModeBorder: {
+        default: 'blue.500',
+        _dark: 'blue.200',
+      },
+      boxShadowMode: {
+        default: '0 0px 5px 2px #0000001a',
+        _dark: '0 0px 5px 2px  #00000026',
+      },
+      podcastBg: {
+        default: '#D9D9D9',
+        _dark: '#004D74',
+      },
+      chronicleBgGraphiteWhite: {
+        default: 'graphite.900',
+        _dark: 'white',
+      },
+      chronicleBgGoldBlue: {
+        default: 'gold.100',
+        _dark: 'blue.400',
+      },
+      chronicleBgLightGraphiteDarkBlue: {
+        default: 'graphite.200',
+        _dark: 'blue.900',
+      },
+      chronicleTextTitleGoldBlue: {
+        default: 'gold.800',
+        _dark: 'blue.200',
+      },
+      chronicleTextGraphiteWhite: {
+        default: 'graphite.900',
+        _dark: 'white',
+      },
+      chronicleTextWhiteGraphite: {
+        default: 'white',
+        _dark: 'graphite.900',
+      },
+      chronicleTextSubtitleGoldBlue: {
+        default: 'gold.900',
+        _dark: 'blue.300',
       },
     },
   },
@@ -42,52 +105,70 @@ export const coreTheme = extendTheme({
     menuItem: {
       100: '#19202b85',
       200: '#19202bad',
-    }
+    },
+
+    darkBg: '#222222',
+    cyDark: '#141214',
+    blue: {
+      100: '',
+      200: '#36B4FF',
+      300: '#464CA0',
+      400: '#2F3365',
+      900: '#19202B',
+    },
+    graphite: {
+      100: '#F2F2F2',
+      200: '#9A9A9A',
+      900: '#4F4F4F',
+    },
+    gold: {
+      100: '#FFE1A8',
+      200: '#FFB600',
+      800: '#EEAD13',
+      900: '#ff9800'
+    },
+    grayText: '#3a3a3a',
+    white: '#ebf8ff',
+    gray: {
+      10: '#eeeeee',
+      900: '#111720',
+    },
+    cyan: {
+      400: '#0080ff',
+    },
   },
+  space: {
+    4.5: '1.125rem',
+  },
+  
   fonts: {
     body: "'Zen Kaku Gothic Antique', sans-serif",
     heading: "'Zen Kaku Gothic Antique', sans-serif",
     mono: "Menlo, monospace",
   },
   fontSizes: {
-    xs: "calc(0.35rem + 0.5vmax)",
-    sm: 'calc(0.8125rem + 0.5vmax)', //"0.875rem",
+    '3xs': "calc(0.2rem + 0.6vmax)",
+    '2xs': "calc(0.5rem + 0.5vmax)",
+    xs: "calc(0.75rem + 0.5vmax)",
+    sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
-    lg: "calc(1.125rem + 0.5vmax)",
-    xl: "calc(1.2rem + 0.5vmax)",
-    "2xl": "1.5rem",
-    "3xl": "1.875rem",
-    "4xl": "2.25rem",
-    "5xl": "3rem",
-    "6xl": "3.75rem",
+    lg: "calc(1.5rem + 0.5vmax)",
+    xl: "calc(1.35rem + 0.8vmax)",
+    "2xl": "calc(1.5rem + 0.5vmax)",
+    "3xl": "calc(1.875rem + 0.5vmax)",
+    "4xl": "calc(2.3rem + 0.5vmax)",
+    "5xl": "calc(3rem + 0.5vmax)",
+    "6xl": "calc(3.25rem + 0.5vmax)",
     "7xl": "4.5rem",
     "8xl": "6rem",
     "9xl": "8rem",
   },
   fontWeights: {
     light: 300,
-    normal: 400,
+    regular: 400,
     medium: 500,
     semibold: 700,
     bold: 900,
-  },
-  styles: {
-    global: {
-      html: {
-        height: '100%',
-      },
-      body: {
-        minHeight: '100%',
-        bg: '#19202B',
-        color: '#dfdfdf',
-        position: 'absolute', 
-        top: 0, 
-        bottom: 0, 
-        right: 0, 
-        left: 0,
-
-      }
-    }
   },
   textStyles: {
     h1: {
@@ -105,83 +186,102 @@ export const coreTheme = extendTheme({
       fontWeight: 'light',
       letterSpacing: 'wide',
     },
+    Bold28: {
+      fontSize: 'md',
+      fontWeight: 'bold',
+      letterSpacing: 'normal',
+      lineHeight: 'shorter',
+      // color: 'text',
+    },
+    Bold16: {
+      fontSize: '2xs',
+      lineHeight: 1.2,
+      fontWeight: 'bold',
+      // color: 'text',
+    },
+    Bold14: {
+      fontSize: '3xs',
+      lineHeight: 1.2,
+      fontWeight: 'bold',
+      // color: 'text',
+    },
     Medium36: {
       fontSize: 'xl',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium32: {
       fontSize: 'lg',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium28: {
       fontSize: 'md',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium22: {
       fontSize: 'sm',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium20: {
       fontSize: 'xs',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium16: {
       fontSize: '2xs',
-      lineHeight: '1.2',
+      lineHeight: 'shorter',
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Medium14: {
       fontSize: '3xs',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'medium',
-      color: 'text',
+      // color: 'text',
     },
     Regular30: {
       fontSize: 'lg',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
     Regular28: {
       fontSize: 'md',
-      lineHeight: '1.2',
+      lineHeight: 1.2,
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
     Regular20: {
       fontSize: 'xs',
-      lineHeight: '1.5',
+      lineHeight: 1.5,
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
     Regular16: {
       fontSize: '2xs',
-      lineHeight: '1.5',
+      lineHeight: 1.5,
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
     Regular14: {
       fontSize: '3xs',
-      lineHeight: '1.5',
+      lineHeight: 'shorter',
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
     body: {
       fontSize: 'xs',
-      lineHeight: '1.5',
+      lineHeight: 1.5,
       fontWeight: 'regular',
-      color: 'text',
+      // color: 'text',
     },
   },
   shadows: {
@@ -291,18 +391,29 @@ export const coreTheme = extendTheme({
       },
     },
     Text: {
-      baseStyle: {
-        letterSpacing: 'wide',
-        lineHeight: 'tall',
-      }
+      // baseStyle: {
+      //   letterSpacing: 'wide',
+      //   lineHeight: 'tall',
+      // }
     },
   }
 });
 
 
 export const guildTheme = extendTheme({
-  config: {
-    cssVarPrefix: 'deep-guild',
+  config,
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      'body': {
+        color: mode('gray.900', 'whiteAlpha.900')(props),
+        // bg: mode('gray.100', 'cyDark')(props),
+        // position: 'absolute', 
+        // top: 0, 
+        // bottom: 0, 
+        // right: 0, 
+        // left: 0,
+      },
+    }),
   },
   breakpoints: {
     sm: '20em',
@@ -333,6 +444,13 @@ export const guildTheme = extendTheme({
     heading: "'Zen Kaku Gothic Antique', sans-serif",
     mono: "Menlo, monospace",
   },
+  fontWeights: {
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 700,
+    bold: 900,
+  },
   fontSizes: {
     xs: "calc(0.35rem + 0.5vmax)",
     sm: 'calc(0.875rem + 0.5vmax)',
@@ -347,29 +465,6 @@ export const guildTheme = extendTheme({
     "7xl": "4.5rem",
     "8xl": "6rem",
     "9xl": "8rem",
-  },
-  fontWeights: {
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 700,
-  },
-  styles: {
-    global: {
-      html: {
-        height: '100%',
-      },
-      body: {
-        minHeight: '100%',
-        bg: 'light',
-        color: 'dark',
-        position: 'absolute', 
-        top: 0, 
-        bottom: 0, 
-        right: 0, 
-        left: 0,
-      }
-    }
   },
   textStyles: {
     h1: {
@@ -472,8 +567,9 @@ export const guildTheme = extendTheme({
     },
     Text: {
       baseStyle: {
-        letterSpacing: 'wide',
-        lineHeight: 'tall',
+        // letterSpacing: 'wide',
+        // lineHeight: 'tall',
+        // color: 'text',
       }
     },
   }

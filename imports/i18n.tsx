@@ -82,6 +82,9 @@ const resources = {
       'intro--channel': 'channel',
       'intro--contact': 'depth will contact you',
 
+      'article-read': 'read',
+      'article-open-link-in-new-tab': 'open link in a new tab',
+
       'guild--description': 'A community of followers of the cult of depth (Deep), formed around the products of the Deep.Foundation ecosystem',
 
       'guild--community': 'community',
@@ -185,6 +188,9 @@ const resources = {
       'intro--in': 'в',
       'intro--channel': 'канал',
       'intro--contact': 'глубина вступит с вами в контакт',
+
+      'article-read': 'читать',
+      'article-open-link-in-new-tab': 'открыть ссылку в новой вкладке',
 
       'guild--description': 'Kомьюнити последователей культа глубины (Deep), формирующееся вокруг продуктов экосистемы Deep.Foundation',
 

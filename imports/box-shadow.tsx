@@ -40,7 +40,7 @@ export const BoxShadow = React.memo<any>(({
   };
 
   return (<Box as={motion.div}
-          ref={onMouseRef?.current && onMouseRef.current()}
+          ref={onMouseRef?.current && onMouseRef?.current()}
           style={{
             width: blockWidth,
             height: blockHeight,

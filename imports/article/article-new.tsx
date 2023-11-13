@@ -1,9 +1,11 @@
-import { Box, HStack, IconButton, Img, Text, useColorMode } from '@chakra-ui/react';
+import { Box, Button, HStack, IconButton, Img, Link, Text, useColorMode } from '@chakra-ui/react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { IconProvider } from '../icon-provider';
 import { TbEyePlus } from 'react-icons/tb';
 import { PiChatsThin, PiEyeThin } from 'react-icons/pi';
 import { BoxShadow } from '../box-shadow';
+import { PiLinkSimpleHorizontalThin } from 'react-icons/pi';
 
 
 export const Article = React.memo<any>(({
@@ -14,6 +16,7 @@ export const Article = React.memo<any>(({
   alt,
   href,
   onClick = () => {},
+  onClickRead = () => {},
   ...props
 }:{
   title?: string;
@@ -23,9 +26,10 @@ export const Article = React.memo<any>(({
   alt?: string;
   href?: string;
   onClick?: (id:any) => any;
+  onClickRead?: (id:any) => any;
   [key:string]: any;
-}) => {
-
+}) => {  
+  const { t } = useTranslation();
   const {colorMode} = useColorMode();
 
   return (<BoxShadow blockWidth='max-content' blockHeight='max-content'>
@@ -48,11 +52,13 @@ export const Article = React.memo<any>(({
             padding: '1.3rem 1.2rem',
             borderRadius: '0.3rem',
             display: 'flex',
-            flexFlow: 'column',
+            flexFlow: 'column nowrap',
             alignItems: 'center',
           }}
         >
-          <Text textStyle='Medium20' align='center' mb='1rem'>{title}</Text>
+          <Text textStyle='Medium20' align='center' mb='1rem'>
+            {title}
+          </Text>
           <Box display='flex' flexFlow='row' mb='2rem'>
             <HStack spacing='0.3rem' mr='1rem'>
               <IconProvider icon={<PiEyeThin />} color={colorMode === 'light' ? '#060608' : '#fff'} />
@@ -63,6 +69,13 @@ export const Article = React.memo<any>(({
               <Text textStyle='Medium16'>{comments}</Text>
             </HStack>
           </Box>
+          <HStack>
+            <Button variant='link' onClick={(id: any) => onClickRead(id)}><Text textStyle='Medium16'>{t('article-read')}</Text></Button> 
+            <IconButton variant='link' aria-label={t('article-open-link-in-new-tab')} icon={<IconProvider 
+              icon={<PiLinkSimpleHorizontalThin />} 
+              size='1rem'
+              color={colorMode === 'light' ? '#060608' : '#fff'} />} />
+          </HStack>
           <Box borderRadius='0.3rem' overflow='hidden' border='thin solid #dcf6ff' sx={{flex: '1 1 auto'}}>
             <Img src={src} alt={alt} />
           </Box>

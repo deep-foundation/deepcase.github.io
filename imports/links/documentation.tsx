@@ -93,9 +93,9 @@ export const Documentation = React.memo<any>(() => {
                 // i={i}
                 expanded={expanded}
                 onOpen={(e) => {
-                  console.log(e.target.value);
+                  // console.log(e.target.value);
                   if (e.target.value == p.id) setExpanded(!expanded)
-                  console.log(e.target.value);
+                  // console.log(e.target.value);
                 }}
                 title={p.title}
                 children={p.children} 
