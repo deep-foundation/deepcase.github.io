@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { ICardPodcast, IProvider, Podcast } from './podcast/podcast-card';
 import { Box, IconButton } from '@chakra-ui/react';
 import { TbArrowBigLeft, TbArrowBigRight } from "react-icons/tb";
@@ -360,7 +360,7 @@ const podcasts: ICardPodcast[] = [
 ];
 
 
-export const PodcastsGallery = React.memo(() => {
+export const PodcastsGallery = memo(() => {
   let [index, setIndex] = useState(0);
   const lng = podcasts.length;
 
@@ -462,7 +462,7 @@ export const PodcastsGallery = React.memo(() => {
   );
 })
 
-export const PodcastsScroll = React.memo(() => {
+export const PodcastsScroll = memo(() => {
 
   return (<>
     <Box 

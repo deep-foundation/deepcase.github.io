@@ -1,6 +1,6 @@
 import { Box, Center, Img, useMediaQuery, useOutsideClick } from "@chakra-ui/react";
-import { AnimatePresence, motion, useAnimation, useInView } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, Variants, motion, useAnimation, useInView } from "framer-motion";
+import { memo, useEffect, useRef, useState } from "react";
 import { Article } from "./article-version2";
 import Viewer from '@react-pdf/renderer';
 import { Backdrop, BackdropForward } from "../backdrop";
@@ -74,11 +74,11 @@ const articles=[
   },
 ];
 
-export const ArticlesGallery = React.memo(({ 
+export const ArticlesGallery = memo(function ArticlesGallery({ 
   delayPerPixel = 0.0015,
 }:{
   delayPerPixel?: number;
-}) => {
+}) {
   const originOffset = useRef({ top: 0, left: 0 });
   const controls = useAnimation();
   const [selected, setSelected] = useState(false);
@@ -154,7 +154,7 @@ export const ArticlesGallery = React.memo(({
   );
 });
 
-const ArticleThumbnail = React.memo(({ 
+const ArticleThumbnail = memo(function ArticleThumbnail({ 
   delayPerPixel = 0.0015, 
   i, 
   originIndex = 0, 
@@ -166,7 +166,7 @@ const ArticleThumbnail = React.memo(({
   originIndex?: number;
   originOffset: any;
   [key:string]: any;
-}) => {
+}) {
   const delayRef = useRef(0);
   const offset = useRef({ top: 0, left: 0 });
   const ref = useRef(null);
@@ -232,7 +232,7 @@ const ArticleThumbnail = React.memo(({
 })
 
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.5
@@ -245,7 +245,7 @@ const itemVariants = {
 };
 
 
-const variants = {
+const variants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.5,
@@ -263,7 +263,7 @@ const variants = {
   },
 };
 
-export const DetailView = React.memo(({
+export const DetailView = memo(function DetailView({
   articles,
   isOpen, 
   onTap,
@@ -273,7 +273,7 @@ export const DetailView = React.memo(({
   isOpen?: boolean;
   onTap?: () => any;
   [key:string]: any;
-}) => {
+}) {
 
   const { 
     src, 
@@ -303,33 +303,33 @@ export const DetailView = React.memo(({
   }, [isOpen, controls]);
 
   return (<AnimatePresence>
-        <Center as={motion.div}
-            ref={containerRef as React.RefObject<HTMLDivElement>}
-            sx={{
-            width: '100vw',
-            height: '100vh',
-            position: 'fixed',
-            borderRadius: '0.5rem',
-            overflow: 'hidden',
-            top: 0,
-            left: 0,
-            zIndex: 3,
-            backdropFilter: 'blur(3px) brightness(0.4)',
-          }}
-          initial='initial'
-          animate={controls}
-          variants={variants}
-          exit={{ opacity: 0, scale: 0 }}
-          onTap={onTap}
-        >
-          <Article 
-            title={props.title}
-            views={props.views}
-            comments={props.comments}
-            src={props.src}
-            alt={props.alt}
-          />
-        </Center>
-      </AnimatePresence>
+      <Center as={motion.div}
+        ref={containerRef as React.RefObject<HTMLDivElement>}
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          position: 'fixed',
+          borderRadius: '0.5rem',
+          overflow: 'hidden',
+          top: 0,
+          left: 0,
+          zIndex: 3,
+          backdropFilter: 'blur(3px) brightness(0.4)',
+        }}
+        initial='initial'
+        animate={controls}
+        variants={variants}
+        exit={{ opacity: 0, scale: 0 }}
+        onTap={onTap}
+      >
+        <Article 
+          title={props.title}
+          views={props.views}
+          comments={props.comments}
+          src={props.src}
+          alt={props.alt}
+        />
+      </Center>
+    </AnimatePresence>
   );
 })

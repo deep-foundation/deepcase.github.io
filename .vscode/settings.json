@@ -1,8 +1,16 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib",
   "workbench.colorCustomizations": {
-    "activityBar.background": "#1A2F44",
-    "titleBar.activeBackground": "#24425F",
-    "titleBar.activeForeground": "#F8FAFC"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+      "activityBar.background": "#fdfffe",
+      "titleBar.activeBackground": "#fdfffe",
+      "titleBar.activeForeground": "#323e75",
+      // "titleBar.border": "#001eff", //border left
+      "activityBar.activeBorder": "#07022b", //icon border left active
+      "activityBar.activeBackground": "#100184", //icon background active
+      "activityBar.border": "#001eff", //border left
+      "activityBar.foreground": "#cccccc", //icons active
+      "activityBar.inactiveForeground": "#100184", //icon inactive
+      "activityBarBadge.background": "#f90036", //icon's badge background
+      "activityBarBadge.foreground": "#ffacbe", //icon's badge color
+  }
 }

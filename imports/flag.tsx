@@ -1,5 +1,5 @@
 import { useSpring as useSpringMotion } from 'framer-motion';
-import React, { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { a, useSpring } from 'react-spring';
 import { Tower } from './flags-icons/tower';
 import { Box, GravityCard, Img, Text, useMediaQuery } from './framework';
@@ -17,7 +17,7 @@ const trans3 = (x, y) => `translate3d(${x / 12}px,${(y / 12) * 0.1}px,0)`;
 const trans4 = (x, y) => `translate3d(${x / 18}px,${(y / 18) * 0.1}px,0)`;
 const trans5 = (x, y) => `translate3d(${x / 8}px,${(y / 8) * 0.1}px,0)`;
 
-export const Flag = React.memo(({
+export const Flag = memo(({
   title,
   description,
   boxProps,

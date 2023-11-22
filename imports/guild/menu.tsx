@@ -1,5 +1,5 @@
-import { motion, useAnimation, useCycle } from 'framer-motion';
-import React, { useCallback, useEffect, useRef } from 'react';
+import { Variants, motion, useAnimation, useCycle } from 'framer-motion';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaLanguage } from 'react-icons/fa';
 import { IoIosMenu } from 'react-icons/io';
@@ -17,7 +17,7 @@ const useDimensions = ref => {
   return dimensions.current;
 };
 
-const sidebar = {
+const sidebar: Variants = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
@@ -37,42 +37,9 @@ const sidebar = {
   }
 };
 
-// export const Menu_ = React.memo<any>(() => {
-//   const [isOpen, toggleOpen] = useCycle(false, true);
-//   const containerRef = useRef(null);
-//   const { height } = useDimensions(containerRef);
-
-//   return (
-//     <motion.nav
-//       initial={false}
-//       animate={isOpen ? "open" : "closed"}
-//       custom={height}
-//       ref={containerRef}
-//     >
-//       <motion.div className="background" variants={sidebar} />
-//       <Navigation />
-//       <MenuButtonAnimation boxVariant={boxVariant}>
-//         <IconButton 
-//           variant='outline' 
-//           onClick={() => toggleOpen()}
-//           isRound 
-//           colorScheme='purple' 
-//           aria-label='russian language button' 
-//           icon={<FaLanguage />} 
-//           _focus={{boxShadow: 'none'}}
-//           _hover={{
-//             transform: 'scale(1.1)'
-//           }}
-//         />
-//       </MenuButtonAnimation>
-//       <MenuToggle toggle={() => toggleOpen()} />
-//     </motion.nav>
-//   );
-// });
-
-export const Menu = React.memo<any>((props) => {
+export const Menu = memo(function Menu({...props}:{[key: string]: any}) {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const containerRef = useRef();
+  const containerRef = useRef<any>(null);
   const { height } = useDimensions(containerRef);
   const { i18n } = useTranslation();
   const language = i18n.language;
@@ -130,12 +97,12 @@ export const Menu = React.memo<any>((props) => {
   )
 })
 
-const boxVariant = {
+const boxVariant: Variants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   hidden: { opacity: 0, scale: 0, }
 };
 
-const MenuButtonAnimation = React.memo(({children, boxVariant}:{children?: any; boxVariant?: any;}) => {
+const MenuButtonAnimation = memo(function MenuButtonAnimation({children, boxVariant}:{children?: any; boxVariant?: any;}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
 
@@ -159,7 +126,7 @@ const MenuButtonAnimation = React.memo(({children, boxVariant}:{children?: any; 
   );
 })
 
-const variants = {
+const variants: Variants = {
   open: {
     y: 0,
     opacity: 1,
@@ -176,7 +143,7 @@ const variants = {
   }
 };
 
-const MenuItem = React.memo<any>(({ children }:{ children: any; }) => {
+const MenuItem = memo(function MenuItem({ children }:{ children: any; }) {
   return (
     <motion.li
       variants={variants}
@@ -189,7 +156,7 @@ const MenuItem = React.memo<any>(({ children }:{ children: any; }) => {
   );
 });
 
-const variantsNav = {
+const variantsNav: Variants = {
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 }
   },
@@ -198,7 +165,7 @@ const variantsNav = {
   }
 };
 
-const Navigation = React.memo<any>(({isOpen, onClose}:{isOpen?: boolean, onClose?: any;}) => {
+const Navigation = memo(function Navigation({isOpen, onClose}:{isOpen?: boolean, onClose?: any;}) {
   return(
     <motion.ul variants={variantsNav} style={{position: 'absolute', top: 0, left: 100, zIndex: 10000}}>
       {itemIds.map(i => (
@@ -211,7 +178,7 @@ const Navigation = React.memo<any>(({isOpen, onClose}:{isOpen?: boolean, onClose
 const itemIds = [0, 1, 2, 3, 4];
 
 
-const Backdrop = React.memo<any>(({isOpen}:{isOpen?: any;}) => {
+const Backdrop = memo(function Backdrop({isOpen}:{isOpen?: any;}) {
   return (
     <motion.div
       style={{

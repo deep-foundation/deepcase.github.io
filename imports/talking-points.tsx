@@ -1,7 +1,7 @@
 import Chance from 'chance';
 import jquery from 'jquery';
 import random from 'lodash/random';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { a } from 'react-spring';
 import { Box, useMediaQuery } from './framework';
@@ -58,7 +58,7 @@ const mainTalkingPoint = {
   width: '100%',
 };
 
-export const TalkingPoints = React.memo(({
+export const TalkingPoints = memo(({
   refScrollContainer,
   key,
 }: {

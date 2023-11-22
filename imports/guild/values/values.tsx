@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Center, Stack } from '../../framework';
@@ -25,7 +25,7 @@ const items = [
   },
 ];
 
-export const Values = React.memo<any>(() => {
+export const Values = memo(() => {
   const[index, setIndex] = useState(0);
   const { t } = useTranslation();
 

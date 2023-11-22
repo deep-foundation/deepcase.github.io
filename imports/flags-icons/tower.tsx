@@ -25,36 +25,36 @@ export const Tower = React.memo(({xM, yM}:{xM: MotionValue; yM: MotionValue;}) =
   const _four = useMotionTemplate`translate3d(${x4}px, ${y4}px, 0)`;
   
 
-  return (<Box pos='relative' w={150} h={150}>
+  return (<Box pos='relative' w={100} h={100}>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _tower}}>
-        <Img src='./tower/tower.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/tower.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _one}}>
-        <Img src='./tower/1.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/1.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./tower/2.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/2.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _three}}>
-        <Img src='./tower/3.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/3.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./tower/4.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/4.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./tower/5.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/5.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./tower/6.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/6.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./tower/7.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/7.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _tower}}>
-        <Img src='./tower/8.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/8.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./tower/9.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./tower/9.svg' alt='tower' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
     </Box>
   )

@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import { Box } from '../framework';
 
 
-export const H1 = React.memo(({
+export const H1 = memo(({
   children,
   ...props
 }:{
@@ -12,7 +12,7 @@ export const H1 = React.memo(({
   return <Box as='h1' fontSize='xl' sx={{ lineHeight: 1, margin: 0 }} {...props}>{children}</Box>
 });
 
-export const H2 = React.memo(({
+export const H2 = memo(({
   children,
   ...props
 }:{
@@ -22,7 +22,7 @@ export const H2 = React.memo(({
   return <Box as='h2' fontSize='lg' {...props}>{children}</Box>
 });
 
-export const H3 = React.memo(({
+export const H3 = memo(({
   children,
   ...props
 }:{
@@ -32,7 +32,7 @@ export const H3 = React.memo(({
   return <Box as='h3' {...props}>{children}</Box>
 });
 
-export const H5 = React.memo(({
+export const H5 = memo(({
   children,
   ...props
 }:{

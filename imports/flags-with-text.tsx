@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { Box, Center, Code, Img, StackDivider, Text, VStack } from './framework';
 import { Flag } from "./flag";
@@ -8,7 +8,7 @@ import { Stairs } from "./flags-icons/stairs";
 import { motion, useAnimate, useAnimation, useInView } from "framer-motion";
 
 
-const GridCard = React.memo(({
+const GridCard = memo(function GridCard({
   children, 
   columns = '1fr max-content', 
   direction = 'column-reverse',
@@ -20,7 +20,7 @@ const GridCard = React.memo(({
   direction?: any;
   alignItem?: any;
   [props: string]: any;
-}) => {
+}) {
 
   return (<Box sx={{
     position: 'relative',
@@ -46,38 +46,14 @@ const GridCard = React.memo(({
   }}>{children}</Box>)
 });
 
-const textVariants = {
-  inView: {
-    transform: 'translateY(0%)',
-    opacity: 1,
-    transition: { 
-      type: 'spring',
-      stiffness: 350,
-      damping: 25, 
-    }
-  },
-  outView: {
-    opacity: 0,
-    transform: 'translateY(-20%)',
-    transition: { 
-      type: 'spring',
-      stiffness: 350,
-      damping: 25, 
-    }
-  }
-}
 
-const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?: any; textStyles?: any;}) => {
+const TextBlock = memo(function TextBlock({text, styles, textStyles}:{text: string; styles?: any; textStyles?: any;}) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const control = useAnimation();
 
   return ( <Box 
       as={motion.div} 
-      // animate={control} 
-      // variants={textVariants} 
-      // initial={{opacity: 0,
-      //   transform: 'translateY(-20%)'}}
       position='relative' w='100%' h='100%' 
       sx={styles} 
       ref={ref} 
@@ -104,7 +80,7 @@ const TextBlock = React.memo(({text, styles, textStyles}:{text: string; styles?:
   )
 })
 
-export const FlagsWithText = React.memo(() => {
+export const FlagsWithText = memo(function FlagsWithText() {
   const { t } = useTranslation();
 
   return (<VStack 

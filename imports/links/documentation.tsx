@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { memo, useState } from 'react';
 import { Box, Circle, Hide, Img, useMediaQuery } from '../framework';
 import { H1 } from '../headers';
 import { DocumentationContent } from './documentation-content';
@@ -7,12 +7,7 @@ import { DocumentationMenu } from './documentation-menu';
 import { DocumentationMenuItem, Menu } from './documentation-menu-item';
 
 
-const menuVariants = {
-  visible: { borderRadius: '50%', transition: { duration: 0.8 } },
-  hidden: { borderRadius: 'none', transition: { duration: 0.8 } }
-};
-
-export const Documentation = React.memo<any>(() => {
+export const Documentation = memo(function Documentation() {
   const [expanded, setExpanded] = useState(false);
 
   const placeholderMenu: Menu = [

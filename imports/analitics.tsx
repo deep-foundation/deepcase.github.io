@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext, memo, createContext } from 'react';
 import type { Context } from 'react';
 
 import { useRouter } from 'next/router';
@@ -12,7 +12,7 @@ export interface IAnalyticsContext {
   event?: (eventName: string) => void;
 }
 
-export const AnalyticsContext = React.createContext<IAnalyticsContext>({
+export const AnalyticsContext = createContext<IAnalyticsContext>({
   event(eventName) {
     ym('reachGoal', eventName);
     ga.event({
@@ -36,7 +36,7 @@ const RouterAnalytics = () => {
   return null;
 };
 
-export const Analitics = React.memo<any>(({
+export const Analitics = memo(({
   yandexMetrikaAccounts = [],
   googleAnalyticsAccounts = [],
   context = AnalyticsContext,

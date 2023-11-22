@@ -1,9 +1,9 @@
-import { motion, useAnimation, useSpring, useTransform } from "framer-motion";
-import React, { ReactNode, useEffect, useRef } from "react";
+import { Variants, motion, useAnimation, useSpring, useTransform } from "framer-motion";
+import { ReactNode, memo, useEffect, useRef } from "react";
 import { Box } from './framework';
 
 
-const variant = {
+const variant: Variants = {
   'initial': {
     scale: 1,
     transition: { type: "spring", bounce: 0.36,  }
@@ -14,7 +14,7 @@ const variant = {
   }
 };
 
-export const Blob = React.memo<any>(({
+export const Blob = memo(({
   contentReplacement = false,
   children
 }:{

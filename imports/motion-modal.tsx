@@ -1,5 +1,5 @@
-import { motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
+import { Variants, motion, useAnimation } from 'framer-motion';
+import { forwardRef, memo, useEffect, useRef } from 'react';
 import { Box, Center, Portal, useOutsideClick } from './framework';
 
 
@@ -10,7 +10,7 @@ const spring = {
   duration: 2
 }
 
-const invitationForm = {
+const invitationForm: Variants = {
   active: {
     scale: 1,
     opacity: 1,
@@ -25,7 +25,7 @@ const invitationForm = {
   }
 }
 
-const backdrop = {
+const backdrop: Variants = {
   active: {
     scale: 1,
     opacity: 1,
@@ -38,19 +38,20 @@ const backdrop = {
   }
 }
 
-export const MotionModal = React.memo<any>(({
-  portalOpen = true, 
-  onClosePortal,
-  children,
-}:{
+export const MotionModal = memo(forwardRef<any, {
   portalOpen?: boolean; 
   onClosePortal: () => any;
   children: any;
-}) => {
+}>(({
+  portalOpen = true, 
+  onClosePortal,
+  children,
+}, ref) => {
+
   const control = useAnimation();
-  const ref = useRef();
+  
   useOutsideClick({
-    ref: ref,
+    ref: ref as React.RefObject<any>,
     handler: onClosePortal,
   })
 
@@ -93,5 +94,5 @@ export const MotionModal = React.memo<any>(({
         </Box>}
       </Center>
     </Portal>
-    )
-  })
+  )
+}));

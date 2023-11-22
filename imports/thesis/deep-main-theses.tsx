@@ -1,9 +1,8 @@
-import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { m, useAnimation, useInView, AnimatePresence, Variants, LazyMotion, domAnimation } from 'framer-motion';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Container, Flex, Hide, HStack, Show, Text } from './framework';
-import { Thesis, ThesisDescription } from './theses-copy';
-import { AdaptiveSpace } from './space';
+import { Box, Container, Flex, Hide, HStack, Show, Text } from '../framework';
+import { Thesis, ThesisDescription } from './theses';
 
 
 const items = [
@@ -63,7 +62,7 @@ const items = [
   },
 ];
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
       opacity: 1,
@@ -74,7 +73,7 @@ const container = {
   }
 };
 
-const theses = {
+const theses: Variants = {
   hidden: { scale: 0, x: 100 },
   show: { scale: 1, x: 0 }
 };
@@ -86,7 +85,7 @@ export function useDeepMainTheses() {
 const indicatorSize = 10;
 const indicatorAlpha = 0.3;
 
-export const DeepMainTheses = React.memo<any>(() => {
+export const DeepMainTheses = memo(() => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const[index, setIndex] = useState(0);
@@ -136,7 +135,8 @@ export const DeepMainTheses = React.memo<any>(() => {
       t = newT;
       return this.stop().start();
     }
-  }
+  };
+  
   const timer = new Timer(() => {
     cycleMode();
   }, 4000);
@@ -154,7 +154,7 @@ export const DeepMainTheses = React.memo<any>(() => {
     timer.start();
   }, [index, isActive, timer]);
 
-  return(<Container maxW='container.2xl' pl={{sm: '1rem', lg: '2rem'}} pr={{sm: '1rem', lg: '2rem'}}>
+  return(<Container maxW='container.2xl' pl={{sm: '1rem', lg: '5rem'}} pr={{sm: '1rem', lg: '5rem'}}>
       <Box
         display='grid'
         gridTemplateColumns={{sm: '1fr', md: '0.5fr 1fr'}}
@@ -170,7 +170,8 @@ export const DeepMainTheses = React.memo<any>(() => {
             <AnimatePresence>
               {items.map((item, i) => {
                 return (
-                    <Box as={motion.div}
+                  <LazyMotion features={domAnimation}>
+                    <Box as={m.div}
                       style={{textAlign: 'center', padding: '0 1rem', boxSizing: 'border-box',}}
                       animate={{
                         opacity: index === i ? [0, 0.5, 1] : 0,
@@ -191,45 +192,51 @@ export const DeepMainTheses = React.memo<any>(() => {
                         {t(item.title)}
                       </Text>
                     </Box>
+                  </LazyMotion>
                 );
               })}
             </AnimatePresence>
           </Box>
         </Show>
         <Hide below='md'>
-          <Flex
-            as={motion.div}
-            direction='column'
-            height='100%'
-            sx={{
-              '@media(min-width: 830px)': {
-                backgroundImage: 'linear-gradient(to top, #ccc 0%, #ccc 50%, transparent 50%)',
-                backgroundSize: '1px 20px',
-                backgroundPosition: 'right',
-                backgroundRepeat: 'repeat-y',
-              }
-            }}
-            ref={ref}
-            variants={container}
-            initial="hidden"
-            animate="show"
-          >
-            {items.map((item, i) => (
-              <motion.div
-                variants={theses}
-                key={item.id}
-              >
-                <Thesis 
-                  isActive={index == i} 
-                  id={item.id}
-                  text={t(item.title)} 
-                  onClickActive={(i) => {
-                    clickActivation(i);
-                  }} 
-                />
-              </motion.div>
-            ))}
-          </Flex>
+          <LazyMotion features={domAnimation}>
+            <Flex
+              as={m.div}
+              direction='column'
+              height='100%'
+              sx={{
+                '@media(min-width: 830px)': {
+                  backgroundImage: 'linear-gradient(to top, #ccc 0%, #ccc 50%, transparent 50%)',
+                  backgroundSize: '1px 20px',
+                  backgroundPosition: 'right',
+                  backgroundRepeat: 'repeat-y',
+                }
+              }}
+              justifyContent='space-around'
+              ref={ref}
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {items.map((item, i) => (
+                <LazyMotion features={domAnimation}>
+                  <m.div
+                    variants={theses}
+                    key={item.id}
+                  >
+                    <Thesis 
+                      isActive={index == i} 
+                      id={item.id}
+                      text={t(item.title)} 
+                      onClickActive={(i) => {
+                        clickActivation(i);
+                      }} 
+                    />
+                  </m.div>
+                </LazyMotion>
+              ))}
+            </Flex>
+          </LazyMotion>
         </Hide>
         <Box
           pos='relative'
@@ -256,26 +263,27 @@ export const DeepMainTheses = React.memo<any>(() => {
         <Show below='md'>
           <HStack justifyContent='center' py={2}>
             {items.map((item, i) => {
-              return (
-                <motion.div
-                  style={{
-                    width: indicatorSize,
-                    height: indicatorSize,
-                    borderRadius: 30,
-                    backgroundColor: "#fff",
-                    display: 'flex',
-                    justifyItems: 'center',
-                    opacity: indicatorAlpha
-                  }}
-                  animate={{
-                    opacity: index === i ? 1 : indicatorAlpha,
-                    scale: index === i ? 1.1 : 1
-                  }}
-                  key={item.id}
-                  onClick={() => {
-                    clickActivation(i);
-                  }}
-                />
+              return (<LazyMotion features={domAnimation}>
+                  <m.div
+                    style={{
+                      width: indicatorSize,
+                      height: indicatorSize,
+                      borderRadius: 30,
+                      backgroundColor: "#fff",
+                      display: 'flex',
+                      justifyItems: 'center',
+                      opacity: indicatorAlpha
+                    }}
+                    animate={{
+                      opacity: index === i ? 1 : indicatorAlpha,
+                      scale: index === i ? 1.1 : 1
+                    }}
+                    key={item.id}
+                    onClick={() => {
+                      clickActivation(i);
+                    }}
+                  />
+                </LazyMotion>
               );
             })}
           </HStack>

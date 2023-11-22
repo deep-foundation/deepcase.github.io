@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useCallback } from 'react';
 import { Box } from '../imports/framework';
 import { Provider } from '../imports/provider';
 import { coreTheme } from '../imports/theme/build';
@@ -21,24 +21,28 @@ export default function Page () {
   );
 };
 
-export const PageContent = React.memo(() => {
+export const PageContent = memo(() => {
 
   const { scrollY } = useScroll();
   const [ contentReplacement, setContentReplacement ] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
       console.log("Page scroll: ", latest)
     })
   }, [])
-  
+
+  const onCloseModal = useCallback(() => setOpenModal(!openModal), [openModal]);
   
   return (<Box as='main' pos='relative' w='100vw'>
-      <MotionModal>
+      <MotionModal
+        portalOpen={openModal} 
+        onClosePortal={onCloseModal}
+      >
         <Blob contentReplacement={contentReplacement}>
           <InvitationToTheCave
-            display="flex"
-            alignItems="center"
+            boxProps={{display: "flex", alignItems: "center"}}
             contentReplacement={contentReplacement}
             setContentReplacement={() => setContentReplacement(!contentReplacement)}
             onSubmit={() => setContentReplacement(false)}

@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import React, { useRef } from "react";
+import { useRef, memo } from "react";
 import { useTranslation } from 'react-i18next';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Box } from '../framework';
@@ -10,7 +10,7 @@ const ParticlesComponent = dynamic(
   { ssr: false }
 );
 
-export const ParticlesButton = React.memo(({
+export const ParticlesButton = memo(({
   children,
   options = {},
   styleProps,

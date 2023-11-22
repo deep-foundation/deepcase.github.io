@@ -1,6 +1,6 @@
-import React, { ReactElement, useState } from 'react';
+import { ReactElement, ReactNode, forwardRef, memo, useImperativeHandle, useState } from 'react';
 import { useRef, useEffect } from "react";
-import { motion, useCycle } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { Button, Hide, useMediaQuery, Box } from '../framework';
 import { Backdrop } from '../backdrop';
 
@@ -17,7 +17,26 @@ export const useDimensions = ref => {
 };
 
 
-const sidebar = {
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
+export const useDimensions_ = memo(forwardRef(function useDimensions(
+  ref: React.Ref<{ dimensions: Dimensions }>
+): ReactNode {
+  const dimensions = useRef<Dimensions>({ width: 0, height: 0 });
+
+  useImperativeHandle(ref, () => ({
+    get dimensions() {
+      return dimensions.current;
+    }
+  }));
+
+  return null;
+}));
+
+const sidebar: Variants = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     
@@ -38,17 +57,33 @@ const sidebar = {
   }
 };
 
-const Path = React.memo<any>(props => (
-  <motion.path
+const Path = memo(function Path({...props}:{[key: string]: any}) {
+  return <motion.path
     fill="transparent"
     strokeWidth="3"
     stroke="hsl(0, 0%, 18%)"
     strokeLinecap="round"
     {...props}
   />
-));
+});
 
-const MenuToggle = React.memo<any>(({ toggle }:{ toggle?: () => any; }) => (
+const pathVar1: Variants = {
+  closed: { d: "M 2 2.5 L 20 2.5" },
+  open: { d: "M 3 16.5 L 17 2.5" }
+};
+
+const pathVar2: Variants = {
+  closed: { opacity: 1 },
+  open: { opacity: 0 }
+};
+
+const pathVar3: Variants = {
+  closed: { d: "M 2 16.346 L 20 16.346" },
+  open: { d: "M 3 2.5 L 17 16.346" }
+}
+
+
+const MenuToggle = memo(({ toggle }:{ toggle?: () => any; }) => (
   <Button 
     onClick={toggle}
     variant='ghost'
@@ -69,30 +104,21 @@ const MenuToggle = React.memo<any>(({ toggle }:{ toggle?: () => any; }) => (
   >
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
-        variants={{
-          closed: { d: "M 2 2.5 L 20 2.5" },
-          open: { d: "M 3 16.5 L 17 2.5" }
-        }}
+        variants={pathVar1}
       />
       <Path
         d="M 2 9.423 L 20 9.423"
-        variants={{
-          closed: { opacity: 1 },
-          open: { opacity: 0 }
-        }}
+        variants={pathVar2}
         transition={{ duration: 0.1 }}
       />
       <Path
-        variants={{
-          closed: { d: "M 2 16.346 L 20 16.346" },
-          open: { d: "M 3 2.5 L 17 16.346" }
-        }}
+        variants={pathVar3}
       />
     </svg>
   </Button>
 ));
 
-const variantsNav = {
+const variantsNav: Variants = {
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 }
   },
@@ -101,13 +127,13 @@ const variantsNav = {
   }
 };
 
-export const DocumentationMenu = React.memo<any>(({
+export const DocumentationMenu = memo(function DocumentationMenu({
   menuList, 
   breakpoint
 }:{
   menuList?: ReactElement; 
   breakpoint?: string;
-}) => {
+}) {
   const [isOpen, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
@@ -163,7 +189,6 @@ export const DocumentationMenu = React.memo<any>(({
         <Hide breakpoint={breakpoint}>
           <MenuToggle toggle={() => {
             setOpen(!isOpen);
-            console.log(isOpen);
           }} />
         </Hide>
       </motion.div>

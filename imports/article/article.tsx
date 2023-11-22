@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LinkBox, Box, LinkOverlay, Img, Flex, Text, HStack, VStack, Heading, AspectRatio } from '../framework';
 import { FaEye, FaComment } from 'react-icons/fa';
@@ -17,7 +17,7 @@ interface IHabrButton {
   href?: string;
 }
 
-const HabrButton = React.memo(({text, href}:IHabrButton) => {
+const HabrButton = memo(({text, href}:IHabrButton) => {
   return (<Box
       as={LinkOverlay}
       href={href}

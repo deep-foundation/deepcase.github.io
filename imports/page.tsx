@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, HStack, useMediaQuery, usePrefersReducedMotion, keyframes, Wrap, WrapItem, Center } from "@chakra-ui/react";
+import { Box, Button, HStack, useMediaQuery, usePrefersReducedMotion, keyframes, Wrap, WrapItem, Center, VStack } from "@chakra-ui/react";
 import { UpperMenu, useSwitcherModalTalks } from "./upper-menu";
-import { motion } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 import { AdaptiveSpace, Space } from "./space";
 import { Switch } from "./switch-mode";
 import { GitpodButton2 } from "./gitpod-button";
 import { TalksForm } from "./talks-form";
-import { DeepMainTheses } from "./deep-main-theses-copy";
+import { DeepMainTheses } from "./thesis/deep-main-theses";
 import { FlagsWithText } from "./flags-with-text";
 import { FlexSection, FluidGrid, GridArea } from "./layout";
-import { IntroDesktop } from './intro/intro-desktop';
+import { IntroDesktop, Welcome } from './intro/intro-desktop';
 import { IntroMobile } from './intro/intro-mobile';
 import { H2 } from './headers';
 import { ArticlesGallery } from './article/grid';
@@ -24,6 +24,7 @@ import { Cat } from "./flags-icons/cat";
 import { Stairs } from "./flags-icons/stairs";
 import { Tower } from "./flags-icons/tower";
 import { DeepFrameMouseShift } from './flag/frame-mouse-shift';
+import { Model, Scene } from './three-test/test';
 
 
 const crew = [
@@ -173,7 +174,7 @@ export function PageContent() {
           ease: "backInOut", 
         }}
       >
-        <Space unit={9} />
+        <Space unit={5} />
          
         { max825 && <>
           <Box display='flex' justifyContent='space-between'>
@@ -229,31 +230,32 @@ export function PageContent() {
         </Box> */}
 
         {min826 
-        ? (<><AdaptiveSpace unit={{sm: 0, md: 3}} />
-            <Box w='100%' h='max-content' display='flex' justifyContent='flex-end'>
-              <GitpodButton2 />
-            </Box>
-          <AdaptiveSpace unit={{sm: '2rem', md: '3rem'}} /></>) 
+        ? (<Box w='100%' h='max-content' display='flex' justifyContent='flex-end'>
+            <GitpodButton2 />
+          </Box>) 
         : null}
 
-        <AdaptiveSpace unit={{sm: 2, md: 0}} />
-        <DeepMainTheses />
-        <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
+        <Center h='calc(100vh - 7.5rem)' w='100vw'>
+          <DeepMainTheses />
+        </Center>
         
-        <FlexSection>
-        <Box display='grid' gridTemplateColumns='repeat(2, 450px)'>
+        <Box display='flex' flexFlow='row' justifyContent='space-between'>
+
+        <Box display='grid' gridTemplateColumns='repeat(2, 385px)' gridTemplateRows='repeat(2, 385px)' alignItems='center' justifyContent='flex-start' justifyItems='center' pl='4rem' position='relative' w='max-content'>
           {/* <FlagsWithText /> */}
-          {flags.map(flag => (
+          {flags.map((flag, index) => (
             <DeepFrameMouseShift 
               key={flag.id}
               subtitle={flag.subtitle}
               title={flag.title}
               description={flag.description}
               Icon = {flag.Icon}
+              index={index}
             />
           ))}
         </Box>
-        </FlexSection>
+        <Welcome />
+        </Box>
 
         <Space unit={10} />
         <FlexSection direction='row' pl={{sm: '1rem', md: '2rem'}} overflow='hidden'>
@@ -316,6 +318,8 @@ export function PageContent() {
           </Wrap>
         </GridArea> */}
         
+        <Space unit={max900 ? 14 : 8} />
+        <Scene />
         <Space unit={max900 ? 14 : 8} />
         <Footer />
       </Box>

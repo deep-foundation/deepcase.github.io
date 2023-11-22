@@ -1,5 +1,23 @@
-import { extendTheme, StyleFunctionProps, ThemeConfig } from '@chakra-ui/react';
+import { extendTheme, StyleFunctionProps, ThemeConfig, defineStyle, defineStyleConfig } from '@chakra-ui/react';
 import { mode } from "@chakra-ui/theme-tools";
+
+
+const codeExample = defineStyle({
+  border: 'none', // change the appearance of the border
+  borderRadius: 0, // remove the border radius
+  fontSize: '2xs', // change the font size
+  fontWeight: 'light', // change the font weight
+  background: 'transparent',
+  color: 'text',
+  // _dark: {
+  //   background: 'transparent',
+  //   color: '',
+  // }
+})
+
+const codeTheme = defineStyleConfig({
+  variants: { codeExample },
+})
 
 const temp = extendTheme({});
 
@@ -24,6 +42,10 @@ export const coreTheme = extendTheme({
       text: {
         default: 'graphite.900',
         _dark: 'white',
+      },
+      textTransparent: {
+        default: '#00000042',
+        _dark: '#ffffff42',
       },
       bodyBg: {
         default: 'gray.100',
@@ -152,7 +174,7 @@ export const coreTheme = extendTheme({
     xs: "calc(0.75rem + 0.5vmax)",
     sm: 'calc(0.95rem + 0.5vmax)', //"0.875rem",
     md: "calc(1rem + 0.5vmax)",
-    lg: "calc(1.5rem + 0.5vmax)",
+    lg: "calc(1.25rem + 0.5vmax)",
     xl: "calc(1.35rem + 0.8vmax)",
     "2xl": "calc(1.5rem + 0.5vmax)",
     "3xl": "calc(1.875rem + 0.5vmax)",
@@ -185,6 +207,12 @@ export const coreTheme = extendTheme({
       fontSize: 'calc(14px + 0.5vmax)',
       fontWeight: 'light',
       letterSpacing: 'wide',
+    },
+    Bold36: {
+      fontSize: 'xl',
+      lineHeight: 1.2,
+      fontWeight: 'bold',
+      // color: 'text',
     },
     Bold28: {
       fontSize: 'md',
@@ -292,6 +320,7 @@ export const coreTheme = extendTheme({
     md: '0.175rem',
   },
   components: {
+    Code: codeTheme, 
     Button: {
       baseStyle: {
         lineHeight: 'base',

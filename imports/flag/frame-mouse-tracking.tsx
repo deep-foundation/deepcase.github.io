@@ -1,18 +1,18 @@
 import { Box, useColorMode } from '@chakra-ui/react';
 import { useDebounceCallback } from '@react-hook/debounce';
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React, { memo, useRef, useState } from 'react';
+import { memo, useRef, useState, Fragment } from 'react';
 import { BoxShadow } from '../box-shadow';
 import { DeepFlag } from './deep-flag';
 
-export const DeepFrameMouseTracking = memo<any>(function DeepFrameMouseTracking({
+export const DeepFrameMouseTracking = memo(function DeepFrameMouseTracking({
   blockWidth = 350,
   blockHeight = 350,
   // onTapButton,
   subtitle,
   title,
   description,
-  Icon = React.Fragment,
+  Icon = Fragment,
   ...props
 }:{
   blockWidth?: number;
@@ -53,12 +53,6 @@ export const DeepFrameMouseTracking = memo<any>(function DeepFrameMouseTracking(
 
   const { colorMode } = useColorMode();
   
-  const variants = {
-    start: { opacity: [0, 0.5, 1], scale: [0.3, 0.65, 1] },
-    hoverState: {
-      boxShadow: colorMode === 'light' ? '0 0px 5px 2px #0000001a' : '0 0px 5px 2px  #00000026'  },
-    tapState: { boxShadow: '0 0px 4px 0 #0000001a' },
-  };
 
   const inViewport = useDebounceCallback(() => {
     setCurrent(0);
@@ -105,8 +99,8 @@ export const DeepFrameMouseTracking = memo<any>(function DeepFrameMouseTracking(
             title={title}
             description={description}
             Icon = {Icon} 
-            // xMotion = {xMotion}
-            // yMotion = {yMotion}
+            xMotion = {xMotion}
+            yMotion = {yMotion}
           />
         </Box>
       </BoxShadow>

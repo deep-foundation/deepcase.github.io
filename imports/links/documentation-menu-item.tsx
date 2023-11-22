@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React from 'react';
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { memo } from 'react';
 import { TbArrowUpCircle } from 'react-icons/tb';
 import { Button } from '../framework';
 
@@ -21,7 +21,7 @@ interface IMenuItemProps extends IMenuItem {
 
 export type Menu = IMenuItem[];
 
-const variantsLi = {
+const variantsLi: Variants = {
   open: {
     y: 0,
     opacity: 1,
@@ -38,7 +38,15 @@ const variantsLi = {
   }
 };
 
-export const SubMenu = React.memo<any>(({isOpen, title, onClick}) => {
+export const SubMenu = memo(function SubMenu({
+  isOpen, 
+  title, 
+  onClick
+}:{
+  isOpen: boolean; 
+  title: string;
+  onClick: (e: any) => void;
+}) {
   return (<AnimatePresence>
     {isOpen && (
       <motion.section
@@ -66,7 +74,7 @@ export const SubMenu = React.memo<any>(({isOpen, title, onClick}) => {
 });
 
 
-export const DocumentationMenuItem = React.memo<any>(({
+export const DocumentationMenuItem = memo(function DocumentationMenuItem({
   // i, 
   id,
   expanded, 
@@ -76,7 +84,7 @@ export const DocumentationMenuItem = React.memo<any>(({
   style,
   variants = {},
   transition = {},
-}:IMenuItemProps) => {
+}:IMenuItemProps) {
   // const open = expanded === id ? true : false;
   const open = expanded;
 

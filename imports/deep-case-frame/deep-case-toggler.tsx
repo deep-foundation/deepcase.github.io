@@ -1,8 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React from 'react';
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { memo } from 'react';
 
 
-export const DeepCaseToggler =  React.memo<any>(({
+export const DeepCaseToggler =  memo(({
   current, 
   children,
 }:{
@@ -10,7 +10,7 @@ export const DeepCaseToggler =  React.memo<any>(({
   children: any;
 }) => {
 
-  const variants = {
+  const variants: Variants = {
     initial: { 
       opacity: 1, scale: 1, borderRadius: "1.375rem"
     },

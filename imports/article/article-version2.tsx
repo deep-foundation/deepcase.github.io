@@ -1,5 +1,5 @@
 import { AspectRatio, Box, Button, ButtonGroup, HStack, IconButton, Image, Img, Link, Text, useColorMode } from '@chakra-ui/react';
-import React from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IconProvider } from '../icon-provider';
 import { TbEyePlus } from 'react-icons/tb';
@@ -8,7 +8,7 @@ import { BoxShadow } from '../box-shadow';
 import { PiLinkSimpleHorizontalThin } from 'react-icons/pi';
 
 
-export const Article = React.memo<any>(({
+export const Article = memo(function Article({
   title = 'Фактор рефакторинга',
   views = 4800,
   comments = 36,
@@ -28,7 +28,7 @@ export const Article = React.memo<any>(({
   onClick?: (id:any) => any;
   onClickRead?: (id:any) => any;
   [key:string]: any;
-}) => {  
+}) {  
   const { t } = useTranslation();
   const {colorMode} = useColorMode();
 

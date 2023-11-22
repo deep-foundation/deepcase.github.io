@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Container, Flex, Hide, HStack, Show, Text } from './framework';
 import { Thesis, ThesisDescription } from './theses';
@@ -61,7 +61,7 @@ export function useDeepMainTheses() {
 const indicatorSize = 10;
 const indicatorAlpha = 0.3;
 
-export const DeepMainTheses = React.memo<any>(() => {
+export const DeepMainTheses = memo(() => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
   const[index, setIndex] = useState(0);

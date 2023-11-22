@@ -1,27 +1,27 @@
-import { useAnimation, motion } from 'framer-motion';
-import React, { useEffect } from 'react';
+import { useAnimation, motion, Variants } from 'framer-motion';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 import { Center, Text, Box, Container } from '../../framework';
 
 
-const valueVariant = {
+const valueVariant: Variants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   hidden: { opacity: 0, scale: 0, }
 };
 
-const cardValueVariant = {
+const cardValueVariant: Variants = {
   visible: { opacity: 1, rotateY: 0, transition: { duration: 4 } },
   hidden: { opacity: 0, rotateY: 90 }
 };
 
-export const Value = React.memo<any>(({
+export const Value = memo(function Value({
   text = 'привет',
   ...props
 }:{
   text?: string;
   [key:string]: any;
-}) => {
+}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
 
@@ -49,13 +49,13 @@ export const Value = React.memo<any>(({
   )
 })
 
-export const CardValue = React.memo<any>(({
+export const CardValue = memo(function CardValue({
   text,
   ...props
 }:{
   text?: string;
   [key:string]: any;
-}) => {
+}) {
   const control = useAnimation();
   const [ref, inView] = useInView();
 

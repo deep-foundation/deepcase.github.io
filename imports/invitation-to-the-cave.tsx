@@ -1,6 +1,6 @@
 import { useDebounceCallback } from '@react-hook/debounce';
-import { motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { Variants, motion, useAnimation } from 'framer-motion';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Button, Input, Text, VStack } from './framework';
 
@@ -12,7 +12,7 @@ const spring = {
   duration: 2
 }
 
-const invitation = {
+const invitation: Variants = {
   active: {
     opacity: 0,
     display: 'none',
@@ -25,7 +25,7 @@ const invitation = {
   }
 }
 
-const form = {
+const form: Variants = {
   active: {
     opacity: 1,
     display: 'block',
@@ -38,7 +38,7 @@ const form = {
   }
 }
 
-const Invitation = React.memo<any>(({onEnterCave, ref}:{onEnterCave: (e: any) => any; ref?: any;}) => {
+const Invitation = memo(({onEnterCave, ref}:{onEnterCave: (e: any) => any; ref?: any;}) => {
   const { t } = useTranslation(); 
 
   return ( <VStack
@@ -80,11 +80,11 @@ const Invitation = React.memo<any>(({onEnterCave, ref}:{onEnterCave: (e: any) =>
   )
 })
 
-export const InvitationToTheCave = React.memo<any>(({
+export const InvitationToTheCave = memo(({
   contentReplacement = false,
   setContentReplacement,
   onSubmit,
-  ...boxProps
+  boxProps,
 }:{
   contentReplacement?: boolean;
   onSubmit?: () => any;
@@ -149,7 +149,7 @@ export const InvitationToTheCave = React.memo<any>(({
   )
 })
 
-const EntryForm = React.memo<any>(({onSubmit}:{onSubmit?: () => any;}) => {
+const EntryForm = memo(({onSubmit}:{onSubmit?: () => any;}) => {
   const { t } = useTranslation();
   const [value, setValue] = useState('');
   

@@ -1,9 +1,9 @@
-import React from 'react';
+import { memo } from 'react';
 
 import { Box } from './framework';
 import { ThesisDescription } from './theses';
 
-export const Carousel = React.memo<any>(({
+export const Carousel = memo(({
   items, 
   styles,
   index,

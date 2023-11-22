@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { Box, Text } from '../framework';
 import { H1, H2 } from '../headers';
 import { IMenuItem } from './documentation-menu-item';
-import { motion, useAnimation, useInView } from "framer-motion";
+import { Variants, motion, useAnimation, useInView } from "framer-motion";
 
 
-const animationVariants = {
+const animationVariants: Variants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } },
   hidden: { opacity: 0, scale: 0.8, transition: { duration: 0.8 } }
 };
 
-export const DocumentationContent = React.memo(({title, body, children}:IMenuItem) => {
+export const DocumentationContent = memo(function DocumentationContent({title, body, children}:IMenuItem) {
   const controls = useAnimation();
   const ref = useRef<any>(null);
   const isInView = useInView(ref);

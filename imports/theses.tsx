@@ -1,11 +1,11 @@
-import { motion, useAnimation } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
+import { Variants, motion, useAnimation } from 'framer-motion';
+import { memo, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Container, Flex, ListItem, Text, Box, UnorderedList } from './framework';
 import { useTranslation } from 'react-i18next';
 
 
-const thesis = {
+const thesis: Variants = {
   show: (custom) => {
     return { 
       // delay, 
@@ -21,7 +21,7 @@ const thesis = {
   hidden: { opacity: 0, scale: 0, }
 };
 
-const thesisDescription = {
+const thesisDescription: Variants = {
   visible: i => ({ 
     opacity: [0, 1], 
     rotateX: [-90, 0],  
@@ -45,7 +45,7 @@ const thesisDescription = {
   }
 };
 
-const drawLine = {
+const drawLine: Variants = {
   hidden: { opacity: 0, height: 0 },
   visible: (i) => {
     return {
@@ -59,7 +59,7 @@ const drawLine = {
   }
 };
 
-const ThesisBorder = React.memo<any>(({
+const ThesisBorder = memo(({
   i,
   index,
 }:{
@@ -67,7 +67,6 @@ const ThesisBorder = React.memo<any>(({
   index?: number;
 }) => {
   const control = useAnimation();
-  console.log('i', i, 'index', index);
 
   const activatedRef = useRef(false);
   useEffect(() => {
@@ -99,16 +98,16 @@ const ThesisBorder = React.memo<any>(({
   )
 })
 
-export const Thesis = React.memo<any>(({
+export const Thesis = memo(({
   text = 'привет',
   i,
-  fontSize = 'sm',
+  textStyle = 'Regular16',
   index,
   ...props
 }:{
   text?: string;
   i?: number;
-  fontSize?: string;
+  textStyle?: string;
   index?: number;
   [key:string]: any;
 }) => {
@@ -142,18 +141,18 @@ export const Thesis = React.memo<any>(({
     >
       <Container centerContent={false} width='100%' height='100%' py={2} px={4} pos='relative'>
         <ThesisBorder i={i} index={index} />
-        <Text fontSize={fontSize} style={{
+        <Text textStyle='Regular16' style={{
         }}>{text}</Text>
       </Container>
     </motion.div>
   )
 })
 
-export const ThesisDescription = React.memo<any>(({
+export const ThesisDescription = memo(({
   item,
   i,
   index,
-  fontSize = 'lg',
+  textStyle = 'Regular16',
   ...props
 }:{
   item: {
@@ -167,7 +166,7 @@ export const ThesisDescription = React.memo<any>(({
   };
   i: number;
   index?: number;
-  fontSize?: string;
+  textStyle?: string;
   [key:string]: any;
 }) => {
   const control = useAnimation();
@@ -185,7 +184,6 @@ export const ThesisDescription = React.memo<any>(({
       control.start("hidden");
     }
   }, [control, index]);
-  console.log('i2', i, 'index2', index);
 
   return (
     <motion.div
@@ -199,15 +197,15 @@ export const ThesisDescription = React.memo<any>(({
       <Flex 
         w='100%' 
         h='100%' 
-        display={!!item.points && 'flex'}
+        display={!!item.points ? 'flex' : 'block'}
         flexDirection={!!item.points ? 'column' : 'row'}
       >
-        {<Text fontSize={fontSize}>
+        <Text textStyle={textStyle}>
           {t(item.text)}
-        </Text>}
+        </Text>
         {!!item.points && <UnorderedList pt='3'>
           {item.points.map(point => (
-            <ListItem key={point.id} fontSize='md'>{t(point.text)}</ListItem>
+            <ListItem key={point.id} textStyle={textStyle}>{t(point.text)}</ListItem>
           ))}
         </UnorderedList>}
       </Flex>

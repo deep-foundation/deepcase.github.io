@@ -1,6 +1,6 @@
 import { useQueryStore } from '@deep-foundation/store/query';
 import { motion } from 'framer-motion';
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { FaDiscord, FaGithubAlt } from 'react-icons/fa';
 import { a, useSpring, useTransition } from 'react-spring';
@@ -38,7 +38,7 @@ const buttonsMenu = {
   transform: 'rotateX(-90deg) translate3d(0, 0, 30px)',
 };
 
-export const UpperMenu = React.memo(({scrollContainer, refMenuButtons, onChangeLanguage}:{scrollContainer: any, refMenuButtons: any; onChangeLanguage?: any;}) => {
+export const UpperMenu = memo(({scrollContainer, refMenuButtons, onChangeLanguage}:{scrollContainer: any, refMenuButtons: any; onChangeLanguage?: any;}) => {
   const [scrolled, setScroll] = useState(false);
   const [mode, setMode] = useState(1);
   const [modeHidden, setModeHidden] = useState(1);

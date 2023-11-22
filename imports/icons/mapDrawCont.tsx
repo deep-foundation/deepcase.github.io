@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 
@@ -19,7 +19,7 @@ const draw = {
 };
 
 
-export const MapSvgDrawCont = React.memo(() => {
+export const MapSvgDrawCont = memo(() => {
 
   const control = useAnimation();
   const [ref, inView] = useInView();

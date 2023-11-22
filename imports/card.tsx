@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { Box, Button } from './framework';
 
@@ -34,7 +34,7 @@ export function Card({
     xys: [0, 0, 1],
     config: { mass: 2, tension: 150, friction: 100 }
   }));
-  const rootRef = useRef<HTMLInputElement>();
+  const rootRef = useRef<any>(null);
 
   if (setRef) setRef.current = set;
 
@@ -43,7 +43,7 @@ export function Card({
       <animated.div
         onMouseMove={({ clientX, clientY, currentTarget }: any) => {
           if (disabled) return;
-          const box = rootRef.current.getBoundingClientRect();
+          const box = rootRef.current?.getBoundingClientRect();
           let x, y;
           x = clientX - box?.x, y = clientY - box?.y;
           set({ xys: calc(x, y, currentTarget.offsetWidth, currentTarget.offsetHeight, currentTarget.offsetLeft, currentTarget.offsetTop, xm, ym, zm) });

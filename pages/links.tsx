@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Box } from '../imports/framework';
 import { Provider } from '../imports/provider';
 import { linksTheme } from '../imports/theme/build';
@@ -18,7 +18,7 @@ export default function Page () {
   );
 };
 
-export const PageContent = React.memo(() => {
+export const PageContent = memo(() => {
   const { scrollY } = useScroll();
 
   useEffect(() => {

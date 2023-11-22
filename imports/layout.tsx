@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import { ReactNode, memo } from 'react';
 import { Box, Grid } from './framework';
 import { Masonry } from "masonic";
 
 
-export const GridArea = React.memo(({
+export const GridArea = memo(({
   children, 
   repeat = 8,
   columnsZone = '2/8',
@@ -51,7 +51,7 @@ export const GridArea = React.memo(({
 });
 
 
-export const FluidGrid = React.memo<any>(({children}:{children: any;}) => {
+export const FluidGrid = memo(({children}:{children: any;}) => {
   return (<Box display='flex' flexDirection={{sm: 'column', md: 'row'}} pos='relative' alignItems='center' justifyContent='center' w='100%'>
       {children}
     </Box>
@@ -60,7 +60,7 @@ export const FluidGrid = React.memo<any>(({children}:{children: any;}) => {
 
 
 
-export const FlexSection = React.memo(({
+export const FlexSection = memo(({
   children, 
   px = {sm: '1rem', md: '0'},
   ...props
@@ -78,7 +78,7 @@ export const FlexSection = React.memo(({
 
 
 type GridMasonryProps = {
-  children: (item: any) => React.ReactNode;
+  children: (item: any) => ReactNode;
   items: any[];
 }
 

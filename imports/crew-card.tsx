@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { Box, GravityCard, Img, Text } from './framework';
 
 
@@ -41,7 +41,7 @@ const filterText = {
   transition: 'all 1s ease-out',
 };
 
-export const CrewCard = React.memo(({
+export const CrewCard = memo(({
   src,
   alt,
   name,
@@ -67,11 +67,15 @@ export const CrewCard = React.memo(({
         w='100%'
         h='100%'
       >
-        <Box data-id="containerImage" position='relative' sx={{ overflow: 'hidden',
-          '.card:hover &': {
-                filter: 'brightness(0.1)',
-          },
-          ...containerImage}}>
+        <Box data-id="containerImage" position='relative' 
+          sx={{ 
+            '.card:hover &': {
+              filter: 'brightness(0.1)',
+            },
+            ...containerImage,
+            overflow: 'hidden',
+          }}
+        >
           <Img 
             src={src} 
             alt={alt} 
@@ -84,8 +88,8 @@ export const CrewCard = React.memo(({
             }}
           />
         </Box>
-        <Box data-id="containerImage" position='absolute' sx={{ overflow: 'hidden',
-          ...containerImage}}>
+        <Box data-id="containerImage" position='absolute' 
+          sx={{ ...containerImage, overflow: 'hidden',}}>
           <Img 
             src={src} 
             alt={alt} 

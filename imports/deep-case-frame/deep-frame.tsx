@@ -1,12 +1,12 @@
 import { useDebounceCallback } from '@react-hook/debounce';
-import { motion, useAnimation, useInView, useSpring, useTransform } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import { Variants, motion, useAnimation, useInView, useSpring, useTransform } from 'framer-motion';
+import { memo, useRef, useState } from 'react';
 import { DeepCaseMini } from './deep-case-mini';
 import { DeepCasePlayButton } from './deep-case-play-button';
 import { DeepCaseToggler } from './deep-case-toggler';
 
 
-export const DeepFrame = React.memo<any>(({
+export const DeepFrame = memo(function DeepFrame({
   blockWidth = 300,
   blockHeight = 300,
   onTapButton,
@@ -16,7 +16,7 @@ export const DeepFrame = React.memo<any>(({
   blockHeight?: number;
   onTapButton?: () => any;
   [key:string]: any;
-}) => {
+}) {
   const [current, setCurrent] = useState(0);
   const ref = useRef<any>();
   const viewRef = useRef<any>();
@@ -49,7 +49,7 @@ export const DeepFrame = React.memo<any>(({
     y.set(startY);
   }
   
-  const variants = {
+  const variants: Variants = {
     start: { opacity: [0, 0.5, 1], scale: [0.3, 0.65, 1], borderRadius: "1.375rem" },
     hoverState: { borderRadius: current == 0 ? "9.375rem" : '1.375rem' },
     tapState: { scale: "1.1", borderRadius: '1.375rem'  },
@@ -86,7 +86,7 @@ export const DeepFrame = React.memo<any>(({
             borderRadius: '1.375rem',
             overflow: 'hidden',
           }}
-          variants={isInView && variants}
+          variants={isInView ? variants : {}}
           animate="start"
           whileHover="hoverState"
           whileTap="tapState"

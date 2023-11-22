@@ -1,6 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import detectBrowserLanguage from 'detect-browser-language';
-import React, { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Box, Center, Container } from '../imports/framework';
@@ -30,7 +29,7 @@ export default function Page () {
   );
 };
 
-export const PageContent = React.memo(() => {
+export const PageContent = memo(() => {
   const { scrollY } = useScroll()
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export const PageContent = React.memo(() => {
   
   
   return (<Box as='main' pos='relative'>
-      <Menu sx={{ width: '100%', bg: 'transparent', p: '4'}} />
+      <Menu sx={{ width: '100%', bg: 'transparent', p: 4}} />
       <AdaptiveSpace unit={{sm: '2rem', md: '6rem'}} />
       <Box as='section'>
         <Welcome />

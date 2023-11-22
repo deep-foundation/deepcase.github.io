@@ -25,36 +25,36 @@ export const Cat = React.memo(({xM, yM}:{xM: MotionValue; yM: MotionValue;}) => 
   const _four = useMotionTemplate`translate3d(${x4}px, ${y4}px, 0)`;
   
 
-  return (<Box pos='relative' w={150} h={150}>
+  return (<Box pos='relative' w={100} h={100}>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _tower}}>
-        <Img src='./cat/cat.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/cat.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _one}}>
-        <Img src='./cat/1.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/1.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./cat/2.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/2.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _three}}>
-        <Img src='./cat/3.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/3.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./cat/4.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/4.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./cat/5.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/5.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./cat/6.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/6.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./cat/7.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/7.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _tower}}>
-        <Img src='./cat/8.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/8.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./cat/9.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./cat/9.svg' alt='cat' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
     </Box>
   )

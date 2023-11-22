@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { a, useSpring } from 'react-spring';
 import { Box, GravityCard, Img, Text, useMediaQuery } from './framework';
 import { H5 } from './headers';
@@ -24,7 +24,7 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const SpecialCard = React.memo(({
+export const SpecialCard = memo(({
   title,
   src,
   alt,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useSpring } from 'react-spring';
 import { AspectRatio, Box, useMediaQuery } from './framework';
 
@@ -18,7 +18,7 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const IFrame = React.memo(({
+export const IFrame = memo(({
   title, 
   src, 
   download, 

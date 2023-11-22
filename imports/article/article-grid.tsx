@@ -1,5 +1,5 @@
-import React, { useRef, useLayoutEffect, useEffect, memo } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { useRef, useLayoutEffect, useEffect, memo } from "react";
+import { Variants, motion, useAnimation, useInView } from "framer-motion";
 import { Box } from "@chakra-ui/react";
 
 
@@ -58,7 +58,9 @@ const ArticleCell = memo(function GridItem({ delayPerPixel, i, originIndex, orig
     if (!element) return;
 
     offset.current = {
+      // @ts-ignore
       top: element.offsetTop,
+      // @ts-ignore
       left: element.offsetLeft
     };
 
@@ -82,7 +84,7 @@ const ArticleCell = memo(function GridItem({ delayPerPixel, i, originIndex, orig
   );
 })
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.5

@@ -1,5 +1,5 @@
 import anime from "animejs";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 export function Particles(element, options) {
   this.el = getElement(element);

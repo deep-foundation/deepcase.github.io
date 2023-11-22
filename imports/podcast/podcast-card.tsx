@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, memo } from 'react';
 import { a, useSpring } from 'react-spring';
 import { GiDuration, GiVideoCamera, GiAudioCassette } from 'react-icons/gi';
 import { Flex, Box, GravityCard, Tooltip, Text, Img, HStack, VStack, Grid } from '../framework';
@@ -71,7 +71,7 @@ if (typeof(window) === 'object') {
   }
 }
 
-export const Podcast = React.memo(({
+export const Podcast = memo<any>(({
   card,
 }:{
   card: ICardPodcast;
@@ -87,8 +87,8 @@ export const Podcast = React.memo(({
   } = card;
   const [openSourcePodcast, setOpenSourcePodcast] = useState(false);
   const [spring, set] = useSpring(() => ({ xy: [0, 0], config: { mass: 10, tension: 550, friction: 140 } }));
-  const ref = useRef<any>();
-  const setRef = useRef<any>();
+  const ref = useRef<any>(null);
+  const setRef = useRef<any>(null);
 
   const localCalc = (x, y) => {
     const box = ref?.current?.getBoundingClientRect();
@@ -119,26 +119,33 @@ export const Podcast = React.memo(({
     }, 30000);
   }, []);
 
-  var source = []; 
-  var data = []; 
-  for(var i = 0; i <= speakers?.length; i++) {
+  var source: JSX.Element[] = []; 
+  var data: JSX.Element[] = []; 
+  for(var i = 0; i < speakers?.length; i++) {
     var speaker = speakers[i];
     source.push(<a.div key={speaker?.id} style={{ 
         // width: '100%',
         // height: '100%',
         zIndex: 2,
         transform: spring.xy.to(trans3)
-      }}>
-        <picture>
-          <source srcSet={speaker?.guestImgSrcWebp} type="image/webp" />
-          <source srcSet={speaker?.guestImgSrcPng} type="image/png" /> 
-          <Img src={speaker?.guestImgSrcPng} alt={speaker?.guestName} htmlWidth='100%' htmlHeight='100%' sx={imageClass} />
-        </picture>
-      </a.div>);
+      }}>        
+        <Text textStyle='Regular16' lineHeight='tall' sx={{textTransform: 'uppercase'}}>
+          {speaker?.guestName}
+        </Text>
+        <Text 
+          fontSize='sm' 
+          as='div' 
+          sx={{
+            whiteSpace: 'normal', 
+            '&:first-letter': {textTransform: 'capitalize'}
+          }}>
+          {speaker?.occupation}
+        </Text>
+      </a.div>) 
     data.push(<a.div key={speaker?.id} style={{
         transform: spring.xy.to(trans2) 
       }}>
-        <Text fontSize='sm' as='div' lineHeight='tall' sx={{textTransform: 'uppercase'}}>{speaker?.guestName}</Text>
+        <Text textStyle='Regular16' lineHeight='tall' sx={{textTransform: 'uppercase'}}>{speaker?.guestName}</Text>
         <Text 
           fontSize='sm' 
           as='div' 

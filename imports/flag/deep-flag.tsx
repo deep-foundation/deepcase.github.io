@@ -1,16 +1,16 @@
 import { Box, Img, Text, useColorMode } from '@chakra-ui/react';
-import { 
-  AnimatePresence, 
-  MotionValue, 
-  motion, 
-  useAnimation, 
-  useInView, 
-  useIsPresent} from 'framer-motion';
-import React, { memo, useEffect, useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  MotionValue,
+  Variants,
+  motion,
+  useAnimation
+} from 'framer-motion';
+import { Fragment, memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 
-const variantTitleSide = {  
+const variantTitleSide: Variants = {  
   show: {
     opacity: 1,
     scale: 1,
@@ -36,7 +36,7 @@ const variantTitleSide = {
   }
 }
 
-const variantDescSide = { 
+const variantDescSide: Variants = { 
   show: {
     opacity: 1,
     scale: 1,
@@ -63,12 +63,12 @@ const variantDescSide = {
 }
 
 export const DeepFlag = memo(function DeepFlag({
-  blockWidth = 19,
-  blockHeight = 19,
+  blockWidth = 300,
+  blockHeight = 300,
   subtitle,
   title,
   description,
-  Icon = React.Fragment, 
+  Icon = Fragment, 
   xMotion, 
   yMotion, 
   ...props
@@ -84,9 +84,7 @@ export const DeepFlag = memo(function DeepFlag({
   [key:string]: any;
   }) {
   const [revert, setRevert] = useState(true);
-  const viewRef = useRef<any>();
   const { t } = useTranslation();
-  const isPresent = useIsPresent();
   const animation1 = useAnimation();
   const animation2 = useAnimation();
 
@@ -100,14 +98,12 @@ export const DeepFlag = memo(function DeepFlag({
     }
   }, [revert, animation1, animation2]);
 
-  const isInView = useInView(viewRef);
-
   const {colorMode} = useColorMode();
 
   return (<Box
       sx={{
-        width: 370,
-        height: 370,
+        width: blockWidth,
+        height: blockHeight,
         position: 'relative',
         borderRadius: '1.375rem',
         overflow: 'hidden',
@@ -156,8 +152,8 @@ export const DeepFlag = memo(function DeepFlag({
               mb: '1rem',
             }
           }}
-      >
-          <Text align='center' textStyle='Medium20'>{t(title)}</Text>
+        >
+          <Text align='center' textStyle='Medium20' mb='0.5rem'>{t(title)}</Text>
           <Text align='center' textStyle='Regular16'>{t(subtitle)}</Text>
           {/* image here */}
           <Image 
@@ -172,7 +168,7 @@ export const DeepFlag = memo(function DeepFlag({
 })
 
 export const Image = memo(function Image({
-  Icon = React.Fragment, 
+  Icon = Fragment, 
   xMotion, 
   yMotion, 
   ...props
@@ -188,6 +184,89 @@ export const Image = memo(function Image({
         xM={xMotion}
         yM={yMotion}
       />
+    </Box>
+  )
+})
+
+export const DeepFlagPopover = memo(function DeepFlag({
+  blockWidth = 300,
+  blockHeight = 300,
+  subtitle,
+  title,
+  description,
+  Icon = Fragment, 
+  xMotion, 
+  yMotion, 
+  ...props
+}:{
+  blockWidth?: number;
+  blockHeight?: number;
+  subtitle: string;
+  title: string;
+  description: string;
+  Icon?: any;
+  xMotion: MotionValue;
+  yMotion: MotionValue;
+  [key:string]: any;
+  }) {
+  const [revert, setRevert] = useState(true);
+  const { t } = useTranslation();
+  const animation1 = useAnimation();
+  const animation2 = useAnimation();
+
+  useEffect(() => {
+    if (revert === true) {
+      animation1.start('show');
+      animation2.start('hide');
+    } else {
+      animation1.start('hide');
+      animation2.start('show');
+    }
+  }, [revert, animation1, animation2]);
+
+  const {colorMode} = useColorMode();
+
+  return (<Box
+      sx={{
+        width: blockWidth,
+        height: blockHeight,
+        position: 'relative',
+        borderRadius: '1.375rem',
+        overflow: 'hidden',
+        bg: 'transparent',
+        p: '1.5rem 2rem',
+      }}
+    >
+      <AnimatePresence>
+        <Box 
+          width='100%'
+          height='100%'
+          as={motion.div}
+          // exit='hide'
+          // initial='show'
+          // animate={animation1}
+          // variants={variantTitleSide}
+          // onTap={() => setRevert(!revert)}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center', 
+            '&>*:nth-of-type(2)': {
+              mb: '1rem',
+            }
+          }}
+        >
+          <Text align='center' textStyle='Medium20' mb='0.5rem'>{t(title)}</Text>
+          <Text align='center' textStyle='Regular16'>{t(subtitle)}</Text>
+          {/* image here */}
+          <Image 
+            Icon={Icon}
+            xMotion={xMotion}
+            yMotion={yMotion}
+          />
+        </Box>
+      </AnimatePresence>
     </Box>
   )
 })

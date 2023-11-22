@@ -1,13 +1,13 @@
-import { motion, useAnimation } from "framer-motion";
+import { Variants, motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 
-const boxVariant = {
+const boxVariant: Variants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   hidden: { opacity: 0, scale: 0 }
 };
 
-const Box = ({ num }) => {
+const Box = memo(function Box({num}:{num: number}) {
 
   const control = useAnimation();
   const [ref, inView] = useInView();
@@ -31,9 +31,9 @@ const Box = ({ num }) => {
       <h1>Box {num} </h1>
     </motion.div>
   );
-};
+});
 
-export const AppSS = () => {
+export const AppSS = memo(() => {
   return (
     <div className="App">
       <Box num={1} />
@@ -41,4 +41,4 @@ export const AppSS = () => {
       <Box num={3} />
     </div>
   );
-}
+})

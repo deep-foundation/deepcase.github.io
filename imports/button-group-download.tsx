@@ -1,10 +1,9 @@
-import { TriangleDownIcon } from '@chakra-ui/icons';
-import React, { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, ButtonGroup, Button, IconButton, Menu, MenuButton, MenuItem, MenuList, Text, HStack } from './framework';
+import { Button, ButtonGroup, HStack, Text } from './framework';
 
 
-const ButtonMenu = React.memo(() => {
+const ButtonMenu = memo(() => {
   const { t } = useTranslation();
   return (
     <Button 
@@ -26,7 +25,7 @@ const ButtonMenu = React.memo(() => {
   )
 })
 
-export const ButtonGroupDownload = React.memo(() => {
+export const ButtonGroupDownload = memo(() => {
 
   const [electronOpen, setElectronOpen] = useState(null);
 

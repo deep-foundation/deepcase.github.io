@@ -122,7 +122,8 @@ export const Footer = React.memo(() => {
         >{t("deep-meeting")}</Text>  
         <Link href='tel: +7 985 427 12 56'>
           <HStack>
-            <GiCandlestickPhone /> <Text textStyle='Regular14'>+7 985 427 12 56</Text>
+            <GiCandlestickPhone /> 
+            <Text textStyle='Regular14'>+7 985 427 12 56</Text>
           </HStack>  
         </Link>
         <Text 
@@ -133,7 +134,8 @@ export const Footer = React.memo(() => {
         >{t("deep-meeting")}</Text>
         <Link href='mailto: info@deep.foundation'>
           <HStack>
-            <GiMailbox /> <Text textStyle='Regular14'>info@deep.foundation</Text>
+            <GiMailbox /> 
+            <Text textStyle='Regular14'>info@deep.foundation</Text>
           </HStack>
         </Link>
       </Flex>

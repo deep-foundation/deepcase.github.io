@@ -1,5 +1,5 @@
-import { motion, useAnimation } from 'framer-motion';
-import React, { useCallback, useEffect, useState } from 'react';
+import { Variants, motion, useAnimation } from 'framer-motion';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Button, FormHelperText, Input, Text, VStack } from './framework';
 
@@ -12,7 +12,7 @@ const spring = {
   duration: 2
 }
 
-const invitation = {
+const invitation: Variants = {
   active: {
     opacity: 0,
     display: 'none',
@@ -25,7 +25,7 @@ const invitation = {
   }
 }
 
-const form = {
+const form: Variants = {
   active: {
     opacity: 1,
     display: 'block',
@@ -38,7 +38,7 @@ const form = {
   }
 }
 
-export const InvitationToTheCaveChakra = React.memo<any>(() => {
+export const InvitationToTheCaveChakra = memo(() => {
   const { t } = useTranslation();
   const [ animation, setAnimation ] = useState(false);
   const control = useAnimation();
@@ -79,9 +79,9 @@ export const InvitationToTheCaveChakra = React.memo<any>(() => {
   )
 })
 
-const EntryForm = React.memo<any>(() => {
+const EntryForm = memo(() => {
   const { t } = useTranslation();
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState('')
   const handleChange = (event) => setValue(event.target.value)
 
   return (<VStack
@@ -180,7 +180,7 @@ const EntryForm = React.memo<any>(() => {
   )
 })
 
-const Invitation = React.memo(({onEnterCave}:{onEnterCave: () => any;}) => {
+const Invitation = memo(({onEnterCave}:{onEnterCave: () => any;}) => {
   const { t } = useTranslation(); 
 
   return ( <VStack

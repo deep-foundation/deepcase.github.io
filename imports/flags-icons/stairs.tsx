@@ -27,36 +27,36 @@ export const Stairs = React.memo(({xM, yM}:{xM: MotionValue; yM: MotionValue;}) 
   const _four = useMotionTemplate`translate3d(${x4}px, ${y4}px, 0)`;
   
 
-  return (<Box pos='relative' w={150} h={150}>
+  return (<Box pos='relative' w={100} h={100}>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _tower}}>
-        <Img src='./stairs/stairs.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/stairs.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _one}}>
-        <Img src='./stairs/1.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/1.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./stairs/2.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/2.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./stairs/3.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/3.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _three}}>
-        <Img src='./stairs/4.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/4.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _one}}>
-        <Img src='./stairs/5.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/5.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _two}}>
-        <Img src='./stairs/6.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/6.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./stairs/7.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/7.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _three}}>
-        <Img src='./stairs/8.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/8.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
       <motion.div style={{position: 'absolute', top: 0, left: 0, transform: _four}}>
-        <Img src='./stairs/9.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='150px' />
+        <Img src='./stairs/9.svg' alt='stairs' htmlWidth='100%' htmlHeight='100%' boxSize='100px' />
       </motion.div>
     </Box>
   )
